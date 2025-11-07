@@ -1,0 +1,18 @@
+# Experiment configuration
+experiment:
+  name: baseline_evaluation
+  description: Baseline LLM hallucination evaluation
+  
+  models:
+    - openai/gpt-4
+    - anthropic/claude-3-sonnet
+    - google/gemini-pro
+  
+  test_cases: 100
+  repetitions: 3
+  
+  metrics:
+    - hallucination_rate
+    - accuracy
+    - precision
+    - recall

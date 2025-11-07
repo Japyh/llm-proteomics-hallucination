@@ -1,0 +1,79 @@
+name: llm-proteomics-hallucination
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+  - pytorch
+dependencies:
+  - python=3.11
+  - pip>=23.0
+
+  # Core scientific computing
+  - numpy>=1.24.0
+  - pandas>=2.0.0
+  - scipy>=1.10.0
+
+  # Machine Learning with CUDA support
+  - pytorch>=2.0.0
+  - pytorch-cuda=11.8
+  - cudatoolkit=11.8
+
+  # Visualization
+  - matplotlib>=3.7.0
+  - seaborn>=0.12.0
+  - plotly>=5.14.0
+
+  # Bioinformatics
+  - biopython>=1.81
+
+  # Statistics
+  - statsmodels>=0.14.0
+
+  # Jupyter
+  - jupyter>=1.0.0
+  - jupyterlab>=4.0.0
+  - ipywidgets>=8.0.0
+
+  # Development tools
+  - black>=23.7.0
+  - flake8>=6.0.0
+  - mypy>=1.4.0
+  - pytest>=7.4.0
+  - pytest-cov>=4.1.0
+
+  # Configuration
+  - pyyaml>=6.0
+  - python-dotenv>=1.0.0
+
+  # Database
+  - sqlalchemy>=2.0.0
+
+  # Utilities
+  - tqdm>=4.65.0
+
+  # Additional packages via pip
+  - pip:
+    - pyteomics>=4.6.0
+    - pyopenms>=2.9.0
+    - openai>=1.3.0
+    - anthropic>=0.7.0
+    - google-generativeai>=0.3.0
+    - shap>=0.42.0
+    - fairlearn>=0.9.0
+    - lime>=0.2.0
+    - pydantic>=2.0.0
+    - pandera>=0.17.0
+    - tenacity>=8.2.0
+    - ratelimit>=2.2.1
+    - loguru>=0.7.0
+    - bioservices>=1.11.0
+    - pingouin>=0.5.3
+    - transformers>=4.30.0
+    - pytest-asyncio>=0.21.0
+    - pytest-mock>=3.11.0
+    - omegaconf>=2.3.0
+    - openpyxl>=3.1.0
+    - scikit-posthocs>=0.7.0
+    - memory-profiler>=0.61.0
+    - isort>=5.12.0
+    - pylint>=2.17.0

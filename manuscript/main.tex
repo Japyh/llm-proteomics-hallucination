@@ -1,0 +1,36 @@
+\documentclass[12pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{cite}
+\usepackage{hyperref}
+\usepackage{booktabs}
+
+% Document information
+\title{Hallucination Risks in Large Language Model Interpretation of Clinical Proteomics Data: An Empirical Analysis}
+\author{Author 1\textsuperscript{1}, Author 2\textsuperscript{2}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Large Language Models (LLMs) show promise for clinical decision support but pose risks through factual errors or "hallucinations." This study evaluates hallucination rates when using GPT-4, Claude, and Gemini to interpret proteomics data. We find significant variation across models and identify key risk factors for clinical deployment.
+\end{abstract}
+
+\textbf{Keywords:} Large Language Models, Hallucination, Proteomics, Clinical AI, Healthcare Safety
+
+\input{sections/01_introduction}
+\input{sections/02_literature_review}
+\input{sections/03_methodology}
+\input{sections/04_results}
+\input{sections/05_discussion}
+\input{sections/06_conclusion}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

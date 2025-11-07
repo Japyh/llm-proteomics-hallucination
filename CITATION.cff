@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this research, please cite it as below."
+authors:
+- family-names: "Laitinen"
+  given-names: "Olaf"
+- family-names: "[Co-author]"
+  given-names: "[Name]"
+title: "LLM Hallucination Risks in Clinical Proteomics"
+version: 0.1.0
+date-released: 2024-01-15
+url: "https://github.com/olaflaitinen/llm-proteomics-hallucination"
+preferred-citation:
+  type: article
+  authors:
+  - family-names: "Laitinen"
+    given-names: "Olaf"
+  title: "Hallucination Risks in LLM Interpretation of Clinical Proteomics Data"
+  year: 2024
+  journal: "To be determined"

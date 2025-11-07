@@ -1,0 +1,189 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+.conda/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints/
+.jupyter/
+
+# IPython
+profile_default/
+ipython_config.py
+
+# pyenv
+.python-version
+
+# pytest
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+credentials.*
+secrets.*
+api_keys.*
+
+# Data files - NEVER commit real patient data
+*.csv
+*.xlsx
+*.xls
+*.h5
+*.hdf5
+*.pkl
+*.pickle
+*.parquet
+data/raw/*
+data/processed/*
+!data/synthetic/example_proteins.csv
+!data/**/.gitkeep
+!data/**/README.md
+!data/**/WARNING.md
+
+# Mass spectrometry data formats
+*.mzML
+*.mzXML
+*.mgf
+*.raw
+*.d
+*.wiff
+
+# Model checkpoints and weights
+*.pt
+*.pth
+*.ckpt
+*.h5
+*.pb
+models/
+checkpoints/
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Results and outputs
+results/figures/*.png
+results/figures/*.pdf
+results/figures/*.svg
+results/tables/*.csv
+results/tables/*.xlsx
+results/statistical_tests/*
+results/logs/*
+!results/**/.gitkeep
+
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.lot
+*.out
+*.toc
+*.synctex.gz
+*.pdf
+!manuscript/README.md
+manuscript/*.pdf
+
+# Presentations
+*.pptx
+*.ppt
+presentations/*.pdf
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# OS specific
+Thumbs.db
+.Trash-*
+
+# Patient data and ethics - CRITICAL
+*patient*
+*clinical_data*
+*phi*
+*pii*
+consent_forms/*.pdf
+consent_forms/*.docx
+ethics/consent_forms/*
+!ethics/consent_forms/.gitkeep
+!ethics/consent_forms/CRITICAL_PRIVACY_WARNING.md
+
+# API response cache
+.cache/
+cache/
+
+# Documentation builds
+docs/_build/
+docs/.doctrees/
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Compressed files
+*.zip
+*.tar.gz
+*.rar
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
