@@ -1,19 +1,38 @@
 cff-version: 1.2.0
-message: "If you use this research, please cite it as below."
-authors:
-- family-names: "Laitinen"
-  given-names: "Olaf"
-- family-names: "[Co-author]"
-  given-names: "[Name]"
-title: "LLM Hallucination Risks in Clinical Proteomics"
+message: "If you use this software or research, please cite it as below."
+title: "LLM Hallucination Risks in Clinical Proteomics Interpretation"
 version: 0.1.0
 date-released: 2024-01-15
 url: "https://github.com/olaflaitinen/llm-proteomics-hallucination"
+repository-code: "https://github.com/olaflaitinen/llm-proteomics-hallucination"
+license: MIT
+authors:
+  - family-names: "Laitinen Imanov"
+    given-names: "Olaf Yunus"
+    email: "olyulaim@dtu.dk"
+    affiliation: "Technical University of Denmark"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+  - family-names: "Kulali"
+    given-names: "Derya Umut"
+    email: "d_u_k@ogr.eskisehir.edu.tr"
+    affiliation: "Eskisehir Technical University"
+    orcid: "https://orcid.org/0000-0000-0000-0000"
+keywords:
+  - Large Language Models
+  - Hallucination Detection
+  - Clinical Proteomics
+  - Mass Spectrometry
+  - AI Safety
+  - Healthcare AI
+  - Biomedical NLP
 preferred-citation:
   type: article
   authors:
-  - family-names: "Laitinen"
-    given-names: "Olaf"
-  title: "Hallucination Risks in LLM Interpretation of Clinical Proteomics Data"
+    - family-names: "Laitinen Imanov"
+      given-names: "Olaf Yunus"
+    - family-names: "Kulali"
+      given-names: "Derya Umut"
+  title: "Hallucination Risks in Large Language Models for Clinical Proteomics Interpretation: A Systematic Evaluation"
   year: 2024
-  journal: "To be determined"
+  journal: "[Target Journal - To be determined]"
+  status: "in preparation"

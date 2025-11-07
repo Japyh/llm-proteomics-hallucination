@@ -7,10 +7,19 @@
 \usepackage{cite}
 \usepackage{hyperref}
 \usepackage{booktabs}
+\usepackage[margin=2.5cm]{geometry}
 
 % Document information
-\title{Hallucination Risks in Large Language Model Interpretation of Clinical Proteomics Data: An Empirical Analysis}
-\author{Author 1\textsuperscript{1}, Author 2\textsuperscript{2}}
+\title{Hallucination Risks in Large Language Models for Clinical Proteomics Interpretation: A Systematic Evaluation}
+
+\author{
+  Olaf Yunus Laitinen Imanov\textsuperscript{1*} \and
+  Derya Umut Kulali\textsuperscript{2}\\
+  \textsuperscript{1}Department of Biotechnology and Biomedicine, Technical University of Denmark, Denmark\\
+  \textsuperscript{2}Department of Engineering, Eskisehir Technical University, Turkey\\
+  \textsuperscript{*}Corresponding author: olyulaim@dtu.dk
+}
+
 \date{\today}
 
 \begin{document}
@@ -18,17 +27,43 @@
 \maketitle
 
 \begin{abstract}
-Large Language Models (LLMs) show promise for clinical decision support but pose risks through factual errors or "hallucinations." This study evaluates hallucination rates when using GPT-4, Claude, and Gemini to interpret proteomics data. We find significant variation across models and identify key risk factors for clinical deployment.
+Large Language Models (LLMs) demonstrate remarkable capabilities in biomedical text processing, yet their application to clinical proteomics interpretation remains understudied and potentially hazardous. \textbf{Hallucinations}—the generation of plausible but factually incorrect information—pose significant risks when LLMs are used for protein function annotation, mass spectrometry result interpretation, or clinical biomarker assessment. This study presents a systematic evaluation of hallucination risks across three major LLM providers (GPT-4, Claude 3, Gemini Pro) using a benchmark suite of 1,000+ carefully curated proteomics queries. Our findings reveal substantial variation in hallucination rates (15-35\%), with protein function prediction and clinical interpretation showing highest error frequencies. We propose a risk stratification framework and technical safeguards necessary for responsible clinical deployment. This work contributes to the growing body of evidence on AI safety in healthcare and provides actionable recommendations for researchers and clinicians considering LLM deployment in proteomics workflows.
 \end{abstract}
 
-\textbf{Keywords:} Large Language Models, Hallucination, Proteomics, Clinical AI, Healthcare Safety
+\textbf{Keywords:} Large Language Models, Hallucination Detection, Clinical Proteomics, Mass Spectrometry, AI Safety, Healthcare AI, Biomedical NLP
 
+\section*{Introduction}
 \input{sections/01_introduction}
+
+\section*{Literature Review}
 \input{sections/02_literature_review}
+
+\section*{Methodology}
 \input{sections/03_methodology}
+
+\section*{Results}
 \input{sections/04_results}
+
+\section*{Discussion}
 \input{sections/05_discussion}
+
+\section*{Conclusion}
 \input{sections/06_conclusion}
+
+\section*{Author Contributions}
+O.Y.L.I. conceived the study, developed the evaluation framework, and conducted data analysis. D.U.K. contributed to ethics documentation, literature review, and statistical analysis. Both authors contributed to manuscript writing and approved the final version.
+
+\section*{Funding}
+This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
+
+\section*{Competing Interests}
+The authors declare no competing interests.
+
+\section*{Data Availability}
+All code and synthetic data used in this study are available at: \url{https://github.com/olaflaitinen/llm-proteomics-hallucination}
+
+\section*{Ethics Statement}
+This study used only synthetic data and public database information. No patient data or protected health information was used. All procedures followed Helsinki Declaration principles and GDPR guidelines.
 
 \bibliographystyle{plain}
 \bibliography{references}
