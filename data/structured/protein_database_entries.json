@@ -1,0 +1,185 @@
+[
+  {
+    "uniprot_id": "P68871",
+    "gene_name": "HBB",
+    "protein_name": "Hemoglobin subunit beta",
+    "organism": "Homo sapiens",
+    "organism_id": 9606,
+    "length": 147,
+    "molecular_weight_da": 15867,
+    "isoelectric_point": 6.81,
+    "sequence": "MVHLTPEEKSAVTALWGKVNVDEVGGEALGRLLVVYPWTQRFFESFGDLSTPDAVMGNPKVKAHGKKVLGAFSDGLAHLDNLKGTFATLSELHCDKLHVDPENFRLLGNVLVCVLAHHFGKEFTPPVQAAYQKVVAGVANALAHKYH",
+    "function": "Involved in oxygen transport from the lung to the various peripheral tissues",
+    "subcellular_location": ["Cytoplasm", "Cytosol"],
+    "tissue_specificity": ["Red blood cells"],
+    "disease_associations": [
+      {
+        "disease": "Sickle cell anemia",
+        "omim": "603903",
+        "variant": "p.Glu6Val",
+        "clinical_significance": "Pathogenic"
+      },
+      {
+        "disease": "Beta-thalassemia",
+        "omim": "613985",
+        "variant": "Various",
+        "clinical_significance": "Pathogenic"
+      }
+    ],
+    "database_coverage": "High",
+    "pubmed_citations": 15234,
+    "uniprot_date": "2024-03-20",
+    "go_terms": [
+      {"id": "GO:0005344", "term": "oxygen carrier activity", "category": "molecular_function"},
+      {"id": "GO:0015671", "term": "oxygen transport", "category": "biological_process"},
+      {"id": "GO:0005829", "term": "cytosol", "category": "cellular_component"}
+    ],
+    "interactions": ["P69905", "P69891", "P02100"],
+    "domains": ["Globin"],
+    "signal_peptide": false,
+    "transmembrane": false
+  },
+  {
+    "uniprot_id": "P01308",
+    "gene_name": "INS",
+    "protein_name": "Insulin",
+    "organism": "Homo sapiens",
+    "organism_id": 9606,
+    "length": 110,
+    "molecular_weight_da": 11882,
+    "isoelectric_point": 5.30,
+    "sequence": "MALWMRLLPLLALLALWGPDPAAAFVNQHLCGSHLVEALYLVCGERGFFYTPKTRREAEDLQVGQVELGGGPGAGSLQPLALEGSLQKRGIVEQCCTSICSLYQLENYCN",
+    "function": "Insulin decreases blood glucose concentration. It increases cell permeability to monosaccharides, amino acids and fatty acids. It accelerates glycolysis, the pentose phosphate cycle, and glycogen synthesis in liver.",
+    "subcellular_location": ["Secreted"],
+    "tissue_specificity": ["Pancreas", "Beta cells"],
+    "disease_associations": [
+      {
+        "disease": "Diabetes mellitus, permanent neonatal",
+        "omim": "606176",
+        "variant": "Various",
+        "clinical_significance": "Pathogenic"
+      },
+      {
+        "disease": "Maturity-onset diabetes of the young",
+        "omim": "606391",
+        "variant": "Various",
+        "clinical_significance": "Pathogenic"
+      }
+    ],
+    "database_coverage": "High",
+    "pubmed_citations": 23456,
+    "uniprot_date": "2024-03-20",
+    "go_terms": [
+      {"id": "GO:0005179", "term": "hormone activity", "category": "molecular_function"},
+      {"id": "GO:0005158", "term": "insulin receptor binding", "category": "molecular_function"},
+      {"id": "GO:0042593", "term": "glucose homeostasis", "category": "biological_process"}
+    ],
+    "interactions": ["P06213", "P08069"],
+    "domains": ["Insulin"],
+    "signal_peptide": true,
+    "transmembrane": false,
+    "disulfide_bonds": ["C7-C72", "C20-C85", "C95-C100"]
+  },
+  {
+    "uniprot_id": "P04406",
+    "gene_name": "GAPDH",
+    "protein_name": "Glyceraldehyde-3-phosphate dehydrogenase",
+    "organism": "Homo sapiens",
+    "organism_id": 9606,
+    "length": 335,
+    "molecular_weight_da": 36053,
+    "isoelectric_point": 8.58,
+    "sequence": "MVKVGVNGFGRIGRLVTRAAFNSGKVDIVAINDPFIDLNYMVYMFQYDSTHGKFHGTVYKAENGKLVINGNPITIFQERDPSKIKWGDAGAEYVVESTGVFTTMEKAGAHLKGGAKKVIISAPSADAPMFVMGVNHEKYDNSLKIISNASCTTNCLAPLAKVIHDNFGIVEGLMTTVHAITATQKTVDGPSGKLWRDGRGALQNIIPASTGAAKAVGKVIPELNGKLTGMAFRVPTPNVSVVDLTCRLEKPAKYDDIKKVVKQASEGPLKGILGYTEHQVVSSDFNSDTHSSTFDAGAGIALNDHFVKLISWYDNEFGYSNRVVDLMVHMASKE",
+    "function": "Has both glyceraldehyde-3-phosphate dehydrogenase and nitrosylase activities, thereby playing a role in glycolysis and nuclear functions, respectively",
+    "subcellular_location": ["Cytoplasm", "Cytosol", "Nucleus"],
+    "tissue_specificity": ["Ubiquitous"],
+    "disease_associations": [],
+    "database_coverage": "High",
+    "pubmed_citations": 18734,
+    "uniprot_date": "2024-03-20",
+    "go_terms": [
+      {"id": "GO:0004365", "term": "glyceraldehyde-3-phosphate dehydrogenase (NAD+) (phosphorylating) activity", "category": "molecular_function"},
+      {"id": "GO:0006096", "term": "glycolytic process", "category": "biological_process"},
+      {"id": "GO:0005737", "term": "cytoplasm", "category": "cellular_component"}
+    ],
+    "interactions": ["P62258", "P60174", "Q99798"],
+    "domains": ["NAD-binding domain", "Catalytic domain"],
+    "signal_peptide": false,
+    "transmembrane": false
+  },
+  {
+    "uniprot_id": "P02768",
+    "gene_name": "ALB",
+    "protein_name": "Serum albumin",
+    "organism": "Homo sapiens",
+    "organism_id": 9606,
+    "length": 609,
+    "molecular_weight_da": 69366,
+    "isoelectric_point": 5.92,
+    "sequence": "MKWVTFISLLLLFSSAYSRGVFRRDTHKSEIAHRFKDLGEEHFKGLVLIAFSQYLQQCPFDEHVKLVNELTEFAKTCVADESHAGCEKSLHTLFGDELCKVASLRETYGDMADCCEKQEPERNECFLSHKDDSPDLPKLKPDPNTLCDEFKADEKKFWGKYLYEIARRHPYFYAPELLYYANKYNGVFQECCQAEDKGACLLPKIETMREKVLASSARQRLRCASIQKFGERALKFAWAVARLSQKFPKAEFVEVTKLVTDLTKVHKECCHGDLLECADDRADLAKYICDNQDTISSKLKECCDKPLLEKSHCIAEVEKDAIPENLPPLTADFAEDKDVCKNYQEAKDAFLGSFLYEYSRRHPEYAVSVLLRLAKEYEATLEECCAKDDPHACYSTVFDKLKHLVDEPQNLIKQNCDQFEKLGEYGFQNALIVRYTRKVPQVSTPTLVEVSRSLGKVGTRCCTKPESERMPCTEDYLSLILNRLCVLHEKTPVSEKVTKCCTESLVNRRPCFSALTPDETYVPKAFDEKLFTFHADICTLPDTEKQIKKQTALVELLKHKPKATEEQLKTVMENFVAFVDKCCAADDKEACFAVEGPKLVVSTQTALA",
+    "function": "Serum albumin, the main protein of plasma, has a good binding capacity for water, Ca(2+), Na(+), K(+), fatty acids, hormones, bilirubin and drugs. Its main function is the regulation of the colloidal osmotic pressure of blood",
+    "subcellular_location": ["Secreted"],
+    "tissue_specificity": ["Liver", "Blood plasma"],
+    "disease_associations": [
+      {
+        "disease": "Analbuminemia",
+        "omim": "103600",
+        "variant": "Various",
+        "clinical_significance": "Pathogenic"
+      }
+    ],
+    "database_coverage": "High",
+    "pubmed_citations": 34567,
+    "uniprot_date": "2024-03-20",
+    "go_terms": [
+      {"id": "GO:0008144", "term": "drug binding", "category": "molecular_function"},
+      {"id": "GO:0006810", "term": "transport", "category": "biological_process"},
+      {"id": "GO:0005576", "term": "extracellular region", "category": "cellular_component"}
+    ],
+    "interactions": ["P02763", "P02765", "P02766"],
+    "domains": ["Serum albumin"],
+    "signal_peptide": true,
+    "transmembrane": false,
+    "disulfide_bonds": ["C53-C62", "C90-C101", "C124-C169", "C177-C190"]
+  },
+  {
+    "uniprot_id": "P04637",
+    "gene_name": "TP53",
+    "protein_name": "Cellular tumor antigen p53",
+    "organism": "Homo sapiens",
+    "organism_id": 9606,
+    "length": 393,
+    "molecular_weight_da": 43653,
+    "isoelectric_point": 6.33,
+    "sequence": "MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDIEQWFTEDPGPDEAPRMPEAAPPVAPAPAAPTPAAPAPAPSWPLSSSVPSQKTYQGSYGFRLGFLHSGTAKSVTCTYSPALNKMFCQLAKTCPVQLWVDSTPPPGTRVRAMAIYKQSQHMTEVVRRCPHHERCSDSDGLAPPQHLIRVEGNLRVEYLDDRNTFRHSVVVPYEPPEVGSDCTTIHYNYMCNSSCMGGMNRRPILTIITLEDSSGNLLGRNSFEVRVCACPGRDRRTEEENLRKKGEPHHELPPGSTKRALPNNTSSSPQPKKKPLDGEYFTLQIRGRERFEMFRELNEALELKDAQAGKEPGGSRAHSSHLKSKKGQSTSRHKKLMFKTEGPDSD",
+    "function": "Acts as a tumor suppressor in many tumor types; induces growth arrest or apoptosis depending on the physiological circumstances and cell type",
+    "subcellular_location": ["Nucleus", "Cytoplasm"],
+    "tissue_specificity": ["Ubiquitous"],
+    "disease_associations": [
+      {
+        "disease": "Li-Fraumeni syndrome",
+        "omim": "151623",
+        "variant": "Various",
+        "clinical_significance": "Pathogenic"
+      },
+      {
+        "disease": "Multiple cancers",
+        "omim": "Various",
+        "variant": "Various",
+        "clinical_significance": "Pathogenic"
+      }
+    ],
+    "database_coverage": "High",
+    "pubmed_citations": 56789,
+    "uniprot_date": "2024-03-20",
+    "go_terms": [
+      {"id": "GO:0003677", "term": "DNA binding", "category": "molecular_function"},
+      {"id": "GO:0006915", "term": "apoptotic process", "category": "biological_process"},
+      {"id": "GO:0005634", "term": "nucleus", "category": "cellular_component"}
+    ],
+    "interactions": ["Q00987", "P04792", "P10827"],
+    "domains": ["Transactivation domain", "DNA-binding domain", "Tetramerization domain"],
+    "signal_peptide": false,
+    "transmembrane": false
+  }
+]
