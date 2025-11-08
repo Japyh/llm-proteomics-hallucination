@@ -30,6 +30,7 @@ logger = logging.getLogger(__name__)
 @dataclass
 class BenchmarkQuery:
     """A single benchmark query."""
+
     query_id: str
     category: str  # protein_function, mass_spec, clinical, ptm, rare_disease
     difficulty: str  # easy, medium, hard, expert
@@ -41,6 +42,7 @@ class BenchmarkQuery:
 @dataclass
 class BenchmarkResult:
     """Result of running benchmark on one model."""
+
     query_id: str
     model: str
     provider: str
@@ -81,7 +83,7 @@ class BenchmarkSuite:
     def __init__(
         self,
         models: List[tuple] = None,
-        output_dir: str = 'results/benchmark',
+        output_dir: str = "results/benchmark",
         enable_hallucination_detection: bool = True,
         max_concurrent: int = 5,
         query_file: Optional[str] = None,
@@ -89,9 +91,9 @@ class BenchmarkSuite:
         """Initialize benchmark suite."""
         # Default models if not specified
         self.models = models or [
-            ('openai', 'gpt-4'),
-            ('anthropic', 'claude-3-opus-20240229'),
-            ('google', 'gemini-pro'),
+            ("openai", "gpt-4"),
+            ("anthropic", "claude-3-opus-20240229"),
+            ("google", "gemini-pro"),
         ]
 
         self.output_dir = Path(output_dir)
@@ -153,16 +155,18 @@ class BenchmarkSuite:
         queries = []
 
         # Protein function queries (easy)
-        protein_ids = ['P04637', 'P53', 'BRCA1', 'EGFR', 'HER2']
+        protein_ids = ["P04637", "P53", "BRCA1", "EGFR", "HER2"]
         for i, pid in enumerate(protein_ids):
-            queries.append(BenchmarkQuery(
-                query_id=f"pf_easy_{i:03d}",
-                category="protein_function",
-                difficulty="easy",
-                prompt=PromptTemplates.protein_function(pid),
-                ground_truth={'protein_id': pid, 'category': 'well_characterized'},
-                metadata={'protein_id': pid}
-            ))
+            queries.append(
+                BenchmarkQuery(
+                    query_id=f"pf_easy_{i:03d}",
+                    category="protein_function",
+                    difficulty="easy",
+                    prompt=PromptTemplates.protein_function(pid),
+                    ground_truth={"protein_id": pid, "category": "well_characterized"},
+                    metadata={"protein_id": pid},
+                )
+            )
 
         # Mass spectrometry queries (medium)
         ms_queries = [
@@ -171,14 +175,16 @@ class BenchmarkSuite:
             "Analyze this mass spectrum: major peaks at 500-1500 Da range",
         ]
         for i, query in enumerate(ms_queries):
-            queries.append(BenchmarkQuery(
-                query_id=f"ms_medium_{i:03d}",
-                category="mass_spec",
-                difficulty="medium",
-                prompt=query,
-                ground_truth={'category': 'mass_spectrometry'},
-                metadata={'query_type': 'peak_interpretation'}
-            ))
+            queries.append(
+                BenchmarkQuery(
+                    query_id=f"ms_medium_{i:03d}",
+                    category="mass_spec",
+                    difficulty="medium",
+                    prompt=query,
+                    ground_truth={"category": "mass_spectrometry"},
+                    metadata={"query_type": "peak_interpretation"},
+                )
+            )
 
         # Clinical relevance queries (hard)
         clinical_queries = [
@@ -187,14 +193,16 @@ class BenchmarkSuite:
             "Explain the role of PSA as a prostate cancer biomarker",
         ]
         for i, query in enumerate(clinical_queries):
-            queries.append(BenchmarkQuery(
-                query_id=f"clinical_hard_{i:03d}",
-                category="clinical",
-                difficulty="hard",
-                prompt=query,
-                ground_truth={'category': 'clinical_biomarker'},
-                metadata={'query_type': 'biomarker_interpretation'}
-            ))
+            queries.append(
+                BenchmarkQuery(
+                    query_id=f"clinical_hard_{i:03d}",
+                    category="clinical",
+                    difficulty="hard",
+                    prompt=query,
+                    ground_truth={"category": "clinical_biomarker"},
+                    metadata={"query_type": "biomarker_interpretation"},
+                )
+            )
 
         # Expert level - ambiguous/edge cases
         expert_queries = [
@@ -203,14 +211,16 @@ class BenchmarkSuite:
             "Interpret peaks at exactly m/z 123.456789012",  # Unrealistic precision
         ]
         for i, query in enumerate(expert_queries):
-            queries.append(BenchmarkQuery(
-                query_id=f"expert_{i:03d}",
-                category="edge_case",
-                difficulty="expert",
-                prompt=query,
-                ground_truth={'expected_hallucination': True},
-                metadata={'query_type': 'hallucination_test'}
-            ))
+            queries.append(
+                BenchmarkQuery(
+                    query_id=f"expert_{i:03d}",
+                    category="edge_case",
+                    difficulty="expert",
+                    prompt=query,
+                    ground_truth={"expected_hallucination": True},
+                    metadata={"query_type": "hallucination_test"},
+                )
+            )
 
         logger.info(f"Generated {len(queries)} default queries")
         return queries
@@ -225,7 +235,9 @@ class BenchmarkSuite:
         Raises:
             Exception: If benchmark execution fails
         """
-        logger.info(f"Starting benchmark with {len(self.queries)} queries across {len(self.clients)} models")
+        logger.info(
+            f"Starting benchmark with {len(self.queries)} queries across {len(self.clients)} models"
+        )
 
         all_results = []
 
@@ -256,10 +268,7 @@ class BenchmarkSuite:
         return all_results
 
     async def _evaluate_query(
-        self,
-        query: BenchmarkQuery,
-        client: LLMClient,
-        model_key: str
+        self, query: BenchmarkQuery, client: LLMClient, model_key: str
     ) -> BenchmarkResult:
         """Evaluate a single query."""
         try:
@@ -274,27 +283,26 @@ class BenchmarkSuite:
             hallucination_result = None
             if self.enable_hallucination_detection:
                 hall_result = self.detector.detect(
-                    response.content,
-                    context=query.ground_truth
+                    response.content, context=query.ground_truth
                 )
                 hallucination_result = {
-                    'is_hallucination': hall_result.is_hallucination,
-                    'types': [ht.value for ht in hall_result.hallucination_types],
-                    'confidence': hall_result.confidence,
-                    'evidence': hall_result.evidence
+                    "is_hallucination": hall_result.is_hallucination,
+                    "types": [ht.value for ht in hall_result.hallucination_types],
+                    "confidence": hall_result.confidence,
+                    "evidence": hall_result.evidence,
                 }
 
             # Create result
             result = BenchmarkResult(
                 query_id=query.query_id,
-                model=model_key.split('/')[1],
-                provider=model_key.split('/')[0],
+                model=model_key.split("/")[1],
+                provider=model_key.split("/")[0],
                 response=response.content,
                 tokens_used=response.tokens_used,
                 cost_usd=response.cost_usd,
                 latency_seconds=response.latency_seconds,
                 hallucination_result=hallucination_result,
-                timestamp=datetime.now().isoformat()
+                timestamp=datetime.now().isoformat(),
             )
 
             return result
@@ -321,13 +329,13 @@ class BenchmarkSuite:
         results_data = [asdict(r) for r in results]
 
         # Save as JSON
-        with open(output_path, 'w') as f:
+        with open(output_path, "w") as f:
             json.dump(results_data, f, indent=2)
 
         logger.info(f"Saved {len(results)} results to {output_path}")
 
         # Also save as CSV for easy analysis
-        csv_path = output_path.with_suffix('.csv')
+        csv_path = output_path.with_suffix(".csv")
         df = pd.DataFrame(results_data)
         df.to_csv(csv_path, index=False)
         logger.info(f"Saved CSV to {csv_path}")
@@ -345,34 +353,44 @@ class BenchmarkSuite:
         df = pd.DataFrame([asdict(r) for r in results])
 
         analysis = {
-            'total_queries': len(results),
-            'total_cost_usd': df['cost_usd'].sum(),
-            'total_tokens': df['tokens_used'].sum(),
-            'avg_latency_seconds': df['latency_seconds'].mean(),
+            "total_queries": len(results),
+            "total_cost_usd": df["cost_usd"].sum(),
+            "total_tokens": df["tokens_used"].sum(),
+            "avg_latency_seconds": df["latency_seconds"].mean(),
         }
 
         # Per-model statistics
         model_stats = {}
-        for model in df['model'].unique():
-            model_df = df[df['model'] == model]
+        for model in df["model"].unique():
+            model_df = df[df["model"] == model]
 
             # Count hallucinations
             hall_count = 0
             if self.enable_hallucination_detection:
-                hall_count = model_df['hallucination_result'].apply(
-                    lambda x: x.get('is_hallucination', False) if isinstance(x, dict) else False
-                ).sum()
+                hall_count = (
+                    model_df["hallucination_result"]
+                    .apply(
+                        lambda x: (
+                            x.get("is_hallucination", False)
+                            if isinstance(x, dict)
+                            else False
+                        )
+                    )
+                    .sum()
+                )
 
             model_stats[model] = {
-                'total_queries': len(model_df),
-                'hallucination_count': hall_count,
-                'hallucination_rate': hall_count / len(model_df) if len(model_df) > 0 else 0,
-                'avg_cost_usd': model_df['cost_usd'].mean(),
-                'total_cost_usd': model_df['cost_usd'].sum(),
-                'avg_latency': model_df['latency_seconds'].mean(),
+                "total_queries": len(model_df),
+                "hallucination_count": hall_count,
+                "hallucination_rate": (
+                    hall_count / len(model_df) if len(model_df) > 0 else 0
+                ),
+                "avg_cost_usd": model_df["cost_usd"].mean(),
+                "total_cost_usd": model_df["cost_usd"].sum(),
+                "avg_latency": model_df["latency_seconds"].mean(),
             }
 
-        analysis['per_model'] = model_stats
+        analysis["per_model"] = model_stats
 
         return analysis
 
@@ -402,7 +420,7 @@ Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 
 """
 
-        for model, stats in analysis['per_model'].items():
+        for model, stats in analysis["per_model"].items():
             report += f"""
 ### {model}
 
@@ -415,7 +433,7 @@ Generated: {datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 
         if output_file:
             output_path = self.output_dir / output_file
-            with open(output_path, 'w') as f:
+            with open(output_path, "w") as f:
                 f.write(report)
             logger.info(f"Report saved to {output_path}")
         else:
@@ -429,12 +447,19 @@ async def main():
     """Run benchmark from command line."""
     import argparse
 
-    parser = argparse.ArgumentParser(description='Run LLM proteomics benchmark')
-    parser.add_argument('--models', nargs='+', help='Models to evaluate (provider/model format)')
-    parser.add_argument('--output', default='results/benchmark', help='Output directory')
-    parser.add_argument('--queries', help='Path to queries JSON file')
-    parser.add_argument('--no-hallucination-detection', action='store_true',
-                        help='Disable hallucination detection')
+    parser = argparse.ArgumentParser(description="Run LLM proteomics benchmark")
+    parser.add_argument(
+        "--models", nargs="+", help="Models to evaluate (provider/model format)"
+    )
+    parser.add_argument(
+        "--output", default="results/benchmark", help="Output directory"
+    )
+    parser.add_argument("--queries", help="Path to queries JSON file")
+    parser.add_argument(
+        "--no-hallucination-detection",
+        action="store_true",
+        help="Disable hallucination detection",
+    )
 
     args = parser.parse_args()
 
@@ -442,7 +467,7 @@ async def main():
     models = []
     if args.models:
         for model_str in args.models:
-            provider, model = model_str.split('/')
+            provider, model = model_str.split("/")
             models.append((provider, model))
 
     # Create and run benchmark
@@ -455,10 +480,10 @@ async def main():
 
     results = await suite.run()
     suite.save_results(results)
-    suite.generate_report(results, 'benchmark_report.md')
+    suite.generate_report(results, "benchmark_report.md")
 
     print(f"\nBenchmark complete! Results saved to {suite.output_dir}")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     asyncio.run(main())

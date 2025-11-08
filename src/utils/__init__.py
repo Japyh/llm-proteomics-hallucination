@@ -5,4 +5,4 @@ from .logger import setup_logger
 from .helpers import *
 from .validators import *
 
-__all__ = ['Config', 'setup_logger']
+__all__ = ["Config", "setup_logger"]

@@ -16,7 +16,7 @@ from tenacity import (
     retry,
     stop_after_attempt,
     wait_exponential,
-    retry_if_exception_type
+    retry_if_exception_type,
 )
 
 # API clients
@@ -41,6 +41,7 @@ logger = logging.getLogger(__name__)
 
 class LLMProvider(Enum):
     """Supported LLM providers."""
+
     OPENAI = "openai"
     ANTHROPIC = "anthropic"
     GOOGLE = "google"
@@ -49,6 +50,7 @@ class LLMProvider(Enum):
 @dataclass
 class LLMResponse:
     """Container for LLM response with metadata."""
+
     content: str
     provider: str
     model: str
@@ -88,19 +90,19 @@ class LLMClient:
 
     # Pricing per 1000 tokens (input, output) - update as needed
     PRICING = {
-        'gpt-4': (0.03, 0.06),
-        'gpt-4-turbo': (0.01, 0.03),
-        'gpt-3.5-turbo': (0.0005, 0.0015),
-        'claude-3-opus': (0.015, 0.075),
-        'claude-3-sonnet': (0.003, 0.015),
-        'claude-3-haiku': (0.00025, 0.00125),
-        'gemini-pro': (0.00025, 0.0005),
-        'gemini-1.5-pro': (0.0035, 0.0105),
+        "gpt-4": (0.03, 0.06),
+        "gpt-4-turbo": (0.01, 0.03),
+        "gpt-3.5-turbo": (0.0005, 0.0015),
+        "claude-3-opus": (0.015, 0.075),
+        "claude-3-sonnet": (0.003, 0.015),
+        "claude-3-haiku": (0.00025, 0.00125),
+        "gemini-pro": (0.00025, 0.0005),
+        "gemini-1.5-pro": (0.0035, 0.0105),
     }
 
     def __init__(
         self,
-        provider: str = 'openai',
+        provider: str = "openai",
         model: Optional[str] = None,
         api_key: Optional[str] = None,
         temperature: float = 0.7,
@@ -133,18 +135,18 @@ class LLMClient:
     def _get_default_model(self) -> str:
         """Get default model for provider."""
         defaults = {
-            LLMProvider.OPENAI: 'gpt-4',
-            LLMProvider.ANTHROPIC: 'claude-3-sonnet-20240229',
-            LLMProvider.GOOGLE: 'gemini-pro',
+            LLMProvider.OPENAI: "gpt-4",
+            LLMProvider.ANTHROPIC: "claude-3-sonnet-20240229",
+            LLMProvider.GOOGLE: "gemini-pro",
         }
         return defaults[self.provider]
 
     def _load_api_key(self) -> str:
         """Load API key from environment."""
         env_vars = {
-            LLMProvider.OPENAI: 'OPENAI_API_KEY',
-            LLMProvider.ANTHROPIC: 'ANTHROPIC_API_KEY',
-            LLMProvider.GOOGLE: 'GOOGLE_API_KEY',
+            LLMProvider.OPENAI: "OPENAI_API_KEY",
+            LLMProvider.ANTHROPIC: "ANTHROPIC_API_KEY",
+            LLMProvider.GOOGLE: "GOOGLE_API_KEY",
         }
 
         key = os.getenv(env_vars[self.provider])
@@ -178,13 +180,14 @@ class LLMClient:
     def _get_cache_key(self, prompt: str) -> str:
         """Generate cache key for prompt."""
         import hashlib
+
         key_str = f"{self.provider.value}:{self.model}:{prompt}:{self.temperature}"
         return hashlib.md5(key_str.encode()).hexdigest()
 
     @retry(
         stop=stop_after_attempt(3),
         wait=wait_exponential(multiplier=1, min=2, max=10),
-        retry=retry_if_exception_type((Exception,))
+        retry=retry_if_exception_type((Exception,)),
     )
     async def query(
         self,
@@ -224,9 +227,13 @@ class LLMClient:
         try:
             # Call appropriate provider
             if self.provider == LLMProvider.OPENAI:
-                response = await self._query_openai(prompt, temp, max_tok, system_prompt)
+                response = await self._query_openai(
+                    prompt, temp, max_tok, system_prompt
+                )
             elif self.provider == LLMProvider.ANTHROPIC:
-                response = await self._query_anthropic(prompt, temp, max_tok, system_prompt)
+                response = await self._query_anthropic(
+                    prompt, temp, max_tok, system_prompt
+                )
             elif self.provider == LLMProvider.GOOGLE:
                 response = await self._query_google(prompt, temp, max_tok)
             else:
@@ -260,7 +267,7 @@ class LLMClient:
         prompt: str,
         temperature: float,
         max_tokens: int,
-        system_prompt: Optional[str]
+        system_prompt: Optional[str],
     ) -> LLMResponse:
         """Query OpenAI API."""
         messages = []
@@ -278,8 +285,7 @@ class LLMClient:
         content = response.choices[0].message.content
         tokens = response.usage.total_tokens
         cost = self.calculate_cost(
-            response.usage.prompt_tokens,
-            response.usage.completion_tokens
+            response.usage.prompt_tokens, response.usage.completion_tokens
         )
 
         return LLMResponse(
@@ -290,10 +296,10 @@ class LLMClient:
             cost_usd=cost,
             latency_seconds=0,  # Will be set by caller
             metadata={
-                'finish_reason': response.choices[0].finish_reason,
-                'prompt_tokens': response.usage.prompt_tokens,
-                'completion_tokens': response.usage.completion_tokens,
-            }
+                "finish_reason": response.choices[0].finish_reason,
+                "prompt_tokens": response.usage.prompt_tokens,
+                "completion_tokens": response.usage.completion_tokens,
+            },
         )
 
     async def _query_anthropic(
@@ -301,14 +307,14 @@ class LLMClient:
         prompt: str,
         temperature: float,
         max_tokens: int,
-        system_prompt: Optional[str]
+        system_prompt: Optional[str],
     ) -> LLMResponse:
         """Query Anthropic API."""
         kwargs = {
             "model": self.model,
             "max_tokens": max_tokens,
             "temperature": temperature,
-            "messages": [{"role": "user", "content": prompt}]
+            "messages": [{"role": "user", "content": prompt}],
         }
 
         if system_prompt:
@@ -319,8 +325,7 @@ class LLMClient:
         content = response.content[0].text
         tokens = response.usage.input_tokens + response.usage.output_tokens
         cost = self.calculate_cost(
-            response.usage.input_tokens,
-            response.usage.output_tokens
+            response.usage.input_tokens, response.usage.output_tokens
         )
 
         return LLMResponse(
@@ -331,17 +336,14 @@ class LLMClient:
             cost_usd=cost,
             latency_seconds=0,
             metadata={
-                'stop_reason': response.stop_reason,
-                'input_tokens': response.usage.input_tokens,
-                'output_tokens': response.usage.output_tokens,
-            }
+                "stop_reason": response.stop_reason,
+                "input_tokens": response.usage.input_tokens,
+                "output_tokens": response.usage.output_tokens,
+            },
         )
 
     async def _query_google(
-        self,
-        prompt: str,
-        temperature: float,
-        max_tokens: int
+        self, prompt: str, temperature: float, max_tokens: int
     ) -> LLMResponse:
         """Query Google API."""
         generation_config = {
@@ -350,17 +352,13 @@ class LLMClient:
         }
 
         response = self.client.generate_content(
-            prompt,
-            generation_config=generation_config
+            prompt, generation_config=generation_config
         )
 
         content = response.text
         # Google doesn't provide token counts directly, estimate
         tokens = len(prompt.split()) + len(content.split())
-        cost = self.calculate_cost(
-            len(prompt.split()),
-            len(content.split())
-        )
+        cost = self.calculate_cost(len(prompt.split()), len(content.split()))
 
         return LLMResponse(
             content=content,
@@ -370,8 +368,8 @@ class LLMClient:
             cost_usd=cost,
             latency_seconds=0,
             metadata={
-                'finish_reason': 'stop',
-            }
+                "finish_reason": "stop",
+            },
         )
 
     def calculate_cost(self, input_tokens: int, output_tokens: int) -> float:
@@ -387,8 +385,9 @@ class LLMClient:
         """
         if self.model in self.PRICING:
             input_price, output_price = self.PRICING[self.model]
-            cost = (input_tokens / 1000 * input_price) + \
-                   (output_tokens / 1000 * output_price)
+            cost = (input_tokens / 1000 * input_price) + (
+                output_tokens / 1000 * output_price
+            )
             return cost
         else:
             logger.warning(f"Pricing not available for model {self.model}")
@@ -402,14 +401,15 @@ class LLMClient:
             Dictionary with usage stats
         """
         return {
-            'total_requests': self.total_requests,
-            'total_tokens': self.total_tokens,
-            'total_cost_usd': self.total_cost,
-            'average_tokens_per_request': (
+            "total_requests": self.total_requests,
+            "total_tokens": self.total_tokens,
+            "total_cost_usd": self.total_cost,
+            "average_tokens_per_request": (
                 self.total_tokens / self.total_requests
-                if self.total_requests > 0 else 0
+                if self.total_requests > 0
+                else 0
             ),
-            'cache_size': len(self._cache),
+            "cache_size": len(self._cache),
         }
 
     def clear_cache(self):

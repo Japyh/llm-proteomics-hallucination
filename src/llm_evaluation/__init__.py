@@ -4,4 +4,4 @@ from .llm_client import LLMClient
 from .hallucination_detector import HallucinationDetector
 from .prompt_templates import PromptTemplates
 
-__all__ = ['LLMClient', 'HallucinationDetector', 'PromptTemplates']
+__all__ = ["LLMClient", "HallucinationDetector", "PromptTemplates"]

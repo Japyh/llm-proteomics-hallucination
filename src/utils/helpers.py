@@ -2,6 +2,7 @@
 
 from pathlib import Path
 
+
 def ensure_dir(path: str) -> Path:
     """Ensure directory exists."""
     p = Path(path)

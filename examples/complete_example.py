@@ -39,13 +39,11 @@ async def main():
 
     generator = SyntheticDataGenerator(seed=42)
     proteins = generator.generate_protein_dataset(
-        n_proteins=5,
-        include_rare=True,
-        difficulty='medium'
+        n_proteins=5, include_rare=True, difficulty="medium"
     )
 
     print(f"Generated {len(proteins)} synthetic proteins:")
-    print(proteins[['protein_id', 'protein_name', 'molecular_weight']].to_string())
+    print(proteins[["protein_id", "protein_name", "molecular_weight"]].to_string())
     print()
 
     # Step 2: Initialize LLM Client
@@ -53,7 +51,7 @@ async def main():
     print("-" * 80)
 
     try:
-        client = LLMClient(provider='openai', model='gpt-4')
+        client = LLMClient(provider="openai", model="gpt-4")
         print("✓ OpenAI GPT-4 client initialized successfully")
     except Exception as e:
         print(f"✗ Failed to initialize client: {e}")
@@ -73,23 +71,21 @@ async def main():
         print(f"\nQuery {idx+1}: {query}")
 
         try:
-            response = await client.query(
-                query,
-                temperature=0.7,
-                max_tokens=200
-            )
+            response = await client.query(query, temperature=0.7, max_tokens=200)
 
             print(f"Response (first 150 chars):")
             print(f"  {response.content[:150]}...")
             print(f"  Cost: ${response.cost_usd:.4f} | Tokens: {response.tokens_used}")
 
-            results.append({
-                'protein_id': protein['protein_id'],
-                'query': query,
-                'response': response.content,
-                'cost': response.cost_usd,
-                'tokens': response.tokens_used
-            })
+            results.append(
+                {
+                    "protein_id": protein["protein_id"],
+                    "query": query,
+                    "response": response.content,
+                    "cost": response.cost_usd,
+                    "tokens": response.tokens_used,
+                }
+            )
 
         except Exception as e:
             print(f"  Error: {e}")
@@ -103,12 +99,14 @@ async def main():
     detector = HallucinationDetector()
 
     for result in results:
-        hall_result = detector.detect(result['response'])
+        hall_result = detector.detect(result["response"])
 
-        result['is_hallucination'] = hall_result.is_hallucination
-        result['confidence'] = hall_result.confidence
-        result['hallucination_types'] = [t.value for t in hall_result.hallucination_types]
-        result['evidence'] = hall_result.evidence
+        result["is_hallucination"] = hall_result.is_hallucination
+        result["confidence"] = hall_result.confidence
+        result["hallucination_types"] = [
+            t.value for t in hall_result.hallucination_types
+        ]
+        result["evidence"] = hall_result.evidence
 
         print(f"\nProtein: {result['protein_id']}")
         print(f"  Hallucination Detected: {hall_result.is_hallucination}")
@@ -127,9 +125,9 @@ async def main():
 
     df = pd.DataFrame(results)
 
-    hallucination_rate = df['is_hallucination'].mean()
-    total_cost = df['cost'].sum()
-    avg_tokens = df['tokens'].mean()
+    hallucination_rate = df["is_hallucination"].mean()
+    total_cost = df["cost"].sum()
+    avg_tokens = df["tokens"].mean()
 
     print(f"\nResults Summary:")
     print(f"  Total Queries: {len(results)}")
@@ -150,10 +148,10 @@ async def main():
     print("Step 6: Saving Results")
     print("-" * 80)
 
-    output_dir = Path('results/examples')
+    output_dir = Path("results/examples")
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    output_file = output_dir / 'complete_example_results.csv'
+    output_file = output_dir / "complete_example_results.csv"
     df.to_csv(output_file, index=False)
 
     print(f"✓ Results saved to: {output_file}")
@@ -172,11 +170,13 @@ async def main():
     print()
     print("For more information:")
     print("  - Documentation: docs/index.md")
-    print("  - Repository: https://github.com/olaflaitinen/llm-proteomics-hallucination")
+    print(
+        "  - Repository: https://github.com/olaflaitinen/llm-proteomics-hallucination"
+    )
     print("  - Contact: olyulaim@dtu.dk")
     print()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Run the async main function
     asyncio.run(main())

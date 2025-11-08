@@ -1,4 +1,5 @@
 """Tests for hallucination detector."""
+
 import sys
 from pathlib import Path
 
