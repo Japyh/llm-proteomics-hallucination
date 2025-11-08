@@ -10,29 +10,7 @@ import numpy as np
 from pathlib import Path
 from typing import Tuple
 
-# Set publication-quality defaults
-plt.rcParams.update({
-    'font.family': 'serif',
-    'font.serif': ['Times New Roman'],
-    'font.size': 10,
-    'axes.labelsize': 10,
-    'axes.titlesize': 11,
-    'xtick.labelsize': 9,
-    'ytick.labelsize': 9,
-    'legend.fontsize': 9,
-    'figure.dpi': 300,
-    'savefig.dpi': 300,
-    'savefig.bbox': 'tight',
-    'savefig.pad_inches': 0.1
-})
-
-# Colorblind-friendly palette (Paul Tol)
-COLORS = {
-    'gpt4': '#4477AA',      # Blue
-    'claude': '#EE6677',    # Red
-    'gemini': '#228833',    # Green
-    'baseline': '#CCBB44'   # Yellow
-}
+from figure_config import setup_matplotlib, get_output_dir, COLORS
 
 
 def generate_data() -> Tuple[list, list, list]:
@@ -61,6 +39,7 @@ def create_figure() -> plt.Figure:
     Returns:
         matplotlib Figure object
     """
+    setup_matplotlib()
     models, rates, std_errors = generate_data()
 
     # Create figure with specific dimensions for paper
@@ -135,9 +114,7 @@ def save_figure(fig: plt.Figure, output_dir: Path = None) -> None:
         output_dir: Directory to save figures (default: ./output/)
     """
     if output_dir is None:
-        output_dir = Path(__file__).parent / 'output'
-
-    output_dir.mkdir(parents=True, exist_ok=True)
+        output_dir = get_output_dir()
 
     # Save as PDF (vector, for LaTeX)
     pdf_path = output_dir / 'figure1_hallucination_rates.pdf'

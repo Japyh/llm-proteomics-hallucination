@@ -9,10 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pathlib import Path
 
-plt.rcParams.update({'font.family': 'serif', 'font.serif': ['Times New Roman'],
-                     'font.size': 10, 'figure.dpi': 300, 'savefig.dpi': 300})
-
-COLORS = {'precision': '#4477AA', 'recall': '#EE6677', 'f1': '#228833'}
+from figure_config import setup_matplotlib, get_output_dir, COLORS
 
 
 def generate_data():
@@ -25,6 +22,7 @@ def generate_data():
 
 
 def create_figure():
+    setup_matplotlib()
     stages, precision, recall, f1 = generate_data()
     fig, ax = plt.subplots(figsize=(6.0, 3.5))
 
@@ -54,8 +52,7 @@ def create_figure():
 
 def save_figure(fig, output_dir=None):
     if output_dir is None:
-        output_dir = Path(__file__).parent / 'output'
-    output_dir.mkdir(parents=True, exist_ok=True)
+        output_dir = get_output_dir()
     fig.savefig(output_dir / 'figure5_detection_performance.pdf',
                 format='pdf', bbox_inches='tight')
     fig.savefig(output_dir / 'figure5_detection_performance.png',

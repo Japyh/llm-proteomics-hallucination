@@ -10,28 +10,7 @@ import numpy as np
 from pathlib import Path
 from typing import Dict, Tuple
 
-# Set publication-quality defaults
-plt.rcParams.update({
-    'font.family': 'serif',
-    'font.serif': ['Times New Roman'],
-    'font.size': 10,
-    'axes.labelsize': 10,
-    'axes.titlesize': 11,
-    'xtick.labelsize': 9,
-    'ytick.labelsize': 9,
-    'legend.fontsize': 9,
-    'figure.dpi': 300,
-    'savefig.dpi': 300,
-    'savefig.bbox': 'tight',
-    'savefig.pad_inches': 0.1
-})
-
-# Colorblind-friendly palette
-COLORS = {
-    'well_covered': '#44AA99',      # Teal
-    'moderate': '#DDCC77',          # Yellow
-    'poorly_covered': '#CC6677'     # Pink/Red
-}
+from figure_config import setup_matplotlib, get_output_dir, COLORS
 
 
 def generate_data() -> Dict[str, Dict[str, float]]:
@@ -69,6 +48,7 @@ def create_figure() -> plt.Figure:
     Returns:
         matplotlib Figure object
     """
+    setup_matplotlib()
     data = generate_data()
 
     # Prepare data for plotting
@@ -157,9 +137,7 @@ def create_figure() -> plt.Figure:
 def save_figure(fig: plt.Figure, output_dir: Path = None) -> None:
     """Save figure in multiple formats."""
     if output_dir is None:
-        output_dir = Path(__file__).parent / 'output'
-
-    output_dir.mkdir(parents=True, exist_ok=True)
+        output_dir = get_output_dir()
 
     pdf_path = output_dir / 'figure3_coverage_impact.pdf'
     fig.savefig(pdf_path, format='pdf', bbox_inches='tight')

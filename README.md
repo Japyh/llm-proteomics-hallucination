@@ -103,6 +103,10 @@ Existing hallucination research focuses on general NLP tasks. **No prior work sy
 llm-proteomics-hallucination/
 │
 ├── data/                             # Data storage and management
+│   ├── queries/                      # Query datasets
+│   ├── ground_truth/                 # Expert annotations
+│   ├── llm_responses/                # LLM response data
+│   ├── results/                      # Analysis results
 │   ├── raw/                          # Raw data (NEVER commit patient data)
 │   ├── processed/                    # Processed datasets
 │   └── synthetic/                    # Synthetic test data (52 proteins)
@@ -153,8 +157,9 @@ llm-proteomics-hallucination/
 │   ├── statistical_tests/            # Test results
 │   └── logs/                         # Execution logs
 │
-├── manuscript/                       # LaTeX paper
+├── paper/                            # LaTeX paper
 │   ├── main.tex                      # Main document
+│   ├── compile.sh                    # Paper compilation script
 │   ├── sections/                     # Individual sections
 │   │   ├── 01_introduction.tex
 │   │   ├── 02_literature_review.tex
@@ -162,7 +167,13 @@ llm-proteomics-hallucination/
 │   │   ├── 04_results.tex
 │   │   ├── 05_discussion.tex
 │   │   └── 06_conclusion.tex
-│   ├── figures/                      # Figure files
+│   ├── figures/                      # Figure generation scripts
+│   │   ├── figure1_hallucination_rates.py
+│   │   ├── figure2_category_performance.py
+│   │   ├── ...                       # All 9 figure scripts
+│   │   ├── figure_config.py          # Common configuration
+│   │   ├── generate_all_figures.py   # Master script
+│   │   └── output/                   # Generated figures
 │   ├── tables/                       # LaTeX tables
 │   └── supplementary/                # Supplementary materials
 │
@@ -261,6 +272,38 @@ jupyter notebook notebooks/00_setup_and_verification.ipynb
 pytest tests/
 ```
 
+### Docker Usage (Recommended)
+
+The repository includes complete Docker support for reproducible research:
+
+```bash
+# Build Docker image
+docker-compose build
+
+# Run tests
+docker-compose run test
+
+# Generate all figures
+docker-compose run generate-figures
+
+# Start Jupyter Lab server
+docker-compose up jupyter
+# Access at http://localhost:8888
+
+# Compile paper
+docker-compose run latex-compile
+
+# Interactive research environment
+docker-compose run research
+```
+
+**Docker Services**:
+- `research`: Main development environment
+- `jupyter`: Jupyter Lab server (port 8888)
+- `latex-compile`: LaTeX paper compilation
+- `generate-figures`: Figure generation
+- `test`: Pytest with coverage
+
 ### Running the Analysis Pipeline
 
 #### Full Pipeline
@@ -271,6 +314,9 @@ jupyter lab
 
 # Or run all notebooks programmatically
 make run-notebooks
+
+# Or using Docker
+docker-compose up jupyter
 ```
 
 #### Individual Components
@@ -289,7 +335,8 @@ jupyter notebook notebooks/03_hallucination_analysis.ipynb
 jupyter notebook notebooks/04_statistical_analysis.ipynb
 
 # 5. Generate figures
-jupyter notebook notebooks/05_results_visualization.ipynb
+cd paper/figures && python generate_all_figures.py
+# Or: docker-compose run generate-figures
 ```
 
 ---

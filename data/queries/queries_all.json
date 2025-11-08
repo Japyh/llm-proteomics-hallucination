@@ -1,0 +1,473 @@
+{
+  "metadata": {
+    "description": "Sample proteomics queries for LLM evaluation",
+    "total_queries": 50,
+    "categories": {
+      "protein_function": 15,
+      "ms_interpretation": 13,
+      "clinical_context": 10,
+      "ptms": 7,
+      "disease_association": 5
+    },
+    "difficulty_levels": {
+      "easy": 15,
+      "medium": 20,
+      "hard": 10,
+      "expert": 5
+    },
+    "version": "1.0",
+    "last_updated": "2025-11-08"
+  },
+  "queries": [
+    {
+      "id": "Q001",
+      "category": "protein_function",
+      "difficulty": "easy",
+      "query": "What is the primary function of human hemoglobin (P68871)?",
+      "expected_response": "Oxygen transport in blood",
+      "protein_id": "P68871",
+      "protein_name": "Hemoglobin subunit beta"
+    },
+    {
+      "id": "Q002",
+      "category": "protein_function",
+      "difficulty": "easy",
+      "query": "Describe the role of insulin (P01308) in glucose metabolism.",
+      "expected_response": "Regulates blood glucose by promoting cellular glucose uptake",
+      "protein_id": "P01308",
+      "protein_name": "Insulin"
+    },
+    {
+      "id": "Q003",
+      "category": "protein_function",
+      "difficulty": "medium",
+      "query": "What are the known functions of tumor suppressor protein p53 (P04637)?",
+      "expected_response": "Cell cycle regulation, apoptosis, DNA repair, tumor suppression",
+      "protein_id": "P04637",
+      "protein_name": "Tumor protein p53"
+    },
+    {
+      "id": "Q004",
+      "category": "ms_interpretation",
+      "difficulty": "easy",
+      "query": "A mass spectrometry peak at m/z 784.4 corresponds to which common tryptic peptide from albumin?",
+      "expected_response": "Likely LVNEVTEFAK or similar albumin peptide",
+      "protein_id": "P02768",
+      "protein_name": "Serum albumin"
+    },
+    {
+      "id": "Q005",
+      "category": "ms_interpretation",
+      "difficulty": "medium",
+      "query": "How do you interpret a +16 Da mass shift in peptide identification?",
+      "expected_response": "Indicates methionine oxidation post-translational modification",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q006",
+      "category": "clinical_context",
+      "difficulty": "easy",
+      "query": "What is the clinical significance of elevated troponin levels?",
+      "expected_response": "Indicates cardiac muscle damage, used for myocardial infarction diagnosis",
+      "protein_id": "P19429",
+      "protein_name": "Troponin I"
+    },
+    {
+      "id": "Q007",
+      "category": "clinical_context",
+      "difficulty": "medium",
+      "query": "How is prostate-specific antigen (PSA/P07288) used in cancer screening?",
+      "expected_response": "Biomarker for prostate cancer screening and monitoring",
+      "protein_id": "P07288",
+      "protein_name": "Prostate-specific antigen"
+    },
+    {
+      "id": "Q008",
+      "category": "ptms",
+      "difficulty": "medium",
+      "query": "Describe the role of protein phosphorylation in signal transduction.",
+      "expected_response": "Phosphorylation acts as molecular switch for protein activation/deactivation in signaling cascades",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q009",
+      "category": "ptms",
+      "difficulty": "hard",
+      "query": "What are the biological consequences of histone acetylation?",
+      "expected_response": "Chromatin relaxation, increased gene transcription, epigenetic regulation",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q010",
+      "category": "disease_association",
+      "difficulty": "medium",
+      "query": "What protein mutations are associated with cystic fibrosis?",
+      "expected_response": "CFTR (P13569) mutations, most commonly F508del deletion",
+      "protein_id": "P13569",
+      "protein_name": "Cystic fibrosis transmembrane conductance regulator"
+    },
+    {
+      "id": "Q011",
+      "category": "protein_function",
+      "difficulty": "easy",
+      "query": "What is the function of albumin (P02768) in blood plasma?",
+      "expected_response": "Maintains osmotic pressure, transports hormones and fatty acids",
+      "protein_id": "P02768",
+      "protein_name": "Serum albumin"
+    },
+    {
+      "id": "Q012",
+      "category": "protein_function",
+      "difficulty": "medium",
+      "query": "Explain the role of amylase in digestion.",
+      "expected_response": "Breaks down starch into maltose and glucose",
+      "protein_id": "P0DTE7",
+      "protein_name": "Alpha-amylase"
+    },
+    {
+      "id": "Q013",
+      "category": "ms_interpretation",
+      "difficulty": "medium",
+      "query": "What does a doubly charged ion at m/z 500 represent?",
+      "expected_response": "A peptide with molecular weight approximately 1000 Da",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q014",
+      "category": "ms_interpretation",
+      "difficulty": "hard",
+      "query": "How do you distinguish between leucine and isoleucine in MS/MS spectra?",
+      "expected_response": "Cannot distinguish by mass alone; requires specialized methods or longer retention time analysis",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q015",
+      "category": "clinical_context",
+      "difficulty": "hard",
+      "query": "What protein biomarkers indicate acute kidney injury?",
+      "expected_response": "NGAL, KIM-1, cystatin C, elevated creatinine",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q016",
+      "category": "protein_function",
+      "difficulty": "hard",
+      "query": "Describe the mechanism of action of CRISPR-Cas9 protein.",
+      "expected_response": "RNA-guided DNA endonuclease for genome editing",
+      "protein_id": "Q99ZW2",
+      "protein_name": "Cas9"
+    },
+    {
+      "id": "Q017",
+      "category": "ptms",
+      "difficulty": "medium",
+      "query": "What is the significance of protein ubiquitination?",
+      "expected_response": "Marks proteins for proteasomal degradation or alters function",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q018",
+      "category": "disease_association",
+      "difficulty": "hard",
+      "query": "Which protein aggregates are found in Alzheimer disease?",
+      "expected_response": "Amyloid-beta plaques and tau protein neurofibrillary tangles",
+      "protein_id": "P05067",
+      "protein_name": "Amyloid-beta precursor protein"
+    },
+    {
+      "id": "Q019",
+      "category": "protein_function",
+      "difficulty": "expert",
+      "query": "How does the proteasome recognize ubiquitinated substrates?",
+      "expected_response": "Through polyubiquitin chain recognition by 19S regulatory particle",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q020",
+      "category": "ms_interpretation",
+      "difficulty": "expert",
+      "query": "Interpret a peptide with m/z 1234.5 [M+2H]2+ showing fragment ions at 147, 284, 397.",
+      "expected_response": "Sequential y-ion or b-ion series indicating peptide backbone fragmentation",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q021",
+      "category": "protein_function",
+      "difficulty": "easy",
+      "query": "What is the role of antibodies in the immune system?",
+      "expected_response": "Recognize and neutralize pathogens, mark them for destruction",
+      "protein_id": null,
+      "protein_name": "Immunoglobulin"
+    },
+    {
+      "id": "Q022",
+      "category": "ms_interpretation",
+      "difficulty": "easy",
+      "query": "What is the charge state of a peptide ion at m/z 600 [M+3H]3+?",
+      "expected_response": "Triply charged, molecular weight approximately 1797 Da",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q023",
+      "category": "clinical_context",
+      "difficulty": "medium",
+      "query": "Why is HbA1c used to monitor diabetes?",
+      "expected_response": "Glycated hemoglobin reflects average blood glucose over 2-3 months",
+      "protein_id": "P68871",
+      "protein_name": "Hemoglobin"
+    },
+    {
+      "id": "Q024",
+      "category": "ptms",
+      "difficulty": "easy",
+      "query": "What is glycosylation and where does it occur?",
+      "expected_response": "Addition of sugar moieties to proteins, occurs in ER and Golgi",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q025",
+      "category": "disease_association",
+      "difficulty": "expert",
+      "query": "Explain the role of alpha-synuclein in Parkinson disease pathology.",
+      "expected_response": "Forms toxic aggregates in Lewy bodies, disrupts neuronal function",
+      "protein_id": "P37840",
+      "protein_name": "Alpha-synuclein"
+    },
+    {
+      "id": "Q026",
+      "category": "protein_function",
+      "difficulty": "medium",
+      "query": "What is the function of cytochrome c in mitochondria?",
+      "expected_response": "Electron transfer in respiratory chain, apoptosis signaling",
+      "protein_id": "P99999",
+      "protein_name": "Cytochrome c"
+    },
+    {
+      "id": "Q027",
+      "category": "ms_interpretation",
+      "difficulty": "medium",
+      "query": "What causes ion suppression in electrospray ionization?",
+      "expected_response": "Competing ions, salts, or contaminants reducing analyte ionization efficiency",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q028",
+      "category": "clinical_context",
+      "difficulty": "easy",
+      "query": "What does elevated C-reactive protein indicate?",
+      "expected_response": "Inflammation or infection in the body",
+      "protein_id": "P02741",
+      "protein_name": "C-reactive protein"
+    },
+    {
+      "id": "Q029",
+      "category": "ptms",
+      "difficulty": "hard",
+      "query": "How does SUMOylation differ from ubiquitination?",
+      "expected_response": "Similar process but SUMO modifies protein localization and function rather than degradation",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q030",
+      "category": "protein_function",
+      "difficulty": "hard",
+      "query": "Describe the catalytic mechanism of serine proteases.",
+      "expected_response": "Catalytic triad (Ser-His-Asp) performs nucleophilic attack on peptide bonds",
+      "protein_id": null,
+      "protein_name": "Serine protease"
+    },
+    {
+      "id": "Q031",
+      "category": "ms_interpretation",
+      "difficulty": "hard",
+      "query": "What is the difference between Q-TOF and Orbitrap mass analyzers?",
+      "expected_response": "Q-TOF uses time-of-flight, Orbitrap uses ion orbital frequency; Orbitrap has higher resolution",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q032",
+      "category": "clinical_context",
+      "difficulty": "hard",
+      "query": "How are protein biomarkers validated for clinical use?",
+      "expected_response": "Requires sensitivity/specificity testing, clinical trials, regulatory approval",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q033",
+      "category": "disease_association",
+      "difficulty": "medium",
+      "query": "What is the role of BRCA1/BRCA2 in cancer?",
+      "expected_response": "DNA repair proteins; mutations increase breast and ovarian cancer risk",
+      "protein_id": "P38398",
+      "protein_name": "BRCA1"
+    },
+    {
+      "id": "Q034",
+      "category": "protein_function",
+      "difficulty": "expert",
+      "query": "Explain the allosteric regulation of hemoglobin.",
+      "expected_response": "Cooperative oxygen binding; 2,3-BPG and pH modulate affinity",
+      "protein_id": "P68871",
+      "protein_name": "Hemoglobin"
+    },
+    {
+      "id": "Q035",
+      "category": "ms_interpretation",
+      "difficulty": "expert",
+      "query": "How do you perform de novo peptide sequencing from MS/MS spectra?",
+      "expected_response": "Analyze fragment ion masses to deduce amino acid sequence without database",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q036",
+      "category": "ptms",
+      "difficulty": "expert",
+      "query": "What are the structural consequences of proline hydroxylation in collagen?",
+      "expected_response": "Stabilizes triple helix structure; requires vitamin C",
+      "protein_id": null,
+      "protein_name": "Collagen"
+    },
+    {
+      "id": "Q037",
+      "category": "clinical_context",
+      "difficulty": "expert",
+      "query": "How is proteomics used in precision medicine?",
+      "expected_response": "Identifies patient-specific biomarkers for personalized treatment strategies",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q038",
+      "category": "protein_function",
+      "difficulty": "medium",
+      "query": "What is the function of ferritin?",
+      "expected_response": "Iron storage protein, prevents iron toxicity",
+      "protein_id": "P02794",
+      "protein_name": "Ferritin"
+    },
+    {
+      "id": "Q039",
+      "category": "ms_interpretation",
+      "difficulty": "medium",
+      "query": "What is the purpose of using heavy isotope-labeled standards in MS?",
+      "expected_response": "Internal standards for accurate quantification",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q040",
+      "category": "disease_association",
+      "difficulty": "easy",
+      "query": "What causes sickle cell anemia at the molecular level?",
+      "expected_response": "Single amino acid mutation (Glu to Val) in hemoglobin beta chain",
+      "protein_id": "P68871",
+      "protein_name": "Hemoglobin subunit beta"
+    },
+    {
+      "id": "Q041",
+      "category": "protein_function",
+      "difficulty": "easy",
+      "query": "What do proteases do?",
+      "expected_response": "Cleave peptide bonds in proteins",
+      "protein_id": null,
+      "protein_name": "Protease"
+    },
+    {
+      "id": "Q042",
+      "category": "clinical_context",
+      "difficulty": "medium",
+      "query": "Why is brain natriuretic peptide (BNP) measured in heart failure?",
+      "expected_response": "Elevated in heart failure; indicates cardiac stress",
+      "protein_id": "P16860",
+      "protein_name": "Natriuretic peptides B"
+    },
+    {
+      "id": "Q043",
+      "category": "ptms",
+      "difficulty": "medium",
+      "query": "What is the role of protein palmitoylation?",
+      "expected_response": "Membrane anchoring and protein trafficking",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q044",
+      "category": "ms_interpretation",
+      "difficulty": "easy",
+      "query": "What is the difference between MALDI and ESI?",
+      "expected_response": "MALDI uses laser for ionization, ESI uses electrospray; different sample prep",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q045",
+      "category": "protein_function",
+      "difficulty": "hard",
+      "query": "Explain the mechanism of ATP synthase.",
+      "expected_response": "Rotary motor using proton gradient to synthesize ATP",
+      "protein_id": "P25705",
+      "protein_name": "ATP synthase"
+    },
+    {
+      "id": "Q046",
+      "category": "disease_association",
+      "difficulty": "hard",
+      "query": "What proteins are involved in amyotrophic lateral sclerosis (ALS)?",
+      "expected_response": "SOD1, TDP-43, FUS mutations; protein aggregation pathology",
+      "protein_id": "P00441",
+      "protein_name": "Superoxide dismutase"
+    },
+    {
+      "id": "Q047",
+      "category": "clinical_context",
+      "difficulty": "easy",
+      "query": "What is the clinical use of measuring creatine kinase?",
+      "expected_response": "Indicates muscle damage or heart attack",
+      "protein_id": "P06732",
+      "protein_name": "Creatine kinase"
+    },
+    {
+      "id": "Q048",
+      "category": "ptms",
+      "difficulty": "easy",
+      "query": "What is proteolytic cleavage?",
+      "expected_response": "Cutting of proteins by proteases to activate or inactivate them",
+      "protein_id": null,
+      "protein_name": null
+    },
+    {
+      "id": "Q049",
+      "category": "protein_function",
+      "difficulty": "easy",
+      "query": "What is the role of actin in cells?",
+      "expected_response": "Forms cytoskeleton, enables cell movement and shape",
+      "protein_id": "P68133",
+      "protein_name": "Actin"
+    },
+    {
+      "id": "Q050",
+      "category": "ms_interpretation",
+      "difficulty": "hard",
+      "query": "How do you identify co-eluting peptides in LC-MS?",
+      "expected_response": "High-resolution MS, retention time deconvolution, MS/MS fragmentation patterns",
+      "protein_id": null,
+      "protein_name": null
+    }
+  ]
+}

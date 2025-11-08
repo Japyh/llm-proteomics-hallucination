@@ -6,7 +6,10 @@ from pathlib import Path
 # Add src to path
 sys.path.insert(0, str(Path(__file__).parent.parent / "src"))
 
-from llm_evaluation.hallucination_detector import HallucinationDetector  # noqa: E402
+# noqa: E402
+from llm_evaluation.hallucination_detector import (
+    HallucinationDetector,
+)
 
 
 def test_detect_fake_protein():
@@ -19,6 +22,8 @@ def test_detect_fake_protein():
 def test_valid_response():
     """Test valid protein response."""
     detector = HallucinationDetector()
-    result = detector.detect("Protein P12345 is involved in signaling")
+    result = detector.detect(
+        "Protein P12345 is involved in signaling"
+    )
     # May or may not be hallucination depending on database
     assert result.confidence >= 0.0

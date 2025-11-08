@@ -4,7 +4,9 @@ import logging
 import sys
 
 
-def setup_logger(name: str = __name__, level: int = logging.INFO) -> logging.Logger:
+def setup_logger(
+    name: str = __name__, level: int = logging.INFO
+) -> logging.Logger:
     """Set up logger with handlers."""
     logger = logging.getLogger(name)
     logger.setLevel(level)

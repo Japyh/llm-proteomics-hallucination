@@ -10,28 +10,7 @@ import numpy as np
 from pathlib import Path
 from typing import Dict, List
 
-# Set publication-quality defaults
-plt.rcParams.update({
-    'font.family': 'serif',
-    'font.serif': ['Times New Roman'],
-    'font.size': 10,
-    'axes.labelsize': 10,
-    'axes.titlesize': 11,
-    'xtick.labelsize': 8,
-    'ytick.labelsize': 9,
-    'legend.fontsize': 8,
-    'figure.dpi': 300,
-    'savefig.dpi': 300,
-    'savefig.bbox': 'tight',
-    'savefig.pad_inches': 0.1
-})
-
-# Colorblind-friendly palette
-COLORS = {
-    'gpt4': '#4477AA',
-    'claude': '#EE6677',
-    'gemini': '#228833'
-}
+from figure_config import setup_matplotlib, get_output_dir, COLORS
 
 
 def generate_data() -> Dict[str, List[float]]:
@@ -60,6 +39,7 @@ def create_figure() -> plt.Figure:
     Returns:
         matplotlib Figure object
     """
+    setup_matplotlib()
     data = generate_data()
     categories = data['categories']
     models = data['models']
@@ -126,9 +106,7 @@ def create_figure() -> plt.Figure:
 def save_figure(fig: plt.Figure, output_dir: Path = None) -> None:
     """Save figure in multiple formats."""
     if output_dir is None:
-        output_dir = Path(__file__).parent / 'output'
-
-    output_dir.mkdir(parents=True, exist_ok=True)
+        output_dir = get_output_dir()
 
     pdf_path = output_dir / 'figure2_category_performance.pdf'
     fig.savefig(pdf_path, format='pdf', bbox_inches='tight')

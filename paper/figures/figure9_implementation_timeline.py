@@ -8,11 +8,11 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
 from pathlib import Path
 
-plt.rcParams.update({'font.family': 'serif', 'font.size': 10,
-                     'figure.dpi': 300, 'savefig.dpi': 300})
+from figure_config import setup_matplotlib, get_output_dir
 
 
 def create_figure():
+    setup_matplotlib()
     fig, ax = plt.subplots(figsize=(7.0, 4.0))
 
     phases = [
@@ -47,8 +47,7 @@ def create_figure():
 
 def save_figure(fig, output_dir=None):
     if output_dir is None:
-        output_dir = Path(__file__).parent / 'output'
-    output_dir.mkdir(parents=True, exist_ok=True)
+        output_dir = get_output_dir()
     fig.savefig(output_dir / 'figure9_implementation_timeline.pdf',
                 format='pdf', bbox_inches='tight')
     fig.savefig(output_dir / 'figure9_implementation_timeline.png',

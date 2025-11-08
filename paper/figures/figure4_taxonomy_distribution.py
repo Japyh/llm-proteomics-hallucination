@@ -9,13 +9,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from pathlib import Path
 
-plt.rcParams.update({
-    'font.family': 'serif',
-    'font.serif': ['Times New Roman'],
-    'font.size': 10,
-    'figure.dpi': 300,
-    'savefig.dpi': 300,
-})
+from figure_config import setup_matplotlib, get_output_dir
 
 COLORS = ['#4477AA', '#EE6677', '#228833', '#CCBB44', '#66CCEE', '#AA3377']
 
@@ -34,6 +28,7 @@ def generate_data():
 
 
 def create_figure():
+    setup_matplotlib()
     categories, rates = generate_data()
     fig, ax = plt.subplots(figsize=(6.0, 4.0))
 
@@ -62,8 +57,7 @@ def create_figure():
 
 def save_figure(fig, output_dir=None):
     if output_dir is None:
-        output_dir = Path(__file__).parent / 'output'
-    output_dir.mkdir(parents=True, exist_ok=True)
+        output_dir = get_output_dir()
 
     fig.savefig(output_dir / 'figure4_taxonomy_distribution.pdf',
                 format='pdf', bbox_inches='tight')
