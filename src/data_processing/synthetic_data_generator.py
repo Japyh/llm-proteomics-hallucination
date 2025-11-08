@@ -1,7 +1,7 @@
 """Generate synthetic proteomics data for testing."""
 
-import pandas as pd
 import numpy as np
+import pandas as pd
 
 
 class SyntheticDataGenerator:

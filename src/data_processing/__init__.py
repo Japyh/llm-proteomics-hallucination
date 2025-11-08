@@ -1,6 +1,6 @@
 """Data processing module for proteomics data handling."""
 
-from .synthetic_data_generator import SyntheticDataGenerator
 from .protein_database import ProteinDatabase
+from .synthetic_data_generator import SyntheticDataGenerator
 
 __all__ = ["SyntheticDataGenerator", "ProteinDatabase"]

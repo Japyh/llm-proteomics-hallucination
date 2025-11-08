@@ -1,8 +1,9 @@
 """Statistical testing functions."""
 
+from typing import Tuple
+
 import numpy as np
 from scipy import stats
-from typing import Tuple
 
 
 class StatisticalTests:

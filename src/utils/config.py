@@ -1,7 +1,8 @@
 """Configuration management."""
 
-import yaml
 from pathlib import Path
+
+import yaml
 
 
 class Config:
