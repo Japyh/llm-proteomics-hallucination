@@ -89,6 +89,11 @@ api_keys.*
 data/raw/*
 data/processed/*
 !data/synthetic/example_proteins.csv
+!data/results/protein_identifications.csv
+!data/results/peptide_matches.csv
+!data/results/quantification_results.csv
+!data/ground_truth/*.csv
+!data/llm_responses/*.csv
 !data/**/.gitkeep
 !data/**/README.md
 !data/**/WARNING.md
@@ -100,6 +105,7 @@ data/processed/*
 *.raw
 *.d
 *.wiff
+!data/mass_spectrometry/example_spectra.mgf
 
 # Model checkpoints and weights
 *.pt

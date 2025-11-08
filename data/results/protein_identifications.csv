@@ -1,0 +1,26 @@
+Protein_ID,Gene_Name,Protein_Name,Organism,Score,Coverage_Percent,Unique_Peptides,Total_PSMs,MW_kDa,pI,Database_Coverage,Subcellular_Location,Function_Category
+P68871,HBB,Hemoglobin subunit beta,Homo sapiens,245.6,78.5,11,34,15.9,6.81,High,Cytoplasm,Oxygen transport
+P01308,INS,Insulin,Homo sapiens,198.3,85.2,7,23,5.8,5.30,High,Secreted,Hormone signaling
+P04406,GAPDH,Glyceraldehyde-3-phosphate dehydrogenase,Homo sapiens,387.9,92.3,17,67,36.0,8.58,High,Cytoplasm,Glycolysis
+P02768,ALB,Serum albumin,Homo sapiens,456.7,67.8,28,123,69.3,5.92,High,Secreted,Transport
+P04637,TP53,Cellular tumor antigen p53,Homo sapiens,178.4,56.3,13,42,43.7,6.33,High,Nucleus,Tumor suppressor
+P62805,H4,Histone H4,Homo sapiens,156.2,89.4,8,28,11.4,11.36,Medium,Nucleus,Chromatin structure
+P01023,A2M,Alpha-2-macroglobulin,Homo sapiens,423.1,45.6,22,89,163.2,6.03,High,Secreted,Protease inhibitor
+P07288,KLK3,Prostate-specific antigen,Homo sapiens,134.5,73.2,9,31,28.7,7.58,High,Secreted,Serine protease
+P19429,TNNI3,Troponin I cardiac muscle,Homo sapiens,98.7,81.7,12,38,24.0,9.87,Medium,Cytoplasm,Muscle contraction
+P02741,CRP,C-reactive protein,Homo sapiens,189.2,76.4,14,47,25.0,5.29,High,Secreted,Acute phase response
+P16860,NPPB,Natriuretic peptides B,Homo sapiens,87.3,68.9,6,19,15.1,9.03,Medium,Secreted,Cardiac hormone
+P06732,CKM,Creatine kinase M-type,Homo sapiens,234.8,84.3,19,63,43.0,6.63,High,Cytoplasm,Energy metabolism
+P68133,ACTB,Actin cytoplasmic 1,Homo sapiens,398.5,91.7,21,87,41.7,5.29,High,Cytoplasm,Cytoskeleton
+P02794,FTH1,Ferritin heavy chain,Homo sapiens,167.9,77.8,11,36,21.2,5.30,High,Cytoplasm,Iron storage
+P25705,ATP5F1A,ATP synthase subunit alpha,Homo sapiens,278.4,69.2,16,54,59.7,9.16,High,Mitochondrion,ATP synthesis
+P00441,SOD1,Superoxide dismutase Cu-Zn,Homo sapiens,143.6,86.4,9,29,15.9,5.70,High,Cytoplasm,Antioxidant
+P05067,APP,Amyloid-beta precursor protein,Homo sapiens,112.8,38.7,18,51,86.9,4.73,High,Membrane,Neuronal development
+P37840,SNCA,Alpha-synuclein,Homo sapiens,95.4,82.1,8,26,14.5,4.67,Medium,Cytoplasm,Synaptic transmission
+P38398,BRCA1,Breast cancer type 1 susceptibility protein,Homo sapiens,67.3,23.4,12,28,207.7,5.61,Medium,Nucleus,DNA repair
+P13569,CFTR,Cystic fibrosis transmembrane conductance regulator,Homo sapiens,89.2,31.6,19,47,168.1,8.35,High,Membrane,Chloride channel
+Q9Y6K9,IKBKG,NF-kappa-B essential modulator,Homo sapiens,54.7,42.3,7,18,48.2,5.29,Low,Cytoplasm,Signal transduction
+Q96RW7,HMGN2,High mobility group nucleosomal binding domain 2,Homo sapiens,42.1,67.8,4,12,9.6,9.98,Low,Nucleus,Chromatin remodeling
+O95467,NLRC4,NLR family CARD domain-containing protein 4,Homo sapiens,38.9,28.7,8,19,118.3,6.24,Low,Cytoplasm,Innate immunity
+P78527,PRKDC,DNA-dependent protein kinase catalytic subunit,Homo sapiens,71.6,15.8,23,52,469.0,7.01,Medium,Nucleus,DNA repair
+Q9BYG3,MYO15A,Unconventional myosin-XV,Homo sapiens,49.3,19.4,14,31,395.0,5.86,Low,Cytoplasm,Motor protein

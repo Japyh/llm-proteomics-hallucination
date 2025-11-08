@@ -1,0 +1,37 @@
+Protein_ID,Gene_Name,Protein_Name,Sample_ID,Abundance_Log2,Abundance_Raw,CV_Percent,Replicate_1,Replicate_2,Replicate_3,Normalized_Abundance,Regulation,Fold_Change,P_Value,Adjusted_P_Value,Significant
+P68871,HBB,Hemoglobin subunit beta,Control_01,18.45,352847.3,8.2,348923,354782,354836,1.234,Unchanged,1.02,0.234,0.456,No
+P68871,HBB,Hemoglobin subunit beta,Treatment_01,19.12,563928.7,7.8,558234,567123,566428,1.976,Upregulated,1.60,0.001,0.012,Yes
+P01308,INS,Insulin,Control_01,15.67,51234.5,12.3,49823,52134,51746,0.567,Unchanged,0.98,0.678,0.789,No
+P01308,INS,Insulin,Treatment_01,16.89,119847.2,9.4,117234,121456,120851,1.328,Upregulated,2.34,0.002,0.018,Yes
+P04406,GAPDH,Glyceraldehyde-3-phosphate dehydrogenase,Control_01,19.87,987654.2,5.6,983421,989234,990307,1.000,Unchanged,1.00,0.956,0.967,No
+P04406,GAPDH,Glyceraldehyde-3-phosphate dehydrogenase,Treatment_01,19.91,1002345.6,6.2,995678,1006234,1005124,1.015,Unchanged,1.01,0.823,0.891,No
+P02768,ALB,Serum albumin,Control_01,21.34,2598347.8,4.3,2587234,2603456,2604352,2.876,Unchanged,1.03,0.345,0.523,No
+P02768,ALB,Serum albumin,Treatment_01,20.98,2123456.9,5.1,2115678,2128234,2126458,2.352,Downregulated,0.82,0.015,0.045,Yes
+P04637,TP53,Cellular tumor antigen p53,Control_01,14.23,19234.6,15.7,18456,19678,19569,0.213,Unchanged,0.96,0.567,0.678,No
+P04637,TP53,Cellular tumor antigen p53,Treatment_01,15.87,58347.2,11.2,56789,59234,59018,0.646,Upregulated,3.03,0.0001,0.002,Yes
+P62805,H4,Histone H4,Control_01,17.89,234567.8,6.8,231234,236789,235679,0.823,Unchanged,1.01,0.789,0.845,No
+P62805,H4,Histone H4,Treatment_01,17.92,237891.2,7.2,234567,239876,239230,0.833,Unchanged,1.01,0.834,0.889,No
+P01023,A2M,Alpha-2-macroglobulin,Control_01,20.45,1456789.3,7.5,1445678,1463456,1461233,1.614,Unchanged,0.98,0.678,0.756,No
+P01023,A2M,Alpha-2-macroglobulin,Treatment_01,19.87,987654.2,8.9,978234,994567,990161,1.094,Downregulated,0.68,0.008,0.032,Yes
+P07288,KLK3,Prostate-specific antigen,Control_01,13.45,11234.7,18.4,10678,11567,11459,0.124,Unchanged,1.04,0.456,0.589,No
+P07288,KLK3,Prostate-specific antigen,Treatment_01,14.89,30456.8,13.7,29567,31234,30569,0.337,Upregulated,2.71,0.003,0.021,Yes
+P19429,TNNI3,Troponin I cardiac muscle,Control_01,12.67,6534.2,22.3,6123,6789,6691,0.072,Unchanged,0.97,0.789,0.834,No
+P19429,TNNI3,Troponin I cardiac muscle,Treatment_01,13.98,16234.5,16.8,15678,16567,16458,0.180,Upregulated,2.48,0.004,0.025,Yes
+P02741,CRP,C-reactive protein,Control_01,16.23,76543.2,9.8,74567,77890,77171,0.848,Unchanged,1.02,0.678,0.745,No
+P02741,CRP,C-reactive protein,Treatment_01,18.45,352847.3,7.6,348923,355678,353940,3.910,Upregulated,4.61,0.0001,0.001,Yes
+P16860,NPPB,Natriuretic peptides B,Control_01,11.45,2834.6,25.7,2567,2989,2948,0.031,Unchanged,1.06,0.567,0.678,No
+P16860,NPPB,Natriuretic peptides B,Treatment_01,13.67,13245.7,18.3,12678,13567,13492,0.147,Upregulated,4.67,0.002,0.015,Yes
+P06732,CKM,Creatine kinase M-type,Control_01,17.34,164523.7,8.9,159678,168234,165659,1.823,Unchanged,0.99,0.834,0.889,No
+P06732,CKM,Creatine kinase M-type,Treatment_01,17.89,234567.8,7.3,231234,237567,234901,2.599,Upregulated,1.43,0.012,0.042,Yes
+P68133,ACTB,Actin cytoplasmic 1,Control_01,20.12,1123456.7,5.2,1117234,1127890,1125244,1.244,Unchanged,1.00,0.967,0.978,No
+P68133,ACTB,Actin cytoplasmic 1,Treatment_01,20.15,1145678.9,5.8,1138234,1151234,1147568,1.270,Unchanged,1.02,0.789,0.845,No
+P02794,FTH1,Ferritin heavy chain,Control_01,15.89,59234.8,11.4,57678,60234,59791,0.656,Unchanged,0.98,0.678,0.745,No
+P02794,FTH1,Ferritin heavy chain,Treatment_01,17.45,176543.2,9.7,172345,179678,177606,1.956,Upregulated,2.98,0.001,0.008,Yes
+P25705,ATP5F1A,ATP synthase subunit alpha,Control_01,18.67,412345.6,6.9,407890,415678,413468,4.569,Unchanged,1.01,0.834,0.889,No
+P25705,ATP5F1A,ATP synthase subunit alpha,Treatment_01,18.73,425678.9,7.4,419234,430567,427235,4.717,Unchanged,1.03,0.567,0.678,No
+P00441,SOD1,Superoxide dismutase Cu-Zn,Control_01,16.45,89234.7,10.2,86789,90678,90237,0.988,Unchanged,0.99,0.789,0.845,No
+P00441,SOD1,Superoxide dismutase Cu-Zn,Treatment_01,17.23,151234.5,8.7,148567,153456,151679,1.676,Upregulated,1.69,0.006,0.028,Yes
+P05067,APP,Amyloid-beta precursor protein,Control_01,14.67,25678.4,16.8,24567,26456,26011,0.284,Unchanged,1.03,0.567,0.678,No
+P05067,APP,Amyloid-beta precursor protein,Treatment_01,15.89,59234.8,12.4,57678,60234,59791,0.656,Upregulated,2.31,0.003,0.021,Yes
+P37840,SNCA,Alpha-synuclein,Control_01,13.23,9567.3,20.4,9123,9890,9689,0.106,Unchanged,0.98,0.789,0.845,No
+P37840,SNCA,Alpha-synuclein,Treatment_01,14.87,29678.5,14.9,28567,30456,30011,0.329,Upregulated,3.10,0.002,0.016,Yes

@@ -1,0 +1,151 @@
+query_id,expert_id,is_hallucination,hallucination_type,clinical_risk,confidence,notes
+Q001,E1,false,none,low,0.95,Accurate oxygen transport description
+Q001,E2,false,none,low,0.98,Correct protein function
+Q001,E3,false,none,low,0.97,Standard textbook answer
+Q002,E1,false,none,low,0.96,Accurate insulin function
+Q002,E2,false,none,low,0.99,Correct glucose metabolism role
+Q002,E3,false,none,low,0.95,Well-described mechanism
+Q003,E1,false,none,low,0.93,Comprehensive p53 functions listed
+Q003,E2,false,none,low,0.94,Accurate tumor suppressor role
+Q003,E3,false,none,low,0.96,Multiple functions correctly identified
+Q004,E1,true,factual_error,moderate,0.78,Incorrect peptide assignment
+Q004,E2,true,confabulation,moderate,0.82,Mass does not match claimed peptide
+Q004,E3,true,factual_error,moderate,0.75,Wrong albumin peptide
+Q005,E1,false,none,low,0.99,Correct PTM interpretation
+Q005,E2,false,none,low,0.98,Standard oxidation identification
+Q005,E3,false,none,low,0.97,Accurate mass shift explanation
+Q006,E1,false,none,low,0.98,Correct clinical significance
+Q006,E2,false,none,low,0.97,Accurate cardiac marker description
+Q006,E3,false,none,low,0.99,Standard clinical interpretation
+Q007,E1,false,none,low,0.94,Accurate PSA clinical use
+Q007,E2,false,none,low,0.96,Correct screening application
+Q007,E3,false,none,low,0.93,Valid biomarker description
+Q008,E1,false,none,low,0.97,Correct phosphorylation role
+Q008,E2,false,none,low,0.98,Accurate signal transduction mechanism
+Q008,E3,false,none,low,0.96,Well-explained molecular switch concept
+Q009,E1,false,none,low,0.95,Accurate histone acetylation effects
+Q009,E2,false,none,low,0.94,Correct epigenetic regulation
+Q009,E3,false,none,low,0.96,Proper chromatin modification description
+Q010,E1,false,none,low,0.97,Accurate CFTR mutations
+Q010,E2,false,none,low,0.98,Correct F508del description
+Q010,E3,false,none,low,0.96,Valid CF molecular basis
+Q011,E1,false,none,low,0.99,Correct albumin functions
+Q011,E2,false,none,low,0.98,Accurate plasma protein role
+Q011,E3,false,none,low,0.97,Standard albumin description
+Q012,E1,false,none,low,0.96,Accurate amylase function
+Q012,E2,false,none,low,0.97,Correct digestive enzyme role
+Q012,E3,false,none,low,0.95,Valid starch breakdown mechanism
+Q013,E1,false,none,low,0.99,Correct mass calculation
+Q013,E2,false,none,low,0.98,Accurate charge state interpretation
+Q013,E3,false,none,low,0.99,Proper molecular weight determination
+Q014,E1,false,none,low,0.97,Correct limitation acknowledged
+Q014,E2,false,none,low,0.96,Accurate isomer distinction challenge
+Q014,E3,false,none,low,0.98,Proper MS limitation described
+Q015,E1,false,none,low,0.92,Comprehensive AKI biomarkers
+Q015,E2,false,none,low,0.94,Multiple relevant markers listed
+Q015,E3,false,none,low,0.93,Accurate clinical biomarkers
+Q016,E1,false,none,low,0.95,Accurate CRISPR mechanism
+Q016,E2,false,none,low,0.96,Correct Cas9 function
+Q016,E3,false,none,low,0.94,Valid genome editing description
+Q017,E1,false,none,low,0.97,Accurate ubiquitination role
+Q017,E2,false,none,low,0.98,Correct protein degradation signal
+Q017,E3,false,none,low,0.96,Proper PTM function described
+Q018,E1,false,none,low,0.98,Correct Alzheimer pathology
+Q018,E2,false,none,low,0.97,Accurate protein aggregates identified
+Q018,E3,false,none,low,0.99,Standard AD molecular basis
+Q019,E1,false,none,low,0.91,Accurate proteasome recognition
+Q019,E2,false,none,low,0.93,Correct 19S particle function
+Q019,E3,false,none,low,0.92,Valid substrate recognition mechanism
+Q020,E1,true,confabulation,high,0.68,Insufficient information to determine sequence
+Q020,E2,true,overgeneralization,high,0.72,Generic answer without specific analysis
+Q020,E3,true,confabulation,high,0.65,Cannot definitively assign from given data
+Q021,E1,false,none,low,0.98,Accurate antibody function
+Q021,E2,false,none,low,0.99,Correct immune system role
+Q021,E3,false,none,low,0.97,Standard immunology description
+Q022,E1,false,none,low,0.99,Correct charge and mass calculation
+Q022,E2,false,none,low,0.98,Accurate triply charged interpretation
+Q022,E3,false,none,low,0.99,Proper molecular weight determination
+Q023,E1,false,none,low,0.97,Accurate HbA1c clinical use
+Q023,E2,false,none,low,0.98,Correct diabetes monitoring explanation
+Q023,E3,false,none,low,0.96,Valid glycation timeframe
+Q024,E1,false,none,low,0.98,Accurate glycosylation description
+Q024,E2,false,none,low,0.97,Correct cellular location
+Q024,E3,false,none,low,0.98,Standard PTM explanation
+Q025,E1,false,none,low,0.94,Accurate synuclein pathology
+Q025,E2,false,none,low,0.95,Correct Parkinson mechanism
+Q025,E3,false,none,low,0.93,Valid Lewy body description
+Q026,E1,false,none,low,0.97,Accurate cytochrome c function
+Q026,E2,false,none,low,0.98,Correct dual role description
+Q026,E3,false,none,low,0.96,Proper ETC and apoptosis roles
+Q027,E1,false,none,low,0.95,Accurate ion suppression causes
+Q027,E2,false,none,low,0.96,Correct ESI limitation
+Q027,E3,false,none,low,0.94,Valid interference description
+Q028,E1,false,none,low,0.99,Accurate CRP clinical meaning
+Q028,E2,false,none,low,0.98,Correct inflammation marker
+Q028,E3,false,none,low,0.99,Standard acute phase protein
+Q029,E1,false,none,low,0.93,Accurate SUMO vs ubiquitin distinction
+Q029,E2,false,none,low,0.94,Correct functional differences
+Q029,E3,false,none,low,0.92,Valid PTM comparison
+Q030,E1,false,none,low,0.95,Accurate catalytic triad mechanism
+Q030,E2,false,none,low,0.96,Correct serine protease function
+Q030,E3,false,none,low,0.94,Valid enzymatic mechanism
+Q031,E1,false,none,low,0.92,Accurate MS analyzer comparison
+Q031,E2,false,none,low,0.93,Correct technical distinctions
+Q031,E3,false,none,low,0.91,Valid resolution differences
+Q032,E1,false,none,low,0.94,Accurate biomarker validation process
+Q032,E2,false,none,low,0.95,Correct regulatory requirements
+Q032,E3,false,none,low,0.93,Valid clinical validation steps
+Q033,E1,false,none,low,0.97,Accurate BRCA function
+Q033,E2,false,none,low,0.98,Correct cancer association
+Q033,E3,false,none,low,0.96,Valid DNA repair role
+Q034,E1,false,none,low,0.93,Accurate allosteric regulation
+Q034,E2,false,none,low,0.94,Correct hemoglobin cooperativity
+Q034,E3,false,none,low,0.92,Valid modulator effects
+Q035,E1,false,none,low,0.89,Accurate de novo approach
+Q035,E2,false,none,low,0.91,Correct sequencing methodology
+Q035,E3,false,none,low,0.88,Valid database-free method
+Q036,E1,false,none,low,0.94,Accurate proline hydroxylation role
+Q036,E2,false,none,low,0.95,Correct collagen stability
+Q036,E3,false,none,low,0.93,Valid vitamin C requirement
+Q037,E1,false,none,low,0.91,Accurate precision medicine application
+Q037,E2,false,none,low,0.92,Correct personalized approach
+Q037,E3,false,none,low,0.90,Valid proteomics clinical use
+Q038,E1,false,none,low,0.98,Accurate ferritin function
+Q038,E2,false,none,low,0.97,Correct iron storage role
+Q038,E3,false,none,low,0.98,Standard iron homeostasis
+Q039,E1,false,none,low,0.97,Accurate stable isotope use
+Q039,E2,false,none,low,0.98,Correct quantification method
+Q039,E3,false,none,low,0.96,Valid internal standard purpose
+Q040,E1,false,none,low,0.99,Accurate sickle cell mutation
+Q040,E2,false,none,low,0.98,Correct molecular basis
+Q040,E3,false,none,low,0.99,Standard E6V mutation
+Q041,E1,false,none,low,0.99,Accurate protease definition
+Q041,E2,false,none,low,0.98,Correct enzymatic function
+Q041,E3,false,none,low,0.99,Basic accurate description
+Q042,E1,false,none,low,0.96,Accurate BNP clinical use
+Q042,E2,false,none,low,0.97,Correct heart failure marker
+Q042,E3,false,none,low,0.95,Valid cardiac stress indicator
+Q043,E1,false,none,low,0.94,Accurate palmitoylation function
+Q043,E2,false,none,low,0.95,Correct membrane anchoring
+Q043,E3,false,none,low,0.93,Valid trafficking role
+Q044,E1,false,none,low,0.97,Accurate MALDI vs ESI comparison
+Q044,E2,false,none,low,0.98,Correct ionization differences
+Q044,E3,false,none,low,0.96,Valid technical distinctions
+Q045,E1,false,none,low,0.93,Accurate ATP synthase mechanism
+Q045,E2,false,none,low,0.94,Correct rotary motor description
+Q045,E3,false,none,low,0.92,Valid proton gradient use
+Q046,E1,false,none,low,0.91,Accurate ALS protein involvement
+Q046,E2,false,none,low,0.92,Correct mutation associations
+Q046,E3,false,none,low,0.90,Valid aggregation pathology
+Q047,E1,false,none,low,0.98,Accurate CK clinical use
+Q047,E2,false,none,low,0.97,Correct muscle damage marker
+Q047,E3,false,none,low,0.98,Standard cardiac indicator
+Q048,E1,false,none,low,0.99,Accurate proteolytic cleavage
+Q048,E2,false,none,low,0.98,Correct activation mechanism
+Q048,E3,false,none,low,0.99,Basic accurate description
+Q049,E1,false,none,low,0.98,Accurate actin function
+Q049,E2,false,none,low,0.99,Correct cytoskeleton role
+Q049,E3,false,none,low,0.97,Standard cell biology description
+Q050,E1,false,none,low,0.88,Accurate co-elution strategies
+Q050,E2,false,none,low,0.89,Correct separation approaches
+Q050,E3,false,none,low,0.87,Valid deconvolution methods
