@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Conduct expert evaluation study
 - Submit manuscript to target journal
 
-## [0.1.0-alpha] - 2024-01-15
+## [0.1.0-alpha] - 2025-11-01
 
 ### Added
 - Initial project repository structure
@@ -37,7 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Project Milestones
 - Repository initialized
-- Collaboration established between olaflaitinen and Japyh
+- Collaboration established for research
 - Research objectives defined
 - Methodology framework established
 
@@ -85,7 +85,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Future Versions
 
-### [0.2.0] - Expected Q1 2024
+### [0.2.0] - Expected Q4 2025
 **Focus**: Core functionality implementation
 
 **Planned additions**:
@@ -95,7 +95,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial benchmark results
 - Unit tests for all core modules
 
-### [0.3.0] - Expected Q2 2024
+### [0.3.0] - Expected Q1 2026
 **Focus**: Evaluation framework
 
 **Planned additions**:
@@ -105,7 +105,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Visualization suite
 - Documentation expansion
 
-### [0.4.0] - Expected Q2 2024
+### [0.4.0] - Expected Q1 2026
 **Focus**: Empirical study
 
 **Planned additions**:
@@ -114,7 +114,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Preliminary findings
 - Result validation
 
-### [0.5.0] - Expected Q3 2024
+### [0.5.0] - Expected Q2 2026
 **Focus**: Analysis and interpretation
 
 **Planned additions**:
@@ -123,7 +123,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Ethical framework documentation
 - Discussion of implications
 
-### [1.0.0] - Expected Q4 2024
+### [1.0.0] - Expected Q3 2026
 **Focus**: Publication
 
 **Planned deliverables**:

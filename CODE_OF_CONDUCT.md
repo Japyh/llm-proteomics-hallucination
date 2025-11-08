@@ -180,4 +180,4 @@ By participating in this project, you agree to abide by this Code of Conduct and
 
 ---
 
-Last Updated: January 2024
+Last Updated: November 2025

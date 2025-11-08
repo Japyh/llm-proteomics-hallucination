@@ -5,7 +5,7 @@
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![Tests](https://github.com/olaflaitinen/llm-proteomics-hallucination/workflows/tests/badge.svg)](https://github.com/olaflaitinen/llm-proteomics-hallucination/actions)
 [![DOI](https://img.shields.io/badge/DOI-10.xxxx%2Fxxxxxx-blue)](https://doi.org/)
-[![arXiv](https://img.shields.io/badge/arXiv-2024.xxxxx-b31b1b.svg)](https://arxiv.org/)
+[![arXiv](https://img.shields.io/badge/arXiv-2025.xxxxx-b31b1b.svg)](https://arxiv.org/)
 [![Coverage](https://img.shields.io/badge/coverage-85%25-brightgreen)](https://codecov.io/)
 
 ---
@@ -31,13 +31,13 @@ This repository provides a comprehensive research framework, production-ready co
 Department of Biotechnology and Biomedicine
 Technical University of Denmark (DTU)
 Kongens Lyngby, Denmark
-📧 olyulaim@dtu.dk
+Email: olyulaim@dtu.dk
 
 **Derya Umut Kulali**
 Department of Engineering
 Eskisehir Technical University
 Eskisehir, Turkey
-📧 d_u_k@ogr.eskisehir.edu.tr
+Email: d_u_k@ogr.eskisehir.edu.tr
 
 ### Correspondence
 
@@ -102,20 +102,20 @@ Existing hallucination research focuses on general NLP tasks. **No prior work sy
 ```
 llm-proteomics-hallucination/
 │
-├── 📊 data/                          # Data storage and management
+├── data/                             # Data storage and management
 │   ├── raw/                          # Raw data (NEVER commit patient data)
 │   ├── processed/                    # Processed datasets
 │   └── synthetic/                    # Synthetic test data (52 proteins)
 │       └── example_proteins.csv      # Ready-to-use synthetic dataset
 │
-├── 📚 literature/                    # Academic literature
+├── literature/                       # Academic literature
 │   ├── bibliography.bib              # 30+ key references
 │   ├── reading_list.md               # Organized by topic
 │   ├── literature_review_template.md # PRISMA guidelines
 │   ├── papers/                       # PDF storage (gitignored)
 │   └── notes/                        # Reading summaries
 │
-├── 📓 notebooks/                     # Jupyter analysis pipeline
+├── notebooks/                        # Jupyter analysis pipeline
 │   ├── 00_setup_and_verification.ipynb
 │   ├── 01_data_exploration.ipynb
 │   ├── 02_llm_benchmark.ipynb
@@ -123,7 +123,7 @@ llm-proteomics-hallucination/
 │   ├── 04_statistical_analysis.ipynb
 │   └── 05_results_visualization.ipynb
 │
-├── 🔬 src/                           # Production code
+├── src/                              # Production code
 │   ├── data_processing/              # Data handling
 │   │   ├── synthetic_data_generator.py
 │   │   ├── protein_database.py
@@ -142,18 +142,18 @@ llm-proteomics-hallucination/
 │       ├── logger.py
 │       └── validators.py
 │
-├── 🧪 tests/                         # Test suite (pytest)
+├── tests/                            # Test suite (pytest)
 │   ├── test_llm_client.py
 │   ├── test_hallucination_detector.py
 │   └── conftest.py                   # Shared fixtures
 │
-├── 📈 results/                       # Analysis outputs
+├── results/                          # Analysis outputs
 │   ├── figures/                      # Publication-quality plots
 │   ├── tables/                       # Data tables
 │   ├── statistical_tests/            # Test results
 │   └── logs/                         # Execution logs
 │
-├── 📝 manuscript/                    # LaTeX paper
+├── manuscript/                       # LaTeX paper
 │   ├── main.tex                      # Main document
 │   ├── sections/                     # Individual sections
 │   │   ├── 01_introduction.tex
@@ -166,24 +166,24 @@ llm-proteomics-hallucination/
 │   ├── tables/                       # LaTeX tables
 │   └── supplementary/                # Supplementary materials
 │
-├── 🔒 ethics/                        # Ethics & privacy
+├── ethics/                           # Ethics & privacy
 │   ├── gdpr_compliance.md
 │   ├── ethics_protocol.md
 │   ├── data_management_plan.md
 │   └── anonymization_guidelines.md
 │
-├── ⚙️ config/                        # Configuration
+├── config/                           # Configuration
 │   ├── config.yaml                   # Project settings
 │   ├── experiment_config.yaml        # Experiment parameters
 │   └── logging_config.yaml           # Logging configuration
 │
-├── 🛠️ scripts/                       # Automation
+├── scripts/                          # Automation
 │   ├── setup_project.sh
 │   ├── run_benchmark.sh
 │   ├── generate_report.py
 │   └── check_data_privacy.py
 │
-└── 📖 docs/                          # Documentation
+└── docs/                             # Documentation
     ├── index.md
     ├── installation.md
     ├── methodology.md
@@ -490,11 +490,11 @@ Visualization.plot_hallucination_rates(
 If you use this code or findings, please cite:
 
 ```bibtex
-@article{laitinen2024hallucination,
+@article{laitinen2025hallucination,
   title={Hallucination Risks in Large Language Models for Clinical Proteomics Interpretation: A Systematic Evaluation},
   author={Laitinen Imanov, Olaf Yunus and Kulali, Derya Umut},
   journal={[Target Journal]},
-  year={2024},
+  year={2025},
   note={In preparation},
   url={https://github.com/olaflaitinen/llm-proteomics-hallucination}
 }
@@ -503,10 +503,10 @@ If you use this code or findings, please cite:
 For the codebase specifically:
 
 ```bibtex
-@software{laitinen2024proteomics_code,
+@software{laitinen2025proteomics_code,
   author={Laitinen Imanov, Olaf Yunus and Kulali, Derya Umut},
   title={LLM Proteomics Hallucination Detection Framework},
-  year={2024},
+  year={2025},
   publisher={GitHub},
   url={https://github.com/olaflaitinen/llm-proteomics-hallucination},
   version={0.1.0}
@@ -587,13 +587,13 @@ isort --check-only src/ tests/
 
 ### Privacy Safeguards
 
-✅ **Allowed**:
+**Allowed**:
 - Synthetic data only
 - Anonymized statistics
 - Published literature references
 - Public database information
 
-❌ **Prohibited**:
+**Prohibited**:
 - Patient names, IDs, or demographics
 - Clinical test results
 - Medical record numbers
@@ -634,16 +634,16 @@ python -m ipykernel install --user --name=llm-proteomics
 
 ### Getting Help
 
-- 📖 Read the [FAQ](docs/faq.md)
-- 🐛 Open an [issue](https://github.com/olaflaitinen/llm-proteomics-hallucination/issues)
-- 📧 Contact: olyulaim@dtu.dk
-- 💬 Discussions: [GitHub Discussions](https://github.com/olaflaitinen/llm-proteomics-hallucination/discussions)
+- Read the [FAQ](docs/faq.md)
+- Open an [issue](https://github.com/olaflaitinen/llm-proteomics-hallucination/issues)
+- Contact: olyulaim@dtu.dk
+- Discussions: [GitHub Discussions](https://github.com/olaflaitinen/llm-proteomics-hallucination/discussions)
 
 ---
 
 ## Roadmap
 
-### Completed ✅
+### Completed
 
 - [x] Repository infrastructure
 - [x] Synthetic data generation
@@ -651,18 +651,18 @@ python -m ipykernel install --user --name=llm-proteomics
 - [x] Basic hallucination detection
 - [x] Statistical analysis framework
 
-### In Progress 🚧
+### In Progress
 
-- [ ] Expert evaluation study (Q1 2024)
-- [ ] Full benchmark execution (Q1 2024)
-- [ ] Manuscript writing (Q1-Q2 2024)
+- [ ] Expert evaluation study (Q4 2025)
+- [ ] Full benchmark execution (Q4 2025)
+- [ ] Manuscript writing (Q4 2025 - Q1 2026)
 
-### Planned 📅
+### Planned
 
-- [ ] Conference presentation (Q2 2024)
-- [ ] Journal submission (Q2 2024)
-- [ ] Extended evaluation with GPT-5, Claude 4 (Q3 2024)
-- [ ] Clinical validation study (Q4 2024)
+- [ ] Conference presentation (Q1 2026)
+- [ ] Journal submission (Q2 2026)
+- [ ] Extended evaluation with GPT-5, Claude 4 (Q2 2026)
+- [ ] Clinical validation study (Q3 2026)
 
 See [ROADMAP.md](ROADMAP.md) for detailed timeline.
 
@@ -722,8 +722,8 @@ This project is licensed under the MIT License - see [LICENSE](LICENSE) for deta
 
 **Version**: 0.1.0-alpha
 **Status**: Active Development
-**Last Updated**: January 2024
-**Target Publication**: Q2 2024
+**Last Updated**: November 2025
+**Target Publication**: Q2 2026
 
 ---
 

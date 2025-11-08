@@ -2,7 +2,7 @@ cff-version: 1.2.0
 message: "If you use this software or research, please cite it as below."
 title: "LLM Hallucination Risks in Clinical Proteomics Interpretation"
 version: 0.1.0
-date-released: 2024-01-15
+date-released: 2025-11-01
 url: "https://github.com/olaflaitinen/llm-proteomics-hallucination"
 repository-code: "https://github.com/olaflaitinen/llm-proteomics-hallucination"
 license: MIT
@@ -33,6 +33,6 @@ preferred-citation:
     - family-names: "Kulali"
       given-names: "Derya Umut"
   title: "Hallucination Risks in Large Language Models for Clinical Proteomics Interpretation: A Systematic Evaluation"
-  year: 2024
+  year: 2025
   journal: "[Target Journal - To be determined]"
   status: "in preparation"

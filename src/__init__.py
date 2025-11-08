@@ -27,7 +27,7 @@ __version__ = "0.1.0"
 __author__ = "Olaf Yunus Laitinen Imanov, Derya Umut Kulali"
 __email__ = "olyulaim@dtu.dk"
 __license__ = "MIT"
-__copyright__ = "Copyright 2024, Technical University of Denmark & Eskisehir Technical University"
+__copyright__ = "Copyright 2025, Technical University of Denmark & Eskisehir Technical University"
 
 # Package metadata
 __all__ = ['__version__', '__author__', '__email__']
