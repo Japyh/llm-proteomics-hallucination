@@ -7,7 +7,8 @@ name = "llm-proteomics-hallucination"
 version = "0.1.0"
 description = "Research on LLM hallucination risks in clinical proteomics"
 authors = [
-    {name = "Olaf Laitinen", email = "contact@example.com"},
+    {name = "Olaf Yunus Laitinen Imanov", email = "olyulaim@dtu.dk"},
+    {name = "Derya Umut Kulali", email = "d_u_k@ogr.eskisehir.edu.tr"},
 ]
 readme = "README.md"
 requires-python = ">=3.11"
@@ -20,6 +21,8 @@ target-version = ['py311']
 [tool.isort]
 profile = "black"
 line_length = 88
+src_paths = ["src", "tests", "examples"]
+skip_gitignore = true
 
 [tool.mypy]
 python_version = "3.11"
