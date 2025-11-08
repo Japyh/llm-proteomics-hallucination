@@ -8,7 +8,7 @@ rate limiting, retries, and cost tracking.
 import os
 import time
 import asyncio
-from typing import Dict, List, Optional, Any, Tuple
+from typing import Dict, Optional, Any
 from dataclasses import dataclass, field
 from enum import Enum
 import logging
@@ -130,7 +130,9 @@ class LLMClient:
         self.total_tokens = 0
         self.total_cost = 0.0
 
-        logger.info(f"Initialized {self.provider.value} client with model {self.model}")
+        logger.info(
+            f"Initialized {self.provider.value} client with model {self.model}"
+        )
 
     def _get_default_model(self) -> str:
         """Get default model for provider."""
@@ -152,7 +154,8 @@ class LLMClient:
         key = os.getenv(env_vars[self.provider])
         if not key:
             raise ValueError(
-                f"API key not found. Set {env_vars[self.provider]} environment variable."
+                f"API key not found. Set {env_vars[self.provider]} "
+                "environment variable."
             )
         return key
 
@@ -181,7 +184,9 @@ class LLMClient:
         """Generate cache key for prompt."""
         import hashlib
 
-        key_str = f"{self.provider.value}:{self.model}:{prompt}:{self.temperature}"
+        key_str = (
+            f"{self.provider.value}:{self.model}:{prompt}:{self.temperature}"
+        )
         return hashlib.md5(key_str.encode()).hexdigest()
 
     @retry(

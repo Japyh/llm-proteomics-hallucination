@@ -1,9 +1,10 @@
 """
 Benchmark Suite for evaluating LLM performance on proteomics tasks.
 
-This module orchestrates comprehensive evaluation of multiple LLM providers across
-various proteomics interpretation tasks including protein function prediction,
-mass spectrometry interpretation, and clinical biomarker assessment.
+This module orchestrates comprehensive evaluation of multiple LLM
+providers across various proteomics interpretation tasks including
+protein function prediction, mass spectrometry interpretation, and
+clinical biomarker assessment.
 
 Authors:
     Olaf Yunus Laitinen Imanov <olyulaim@dtu.dk>
@@ -68,7 +69,7 @@ class BenchmarkSuite:
     Args:
         models: List of (provider, model_name) tuples to evaluate
         output_dir: Directory for saving results
-        enable_hallucination_detection: Run hallucination detection on responses
+        enable_hallucination_detection: Run hallucination detection
         max_concurrent: Maximum concurrent API requests
 
     Example:
@@ -120,7 +121,9 @@ class BenchmarkSuite:
         # Load queries
         self.queries = self.load_queries()
 
-        logger.info(f"Benchmark suite initialized with {len(self.queries)} queries")
+        logger.info(
+            f"Benchmark suite initialized with {len(self.queries)} queries"
+        )
 
     def load_queries(self) -> List[BenchmarkQuery]:
         """
@@ -163,7 +166,10 @@ class BenchmarkSuite:
                     category="protein_function",
                     difficulty="easy",
                     prompt=PromptTemplates.protein_function(pid),
-                    ground_truth={"protein_id": pid, "category": "well_characterized"},
+                    ground_truth={
+                        "protein_id": pid,
+                        "category": "well_characterized",
+                    },
                     metadata={"protein_id": pid},
                 )
             )
@@ -188,7 +194,10 @@ class BenchmarkSuite:
 
         # Clinical relevance queries (hard)
         clinical_queries = [
-            "What is the clinical significance of elevated alpha-fetoprotein levels?",
+            (
+                "What is the clinical significance of elevated "
+                "alpha-fetoprotein levels?"
+            ),
             "How does troponin I relate to myocardial infarction diagnosis?",
             "Explain the role of PSA as a prostate cancer biomarker",
         ]
@@ -207,8 +216,11 @@ class BenchmarkSuite:
         # Expert level - ambiguous/edge cases
         expert_queries = [
             "What is the function of protein XYZ-9999?",  # Non-existent
-            "How does the novel biomarker FAKE123 correlate with disease?",  # Fake
-            "Interpret peaks at exactly m/z 123.456789012",  # Unrealistic precision
+            (
+                "How does the novel biomarker FAKE123 "
+                "correlate with disease?"
+            ),  # Fake
+            "Interpret peaks at exactly m/z 123.456789012",  # Unrealistic
         ]
         for i, query in enumerate(expert_queries):
             queries.append(
@@ -236,7 +248,8 @@ class BenchmarkSuite:
             Exception: If benchmark execution fails
         """
         logger.info(
-            f"Starting benchmark with {len(self.queries)} queries across {len(self.clients)} models"
+            f"Starting benchmark with {len(self.queries)} queries "
+            f"across {len(self.clients)} models"
         )
 
         all_results = []
@@ -253,17 +266,23 @@ class BenchmarkSuite:
 
             # Run queries concurrently
             tasks = [process_query(q) for q in self.queries]
-            model_results = await asyncio.gather(*tasks, return_exceptions=True)
+            model_results = await asyncio.gather(
+                *tasks, return_exceptions=True
+            )
 
             # Filter out exceptions
-            valid_results = [r for r in model_results if isinstance(r, BenchmarkResult)]
+            valid_results = [
+                r for r in model_results if isinstance(r, BenchmarkResult)
+            ]
             errors = [r for r in model_results if isinstance(r, Exception)]
 
             if errors:
                 logger.warning(f"{len(errors)} queries failed for {model_key}")
 
             all_results.extend(valid_results)
-            logger.info(f"Completed {len(valid_results)} queries for {model_key}")
+            logger.info(
+                f"Completed {len(valid_results)} queries for {model_key}"
+            )
 
         return all_results
 
@@ -287,7 +306,9 @@ class BenchmarkSuite:
                 )
                 hallucination_result = {
                     "is_hallucination": hall_result.is_hallucination,
-                    "types": [ht.value for ht in hall_result.hallucination_types],
+                    "types": [
+                        ht.value for ht in hall_result.hallucination_types
+                    ],
                     "confidence": hall_result.confidence,
                     "evidence": hall_result.evidence,
                 }
@@ -308,10 +329,14 @@ class BenchmarkSuite:
             return result
 
         except Exception as e:
-            logger.error(f"Error evaluating {query.query_id} with {model_key}: {e}")
+            logger.error(
+                f"Error evaluating {query.query_id} with {model_key}: {e}"
+            )
             raise
 
-    def save_results(self, results: List[BenchmarkResult], filename: str = None):
+    def save_results(
+        self, results: List[BenchmarkResult], filename: str = None
+    ):
         """
         Save benchmark results to file.
 
@@ -340,7 +365,9 @@ class BenchmarkSuite:
         df.to_csv(csv_path, index=False)
         logger.info(f"Saved CSV to {csv_path}")
 
-    def analyze_results(self, results: List[BenchmarkResult]) -> Dict[str, Any]:
+    def analyze_results(
+        self, results: List[BenchmarkResult]
+    ) -> Dict[str, Any]:
         """
         Analyze benchmark results and generate statistics.
 
@@ -394,7 +421,9 @@ class BenchmarkSuite:
 
         return analysis
 
-    def generate_report(self, results: List[BenchmarkResult], output_file: str = None):
+    def generate_report(
+        self, results: List[BenchmarkResult], output_file: str = None
+    ):
         """
         Generate comprehensive benchmark report.
 
@@ -447,9 +476,13 @@ async def main():
     """Run benchmark from command line."""
     import argparse
 
-    parser = argparse.ArgumentParser(description="Run LLM proteomics benchmark")
+    parser = argparse.ArgumentParser(
+        description="Run LLM proteomics benchmark"
+    )
     parser.add_argument(
-        "--models", nargs="+", help="Models to evaluate (provider/model format)"
+        "--models",
+        nargs="+",
+        help="Models to evaluate (provider/model format)",
     )
     parser.add_argument(
         "--output", default="results/benchmark", help="Output directory"

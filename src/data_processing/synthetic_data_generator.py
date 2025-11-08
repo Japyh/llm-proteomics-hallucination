@@ -2,7 +2,6 @@
 
 import pandas as pd
 import numpy as np
-from typing import List
 
 
 class SyntheticDataGenerator:
@@ -17,6 +16,8 @@ class SyntheticDataGenerator:
         data = {
             "protein_id": [f"SYN{i:04d}" for i in range(n_proteins)],
             "molecular_weight": np.random.normal(50000, 20000, n_proteins),
-            "expression_level": np.random.choice(["low", "medium", "high"], n_proteins),
+            "expression_level": np.random.choice(
+                ["low", "medium", "high"], n_proteins
+            ),
         }
         return pd.DataFrame(data)

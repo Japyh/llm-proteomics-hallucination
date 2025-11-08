@@ -22,8 +22,6 @@ def test_detect_fake_protein():
 def test_valid_response():
     """Test valid protein response."""
     detector = HallucinationDetector()
-    result = detector.detect(
-        "Protein P12345 is involved in signaling"
-    )
+    result = detector.detect("Protein P12345 is involved in signaling")
     # May or may not be hallucination depending on database
     assert result.confidence >= 0.0

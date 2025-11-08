@@ -1,8 +1,9 @@
 """
 LLM Proteomics Hallucination Research Package
 
-A comprehensive framework for evaluating hallucination risks when using Large Language
-Models to interpret clinical proteomics and mass spectrometry data.
+A comprehensive framework for evaluating hallucination risks when
+using Large Language Models to interpret clinical proteomics and
+mass spectrometry data.
 
 Authors:
     Olaf Yunus Laitinen Imanov (olyulaim@dtu.dk)
@@ -28,7 +29,8 @@ __author__ = "Olaf Yunus Laitinen Imanov, Derya Umut Kulali"
 __email__ = "olyulaim@dtu.dk"
 __license__ = "MIT"
 __copyright__ = (
-    "Copyright 2025, Technical University of Denmark & Eskisehir Technical University"
+    "Copyright 2025, Technical University of Denmark & "
+    "Eskisehir Technical University"
 )
 
 # Package metadata

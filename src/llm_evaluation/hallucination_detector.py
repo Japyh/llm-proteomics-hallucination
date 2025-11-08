@@ -7,7 +7,7 @@ factual errors, invented proteins, and incorrect functions.
 
 import re
 import logging
-from typing import Dict, List, Optional, Tuple, Any
+from typing import Dict, List, Optional, Any
 from dataclasses import dataclass
 from enum import Enum
 
@@ -60,9 +60,11 @@ class HallucinationDetector:
         True
     """
 
-    # UniProt accession pattern: [OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}
+    # UniProt accession pattern:
+    # [OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2}
     UNIPROT_PATTERN = (
-        r"([OPQ][0-9][A-Z0-9]{3}[0-9]|[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2})"
+        r"([OPQ][0-9][A-Z0-9]{3}[0-9]|"
+        r"[A-NR-Z][0-9]([A-Z][A-Z0-9]{2}[0-9]){1,2})"
     )
 
     # GO term pattern: GO:XXXXXXX
@@ -88,7 +90,9 @@ class HallucinationDetector:
         self.known_protein_ids = self._load_known_proteins()
         self.known_go_terms = self._load_known_go_terms()
 
-        logger.info(f"Initialized HallucinationDetector (strict={strict_mode})")
+        logger.info(
+            f"Initialized HallucinationDetector (strict={strict_mode})"
+        )
 
     def _load_known_proteins(self) -> set:
         """Load set of known protein IDs."""
@@ -150,7 +154,9 @@ class HallucinationDetector:
         protein_result = self._verify_protein_ids(response)
         if protein_result["invalid_ids"]:
             hallucinations.append(HallucinationType.INVENTED_PROTEIN)
-            evidence.append(f"Invalid protein IDs: {protein_result['invalid_ids']}")
+            evidence.append(
+                f"Invalid protein IDs: {protein_result['invalid_ids']}"
+            )
             confidence_scores.append(0.9)
 
         # Verify GO terms
@@ -196,7 +202,9 @@ class HallucinationDetector:
             evidence=evidence,
         )
 
-    def _check_obvious_hallucinations(self, response: str) -> Optional[Dict[str, Any]]:
+    def _check_obvious_hallucinations(
+        self, response: str
+    ) -> Optional[Dict[str, Any]]:
         """Check for obvious hallucination indicators."""
         for pattern in self.HALLUCINATION_INDICATORS:
             matches = re.findall(pattern, response, re.IGNORECASE)
@@ -214,7 +222,9 @@ class HallucinationDetector:
         potential_ids = re.findall(self.UNIPROT_PATTERN, response)
 
         # Flatten tuples from regex groups
-        potential_ids = [id[0] if isinstance(id, tuple) else id for id in potential_ids]
+        potential_ids = [
+            id[0] if isinstance(id, tuple) else id for id in potential_ids
+        ]
 
         # Check against known IDs
         invalid_ids = [
@@ -233,12 +243,16 @@ class HallucinationDetector:
         """Extract and verify GO terms."""
         go_terms = re.findall(self.GO_TERM_PATTERN, response)
 
-        invalid_terms = [term for term in go_terms if term not in self.known_go_terms]
+        invalid_terms = [
+            term for term in go_terms if term not in self.known_go_terms
+        ]
 
         return {
             "found_terms": go_terms,
             "invalid_terms": invalid_terms,
-            "valid_terms": [term for term in go_terms if term in self.known_go_terms],
+            "valid_terms": [
+                term for term in go_terms if term in self.known_go_terms
+            ],
         }
 
     def _check_molecular_weight(self, response: str) -> Dict[str, Any]:
@@ -273,9 +287,7 @@ class HallucinationDetector:
         issues = []
 
         # Check for contradictory statements
-        sentences = response.split(".")
-
-        # Look for conflicting information (simple heuristic)
+        # (simple heuristic - look for conflicting information)
         positive_words = ["activates", "increases", "promotes", "enhances"]
         negative_words = ["inhibits", "decreases", "reduces", "suppresses"]
 
@@ -290,7 +302,9 @@ class HallucinationDetector:
         return {"inconsistent": len(issues) > 0, "issues": issues}
 
     def detect_batch(
-        self, responses: List[str], contexts: Optional[List[Dict[str, Any]]] = None
+        self,
+        responses: List[str],
+        contexts: Optional[List[Dict[str, Any]]] = None,
     ) -> List[HallucinationResult]:
         """
         Detect hallucinations in multiple responses.
@@ -352,7 +366,9 @@ class HallucinationDetector:
 
         # Calculate average confidence
         confidences = [r.confidence for r in results if r.is_hallucination]
-        avg_confidence = sum(confidences) / len(confidences) if confidences else 0.0
+        avg_confidence = (
+            sum(confidences) / len(confidences) if confidences else 0.0
+        )
 
         return {
             "total_responses": total,
