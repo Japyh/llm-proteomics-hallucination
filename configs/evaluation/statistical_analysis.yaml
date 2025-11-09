@@ -1,0 +1,57 @@
+statistical_analysis:
+  # General settings
+  random_seed: 42
+  alpha: 0.05
+  confidence_level: 0.95
+
+  # Bootstrap settings
+  bootstrap:
+    n_iterations: 1000
+    method: "percentile"
+    stratify: true
+
+  # Multiple testing correction
+  multiple_testing:
+    method: "bonferroni"
+    family_wise_error_rate: 0.05
+
+  # Tests to perform
+  tests:
+    chi_square:
+      enabled: true
+      continuity_correction: true
+
+    logistic_regression:
+      enabled: true
+      covariates:
+        - "complexity"
+        - "domain"
+        - "prevalence"
+      interaction_terms: false
+
+    anova:
+      enabled: true
+      type: "one_way"
+
+    pairwise_comparisons:
+      enabled: true
+      method: "tukey"
+
+  # Effect sizes
+  effect_sizes:
+    - "cohen_d"
+    - "odds_ratio"
+    - "cramers_v"
+
+  # Subgroup analyses
+  subgroups:
+    - "domain"
+    - "complexity"
+    - "prevalence"
+    - "model"
+
+  # Sensitivity analyses
+  sensitivity:
+    enabled: true
+    exclude_uncertain: true
+    threshold_variations: [0.6, 0.7, 0.8, 0.9]

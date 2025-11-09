@@ -1,0 +1,41 @@
+hallucination_detection:
+  # Detection methods
+  methods:
+    - "fact_checking"
+    - "citation_verification"
+    - "protein_name_validation"
+    - "quantitative_validation"
+
+  # Thresholds
+  thresholds:
+    confidence: 0.7
+    similarity: 0.8
+
+  # Reference databases
+  databases:
+    uniprot_path: "data/proteins/uniprot_sequences.fasta"
+    pubmed_cache: "data/cache/pubmed_cache.json"
+
+  # Annotation settings
+  annotation:
+    dual_rater: true
+    reconciliation: "consensus"
+    min_kappa: 0.8
+
+  # Hallucination types
+  types:
+    - "factual_error"
+    - "fabricated_protein"
+    - "fabricated_ptm"
+    - "fabricated_interaction"
+    - "fabricated_citation"
+    - "misattribution"
+    - "quantitative_error"
+    - "temporal_error"
+
+  # Severity levels
+  severity:
+    minor: "Low clinical impact"
+    moderate: "May affect clinical decision"
+    severe: "Likely to affect clinical decision"
+    critical: "Patient safety risk"

@@ -1,0 +1,31 @@
+# Data Registry for LLM Proteomics Hallucination Study
+
+version: 1.0.0
+created: 2024-11-09
+updated: 2024-11-09
+
+datasets:
+  queries:
+    path: queries/queries_all.json
+    format: json
+    size: 500
+    schema: schemas/query_schema.json
+    checksum: sha256:abc123...
+    
+  ground_truth:
+    path: ground_truth/adjudicated_labels.json
+    format: json
+    size: 500
+    schema: schemas/annotation_schema.json
+    checksum: sha256:def456...
+    
+  llm_responses:
+    path: llm_responses/
+    format: jsonl
+    models: [gpt4_turbo, claude_sonnet, gemini_pro]
+    total_responses: 1500
+    
+  results:
+    path: results/
+    format: csv
+    files: [hallucination_rates.csv, model_comparison.csv, severity_distribution.csv]

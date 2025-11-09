@@ -1,0 +1,181 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "MS/MS Spectrum Schema",
+  "description": "Schema for mass spectrometry tandem mass spectrometry data",
+  "type": "object",
+  "required": ["spectrum_id", "scan_number", "precursor_mz", "precursor_charge", "retention_time", "peaks"],
+  "properties": {
+    "spectrum_id": {
+      "type": "string",
+      "pattern": "^MS[0-9]{6}$",
+      "description": "Unique spectrum identifier"
+    },
+    "scan_number": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "MS scan number"
+    },
+    "precursor_mz": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Precursor mass-to-charge ratio"
+    },
+    "precursor_charge": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "description": "Precursor ion charge state"
+    },
+    "precursor_intensity": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Precursor ion intensity"
+    },
+    "retention_time": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Retention time in minutes"
+    },
+    "peaks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["mz", "intensity"],
+        "properties": {
+          "mz": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Peak mass-to-charge ratio"
+          },
+          "intensity": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Peak intensity"
+          },
+          "charge": {
+            "type": ["integer", "null"],
+            "minimum": 1,
+            "description": "Fragment ion charge"
+          },
+          "annotation": {
+            "type": ["string", "null"],
+            "description": "Ion annotation (e.g., y7, b3)"
+          }
+        }
+      },
+      "description": "MS/MS fragment peaks"
+    },
+    "peptide_identification": {
+      "type": "object",
+      "properties": {
+        "sequence": {
+          "type": "string",
+          "pattern": "^[ACDEFGHIKLMNPQRSTVWY]+$",
+          "description": "Identified peptide sequence"
+        },
+        "modifications": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "position": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "mass_delta": {
+                "type": "number"
+              },
+              "modification_type": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "protein_accession": {
+          "type": "string",
+          "pattern": "^[A-Z0-9]{6,10}$",
+          "description": "UniProt accession of parent protein"
+        },
+        "confidence_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Identification confidence (0-1)"
+        },
+        "q_value": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "False discovery rate q-value"
+        },
+        "search_engine": {
+          "type": "string",
+          "enum": ["mascot", "sequest", "andromeda", "maxquant", "comet", "msgf+"],
+          "description": "Search engine used"
+        },
+        "search_engine_score": {
+          "type": "number",
+          "description": "Raw search engine score"
+        }
+      }
+    },
+    "acquisition_metadata": {
+      "type": "object",
+      "properties": {
+        "instrument": {
+          "type": "string",
+          "description": "Mass spectrometer model"
+        },
+        "fragmentation_method": {
+          "type": "string",
+          "enum": ["CID", "HCD", "ETD", "ECD", "PQD"],
+          "description": "Fragmentation method"
+        },
+        "collision_energy": {
+          "type": "number",
+          "description": "Collision energy in eV"
+        },
+        "resolution": {
+          "type": "integer",
+          "description": "Mass resolution"
+        },
+        "mass_analyzer": {
+          "type": "string",
+          "enum": ["orbitrap", "ion_trap", "tof", "quadrupole", "fticr"],
+          "description": "Mass analyzer type"
+        }
+      }
+    },
+    "quality_metrics": {
+      "type": "object",
+      "properties": {
+        "signal_to_noise": {
+          "type": "number",
+          "minimum": 0
+        },
+        "total_ion_current": {
+          "type": "number",
+          "minimum": 0
+        },
+        "base_peak_intensity": {
+          "type": "number",
+          "minimum": 0
+        },
+        "num_peaks": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "raw_file": {
+      "type": "string",
+      "description": "Original raw file name"
+    },
+    "acquisition_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Spectrum acquisition timestamp"
+    }
+  }
+}

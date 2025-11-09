@@ -1,0 +1,20 @@
+tracking_uri: sqlite:///experiments.db
+artifact_location: ./artifacts
+experiment_name: llm-proteomics-hallucination
+
+logging:
+  metrics:
+    - hallucination_rate
+    - precision
+    - recall
+    - f1_score
+    - cohen_kappa
+  parameters:
+    - model_name
+    - temperature
+    - max_tokens
+    - query_complexity
+  artifacts:
+    - confusion_matrix.png
+    - calibration_plot.png
+    - results.csv

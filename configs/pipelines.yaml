@@ -1,0 +1,22 @@
+# Pipeline configuration
+
+models:
+  - gpt4_turbo
+  - claude_sonnet
+  - gemini_pro
+  - mistral_large
+  - llama3_70b
+
+query_batches:
+  batch_size: 50
+  n_batches: 10
+
+output_formats:
+  - csv
+  - json
+  - parquet
+
+figures:
+  dpi: 300
+  format: "png"
+  style: "lancet"

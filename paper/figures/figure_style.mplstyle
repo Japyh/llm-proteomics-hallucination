@@ -1,0 +1,30 @@
+# Matplotlib style for Lancet Digital Health figures
+
+# Figure properties
+figure.figsize: 8, 6
+figure.dpi: 300
+savefig.dpi: 300
+savefig.bbox: tight
+
+# Font
+font.family: sans-serif
+font.sans-serif: Arial, Helvetica, Liberation Sans
+font.size: 10
+
+# Axes
+axes.titlesize: 12
+axes.labelsize: 11
+axes.linewidth: 0.8
+axes.grid: True
+axes.grid.alpha: 0.3
+
+# Legend
+legend.fontsize: 9
+legend.frameon: True
+
+# Lines
+lines.linewidth: 1.5
+lines.markersize: 6
+
+# Colors (colorblind-friendly)
+axes.prop_cycle: cycler('color', ['1f77b4', 'ff7f0e', '2ca02c', 'd62728', '9467bd'])

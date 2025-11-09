@@ -1,0 +1,137 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "llm-proteomics-hallucination-1.0.0",
+  "documentNamespace": "https://github.com/olaflaitinen/llm-proteomics-hallucination/sbom/1.0.0",
+  "creationInfo": {
+    "created": "2024-11-09T00:00:00Z",
+    "creators": [
+      "Tool: spdx-sbom-generator",
+      "Organization: Technical University of Denmark",
+      "Person: Olaf Yunus Laitinen Imanov"
+    ],
+    "licenseListVersion": "3.21"
+  },
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-Package-llm-proteomics",
+      "name": "llm-proteomics-hallucination",
+      "versionInfo": "1.0.0",
+      "downloadLocation": "https://github.com/olaflaitinen/llm-proteomics-hallucination",
+      "homepage": "https://github.com/olaflaitinen/llm-proteomics-hallucination",
+      "licenseConcluded": "CC-BY-4.0",
+      "licenseDeclared": "CC-BY-4.0",
+      "copyrightText": "Copyright 2024 Olaf Yunus Laitinen Imanov",
+      "supplier": "Organization: Technical University of Denmark",
+      "originator": "Person: Olaf Yunus Laitinen Imanov",
+      "filesAnalyzed": false,
+      "description": "Evaluation of hallucinations in LLM responses to proteomics queries"
+    },
+    {
+      "SPDXID": "SPDXRef-Package-python",
+      "name": "python",
+      "versionInfo": "3.11",
+      "downloadLocation": "https://www.python.org",
+      "licenseConcluded": "PSF-2.0",
+      "licenseDeclared": "PSF-2.0",
+      "filesAnalyzed": false
+    },
+    {
+      "SPDXID": "SPDXRef-Package-numpy",
+      "name": "numpy",
+      "versionInfo": ">=1.24.0",
+      "downloadLocation": "https://pypi.org/project/numpy",
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "filesAnalyzed": false
+    },
+    {
+      "SPDXID": "SPDXRef-Package-pandas",
+      "name": "pandas",
+      "versionInfo": ">=2.0.0",
+      "downloadLocation": "https://pypi.org/project/pandas",
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "filesAnalyzed": false
+    },
+    {
+      "SPDXID": "SPDXRef-Package-scikit-learn",
+      "name": "scikit-learn",
+      "versionInfo": ">=1.3.0",
+      "downloadLocation": "https://pypi.org/project/scikit-learn",
+      "licenseConcluded": "BSD-3-Clause",
+      "licenseDeclared": "BSD-3-Clause",
+      "filesAnalyzed": false
+    },
+    {
+      "SPDXID": "SPDXRef-Package-matplotlib",
+      "name": "matplotlib",
+      "versionInfo": ">=3.7.0",
+      "downloadLocation": "https://pypi.org/project/matplotlib",
+      "licenseConcluded": "PSF-2.0",
+      "licenseDeclared": "PSF-2.0",
+      "filesAnalyzed": false
+    },
+    {
+      "SPDXID": "SPDXRef-Package-openai",
+      "name": "openai",
+      "versionInfo": ">=1.0.0",
+      "downloadLocation": "https://pypi.org/project/openai",
+      "licenseConcluded": "Apache-2.0",
+      "licenseDeclared": "Apache-2.0",
+      "filesAnalyzed": false
+    },
+    {
+      "SPDXID": "SPDXRef-Package-anthropic",
+      "name": "anthropic",
+      "versionInfo": ">=0.18.0",
+      "downloadLocation": "https://pypi.org/project/anthropic",
+      "licenseConcluded": "MIT",
+      "licenseDeclared": "MIT",
+      "filesAnalyzed": false
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-llm-proteomics"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-llm-proteomics",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-python"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-llm-proteomics",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-numpy"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-llm-proteomics",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-pandas"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-llm-proteomics",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-scikit-learn"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-llm-proteomics",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-matplotlib"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-llm-proteomics",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-openai"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-llm-proteomics",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-anthropic"
+    }
+  ]
+}

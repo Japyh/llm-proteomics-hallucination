@@ -1,0 +1,209 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Quality Control Metrics Schema",
+  "description": "Schema for data quality control metrics and validation reports",
+  "type": "object",
+  "required": ["qc_id", "dataset_name", "validation_date", "status", "metrics"],
+  "properties": {
+    "qc_id": {
+      "type": "string",
+      "pattern": "^QC[0-9]{4}$",
+      "description": "Unique QC report identifier"
+    },
+    "dataset_name": {
+      "type": "string",
+      "description": "Name of dataset being validated"
+    },
+    "dataset_path": {
+      "type": "string",
+      "description": "Path to dataset file"
+    },
+    "validation_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time of validation"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["passed", "failed", "warning"],
+      "description": "Overall validation status"
+    },
+    "metrics": {
+      "type": "object",
+      "required": ["total_records", "valid_records", "invalid_records"],
+      "properties": {
+        "total_records": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Total number of records"
+        },
+        "valid_records": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of valid records"
+        },
+        "invalid_records": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of invalid records"
+        },
+        "duplicate_records": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of duplicate records"
+        },
+        "missing_required_fields": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Records with missing required fields"
+        },
+        "schema_violations": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of schema violations"
+        },
+        "data_completeness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Data completeness percentage"
+        },
+        "validation_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Percentage of valid records"
+        }
+      }
+    },
+    "validation_errors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "record_id": {
+            "type": "string",
+            "description": "Identifier of problematic record"
+          },
+          "field": {
+            "type": "string",
+            "description": "Field with error"
+          },
+          "error_type": {
+            "type": "string",
+            "enum": [
+              "missing_required",
+              "invalid_type",
+              "invalid_format",
+              "out_of_range",
+              "invalid_enum",
+              "duplicate",
+              "constraint_violation"
+            ]
+          },
+          "error_message": {
+            "type": "string",
+            "description": "Detailed error message"
+          },
+          "expected_value": {
+            "type": ["string", "number", "boolean", "null"],
+            "description": "Expected value or format"
+          },
+          "actual_value": {
+            "type": ["string", "number", "boolean", "null"],
+            "description": "Actual invalid value"
+          }
+        }
+      },
+      "description": "List of validation errors"
+    },
+    "warnings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "record_id": {
+            "type": "string"
+          },
+          "field": {
+            "type": "string"
+          },
+          "warning_type": {
+            "type": "string",
+            "enum": [
+              "missing_optional",
+              "unusual_value",
+              "deprecated_field",
+              "low_quality"
+            ]
+          },
+          "warning_message": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "List of validation warnings"
+    },
+    "statistical_summary": {
+      "type": "object",
+      "properties": {
+        "numeric_fields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "mean": {
+                "type": "number"
+              },
+              "median": {
+                "type": "number"
+              },
+              "std": {
+                "type": "number"
+              },
+              "min": {
+                "type": "number"
+              },
+              "max": {
+                "type": "number"
+              },
+              "outliers": {
+                "type": "integer"
+              }
+            }
+          }
+        },
+        "categorical_fields": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "unique_values": {
+                "type": "integer"
+              },
+              "most_common": {
+                "type": "string"
+              },
+              "frequency": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      }
+    },
+    "checksum": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "description": "SHA256 checksum of validated dataset"
+    },
+    "schema_version": {
+      "type": "string",
+      "description": "Version of schema used for validation"
+    },
+    "validator_version": {
+      "type": "string",
+      "description": "Version of validation tool"
+    }
+  }
+}

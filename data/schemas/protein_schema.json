@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Protein Schema",
+  "description": "Schema for protein sequence and annotation data",
+  "type": "object",
+  "required": ["uniprot_id", "protein_name", "organism", "sequence"],
+  "properties": {
+    "uniprot_id": {
+      "type": "string",
+      "pattern": "^[A-Z0-9]{6,10}$",
+      "description": "UniProt accession identifier"
+    },
+    "protein_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "Full protein name"
+    },
+    "gene_name": {
+      "type": ["string", "null"],
+      "maxLength": 50,
+      "description": "Gene symbol"
+    },
+    "organism": {
+      "type": "string",
+      "description": "Organism name"
+    },
+    "organism_id": {
+      "type": "integer",
+      "description": "NCBI Taxonomy ID"
+    },
+    "sequence": {
+      "type": "string",
+      "pattern": "^[ACDEFGHIKLMNPQRSTVWY]+$",
+      "minLength": 1,
+      "description": "Amino acid sequence (single-letter code)"
+    },
+    "sequence_length": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "Length of protein sequence"
+    },
+    "molecular_weight": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Molecular weight in Daltons"
+    },
+    "post_translational_modifications": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "position"],
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "phosphorylation",
+              "acetylation",
+              "methylation",
+              "ubiquitination",
+              "glycosylation",
+              "sumoylation",
+              "palmitoylation",
+              "myristoylation",
+              "oxidation",
+              "nitrosylation"
+            ]
+          },
+          "position": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "residue": {
+            "type": "string",
+            "pattern": "^[ACDEFGHIKLMNPQRSTVWY]$"
+          },
+          "evidence": {
+            "type": "string",
+            "enum": ["experimental", "predicted", "literature"]
+          }
+        }
+      },
+      "description": "Known PTMs"
+    },
+    "function": {
+      "type": ["string", "null"],
+      "maxLength": 2000,
+      "description": "Protein function description"
+    },
+    "subcellular_location": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Subcellular localization"
+    },
+    "disease_associations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "disease_name": {
+            "type": "string"
+          },
+          "omim_id": {
+            "type": ["string", "null"],
+            "pattern": "^[0-9]{6}$"
+          },
+          "association_type": {
+            "type": "string",
+            "enum": ["causative", "biomarker", "therapeutic_target", "associated"]
+          }
+        }
+      }
+    },
+    "expression_data": {
+      "type": "object",
+      "properties": {
+        "tissue_specificity": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "expression_level": {
+          "type": "string",
+          "enum": ["high", "medium", "low", "not_detected"]
+        }
+      }
+    },
+    "references": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pubmed_id": {
+            "type": "string",
+            "pattern": "^[0-9]{8}$"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "last_updated": {
+      "type": "string",
+      "format": "date",
+      "description": "Last update date in UniProt"
+    }
+  }
+}

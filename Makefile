@@ -1,17 +1,24 @@
-.PHONY: install test lint format docs clean
+.PHONY: help setup test lint format clean data paper all
 
-install:
-	pip install -r requirements.txt
+help:
+	@echo "LLM Proteomics Hallucination Study - Make commands"
+	@echo ""
+	@echo "  make setup      - Setup environment"
+	@echo "  make test       - Run tests"
+	@echo "  make lint       - Run linters"
+	@echo "  make format     - Format code"
+	@echo "  make data       - Generate data"
+	@echo "  make paper      - Compile manuscript"
+	@echo "  make all        - Run complete pipeline"
 
-install-dev:
+setup:
+	conda env create -f environment.yml
+	conda activate llm-proteomics
 	pip install -r requirements.txt
-	pip install -r requirements-dev.txt
+	pip install -e .
 
 test:
-	pytest
-
-test-cov:
-	pytest --cov=src --cov-report=html --cov-report=term
+	pytest tests/ -v --cov=src --cov-report=html
 
 lint:
 	flake8 src/ tests/
@@ -21,25 +28,25 @@ format:
 	black src/ tests/
 	isort src/ tests/
 
-docs:
-	cd docs && mkdocs build
-
 clean:
 	find . -type d -name __pycache__ -exec rm -rf {} +
 	find . -type f -name '*.pyc' -delete
-	find . -type f -name '*.pyo' -delete
-	rm -rf .pytest_cache
-	rm -rf .mypy_cache
-	rm -rf htmlcov
-	rm -rf dist
-	rm -rf build
-	rm -rf *.egg-info
+	rm -rf .pytest_cache .coverage htmlcov
 
-run-notebooks:
-	jupyter lab notebooks/
+data:
+	python data/generators/generate_query_dataset.py
+	python data/generators/generate_protein_sequences.py
+	python data/generators/generate_ms_spectra.py
 
-benchmark:
-	bash scripts/run_benchmark.sh
+paper:
+	cd paper && \
+	python figures/generate_figure_1.py && \
+	python figures/generate_figure_2.py && \
+	python figures/generate_figure_3.py && \
+	python figures/generate_figure_4.py && \
+	pdflatex manuscript.tex && \
+	bibtex manuscript && \
+	pdflatex manuscript.tex && \
+	pdflatex manuscript.tex
 
-report:
-	python scripts/generate_report.py
+all: data test paper
