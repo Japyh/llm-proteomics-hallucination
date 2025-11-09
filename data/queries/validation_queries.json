@@ -1,0 +1,38 @@
+[
+  {
+    "query_id": "VAL_001",
+    "query_text": "Is EGFR typically upregulated or downregulated in lung adenocarcinoma?",
+    "domain": "quantitative_expression",
+    "complexity": "low",
+    "protein_prevalence": "common",
+    "protein_name": "EGFR",
+    "ground_truth": {
+      "answer": "EGFR is frequently upregulated in lung adenocarcinoma, with overexpression observed in 40-80% of cases depending on the cohort and detection method.",
+      "source": "Human Protein Atlas, PubMed reviews",
+      "confidence": "high"
+    },
+    "metadata": {
+      "created_date": "2024-03-05",
+      "reviewer": "expert_1",
+      "split": "validation"
+    }
+  },
+  {
+    "query_id": "VAL_002",
+    "query_text": "What are the most common phosphorylation sites on ERK1/2?",
+    "domain": "ptm",
+    "complexity": "low",
+    "protein_prevalence": "common",
+    "protein_name": "MAPK1/MAPK3",
+    "ground_truth": {
+      "answer": "The critical activating phosphorylation sites are Thr202/Tyr204 on ERK1 (MAPK3) and Thr185/Tyr187 on ERK2 (MAPK1), phosphorylated by MEK1/2.",
+      "source": "PhosphoSitePlus March 2024",
+      "confidence": "high"
+    },
+    "metadata": {
+      "created_date": "2024-03-05",
+      "reviewer": "expert_2",
+      "split": "validation"
+    }
+  }
+]
