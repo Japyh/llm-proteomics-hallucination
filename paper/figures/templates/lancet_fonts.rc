@@ -1,0 +1,27 @@
+# Matplotlib RC parameters for Lancet Digital Health figures
+# Professional font and typography settings
+
+# Font family
+font.family: sans-serif
+font.sans-serif: Arial, Helvetica, Liberation Sans, DejaVu Sans
+font.size: 10
+
+# Font sizes for different elements
+axes.titlesize: 12
+axes.labelsize: 11
+xtick.labelsize: 9
+ytick.labelsize: 9
+legend.fontsize: 9
+figure.titlesize: 14
+
+# Font weights
+axes.titleweight: bold
+axes.labelweight: normal
+
+# Text properties
+text.color: black
+mathtext.fontset: stixsans
+
+# LaTeX integration (optional)
+text.usetex: False
+text.latex.preamble: \usepackage{amsmath}\usepackage{amssymb}

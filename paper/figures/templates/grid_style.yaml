@@ -1,0 +1,48 @@
+name: "Lancet Grid Style"
+description: "Professional grid and axis styling for scientific figures"
+version: "1.0"
+
+axes:
+  grid: true
+  grid_alpha: 0.3
+  grid_color: "#CCCCCC"
+  grid_linestyle: "--"
+  grid_linewidth: 0.5
+
+  spines:
+    top: false
+    right: false
+    bottom: true
+    left: true
+
+  spine_linewidth: 0.8
+  spine_color: "#000000"
+
+  edgecolor: "#000000"
+  linewidth: 0.8
+
+  axisbelow: true
+
+grid:
+  which: "major"
+  axis: "both"
+  alpha: 0.3
+  color: "#CCCCCC"
+  linestyle: "--"
+  linewidth: 0.5
+
+ticks:
+  major:
+    size: 4
+    width: 0.8
+    direction: "out"
+  minor:
+    size: 2
+    width: 0.6
+    direction: "out"
+
+  color: "#000000"
+
+plot_style:
+  facecolor: "white"
+  edgecolor: "black"

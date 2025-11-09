@@ -1,0 +1,77 @@
+name: "DPI Settings for Lancet Digital Health"
+description: "Resolution and quality settings for figure output"
+version: "1.0"
+
+output_formats:
+  draft:
+    format: "png"
+    dpi: 150
+    quality: 85
+    use_case: "Quick previews and development"
+
+  manuscript:
+    format: "pdf"
+    dpi: 300
+    use_case: "Main manuscript figures"
+    vector: true
+
+  print_quality:
+    format: "tiff"
+    dpi: 600
+    compression: "lzw"
+    use_case: "High-resolution journal submission"
+
+  supplementary:
+    format: "png"
+    dpi: 300
+    quality: 95
+    use_case: "Supplementary figures"
+
+figure_sizes:
+  single_column:
+    width_inches: 3.5
+    width_cm: 8.9
+    description: "Single column width for Lancet"
+
+  double_column:
+    width_inches: 7.0
+    width_cm: 17.8
+    description: "Full page width for Lancet"
+
+  default_height:
+    inches: 5.0
+    cm: 12.7
+
+  aspect_ratios:
+    standard: 1.618  # Golden ratio
+    square: 1.0
+    wide: 2.0
+
+file_naming:
+  draft: "fig{n}_{name}_draft.png"
+  manuscript: "fig{n}_{name}.pdf"
+  highres: "fig{n}_600dpi.tiff"
+  supplementary: "supplementary_fig{n}_{name}.png"
+
+compression:
+  pdf:
+    compression: "deflate"
+    compression_level: 9
+
+  tiff:
+    compression: "lzw"
+
+  png:
+    optimize: true
+    compression_level: 9
+
+color_space:
+  manuscript: "RGB"
+  print: "CMYK"
+  grayscale: "Gray"
+
+metadata:
+  embed_metadata: true
+  creator: "Matplotlib"
+  software: "Python"
+  copyright: "CC-BY-4.0"
