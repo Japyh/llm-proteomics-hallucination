@@ -115,3 +115,11 @@ def ensure_dir(directory: Union[str, Path]) -> Path:
     directory = Path(directory)
     directory.mkdir(parents=True, exist_ok=True)
     return directory
+
+
+# Aliases for consistency
+ensure_directory = ensure_dir
+write_json = save_json
+read_json = load_json
+write_jsonl = save_jsonl
+read_jsonl = load_jsonl
