@@ -92,6 +92,7 @@ uvicorn>=0.23.0
 typing-extensions>=4.7.0
 
 # Cryptography (for data anonymization)
+cffi>=1.15.0
 cryptography>=41.0.0
 hashlib-additional>=1.0
 
