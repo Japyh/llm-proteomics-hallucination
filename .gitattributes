@@ -1,0 +1,70 @@
+# Git LFS tracking for large files
+*.tiff filter=lfs diff=lfs merge=lfs -text
+*.tif filter=lfs diff=lfs merge=lfs -text
+*.mgf filter=lfs diff=lfs merge=lfs -text
+*.mzML filter=lfs diff=lfs merge=lfs -text
+*.fasta filter=lfs diff=lfs merge=lfs -text
+*.h5 filter=lfs diff=lfs merge=lfs -text
+*.tar.gz filter=lfs diff=lfs merge=lfs -text
+*.zip filter=lfs diff=lfs merge=lfs -text
+*.pdf filter=lfs diff=lfs merge=lfs -text
+
+# Line ending normalization
+* text=auto
+
+# Source code
+*.py text eol=lf
+*.R text eol=lf
+*.sh text eol=lf
+*.bash text eol=lf
+
+# Configuration files
+*.yaml text eol=lf
+*.yml text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+
+# Documentation
+*.md text eol=lf
+*.txt text eol=lf
+*.tex text eol=lf
+*.bib text eol=lf
+
+# Data files
+*.csv text eol=lf
+*.tsv text eol=lf
+*.jsonl text eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.db binary
+*.sqlite binary
+
+# Jupyter notebooks
+*.ipynb text eol=lf linguist-documentation
+
+# R Markdown
+*.Rmd text eol=lf
+
+# Snakemake
+*.smk text eol=lf
+Snakefile text eol=lf
+
+# Nextflow
+*.nf text eol=lf
+
+# Docker
+Dockerfile text eol=lf
+*.dockerfile text eol=lf
+
+# LaTeX generated files (exclude from repo)
+*.aux binary
+*.log binary
+*.out binary
+*.toc binary
+*.bbl binary
+*.blg binary
