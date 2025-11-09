@@ -126,6 +126,8 @@ jobs:
     name: Build Manuscript PDF
     runs-on: ubuntu-latest
     needs: create-release
+    permissions:
+      contents: read
 
     steps:
       - uses: actions/checkout@v4
