@@ -1,0 +1,135 @@
+name: "Documentation Build & Deploy"
+
+on:
+  push:
+    branches: [ main, develop ]
+    paths:
+      - 'docs/**'
+      - 'paper/**'
+      - 'README.md'
+      - 'CONTRIBUTING.md'
+      - 'ci/github/workflows/docs.yml'
+  pull_request:
+    branches: [ main ]
+    paths:
+      - 'docs/**'
+      - 'paper/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-docs:
+    name: Build Documentation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install documentation dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install sphinx sphinx-rtd-theme sphinx-autodoc-typehints
+          pip install myst-parser sphinxcontrib-bibtex
+          pip install -r requirements.txt
+
+      - name: Build Sphinx documentation
+        run: |
+          cd docs
+          make clean
+          make html
+          echo "Documentation built successfully!"
+
+      - name: Check documentation coverage
+        run: |
+          cd docs
+          make coverage
+          cat _build/coverage/python.txt
+
+      - name: Upload documentation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentation-html
+          path: docs/_build/html/
+          retention-days: 30
+
+      - name: Deploy to GitHub Pages
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/_build/html
+          publish_branch: gh-pages
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'docs: Deploy documentation from ${{ github.sha }}'
+
+  build-paper:
+    name: Build LaTeX Manuscript
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: paper/manuscript/main.tex
+          working_directory: paper/manuscript
+          latexmk_use_xelatex: true
+          args: -pdf -interaction=nonstopmode
+
+      - name: Upload manuscript PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: manuscript-pdf
+          path: paper/manuscript/main.pdf
+          retention-days: 90
+
+      - name: Build supplementary materials
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: paper/supplementary/supplementary.tex
+          working_directory: paper/supplementary
+          latexmk_use_xelatex: true
+          args: -pdf -interaction=nonstopmode
+
+      - name: Upload supplementary PDF
+        uses: actions/upload-artifact@v4
+        with:
+          name: supplementary-pdf
+          path: paper/supplementary/supplementary.pdf
+          retention-days: 90
+
+  link-checker:
+    name: Check Documentation Links
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check markdown links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          config-file: '.github/markdown-link-check-config.json'
+          folder-path: 'docs/'
+
+      - name: Check README links
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'no'
+          file-path: './README.md'

@@ -1,0 +1,194 @@
+name: "Code Quality & Linting"
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  lint-python:
+    name: Lint Python Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt', 'requirements-dev.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install black ruff mypy pylint bandit safety
+          pip install -r requirements.txt
+          pip install -r requirements-dev.txt || true
+
+      - name: Check code formatting with Black
+        run: |
+          echo "Checking Python code formatting..."
+          black --check --diff --color src/ tests/
+        continue-on-error: false
+
+      - name: Lint with Ruff
+        run: |
+          echo "Running Ruff linter..."
+          ruff check src/ tests/ --output-format=github
+        continue-on-error: false
+
+      - name: Type checking with MyPy
+        run: |
+          echo "Running type checker..."
+          mypy src/ --ignore-missing-imports --show-error-codes
+        continue-on-error: true
+
+      - name: Security check with Bandit
+        run: |
+          echo "Running security analysis..."
+          bandit -r src/ -f json -o bandit-report.json || true
+          bandit -r src/ -f screen
+        continue-on-error: true
+
+      - name: Check dependencies for vulnerabilities
+        run: |
+          echo "Checking for known security vulnerabilities in dependencies..."
+          safety check --json || true
+          safety check
+        continue-on-error: true
+
+      - name: Upload Bandit results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bandit-security-report
+          path: bandit-report.json
+          retention-days: 30
+
+  lint-notebooks:
+    name: Lint Jupyter Notebooks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install nbqa
+        run: |
+          pip install nbqa black ruff
+
+      - name: Check notebook formatting
+        run: |
+          nbqa black --check notebooks/
+        continue-on-error: true
+
+      - name: Lint notebooks
+        run: |
+          nbqa ruff notebooks/
+        continue-on-error: true
+
+  check-code-complexity:
+    name: Check Code Complexity
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install radon
+        run: pip install radon
+
+      - name: Check cyclomatic complexity
+        run: |
+          echo "Analyzing cyclomatic complexity..."
+          radon cc src/ -a -nb
+
+      - name: Check maintainability index
+        run: |
+          echo "Analyzing maintainability index..."
+          radon mi src/ -nb
+
+      - name: Generate complexity report
+        run: |
+          radon cc src/ -a --json > complexity-report.json
+
+      - name: Upload complexity report
+        uses: actions/upload-artifact@v4
+        with:
+          name: complexity-report
+          path: complexity-report.json
+          retention-days: 30
+
+  yaml-lint:
+    name: Lint YAML Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: YAML Lint
+        uses: ibiqlik/action-yamllint@v3
+        with:
+          file_or_dir: |
+            ci/github/workflows/
+            configs/
+            .github/
+          config_file: .yamllint.yml
+          strict: true
+        continue-on-error: true
+
+  markdown-lint:
+    name: Lint Markdown Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Markdown Lint
+        uses: nosborn/github-action-markdown-cli@v3.3.0
+        with:
+          files: .
+          config_file: .markdownlint.json
+        continue-on-error: true
+
+  spell-check:
+    name: Spell Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check spelling
+        uses: crate-ci/typos@master
+        with:
+          files: |
+            ./src
+            ./docs
+            ./README.md
+            ./CONTRIBUTING.md
+          config: ./.typos.toml
+        continue-on-error: true
