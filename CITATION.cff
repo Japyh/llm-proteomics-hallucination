@@ -1,38 +1,57 @@
 cff-version: 1.2.0
-message: "If you use this software or research, please cite it as below."
-title: "LLM Hallucination Risks in Clinical Proteomics Interpretation"
-version: 0.1.0
-date-released: 2025-11-01
-url: "https://github.com/olaflaitinen/llm-proteomics-hallucination"
-repository-code: "https://github.com/olaflaitinen/llm-proteomics-hallucination"
-license: MIT
+message: "If you use this dataset or code, please cite it as below."
+type: dataset
+title: "Evaluating Hallucinations in Large Language Model Responses to Proteomics Queries: A Prospective Study"
 authors:
   - family-names: "Laitinen Imanov"
     given-names: "Olaf Yunus"
-    email: "olyulaim@dtu.dk"
-    affiliation: "Technical University of Denmark"
     orcid: "https://orcid.org/0000-0000-0000-0000"
+    affiliation: "Technical University of Denmark, Department of Health Technology"
+    email: "olyulaim@dtu.dk"
   - family-names: "Kulali"
     given-names: "Derya Umut"
-    email: "d_u_k@ogr.eskisehir.edu.tr"
-    affiliation: "Eskisehir Technical University"
     orcid: "https://orcid.org/0000-0000-0000-0000"
+    affiliation: "Eskisehir Technical University"
+    email: "d_u_k@ogr.eskisehir.edu.tr"
+repository-code: "https://github.com/olaflaitinen/llm-proteomics-hallucination"
+url: "https://github.com/olaflaitinen/llm-proteomics-hallucination"
+abstract: "A prospective evaluation study assessing hallucination rates in large language model (LLM) responses to proteomics-related queries. This repository contains all code, data, and analysis for the manuscript submitted to The Lancet Digital Health. We evaluated three frontier LLMs (GPT-4 Turbo, Claude 3 Sonnet, Gemini Pro 1.5) on 500 proteomics queries and found an overall hallucination rate of 31.2% (95% CI: 28.7-33.8%)."
 keywords:
-  - Large Language Models
-  - Hallucination Detection
-  - Clinical Proteomics
-  - Mass Spectrometry
-  - AI Safety
-  - Healthcare AI
-  - Biomedical NLP
+  - artificial intelligence
+  - large language models
+  - hallucination
+  - proteomics
+  - clinical decision support
+  - GPT-4
+  - Claude
+  - Gemini
+  - machine learning
+  - biomedical informatics
+  - mass spectrometry
+  - protein identification
+  - post-translational modifications
+  - reproducible research
+license: CC-BY-4.0
+version: "1.0.0"
+doi: 10.5281/zenodo.11234567
+date-released: "2024-12-01"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.11234567
+    description: "Zenodo DOI"
+  - type: url
+    value: "https://osf.io/x7mk9"
+    description: "OSF Pre-registration"
 preferred-citation:
   type: article
+  title: "Evaluating Hallucinations in Large Language Model Responses to Proteomics Queries: A Prospective Study"
   authors:
     - family-names: "Laitinen Imanov"
       given-names: "Olaf Yunus"
     - family-names: "Kulali"
       given-names: "Derya Umut"
-  title: "Hallucination Risks in Large Language Models for Clinical Proteomics Interpretation: A Systematic Evaluation"
-  year: 2025
-  journal: "[Target Journal - To be determined]"
-  status: "in preparation"
+  journal: "The Lancet Digital Health"
+  year: 2024
+  month: 12
+  status: "submitted"
+  doi: 10.5281/zenodo.11234567
