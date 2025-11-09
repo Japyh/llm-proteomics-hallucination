@@ -1,0 +1,331 @@
+# Mistral Large 2 model configuration
+# For LLM proteomics hallucination evaluation
+
+model_info:
+  name: "mistral-large-2"
+  provider: "Mistral AI"
+  model_id: "mistral-large-2407"
+  version: "24.07"
+  release_date: "2024-07-24"
+  model_type: "text"
+  architecture: "Mistral"
+  parameters: 123_000_000_000
+  context_window: 128000
+
+# API configuration
+api:
+  endpoint: "https://api.mistral.ai/v1"
+  api_key_env_var: "MISTRAL_API_KEY"
+  client_library: "mistralai"
+  api_version: "v1"
+
+# Model capabilities
+capabilities:
+  max_context_length: 128000  # 128k tokens
+  max_output_tokens: 4096
+  supports_system_prompts: true
+  supports_function_calling: true
+  supports_multimodal: false
+  supports_streaming: true
+  supports_json_mode: true
+  supports_safe_mode: true
+
+# Generation parameters
+generation_config:
+  temperature: 0.3
+  top_p: 0.95
+  max_tokens: 2048
+  random_seed: 42
+  safe_prompt: false  # Disable safety wrapper for scientific queries
+
+# Rate limiting
+rate_limits:
+  requests_per_second: 5
+  tokens_per_minute: 1000000
+  concurrent_requests: 10
+
+  # Retry configuration
+  retry_config:
+    max_retries: 5
+    initial_delay: 1.0
+    max_delay: 60.0
+    exponential_base: 2
+    jitter: true
+    retry_on:
+      - 429  # Rate limit
+      - 500  # Internal server error
+      - 503  # Service unavailable
+
+# Cost configuration (as of July 2024)
+pricing:
+  currency: "EUR"
+  input_tokens_per_1m: 2.00  # €2 per 1M tokens
+  output_tokens_per_1m: 6.00  # €6 per 1M tokens
+
+  # Cost estimation
+  estimated_cost_per_query:
+    input_tokens_avg: 150
+    output_tokens_avg: 200
+    cost_per_query_eur: 0.0014
+
+# Prompt engineering
+prompt_engineering:
+  system_prompt: |
+    You are an expert scientific assistant with deep knowledge of proteomics,
+    molecular biology, and mass spectrometry. You provide accurate, evidence-based
+    information about proteins and their characteristics.
+
+    CRITICAL GUIDELINES:
+    - Provide only factually accurate information
+    - Cite relevant databases (UniProt, GO, PDB) when applicable
+    - If you lack information or are uncertain, explicitly state this
+    - Do not fabricate protein functions, modifications, or interactions
+    - Use standard scientific nomenclature (HGNC gene symbols, UniProt accessions)
+    - Distinguish between established facts and current hypotheses
+    - Acknowledge knowledge limitations, especially for rare or recently characterized proteins
+
+  response_format: |
+    Structure your response as follows:
+    1. Direct answer to the query
+    2. Supporting evidence with database references
+    3. Relevant caveats or limitations
+    4. Confidence assessment if uncertain
+
+    Be concise but comprehensive.
+
+  examples:
+    - query: "What is the UniProt ID for human p53?"
+      response: |
+        The UniProt accession for human p53 (TP53) is P04637. This protein
+        functions as a tumor suppressor and is located in the nucleus. It plays
+        a crucial role in regulating cell cycle and apoptosis.
+
+    - query: "Tell me about protein ABC999XYZ"
+      response: |
+        I don't have reliable information about a protein with the identifier "ABC999XYZ".
+        This doesn't match standard UniProt accession or HGNC gene symbol formats.
+        Please verify the identifier. If this is a newly discovered protein (after July 2024),
+        it may not be in my training data.
+
+# Function calling (for structured outputs)
+function_calling:
+  enable: true
+  functions:
+    - name: "protein_lookup"
+      description: "Retrieve protein information from databases"
+      parameters:
+        type: "object"
+        properties:
+          uniprot_id:
+            type: "string"
+            description: "UniProt accession number"
+          gene_name:
+            type: "string"
+            description: "HGNC gene symbol"
+        required: ["uniprot_id"]
+
+    - name: "ptm_lookup"
+      description: "Look up post-translational modifications"
+      parameters:
+        type: "object"
+        properties:
+          protein:
+            type: "string"
+          modification_type:
+            type: "string"
+            enum: ["phosphorylation", "acetylation", "ubiquitination", "methylation"]
+
+# JSON mode configuration
+json_mode:
+  enable: true
+  response_format:
+    type: "json_object"
+  schema:
+    type: "object"
+    properties:
+      answer:
+        type: "string"
+        description: "Direct answer to the query"
+      confidence:
+        type: "number"
+        minimum: 0.0
+        maximum: 1.0
+        description: "Confidence score"
+      evidence:
+        type: "array"
+        items:
+          type: "string"
+        description: "Supporting evidence or references"
+      caveats:
+        type: "array"
+        items:
+          type: "string"
+        description: "Limitations or caveats"
+    required: ["answer", "confidence"]
+
+# Model-specific optimizations
+optimizations:
+  # Long context handling
+  use_rope_scaling: true
+  max_sequence_length: 128000
+
+  # Response quality
+  use_top_k: false  # Mistral doesn't support top_k
+  use_frequency_penalty: false
+  use_presence_penalty: false
+
+# Evaluation-specific settings
+evaluation:
+  # Temperature sweep for calibration
+  temperature_sweep:
+    enable: true
+    values: [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
+
+  # Few-shot learning
+  few_shot:
+    enable: true
+    num_examples: 3
+    example_selection: "diverse"
+
+  # Chain-of-thought prompting
+  chain_of_thought:
+    enable: true
+    prompt_addition: "Let's think through this systematically:"
+
+  # Self-consistency
+  self_consistency:
+    enable: true
+    num_samples: 5
+    temperature: 0.7
+    aggregation_method: "majority_vote"
+
+  # Response validation
+  response_validation:
+    check_length: true
+    min_length_tokens: 10
+    max_length_tokens: 4096
+    check_json_validity: true
+
+# Logging and monitoring
+logging:
+  log_requests: true
+  log_responses: true
+  log_tokens_used: true
+  log_latency: true
+  log_model_version: true
+
+  # Privacy
+  redact_api_key: true
+  mask_sensitive_data: false
+
+  # Structured logging
+  log_format: "json"
+  log_level: "INFO"
+
+# Error handling
+error_handling:
+  handle_rate_limit: "retry_with_exponential_backoff"
+  handle_timeout: "retry_once"
+  handle_server_error: "retry_with_backoff"
+  handle_invalid_request: "log_and_skip"
+  handle_content_filter: "log_and_report"
+
+  # Fallback behavior
+  fallback_on_error: false
+  fallback_response: "I encountered an error processing this query."
+
+# Performance tracking
+performance:
+  track_latency: true
+  track_token_usage: true
+  track_error_rate: true
+  track_success_rate: true
+
+  # Expected performance
+  expected_avg_latency_ms: 1100
+  expected_success_rate: 0.99
+  expected_tokens_per_second: 50
+
+# Safety and content filtering
+safety:
+  enable_content_filter: false  # Scientific content doesn't need filtering
+  safe_mode: false
+  filter_categories: []
+
+# Model metadata
+metadata:
+  training_cutoff: "2024-07"
+
+  context_window_tokens: 128000
+  multilingual_support: true
+  supported_languages:
+    - english
+    - french
+    - german
+    - spanish
+    - italian
+    - portuguese
+
+  known_strengths:
+    - "Very large context window (128k tokens)"
+    - "Strong reasoning capabilities"
+    - "Excellent instruction following"
+    - "Native function calling support"
+    - "Fast inference speed"
+
+  known_limitations:
+    - "Knowledge cutoff in July 2024"
+    - "May hallucinate on very domain-specific queries"
+    - "No multimodal capabilities"
+    - "Potential bias toward European languages/contexts"
+
+# Comparison with other models
+benchmarks:
+  mmlu: 0.845
+  hellaswag: 0.893
+  arc_challenge: 0.752
+  truthfulqa: 0.654
+
+  domain_specific:
+    proteomics_accuracy: null  # To be measured
+    hallucination_rate: null   # To be measured
+    calibration_error: null    # To be measured
+
+# Advanced features
+advanced:
+  # Retrieval augmented generation
+  rag_support: true
+  embeddings_model: "mistral-embed"
+
+  # Code generation
+  supports_code_generation: true
+  code_languages:
+    - python
+    - r
+    - bash
+
+  # Batch processing
+  supports_batch_api: true
+  max_batch_size: 100
+
+# Experiment tracking
+experiment:
+  experiment_name: "mistral_large_2_proteomics_eval"
+  run_id: null  # Set at runtime
+  tags:
+    - mistral
+    - large-2
+    - 123b
+    - proteomics
+    - hallucination_detection
+  mlflow_tracking: true
+  wandb_tracking: true
+
+  # Evaluation metrics to track
+  metrics_to_track:
+    - hallucination_rate
+    - factual_accuracy
+    - calibration_error
+    - response_latency
+    - token_efficiency
+    - cost_per_query

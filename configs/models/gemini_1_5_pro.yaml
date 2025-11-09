@@ -1,0 +1,195 @@
+# Google Gemini 1.5 Pro model configuration
+# For LLM proteomics hallucination evaluation
+
+model_info:
+  name: "gemini-1.5-pro"
+  provider: "Google AI"
+  version: "gemini-1.5-pro-latest"
+  release_date: "2024-02-15"
+  model_type: "multimodal"
+  architecture: "Gemini"
+
+# API configuration
+api:
+  endpoint: "https://generativelanguage.googleapis.com/v1beta"
+  api_key_env_var: "GOOGLE_API_KEY"
+  client_library: "google-generativeai"
+  version: "v1beta"
+
+# Model capabilities
+capabilities:
+  max_context_length: 1048576  # 1M tokens
+  max_output_tokens: 8192
+  supports_system_prompts: true
+  supports_function_calling: true
+  supports_multimodal: true
+  supported_modalities:
+    - text
+    - images
+    - video
+    - audio
+  supports_streaming: true
+  supports_json_mode: true
+
+# Generation parameters
+generation_config:
+  temperature: 0.3
+  top_p: 0.95
+  top_k: 40
+  max_output_tokens: 2048
+  candidate_count: 1
+  stop_sequences: []
+
+# Safety settings
+safety_settings:
+  - category: "HARM_CATEGORY_HARASSMENT"
+    threshold: "BLOCK_MEDIUM_AND_ABOVE"
+  - category: "HARM_CATEGORY_HATE_SPEECH"
+    threshold: "BLOCK_MEDIUM_AND_ABOVE"
+  - category: "HARM_CATEGORY_SEXUALLY_EXPLICIT"
+    threshold: "BLOCK_MEDIUM_AND_ABOVE"
+  - category: "HARM_CATEGORY_DANGEROUS_CONTENT"
+    threshold: "BLOCK_MEDIUM_AND_ABOVE"
+
+# Rate limiting
+rate_limits:
+  requests_per_minute: 60
+  tokens_per_minute: 1000000
+  requests_per_day: 50000
+  concurrent_requests: 10
+
+  # Retry configuration
+  retry_config:
+    max_retries: 5
+    initial_delay: 1.0
+    max_delay: 60.0
+    exponential_base: 2
+    jitter: true
+
+# Cost configuration (as of 2024)
+pricing:
+  currency: "USD"
+  input_tokens_per_1k: 0.00125  # $1.25 per 1M tokens
+  output_tokens_per_1k: 0.00500  # $5.00 per 1M tokens
+  cache_storage_per_1k_per_hour: 0.0000010  # $1.00 per 1M tokens per hour
+
+# Prompt engineering
+prompt_engineering:
+  system_prompt: |
+    You are a scientific assistant specialized in proteomics and molecular biology.
+    Your role is to provide accurate, evidence-based answers to queries about proteins,
+    mass spectrometry, post-translational modifications, and related topics.
+
+    CRITICAL INSTRUCTIONS:
+    - Only provide information you are confident about
+    - Cite databases (UniProt, GO, PDB) when applicable
+    - If uncertain, explicitly state your uncertainty
+    - Do not fabricate protein functions, modifications, or interactions
+    - Use standard nomenclature (HGNC gene symbols, UniProt accessions)
+
+  response_format_instruction: |
+    Provide concise, factual responses. Include:
+    1. Direct answer to the query
+    2. Supporting evidence or database references
+    3. Caveats or limitations if applicable
+    4. Confidence level (if uncertain)
+
+  examples:
+    - query: "What is the UniProt accession for human TP53?"
+      response: "The UniProt accession for human TP53 (tumor protein p53) is P04637."
+
+    - query: "What is the function of protein XYZ123?"
+      response: "I don't have reliable information about a protein with identifier XYZ123. This may be an invalid identifier or a very recently discovered protein. Please verify the protein identifier."
+
+# Model-specific optimizations
+optimizations:
+  use_cached_content: true
+  enable_grounding: true
+  grounding_sources:
+    - google_search_retrieval
+  enable_code_execution: false
+  use_thinking_mode: false
+
+# Evaluation-specific settings
+evaluation:
+  # Temperature sweep for calibration
+  temperature_sweep:
+    enable: true
+    values: [0.0, 0.1, 0.3, 0.5, 0.7, 0.9, 1.0]
+
+  # Few-shot learning
+  few_shot:
+    enable: true
+    num_examples: 3
+    example_selection: "diverse"
+
+  # Chain-of-thought prompting
+  chain_of_thought:
+    enable: true
+    prompt_addition: "Let's think step by step:"
+
+  # Self-consistency
+  self_consistency:
+    enable: true
+    num_samples: 5
+    aggregation_method: "majority_vote"
+
+# Logging and monitoring
+logging:
+  log_requests: true
+  log_responses: true
+  log_tokens_used: true
+  log_latency: true
+  log_safety_ratings: true
+
+  # Sensitive data handling
+  redact_api_key: true
+  mask_pii: false  # No PII in proteomics queries
+
+# Error handling
+error_handling:
+  handle_quota_exceeded: "retry_with_backoff"
+  handle_safety_block: "log_and_skip"
+  handle_timeout: "retry_once"
+  handle_server_error: "retry_with_exponential_backoff"
+
+# Performance tracking
+performance:
+  track_latency: true
+  track_token_usage: true
+  track_error_rate: true
+  track_hallucination_rate: true
+
+  # Benchmarking
+  benchmark_queries: 100
+  expected_avg_latency_ms: 1400
+  expected_success_rate: 0.98
+
+# Model metadata
+metadata:
+  training_cutoff: "2024-01"
+  knowledge_domains:
+    - proteomics
+    - genomics
+    - molecular_biology
+    - bioinformatics
+    - mass_spectrometry
+  known_strengths:
+    - "Long context handling"
+    - "Multimodal understanding"
+    - "Code generation"
+  known_limitations:
+    - "Knowledge cutoff date"
+    - "Potential hallucinations on rare proteins"
+    - "May struggle with very recent publications"
+
+# Experiment tracking
+experiment:
+  experiment_name: "gemini_1.5_pro_proteomics_eval"
+  run_id: null  # Set at runtime
+  tags:
+    - gemini
+    - proteomics
+    - hallucination_detection
+  mlflow_tracking: true
+  wandb_tracking: true

@@ -1,0 +1,294 @@
+# Calibration thresholds for LLM confidence scores vs. actual accuracy
+# Used for evaluating model calibration and overconfidence detection
+
+calibration_settings:
+  # General calibration parameters
+  confidence_bins: 10
+  bin_method: "equal_width"  # Options: equal_width, equal_frequency, quantile
+  min_samples_per_bin: 30
+  calibration_metrics:
+    - expected_calibration_error  # ECE
+    - maximum_calibration_error   # MCE
+    - brier_score
+    - log_loss
+
+  # Confidence score normalization
+  normalization:
+    method: "softmax_temperature"
+    temperature_range: [0.5, 2.0]
+    optimal_temperature: 1.0  # Will be tuned during validation
+
+# Confidence thresholds for response quality
+confidence_thresholds:
+  # Binary classification thresholds
+  hallucination_detection:
+    very_confident_correct:
+      confidence_min: 0.90
+      expected_accuracy: 0.95
+      tolerance: 0.05
+      severity_if_wrong: "critical"
+
+    confident_correct:
+      confidence_min: 0.75
+      expected_accuracy: 0.85
+      tolerance: 0.10
+      severity_if_wrong: "high"
+
+    moderate_confidence:
+      confidence_min: 0.55
+      confidence_max: 0.75
+      expected_accuracy: 0.65
+      tolerance: 0.15
+      severity_if_wrong: "medium"
+
+    low_confidence:
+      confidence_min: 0.35
+      confidence_max: 0.55
+      expected_accuracy: 0.45
+      tolerance: 0.20
+      severity_if_wrong: "low"
+
+    uncertain:
+      confidence_max: 0.35
+      expected_accuracy: 0.30
+      should_abstain: true
+
+  # Multi-class severity calibration
+  hallucination_severity_calibration:
+    no_hallucination:
+      confidence_range: [0.80, 1.0]
+      expected_precision: 0.90
+      expected_recall: 0.85
+
+    minor_hallucination:
+      confidence_range: [0.60, 0.80]
+      expected_precision: 0.75
+      expected_recall: 0.70
+
+    moderate_hallucination:
+      confidence_range: [0.40, 0.60]
+      expected_precision: 0.65
+      expected_recall: 0.60
+
+    severe_hallucination:
+      confidence_range: [0.20, 0.40]
+      expected_precision: 0.80
+      expected_recall: 0.75
+
+# Calibration curves configuration
+calibration_curves:
+  # Perfect calibration line
+  perfect_calibration:
+    slope: 1.0
+    intercept: 0.0
+
+  # Acceptable deviation zones
+  deviation_zones:
+    excellent:
+      max_deviation: 0.05
+      color: "green"
+      interpretation: "Well-calibrated model"
+
+    good:
+      max_deviation: 0.10
+      color: "lightgreen"
+      interpretation: "Acceptable calibration"
+
+    moderate:
+      max_deviation: 0.15
+      color: "yellow"
+      interpretation: "Some calibration issues"
+
+    poor:
+      max_deviation: 0.25
+      color: "orange"
+      interpretation: "Significant calibration problems"
+
+    very_poor:
+      max_deviation: 1.0
+      color: "red"
+      interpretation: "Severe miscalibration"
+
+# Expected Calibration Error (ECE) thresholds
+ece_thresholds:
+  excellent: 0.03
+  good: 0.07
+  acceptable: 0.12
+  poor: 0.20
+  unacceptable: 0.30
+
+# Maximum Calibration Error (MCE) thresholds
+mce_thresholds:
+  excellent: 0.05
+  good: 0.10
+  acceptable: 0.18
+  poor: 0.30
+  unacceptable: 0.50
+
+# Brier score thresholds (lower is better)
+brier_score_thresholds:
+  excellent: 0.10
+  good: 0.15
+  acceptable: 0.25
+  poor: 0.40
+  unacceptable: 0.60
+
+# Temperature scaling parameters
+temperature_scaling:
+  initial_temperature: 1.0
+  search_range: [0.1, 5.0]
+  search_method: "grid_search"  # Options: grid_search, bayesian_optimization
+  validation_metric: "expected_calibration_error"
+  cross_validation_folds: 5
+
+  # Grid search parameters
+  grid_search:
+    num_temperatures: 50
+    log_scale: true
+
+  # Bayesian optimization parameters
+  bayesian_optimization:
+    n_iterations: 30
+    acquisition_function: "expected_improvement"
+
+# Platt scaling parameters (for binary calibration)
+platt_scaling:
+  enable: true
+  regularization: 0.01
+  max_iterations: 100
+  convergence_tolerance: 1e-6
+
+# Isotonic regression parameters
+isotonic_regression:
+  enable: true
+  increasing: true  # Enforce monotonicity
+  out_of_bounds: "clip"  # Options: clip, nan, extrapolate
+
+# Confidence interval estimation
+confidence_intervals:
+  method: "bootstrap"  # Options: bootstrap, bayesian, frequentist
+  bootstrap_iterations: 1000
+  confidence_level: 0.95
+  random_seed: 42
+
+# Domain-specific calibration adjustments
+domain_specific_calibration:
+  # Protein prevalence adjustments
+  protein_prevalence:
+    common_proteins:
+      confidence_multiplier: 1.0
+      calibration_adjustment: 0.0
+
+    uncommon_proteins:
+      confidence_multiplier: 0.9
+      calibration_adjustment: -0.05
+
+    rare_proteins:
+      confidence_multiplier: 0.75
+      calibration_adjustment: -0.15
+
+  # Query complexity adjustments
+  query_complexity:
+    low_complexity:
+      confidence_multiplier: 1.05
+      calibration_adjustment: 0.02
+
+    medium_complexity:
+      confidence_multiplier: 1.0
+      calibration_adjustment: 0.0
+
+    high_complexity:
+      confidence_multiplier: 0.85
+      calibration_adjustment: -0.10
+
+  # Mass spectrometry data confidence
+  ms_data_quality:
+    high_quality:
+      fdr_threshold: 0.01
+      confidence_multiplier: 1.1
+      calibration_adjustment: 0.05
+
+    medium_quality:
+      fdr_threshold: 0.05
+      confidence_multiplier: 1.0
+      calibration_adjustment: 0.0
+
+    low_quality:
+      fdr_threshold: 0.10
+      confidence_multiplier: 0.8
+      calibration_adjustment: -0.12
+
+# Calibration evaluation protocols
+evaluation_protocols:
+  # Reliability diagrams
+  reliability_diagram:
+    bins: 10
+    strategy: "quantile"
+    include_histogram: true
+    show_gap_area: true
+
+  # Calibration plots
+  calibration_plot:
+    plot_type: "curve"  # Options: curve, bar, scatter
+    include_confidence_intervals: true
+    show_perfect_calibration: true
+    annotate_bins: true
+
+  # Statistical tests
+  statistical_tests:
+    - hosmer_lemeshow_test:
+        bins: 10
+        significance_level: 0.05
+
+    - spiegelhalter_z_test:
+        significance_level: 0.05
+
+    - calibration_slope_test:
+        null_hypothesis_slope: 1.0
+        significance_level: 0.05
+
+# Recalibration strategies
+recalibration_strategies:
+  post_hoc_calibration:
+    methods:
+      - temperature_scaling
+      - platt_scaling
+      - isotonic_regression
+      - beta_calibration
+
+  ensemble_calibration:
+    enable: true
+    ensemble_method: "weighted_average"
+    weight_optimization: "minimize_ece"
+
+  stratified_calibration:
+    enable: true
+    stratification_variables:
+      - protein_prevalence
+      - query_complexity
+      - ms_data_quality
+
+# Reporting and visualization
+reporting:
+  generate_calibration_report: true
+  include_visualizations:
+    - reliability_diagram
+    - calibration_curve
+    - confidence_histogram
+    - ece_by_category
+    - temperature_scaling_plot
+
+  export_formats:
+    - pdf
+    - png
+    - svg
+    - interactive_html
+
+  metrics_to_report:
+    - ece
+    - mce
+    - brier_score
+    - log_loss
+    - calibration_slope
+    - calibration_intercept
+    - optimal_temperature

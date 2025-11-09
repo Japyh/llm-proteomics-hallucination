@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bom xmlns="http://cyclonedx.org/schema/bom/1.5" version="1" serialNumber="urn:uuid:3e671687-395b-41f5-a30f-a58921a69b79">
+  <metadata>
+    <timestamp>2025-01-15T00:00:00Z</timestamp>
+    <tools>
+      <tool>
+        <vendor>CycloneDX</vendor>
+        <name>cyclonedx-python</name>
+        <version>3.11.0</version>
+      </tool>
+    </tools>
+    <component type="application">
+      <name>llm-proteomics-hallucination</name>
+      <version>1.0.0</version>
+      <description>Evaluating Hallucinations in Large Language Model Responses to Proteomics Queries</description>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+    </component>
+  </metadata>
+  <components>
+    <!-- Core ML/AI Packages -->
+    <component type="library">
+      <name>torch</name>
+      <version>2.1.2</version>
+      <purl>pkg:pypi/torch@2.1.2</purl>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>transformers</name>
+      <version>4.38.1</version>
+      <purl>pkg:pypi/transformers@4.38.1</purl>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>vllm</name>
+      <version>0.3.0</version>
+      <purl>pkg:pypi/vllm@0.3.0</purl>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>sentence-transformers</name>
+      <version>2.5.0</version>
+      <purl>pkg:pypi/sentence-transformers@2.5.0</purl>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+    </component>
+
+    <!-- LLM API Clients -->
+    <component type="library">
+      <name>openai</name>
+      <version>1.12.0</version>
+      <purl>pkg:pypi/openai@1.12.0</purl>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>anthropic</name>
+      <version>0.18.0</version>
+      <purl>pkg:pypi/anthropic@0.18.0</purl>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>google-generativeai</name>
+      <version>0.4.0</version>
+      <purl>pkg:pypi/google-generativeai@0.4.0</purl>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>mistralai</name>
+      <version>0.1.3</version>
+      <purl>pkg:pypi/mistralai@0.1.3</purl>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+    </component>
+
+    <!-- Proteomics Packages -->
+    <component type="library">
+      <name>pyteomics</name>
+      <version>4.6.3</version>
+      <purl>pkg:pypi/pyteomics@4.6.3</purl>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>pyopenms</name>
+      <version>3.1.0</version>
+      <purl>pkg:pypi/pyopenms@3.1.0</purl>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>biopython</name>
+      <version>1.83</version>
+      <purl>pkg:pypi/biopython@1.83</purl>
+      <licenses>
+        <license>
+          <name>Biopython License</name>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>pronto</name>
+      <version>2.5.6</version>
+      <purl>pkg:pypi/pronto@2.5.6</purl>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>goatools</name>
+      <version>1.4.0</version>
+      <purl>pkg:pypi/goatools@1.4.0</purl>
+      <licenses>
+        <license>
+          <id>BSD-2-Clause</id>
+        </license>
+      </licenses>
+    </component>
+
+    <!-- Data Science Stack -->
+    <component type="library">
+      <name>numpy</name>
+      <version>1.24.3</version>
+      <purl>pkg:pypi/numpy@1.24.3</purl>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>pandas</name>
+      <version>2.0.3</version>
+      <purl>pkg:pypi/pandas@2.0.3</purl>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>scipy</name>
+      <version>1.11.4</version>
+      <purl>pkg:pypi/scipy@1.11.4</purl>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>scikit-learn</name>
+      <version>1.3.2</version>
+      <purl>pkg:pypi/scikit-learn@1.3.2</purl>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>statsmodels</name>
+      <version>0.14.1</version>
+      <purl>pkg:pypi/statsmodels@0.14.1</purl>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+    </component>
+
+    <!-- Visualization -->
+    <component type="library">
+      <name>matplotlib</name>
+      <version>3.8.2</version>
+      <purl>pkg:pypi/matplotlib@3.8.2</purl>
+      <licenses>
+        <license>
+          <name>PSF</name>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>seaborn</name>
+      <version>0.13.1</version>
+      <purl>pkg:pypi/seaborn@0.13.1</purl>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>plotly</name>
+      <version>5.18.0</version>
+      <purl>pkg:pypi/plotly@5.18.0</purl>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+    </component>
+
+    <!-- Experiment Tracking -->
+    <component type="library">
+      <name>mlflow</name>
+      <version>2.10.2</version>
+      <purl>pkg:pypi/mlflow@2.10.2</purl>
+      <licenses>
+        <license>
+          <id>Apache-2.0</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>wandb</name>
+      <version>0.16.3</version>
+      <purl>pkg:pypi/wandb@0.16.3</purl>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+    </component>
+
+    <!-- Testing -->
+    <component type="library">
+      <name>pytest</name>
+      <version>7.4.4</version>
+      <purl>pkg:pypi/pytest@7.4.4</purl>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>pytest-cov</name>
+      <version>4.1.0</version>
+      <purl>pkg:pypi/pytest-cov@4.1.0</purl>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+    </component>
+
+    <!-- Utilities -->
+    <component type="library">
+      <name>pyyaml</name>
+      <version>6.0.1</version>
+      <purl>pkg:pypi/pyyaml@6.0.1</purl>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>tqdm</name>
+      <version>4.66.1</version>
+      <purl>pkg:pypi/tqdm@4.66.1</purl>
+      <licenses>
+        <license>
+          <id>MIT</id>
+        </license>
+      </licenses>
+    </component>
+    <component type="library">
+      <name>python-dotenv</name>
+      <version>1.0.1</version>
+      <purl>pkg:pypi/python-dotenv@1.0.1</purl>
+      <licenses>
+        <license>
+          <id>BSD-3-Clause</id>
+        </license>
+      </licenses>
+    </component>
+  </components>
+  <dependencies>
+    <dependency ref="torch">
+      <dependency ref="numpy"/>
+    </dependency>
+    <dependency ref="transformers">
+      <dependency ref="torch"/>
+      <dependency ref="numpy"/>
+    </dependency>
+    <dependency ref="pandas">
+      <dependency ref="numpy"/>
+    </dependency>
+    <dependency ref="scikit-learn">
+      <dependency ref="numpy"/>
+      <dependency ref="scipy"/>
+    </dependency>
+  </dependencies>
+</bom>

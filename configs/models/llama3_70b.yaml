@@ -1,0 +1,278 @@
+# Meta Llama 3 70B model configuration
+# For LLM proteomics hallucination evaluation (local/cloud deployment)
+
+model_info:
+  name: "llama3-70b"
+  provider: "Meta AI"
+  model_id: "meta-llama/Meta-Llama-3-70B-Instruct"
+  version: "3.0"
+  release_date: "2024-04-18"
+  model_type: "text"
+  architecture: "Llama"
+  parameters: 70_000_000_000
+  license: "Llama 3 Community License"
+
+# Model hosting options
+hosting:
+  deployment_type: "self_hosted"  # Options: self_hosted, together_ai, replicate, anyscale
+
+  # Self-hosted configuration
+  self_hosted:
+    model_path: "/models/llama3-70b-instruct"
+    quantization: "none"  # Options: none, int8, int4, gptq, awq
+    num_gpus: 2
+    gpu_memory_per_device: 40  # GB
+    tensor_parallel_size: 2
+    pipeline_parallel_size: 1
+    dtype: "float16"  # Options: float16, bfloat16, float32
+
+  # Alternative: Together AI
+  together_ai:
+    api_endpoint: "https://api.together.xyz/v1"
+    model_name: "meta-llama/Llama-3-70b-chat-hf"
+    api_key_env_var: "TOGETHER_API_KEY"
+
+# Model capabilities
+capabilities:
+  max_context_length: 8192
+  max_output_tokens: 4096
+  supports_system_prompts: true
+  supports_function_calling: false
+  supports_multimodal: false
+  supports_streaming: true
+  supports_json_mode: true
+
+# Generation parameters
+generation_config:
+  temperature: 0.3
+  top_p: 0.9
+  top_k: 50
+  max_tokens: 2048
+  repetition_penalty: 1.1
+  frequency_penalty: 0.0
+  presence_penalty: 0.0
+  stop_sequences:
+    - "<|eot_id|>"
+    - "<|end_of_text|>"
+
+# Prompt template (Llama 3 format)
+prompt_template:
+  format: "llama3_instruct"
+  template: |
+    <|begin_of_text|><|start_header_id|>system<|end_header_id|>
+
+    {system_prompt}<|eot_id|><|start_header_id|>user<|end_header_id|>
+
+    {user_message}<|eot_id|><|start_header_id|>assistant<|end_header_id|>
+
+  system_prompt: |
+    You are a knowledgeable scientific assistant specializing in proteomics,
+    molecular biology, and mass spectrometry. You provide accurate, evidence-based
+    information about proteins, their functions, modifications, and experimental methods.
+
+    IMPORTANT GUIDELINES:
+    - Be factual and precise. Do not fabricate information.
+    - If you don't know something, clearly state your uncertainty.
+    - Reference standard databases (UniProt, GO, PDB) when applicable.
+    - Use proper scientific nomenclature (HGNC gene symbols, UniProt IDs).
+    - Distinguish between established facts and hypotheses.
+    - Acknowledge limitations in your knowledge, especially for rare or recently discovered proteins.
+
+# vLLM configuration (for local deployment)
+vllm_config:
+  gpu_memory_utilization: 0.90
+  max_num_batched_tokens: 8192
+  max_num_seqs: 256
+  enable_prefix_caching: true
+  use_v2_block_manager: true
+  block_size: 16
+  swap_space: 4  # GB
+
+  # Sampling parameters
+  sampling_params:
+    n: 1
+    best_of: 1
+    use_beam_search: false
+    length_penalty: 1.0
+    early_stopping: false
+
+# Rate limiting
+rate_limits:
+  local_deployment:
+    max_concurrent_requests: 32
+    queue_size: 256
+    timeout_seconds: 120
+
+  cloud_api:
+    requests_per_minute: 60
+    tokens_per_minute: 200000
+
+# Cost configuration
+pricing:
+  self_hosted:
+    gpu_cost_per_hour: 3.00  # AWS p4d.24xlarge estimate
+    electricity_cost_per_hour: 0.50
+    total_cost_per_hour: 3.50
+
+  together_ai:
+    currency: "USD"
+    input_tokens_per_1m: 0.90
+    output_tokens_per_1m: 0.90
+
+# Prompt engineering
+prompt_engineering:
+  response_format_instruction: |
+    Provide a clear, structured answer that includes:
+    1. Direct response to the query
+    2. Supporting evidence (database references, citations)
+    3. Any relevant caveats or limitations
+    4. Confidence level if uncertain
+
+  examples:
+    - query: "What is the molecular weight of human insulin?"
+      response: |
+        Human insulin has a molecular weight of approximately 5,808 Da. This is for the
+        mature form consisting of two polypeptide chains (A chain: 21 amino acids, B chain: 30 amino acids)
+        connected by disulfide bonds. The UniProt accession for human insulin is P01308.
+
+    - query: "What does protein ZZZZ999 do?"
+      response: |
+        I don't have reliable information about a protein with identifier "ZZZZ999".
+        This doesn't appear to be a valid UniProt accession or standard gene symbol.
+        Could you verify the protein identifier? If this is a very recently discovered
+        protein, it may not be in my training data (knowledge cutoff: April 2024).
+
+# Model-specific optimizations
+optimizations:
+  # Speculative decoding
+  speculative_decoding:
+    enable: false
+    draft_model: "llama-3-8b"
+
+  # Quantization
+  quantization:
+    enable: false
+    method: "none"  # Options: none, awq, gptq, int8, int4
+
+  # Flash Attention
+  flash_attention:
+    enable: true
+    version: 2
+
+# Evaluation-specific settings
+evaluation:
+  # Temperature sweep
+  temperature_sweep:
+    enable: true
+    values: [0.0, 0.1, 0.3, 0.5, 0.7, 1.0]
+
+  # Few-shot learning
+  few_shot:
+    enable: true
+    num_examples: 3
+    example_selection: "diverse"
+
+  # Chain-of-thought
+  chain_of_thought:
+    enable: true
+    prompt_addition: "Let's approach this step-by-step:"
+
+  # Self-consistency
+  self_consistency:
+    enable: true
+    num_samples: 5
+    temperature: 0.7
+    aggregation_method: "majority_vote"
+
+# Logging and monitoring
+logging:
+  log_requests: true
+  log_responses: true
+  log_tokens_used: true
+  log_latency: true
+  log_gpu_memory: true
+
+  # Performance metrics
+  track_throughput: true
+  track_batch_size: true
+  track_queue_time: true
+
+# Error handling
+error_handling:
+  handle_oom: "reduce_batch_size"
+  handle_timeout: "retry_once"
+  handle_cuda_error: "restart_worker"
+  max_retries: 3
+  retry_delay: 2.0
+
+# Performance tracking
+performance:
+  track_latency: true
+  track_token_usage: true
+  track_gpu_utilization: true
+  track_throughput: true
+
+  # Expected performance (2xA100 80GB)
+  expected_throughput_tokens_per_sec: 50
+  expected_avg_latency_ms: 2000
+  expected_gpu_memory_gb: 75
+
+# Model metadata
+metadata:
+  training_cutoff: "2024-04"
+  knowledge_domains:
+    - general_knowledge
+    - science
+    - mathematics
+    - code
+
+  pretraining_data_size: "15T tokens"
+  instruction_tuning: true
+  rlhf: true
+
+  known_strengths:
+    - "Strong reasoning capabilities"
+    - "Good instruction following"
+    - "Multilingual support"
+
+  known_limitations:
+    - "May hallucinate on very specific domain knowledge"
+    - "Limited to text modality"
+    - "Knowledge cutoff in April 2024"
+    - "May require domain-specific fine-tuning for optimal proteomics performance"
+
+# Fine-tuning configuration (optional)
+fine_tuning:
+  enable: false
+  method: "lora"  # Options: lora, qlora, full
+
+  lora_config:
+    r: 8
+    lora_alpha: 32
+    lora_dropout: 0.1
+    target_modules:
+      - q_proj
+      - v_proj
+      - k_proj
+      - o_proj
+    bias: "none"
+
+  training_config:
+    num_epochs: 3
+    batch_size: 4
+    gradient_accumulation_steps: 4
+    learning_rate: 2.0e-5
+    warmup_steps: 100
+    weight_decay: 0.01
+
+# Experiment tracking
+experiment:
+  experiment_name: "llama3_70b_proteomics_eval"
+  run_id: null
+  tags:
+    - llama3
+    - 70b
+    - proteomics
+    - self_hosted
+  mlflow_tracking: true
+  wandb_tracking: true

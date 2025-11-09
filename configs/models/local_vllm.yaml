@@ -1,0 +1,280 @@
+# vLLM local deployment configuration
+# Generic configuration for running open-source models locally with vLLM
+
+server_config:
+  # Server settings
+  host: "0.0.0.0"
+  port: 8000
+  api_type: "openai"  # OpenAI-compatible API
+  allow_credentials: true
+  allowed_origins: ["*"]
+  allowed_methods: ["*"]
+  allowed_headers: ["*"]
+
+# Model configuration
+model:
+  # Model selection (override at runtime)
+  model_name: "meta-llama/Meta-Llama-3-70B-Instruct"
+  model_path: "/models/llama3-70b-instruct"
+  tokenizer: null  # Auto-detect from model
+  tokenizer_mode: "auto"
+  trust_remote_code: false
+  download_dir: "/models/cache"
+  load_format: "auto"
+  dtype: "auto"  # Options: auto, half, float16, bfloat16, float32
+  kv_cache_dtype: "auto"
+  quantization: null  # Options: null, awq, gptq, squeezellm, fp8
+  seed: 42
+
+# GPU configuration
+gpu:
+  tensor_parallel_size: 2
+  pipeline_parallel_size: 1
+  gpu_memory_utilization: 0.90
+  max_parallel_loading_workers: null
+  block_size: 16
+  swap_space: 4  # GB
+  cpu_offload_gb: 0
+  enforce_eager: false
+  max_context_len_to_capture: 8192
+
+# Scheduling
+scheduling:
+  max_num_batched_tokens: null
+  max_num_seqs: 256
+  max_model_len: null
+  scheduling_policy: "fcfs"  # First-come-first-serve
+  enable_prefix_caching: true
+  disable_sliding_window: false
+
+# Performance optimizations
+performance:
+  # Flash Attention
+  enable_flash_attention: true
+  flash_attention_version: 2
+
+  # PagedAttention
+  use_v2_block_manager: true
+
+  # Chunked prefill
+  enable_chunked_prefill: true
+  max_num_batched_prefill_tokens: 512
+
+  # Performance tuning
+  num_scheduler_steps: 1
+  delay_factor: 0.0
+  enable_lora: false
+  max_lora_rank: 16
+  max_cpu_loras: null
+  fully_sharded_loras: false
+
+# Sampling defaults
+sampling_defaults:
+  n: 1
+  best_of: null
+  presence_penalty: 0.0
+  frequency_penalty: 0.0
+  repetition_penalty: 1.0
+  temperature: 1.0
+  top_p: 1.0
+  top_k: -1
+  min_p: 0.0
+  use_beam_search: false
+  length_penalty: 1.0
+  early_stopping: false
+  stop: []
+  stop_token_ids: []
+  include_stop_str_in_output: false
+  ignore_eos: false
+  max_tokens: 2048
+  logprobs: null
+  prompt_logprobs: null
+  skip_special_tokens: true
+  spaces_between_special_tokens: true
+
+# Distributed configuration
+distributed:
+  # Ray configuration
+  worker_use_ray: false
+  ray_address: null
+
+  # Multi-node setup
+  distributed_executor_backend: null
+  pipeline_parallel_split_rank: null
+
+# Tokenizer configuration
+tokenizer:
+  tokenizer_pool_size: 0
+  tokenizer_pool_type: "ray"
+  tokenizer_pool_extra_config: {}
+  max_log_probs: 20
+
+# Engine configuration
+engine:
+  disable_log_stats: false
+  disable_log_requests: false
+  max_log_len: null
+  disable_custom_all_reduce: false
+
+# API server configuration
+api_server:
+  # Timeout settings
+  request_timeout: 300.0  # 5 minutes
+
+  # Response streaming
+  enable_streaming: true
+
+  # OpenAI API compatibility
+  served_model_name: null
+  chat_template: null
+  response_role: "assistant"
+
+  # SSL/TLS
+  ssl_keyfile: null
+  ssl_certfile: null
+  ssl_ca_certs: null
+  ssl_cert_reqs: 0
+
+  # CORS
+  middleware: []
+
+# Logging configuration
+logging:
+  log_level: "info"
+  log_file: "/logs/vllm_server.log"
+  log_requests: true
+  log_stats: true
+  log_stats_interval: 10  # seconds
+
+  # Prometheus metrics
+  enable_metrics: true
+  metrics_port: 9090
+
+# Health check
+health_check:
+  enable: true
+  endpoint: "/health"
+  timeout: 5.0
+
+# Rate limiting
+rate_limiting:
+  enable: true
+  max_requests_per_minute: 60
+  max_tokens_per_minute: 200000
+  burst_size: 10
+
+# Resource limits
+resource_limits:
+  max_queue_size: 256
+  max_concurrent_requests: 32
+  request_timeout: 120.0
+  max_input_length: 8192
+  max_output_length: 4096
+
+# Model presets for different sizes
+model_presets:
+  # 7B models (1 GPU)
+  small_model:
+    tensor_parallel_size: 1
+    gpu_memory_utilization: 0.85
+    max_num_seqs: 512
+
+  # 13B-70B models (2-4 GPUs)
+  medium_model:
+    tensor_parallel_size: 2
+    gpu_memory_utilization: 0.90
+    max_num_seqs: 256
+
+  # >70B models (4-8 GPUs)
+  large_model:
+    tensor_parallel_size: 4
+    gpu_memory_utilization: 0.95
+    max_num_seqs: 128
+
+# Supported models list
+supported_models:
+  llama_family:
+    - "meta-llama/Llama-2-7b-chat-hf"
+    - "meta-llama/Llama-2-13b-chat-hf"
+    - "meta-llama/Llama-2-70b-chat-hf"
+    - "meta-llama/Meta-Llama-3-8B-Instruct"
+    - "meta-llama/Meta-Llama-3-70B-Instruct"
+
+  mistral_family:
+    - "mistralai/Mistral-7B-Instruct-v0.2"
+    - "mistralai/Mixtral-8x7B-Instruct-v0.1"
+    - "mistralai/Mixtral-8x22B-Instruct-v0.1"
+
+  other_models:
+    - "tiiuae/falcon-40b-instruct"
+    - "EleutherAI/gpt-j-6b"
+    - "bigcode/starcoder2-15b"
+
+# Monitoring
+monitoring:
+  # vLLM metrics
+  track_metrics:
+    - request_latency
+    - token_throughput
+    - gpu_memory_usage
+    - gpu_utilization
+    - queue_size
+    - num_running_requests
+    - num_waiting_requests
+
+  # Alerts
+  alerts:
+    high_latency_threshold_ms: 5000
+    high_memory_threshold_percent: 95
+    queue_overflow_threshold: 200
+
+# Benchmarking
+benchmarking:
+  enable: false
+  num_prompts: 1000
+  input_len: 128
+  output_len: 128
+  batch_size: 32
+  report_path: "/logs/benchmark_report.json"
+
+# Development/debugging
+debug:
+  enable_cuda_graph: true
+  disable_async_output_proc: false
+  profile: false
+  profile_dir: "/logs/profiles"
+
+# Environment variables
+environment:
+  VLLM_USE_MODELSCOPE: "False"
+  VLLM_WORKER_MULTIPROC_METHOD: "spawn"
+  VLLM_USE_V1: "0"
+  CUDA_VISIBLE_DEVICES: "0,1"  # Override as needed
+  TOKENIZERS_PARALLELISM: "false"
+
+# Startup command example
+startup_command: |
+  vllm serve {model_name} \
+    --host {host} \
+    --port {port} \
+    --tensor-parallel-size {tensor_parallel_size} \
+    --gpu-memory-utilization {gpu_memory_utilization} \
+    --max-num-seqs {max_num_seqs} \
+    --dtype {dtype} \
+    --enable-prefix-caching \
+    --trust-remote-code
+
+# Docker configuration
+docker:
+  image: "vllm/vllm-openai:latest"
+  gpus: "all"
+  shm_size: "16g"
+  volumes:
+    - "/models:/models"
+    - "/logs:/logs"
+  environment:
+    - "CUDA_VISIBLE_DEVICES=0,1"
+    - "VLLM_USE_MODELSCOPE=False"
+  ports:
+    - "8000:8000"
+    - "9090:9090"

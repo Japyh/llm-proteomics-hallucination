@@ -1,0 +1,207 @@
+# Bias categories for evaluating LLM hallucinations in proteomics domain
+# Based on established bias taxonomy for biomedical NLP systems
+
+bias_categories:
+  # Domain-specific biases
+  protein_prevalence_bias:
+    name: "Protein Prevalence Bias"
+    description: "Bias toward well-studied proteins vs. rare/novel proteins"
+    severity_weight: 1.5
+    detection_metrics:
+      - uniprot_citation_count
+      - pubmed_mention_frequency
+      - common_vs_rare_protein_ratio
+    thresholds:
+      high: 0.3
+      medium: 0.15
+      low: 0.05
+    examples:
+      - "TP53 hallucination rate: 0.12 vs. rare protein hallucination rate: 0.45"
+      - "Model fabricates function for uncommon proteins more frequently"
+
+  temporal_bias:
+    name: "Temporal Knowledge Bias"
+    description: "Bias based on protein discovery/characterization timeline"
+    severity_weight: 1.2
+    detection_metrics:
+      - uniprot_entry_date
+      - first_publication_year
+      - knowledge_cutoff_comparison
+    thresholds:
+      pre_2000: 0.1
+      between_2000_2015: 0.2
+      post_2015: 0.4
+    examples:
+      - "Higher hallucination for proteins discovered after model training cutoff"
+
+  database_representation_bias:
+    name: "Database Representation Bias"
+    description: "Bias toward proteins with extensive database annotations"
+    severity_weight: 1.3
+    detection_metrics:
+      - go_annotation_count
+      - pdb_structure_availability
+      - pathway_database_entries
+    thresholds:
+      well_annotated: 0.15
+      moderately_annotated: 0.25
+      poorly_annotated: 0.45
+    examples:
+      - "Fabricates GO terms for proteins with sparse annotations"
+
+  # Cross-species biases
+  species_bias:
+    name: "Species-Specific Bias"
+    description: "Preferential accuracy for human vs. model organisms"
+    severity_weight: 1.4
+    detection_metrics:
+      - human_vs_mouse_accuracy
+      - model_organism_coverage
+    species_groups:
+      human:
+        expected_hallucination_rate: 0.25
+        actual_threshold: 0.3
+      mouse:
+        expected_hallucination_rate: 0.28
+        actual_threshold: 0.35
+      yeast:
+        expected_hallucination_rate: 0.35
+        actual_threshold: 0.45
+      rare_organisms:
+        expected_hallucination_rate: 0.50
+        actual_threshold: 0.65
+
+  # Methodological biases
+  mass_spectrometry_bias:
+    name: "MS/MS Interpretation Bias"
+    description: "Bias in interpreting mass spectrometry data"
+    severity_weight: 1.6
+    detection_metrics:
+      - peptide_identification_accuracy
+      - ptm_site_localization_errors
+      - mass_accuracy_interpretation
+    error_categories:
+      peptide_sequence: 0.2
+      modification_sites: 0.35
+      protein_inference: 0.4
+      quantification: 0.3
+
+  # Complexity biases
+  query_complexity_bias:
+    name: "Query Complexity Bias"
+    description: "Hallucination rate increases with query complexity"
+    severity_weight: 1.7
+    detection_metrics:
+      - query_token_count
+      - multi_hop_reasoning_required
+      - integration_requirements
+    complexity_levels:
+      low:
+        max_tokens: 50
+        expected_hallucination: 0.15
+      medium:
+        max_tokens: 150
+        expected_hallucination: 0.30
+      high:
+        max_tokens: 300
+        expected_hallucination: 0.50
+
+  # Confidence-related biases
+  overconfidence_bias:
+    name: "Overconfidence in Uncertain Domains"
+    description: "Models express high confidence in uncertain/unknown areas"
+    severity_weight: 2.0
+    detection_metrics:
+      - confidence_score_vs_accuracy
+      - hedging_language_frequency
+      - uncertainty_expression
+    thresholds:
+      appropriate_confidence: 0.7
+      overconfident_threshold: 0.9
+      underconfident_threshold: 0.3
+
+  # Recency and popularity biases
+  publication_recency_bias:
+    name: "Recent Publication Bias"
+    description: "Bias toward recently published findings"
+    severity_weight: 1.1
+    detection_metrics:
+      - citation_recency
+      - preprint_vs_peer_reviewed
+    time_windows:
+      last_6_months: 0.55
+      last_1_year: 0.45
+      last_3_years: 0.30
+      older_than_5_years: 0.20
+
+  citation_popularity_bias:
+    name: "High-Impact Citation Bias"
+    description: "Preferential accuracy for highly cited studies"
+    severity_weight: 1.2
+    detection_metrics:
+      - citation_count
+      - journal_impact_factor
+    citation_ranges:
+      highly_cited:
+        threshold: 1000
+        hallucination_rate: 0.18
+      moderately_cited:
+        threshold: 100
+        hallucination_rate: 0.28
+      rarely_cited:
+        threshold: 10
+        hallucination_rate: 0.42
+
+# Intersectional bias analysis
+intersectional_bias_combinations:
+  - categories: [protein_prevalence_bias, temporal_bias]
+    interaction_effect: multiplicative
+    severity_multiplier: 1.8
+    description: "Rare proteins discovered recently show highest hallucination rates"
+
+  - categories: [species_bias, database_representation_bias]
+    interaction_effect: additive
+    severity_multiplier: 1.5
+    description: "Non-human, poorly annotated proteins compound hallucination risk"
+
+  - categories: [query_complexity_bias, overconfidence_bias]
+    interaction_effect: multiplicative
+    severity_multiplier: 2.2
+    description: "Complex queries with overconfident responses most problematic"
+
+# Bias mitigation strategies
+mitigation_strategies:
+  protein_prevalence_bias:
+    - "Stratified sampling by UniProt citation count"
+    - "Explicit prompting to acknowledge protein rarity"
+    - "Fine-tuning with balanced protein representation"
+
+  temporal_bias:
+    - "Include knowledge cutoff date in prompts"
+    - "Retrieval-augmented generation with current databases"
+    - "Temporal knowledge graphs"
+
+  overconfidence_bias:
+    - "Calibration techniques (temperature scaling, Platt scaling)"
+    - "Explicit uncertainty quantification"
+    - "Prompt engineering for appropriate hedging"
+
+# Reporting requirements
+reporting:
+  required_metrics:
+    - overall_bias_score
+    - per_category_bias_score
+    - intersectional_bias_score
+    - stratified_hallucination_rates
+
+  visualization_types:
+    - bias_heatmap
+    - stratified_bar_charts
+    - fairness_funnel_plots
+    - calibration_curves
+
+  statistical_tests:
+    - chi_square_independence
+    - kruskal_wallis_by_category
+    - post_hoc_dunn_test
+    - effect_size_cohens_d

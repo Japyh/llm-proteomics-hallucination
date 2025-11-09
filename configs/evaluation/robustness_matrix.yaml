@@ -1,0 +1,352 @@
+# Robustness evaluation matrix for LLM hallucination assessment
+# Tests model stability under various perturbations and adversarial conditions
+
+robustness_evaluation:
+  # Overall robustness testing configuration
+  enable: true
+  num_perturbations_per_query: 5
+  random_seed: 42
+
+  # Robustness metrics
+  metrics:
+    - consistency_score
+    - stability_score
+    - variance_across_perturbations
+    - worst_case_performance
+    - adversarial_robustness_score
+
+# Perturbation categories
+perturbation_categories:
+  # 1. Semantic-preserving perturbations
+  semantic_preserving:
+    # Paraphrasing
+    paraphrase:
+      enable: true
+      methods:
+        - back_translation:
+            languages: ["de", "fr", "es"]
+            models: ["google_translate", "opus-mt"]
+        - neural_paraphrase:
+            model: "t5-large"
+            num_beams: 5
+            temperature: 0.8
+      expected_answer_change: false
+      consistency_threshold: 0.95
+
+    # Synonym substitution
+    synonym_substitution:
+      enable: true
+      substitution_rate: 0.3
+      preserve_entities: true
+      wordnet_synsets: true
+      biomedical_synonyms: true
+      expected_answer_change: false
+      consistency_threshold: 0.90
+
+    # Word order variation
+    word_order_variation:
+      enable: true
+      variation_types:
+        - passive_to_active
+        - active_to_passive
+        - clause_reordering
+      expected_answer_change: false
+      consistency_threshold: 0.93
+
+  # 2. Format perturbations
+  format_perturbations:
+    # Capitalization changes
+    capitalization:
+      enable: true
+      variations:
+        - all_lowercase
+        - all_uppercase
+        - random_case
+        - title_case
+      expected_answer_change: false
+      consistency_threshold: 0.98
+
+    # Whitespace variations
+    whitespace:
+      enable: true
+      variations:
+        - extra_spaces
+        - remove_spaces_around_punctuation
+        - multiple_newlines
+      expected_answer_change: false
+      consistency_threshold: 0.99
+
+    # Punctuation variations
+    punctuation:
+      enable: true
+      variations:
+        - remove_punctuation
+        - add_extra_punctuation
+        - replace_punctuation
+      expected_answer_change: false
+      consistency_threshold: 0.97
+
+  # 3. Protein nomenclature perturbations
+  protein_nomenclature:
+    # Gene name variations
+    gene_name_variation:
+      enable: true
+      variations:
+        - gene_symbol_to_full_name
+        - full_name_to_gene_symbol
+        - alternative_symbols
+      examples:
+        - "TP53" <-> "Tumor protein p53"
+        - "EGFR" <-> "Epidermal growth factor receptor"
+      expected_answer_change: false
+      consistency_threshold: 0.92
+
+    # UniProt accession variations
+    uniprot_variation:
+      enable: true
+      variations:
+        - primary_accession_to_secondary
+        - with_version_number
+        - without_version_number
+      examples:
+        - "P04637" <-> "P04637-1"
+      expected_answer_change: false
+      consistency_threshold: 0.95
+
+    # Species specification
+    species_variation:
+      enable: true
+      variations:
+        - add_species_name
+        - remove_species_name
+        - latin_to_common_name
+      examples:
+        - "TP53" <-> "human TP53" <-> "Homo sapiens TP53"
+      expected_answer_change: true
+      consistency_threshold: 0.85
+
+  # 4. Numerical perturbations
+  numerical_perturbations:
+    # Mass/charge ratio variations
+    mass_variation:
+      enable: true
+      perturbation_types:
+        - small_rounding: "±0.01 Da"
+        - precision_change: "3 decimals vs 4 decimals"
+        - scientific_notation: "1163.6 vs 1.1636e3"
+      expected_answer_change: false
+      consistency_threshold: 0.90
+
+    # Quantification value variations
+    quantification_variation:
+      enable: true
+      perturbation_types:
+        - fold_change_format: "2.5-fold vs 2.5x vs 250%"
+        - p_value_format: "0.001 vs 1e-3 vs p<0.01"
+        - rounding: "2.456 vs 2.46 vs 2.5"
+      expected_answer_change: false
+      consistency_threshold: 0.88
+
+  # 5. Context perturbations
+  context_perturbations:
+    # Additional context
+    additional_context:
+      enable: true
+      context_types:
+        - relevant_background: "Provide relevant but non-essential background"
+        - irrelevant_information: "Add unrelated proteomics facts"
+        - redundant_information: "Repeat information in different words"
+      expected_answer_change: false
+      consistency_threshold: 0.85
+
+    # Context removal
+    context_removal:
+      enable: true
+      removal_types:
+        - remove_examples
+        - remove_clarifications
+        - minimal_query_only
+      expected_answer_change: false
+      consistency_threshold: 0.80
+
+  # 6. Adversarial perturbations
+  adversarial_perturbations:
+    # Character-level attacks
+    character_level:
+      enable: true
+      attack_types:
+        - homoglyph_substitution:
+            examples: ["TP53" -> "TP5З" (Cyrillic З)]
+            expected_robustness: 0.50
+        - character_insertion:
+            examples: ["EGFR" -> "EGFFR"]
+            expected_robustness: 0.60
+        - character_deletion:
+            examples: ["insulin" -> "inslin"]
+            expected_robustness: 0.70
+
+    # Token-level attacks
+    token_level:
+      enable: true
+      attack_types:
+        - typo_injection:
+            rate: 0.05
+            expected_robustness: 0.75
+        - word_deletion:
+            rate: 0.10
+            expected_robustness: 0.70
+        - word_swapping:
+            rate: 0.05
+            expected_robustness: 0.80
+
+    # Semantic attacks
+    semantic_attacks:
+      enable: true
+      attack_types:
+        - negation_insertion:
+            examples: ["upregulated" -> "not downregulated"]
+            expected_robustness: 0.40
+        - quantifier_manipulation:
+            examples: ["all proteins" -> "some proteins"]
+            expected_robustness: 0.50
+        - misleading_context:
+            inject_contradictory_statements: true
+            expected_robustness: 0.60
+
+  # 7. Prompt engineering perturbations
+  prompt_variations:
+    # Instruction formats
+    instruction_format:
+      enable: true
+      formats:
+        - question_format: "What is the function of TP53?"
+        - imperative_format: "Describe the function of TP53."
+        - completion_format: "TP53 function:"
+        - chat_format: "I need to know about TP53 function."
+      expected_answer_change: false
+      consistency_threshold: 0.85
+
+    # Politeness variations
+    politeness:
+      enable: true
+      variations:
+        - very_polite: "Could you please tell me..."
+        - neutral: "What is..."
+        - direct: "Tell me..."
+      expected_answer_change: false
+      consistency_threshold: 0.95
+
+    # Output format specifications
+    output_format:
+      enable: true
+      formats:
+        - no_specification
+        - bullet_points
+        - numbered_list
+        - paragraph_form
+        - json_format
+      expected_answer_change: false
+      consistency_threshold: 0.88
+
+# Robustness scoring
+robustness_scoring:
+  # Consistency score calculation
+  consistency_score:
+    method: "semantic_similarity"
+    similarity_model: "sentence-transformers/all-mpnet-base-v2"
+    threshold: 0.85
+    aggregation: "mean"
+
+  # Stability score
+  stability_score:
+    method: "variance_of_hallucination_scores"
+    max_acceptable_variance: 0.15
+    normalization: "min_max"
+
+  # Worst-case performance
+  worst_case:
+    metric: "max_hallucination_severity"
+    acceptable_threshold: 2  # No severe hallucinations allowed
+
+  # Robustness index (composite score)
+  robustness_index:
+    weights:
+      consistency_score: 0.35
+      stability_score: 0.30
+      worst_case_performance: 0.20
+      adversarial_robustness: 0.15
+    normalization: "0-100 scale"
+
+# Differential robustness analysis
+differential_analysis:
+  enable: true
+
+  # Compare robustness across groups
+  group_comparisons:
+    - protein_prevalence: [common, uncommon, rare]
+    - query_complexity: [low, medium, high]
+    - model_architecture: [gpt4, claude, gemini]
+
+  # Statistical tests
+  statistical_tests:
+    - kruskal_wallis:
+        significance_level: 0.05
+    - pairwise_wilcoxon:
+        correction: "bonferroni"
+        significance_level: 0.05
+
+# Robustness benchmarks
+benchmarks:
+  # Expected robustness scores by perturbation type
+  expected_scores:
+    semantic_preserving: 0.95
+    format_perturbations: 0.98
+    protein_nomenclature: 0.90
+    numerical_perturbations: 0.88
+    context_perturbations: 0.80
+    adversarial_perturbations: 0.60
+    prompt_variations: 0.85
+
+  # Baseline comparisons
+  baselines:
+    human_expert_consistency: 0.92
+    random_baseline: 0.25
+    majority_vote_baseline: 0.70
+
+# Visualization and reporting
+reporting:
+  generate_robustness_report: true
+
+  visualizations:
+    - robustness_heatmap:
+        rows: "perturbation_types"
+        columns: "models"
+        values: "robustness_scores"
+
+    - consistency_distribution:
+        plot_type: "violin"
+        group_by: "perturbation_category"
+
+    - worst_case_analysis:
+        plot_type: "scatter"
+        x_axis: "average_performance"
+        y_axis: "worst_case_performance"
+
+    - adversarial_robustness_curve:
+        x_axis: "attack_strength"
+        y_axis: "hallucination_rate"
+
+  export_formats:
+    - pdf
+    - png
+    - interactive_html
+    - json
+
+  metrics_table:
+    include:
+      - perturbation_type
+      - num_queries_tested
+      - mean_consistency
+      - std_consistency
+      - worst_case_score
+      - robustness_index

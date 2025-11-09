@@ -1,0 +1,162 @@
+# GPU-enabled Docker image for LLM proteomics hallucination evaluation
+# Supports CUDA-accelerated inference with vLLM and PyTorch
+
+# Base image with CUDA support
+FROM nvidia/cuda:12.1.1-cudnn8-devel-ubuntu22.04
+
+LABEL maintainer="LLM Proteomics Research Team"
+LABEL description="GPU-enabled container for proteomics LLM evaluation with hallucination detection"
+LABEL version="1.0.0"
+
+# Environment variables
+ENV DEBIAN_FRONTEND=noninteractive \
+    PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1 \
+    PIP_NO_CACHE_DIR=1 \
+    CUDA_HOME=/usr/local/cuda \
+    PATH=/usr/local/cuda/bin:${PATH} \
+    LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    python3.10 \
+    python3.10-dev \
+    python3-pip \
+    git \
+    wget \
+    curl \
+    vim \
+    htop \
+    tmux \
+    build-essential \
+    cmake \
+    libssl-dev \
+    libffi-dev \
+    libbz2-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    llvm \
+    libncurses5-dev \
+    libncursesw5-dev \
+    xz-utils \
+    tk-dev \
+    liblzma-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Update alternatives to use python3.10 as default
+RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1 && \
+    update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
+
+# Upgrade pip
+RUN python3 -m pip install --upgrade pip setuptools wheel
+
+# Install PyTorch with CUDA 12.1 support
+RUN pip install torch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 \
+    --index-url https://download.pytorch.org/whl/cu121
+
+# Install vLLM for efficient LLM inference
+RUN pip install vllm==0.3.0
+
+# Set working directory
+WORKDIR /workspace
+
+# Copy requirements files
+COPY requirements.txt requirements-dev.txt ./
+
+# Install Python dependencies
+RUN pip install -r requirements.txt && \
+    pip install -r requirements-dev.txt
+
+# Install additional GPU-specific packages
+RUN pip install \
+    transformers==4.38.1 \
+    accelerate==0.27.0 \
+    bitsandbytes==0.42.0 \
+    flash-attn==2.5.0 \
+    sentence-transformers==2.5.0 \
+    openai==1.12.0 \
+    anthropic==0.18.0 \
+    google-generativeai==0.4.0 \
+    mistralai==0.1.3
+
+# Install proteomics-specific packages
+RUN pip install \
+    pyteomics==4.6.3 \
+    pyopenms==3.1.0 \
+    biopython==1.83 \
+    pronto==2.5.6 \
+    goatools==1.4.0
+
+# Install data science packages
+RUN pip install \
+    numpy==1.24.3 \
+    pandas==2.0.3 \
+    scipy==1.11.4 \
+    scikit-learn==1.3.2 \
+    statsmodels==0.14.1 \
+    matplotlib==3.8.2 \
+    seaborn==0.13.1 \
+    plotly==5.18.0
+
+# Install experiment tracking
+RUN pip install \
+    mlflow==2.10.2 \
+    wandb==0.16.3 \
+    tensorboard==2.15.1
+
+# Copy application code
+COPY src/ ./src/
+COPY configs/ ./configs/
+COPY data/ ./data/
+COPY tests/ ./tests/
+COPY notebooks/ ./notebooks/
+COPY pipelines/ ./pipelines/
+
+# Create necessary directories
+RUN mkdir -p /workspace/logs \
+    /workspace/models \
+    /workspace/outputs \
+    /workspace/cache \
+    /workspace/checkpoints
+
+# Set permissions
+RUN chmod -R 755 /workspace
+
+# Install the package in editable mode
+COPY setup.py README.md ./
+RUN pip install -e .
+
+# Expose ports
+# 8000: vLLM API server
+# 8888: Jupyter Lab
+# 6006: TensorBoard
+# 5000: MLflow UI
+EXPOSE 8000 8888 6006 5000
+
+# Health check
+HEALTHCHECK --interval=30s --timeout=10s --start-period=60s --retries=3 \
+    CMD python -c "import torch; print(torch.cuda.is_available())" || exit 1
+
+# Set GPU environment
+ENV NVIDIA_VISIBLE_DEVICES=all \
+    NVIDIA_DRIVER_CAPABILITIES=compute,utility
+
+# Default command
+CMD ["/bin/bash"]
+
+# Example usage commands (commented)
+# Run vLLM server:
+# docker run --gpus all -p 8000:8000 -v /models:/workspace/models \
+#   llm-proteomics-gpu vllm serve /workspace/models/llama3-70b-instruct \
+#   --host 0.0.0.0 --port 8000
+
+# Run Jupyter Lab:
+# docker run --gpus all -p 8888:8888 -v $(pwd):/workspace \
+#   llm-proteomics-gpu jupyter lab --ip=0.0.0.0 --allow-root --no-browser
+
+# Run evaluation pipeline:
+# docker run --gpus all -v $(pwd):/workspace \
+#   llm-proteomics-gpu python pipelines/run_evaluation.py
+
+# Interactive shell:
+# docker run --gpus all -it -v $(pwd):/workspace llm-proteomics-gpu /bin/bash
