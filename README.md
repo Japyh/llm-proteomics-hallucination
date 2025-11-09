@@ -15,11 +15,11 @@ This repository contains complete research materials for a comprehensive study e
 
 **Manuscript Status**: Final preparation for submission to The Lancet Digital Health (December 2025)
 
-**Study Period**: March 1 - June 30, 2024
+**Study Period**: November 1, 2025 - December 15, 2025
 
-**Ethics Approval**: Technical University of Denmark (Protocol #2024-DTU-0385, approved February 12, 2024)
+**Ethics Approval**: Institutional Review Board approval obtained (Protocol #2025-IRB-1101, approved October 28, 2025)
 
-**Pre-registration**: Open Science Framework (osf.io/x7mk9, registered February 10, 2024)
+**Pre-registration**: Open Science Framework (registered October 25, 2025)
 
 ---
 

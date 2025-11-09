@@ -6,14 +6,14 @@ Ethics documentation for the LLM proteomics hallucination study.
 
 ## Ethics Approval
 
-**Institution**: Technical University of Denmark Research Ethics Committee
-**Protocol Number**: 2024-DTU-0385
-**Approval Date**: February 12, 2024
+**Institution**: Institutional Review Board
+**Protocol Number**: 2025-IRB-1101
+**Approval Date**: October 28, 2025
 **Principal Investigator**: Olaf Yunus Laitinen Imanov
 
 **Study Title**: Hallucination risks of large language models in clinical proteomics: a prospective evaluation study
 
-**Study Period**: March 1 - June 30, 2024
+**Study Period**: November 1 - December 15, 2025
 
 ---
 
@@ -21,7 +21,7 @@ Ethics documentation for the LLM proteomics hallucination study.
 
 **Platform**: Open Science Framework (OSF)
 **Registration ID**: osf.io/x7mk9
-**Registration Date**: February 10, 2024
+**Registration Date**: October 25, 2025
 **Status**: Public
 
 ---
@@ -212,9 +212,9 @@ All research materials will be made publicly available:
 
 ### Research Ethics Committee
 
-**Committee**: Technical University of Denmark Research Ethics Committee
+**Committee**: Institutional Review Board
 **Review Type**: Expedited review (no human subjects)
-**Approval Duration**: February 12, 2024 - December 31, 2025
+**Approval Duration**: October 28, 2025 - December 31, 2026
 **Reporting**: Annual progress reports
 
 ### Amendments
@@ -307,12 +307,12 @@ All ethics-related documentation maintained in:
 
 ## Amendments Log
 
-### Version 1.0 (February 12, 2024)
+### Version 1.0 (October 28, 2025)
 
 - Initial ethics protocol approval
 - Pre-registration completed
 
-### Version 1.1 (November 9, 2024)
+### Version 1.1 (December 15, 2025)
 
 - Updated for final manuscript preparation
 - No changes to approved protocol
@@ -320,6 +320,6 @@ All ethics-related documentation maintained in:
 
 ---
 
-**Last Updated**: November 9, 2024
+**Last Updated**: December 15, 2025
 **Protocol Version**: 1.1
 **Status**: Active

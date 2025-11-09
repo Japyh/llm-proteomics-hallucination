@@ -8,7 +8,7 @@
 
 ### 1.1 Source Material
 Queries were derived from three sources:
-1. **Published literature** (n=400): Extracted from 200 proteomics research articles published 2020-2024
+1. **Published literature** (n=400): Extracted from 200 proteomics research articles published 2020-2025
 2. **Expert-generated** (n=300): Created by three proteomics experts to cover key domains
 3. **Clinical cases** (n=300): Deidentified clinical proteomics questions from academic medical centers
 

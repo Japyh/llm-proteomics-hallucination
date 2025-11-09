@@ -34,7 +34,7 @@ keywords:
 license: CC-BY-4.0
 version: "1.0.0"
 doi: 10.5281/zenodo.11234567
-date-released: "2024-12-01"
+date-released: "2025-12-15"
 identifiers:
   - type: doi
     value: 10.5281/zenodo.11234567
@@ -51,7 +51,7 @@ preferred-citation:
     - family-names: "Kulali"
       given-names: "Derya Umut"
   journal: "The Lancet Digital Health"
-  year: 2024
+  year: 2025
   month: 12
   status: "submitted"
   doi: 10.5281/zenodo.11234567

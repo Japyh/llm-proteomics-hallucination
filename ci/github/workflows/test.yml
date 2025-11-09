@@ -330,9 +330,9 @@ jobs:
           echo "Total coverage: $COVERAGE%"
 
           if (( $(echo "$COVERAGE < 80" | bc -l) )); then
-            echo "⚠️  Coverage is below 80% threshold"
+            echo "WARNING: Coverage is below 80% threshold"
             exit 1
           else
-            echo "✅ Coverage meets 80% threshold"
+            echo "Coverage meets 80% threshold"
           fi
         continue-on-error: true

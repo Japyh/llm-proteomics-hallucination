@@ -118,14 +118,14 @@ class ReproducibilityManager:
         numpy_match = np.allclose(test_array_1, test_array_2)
 
         if python_match and numpy_match:
-            print("✓ Reproducibility validation PASSED")
+            print("Reproducibility validation PASSED")
             self.log_action("validate_reproducibility", {
                 "status": "passed",
                 "test_size": test_size
             })
             return True
         else:
-            print("✗ Reproducibility validation FAILED")
+            print("Reproducibility validation FAILED")
             if not python_match:
                 print("  - Python random mismatch")
             if not numpy_match:

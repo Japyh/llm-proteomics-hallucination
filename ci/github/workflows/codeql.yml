@@ -72,8 +72,8 @@ jobs:
           echo "Checking for critical security issues..."
           # Fail the build if critical vulnerabilities are found
           if grep -q '"level": "error"' sarif-results/${{ matrix.language }}.sarif; then
-            echo "❌ Critical security vulnerabilities found!"
+            echo "ERROR: Critical security vulnerabilities found!"
             exit 1
           else
-            echo "✅ No critical vulnerabilities detected"
+            echo "No critical vulnerabilities detected"
           fi

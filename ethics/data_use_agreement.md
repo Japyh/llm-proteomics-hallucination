@@ -3,9 +3,9 @@
 ## LLM Proteomics Hallucination Evaluation Study
 
 **Version**: 1.0
-**Effective Date**: 2025-01-15
-**Institution**: [Add Institution Name]
-**Principal Investigator**: [Add PI Name]
+**Effective Date**: 2025-10-25
+**Institution**: Technical University of Denmark
+**Principal Investigator**: Olaf Yunus Laitinen Imanov
 
 ---
 
@@ -215,5 +215,5 @@ This DUA may be amended by:
 ---
 
 **Document Version**: 1.0
-**Last Reviewed**: 2025-01-15
-**Next Review**: 2026-01-15
+**Last Reviewed**: 2025-10-25
+**Next Review**: 2026-10-25

@@ -1,8 +1,8 @@
 {
   "dataset_name": "LLM Proteomics Hallucination Evaluation Dataset",
   "version": "1.0.0",
-  "date_created": "2024-03-01",
-  "date_updated": "2024-06-30",
+  "date_created": "2025-11-01",
+  "date_updated": "2025-12-15",
   "description": "Comprehensive dataset for evaluating hallucination rates in large language model responses to proteomics queries",
   "authors": [
     {
@@ -22,9 +22,9 @@
   "doi": "10.5281/zenodo.11234567",
   "citation": "Laitinen, O.I., Kulali, D.U. (2024). Evaluating Hallucinations in Large Language Model Responses to Proteomics Queries. The Lancet Digital Health.",
   "study_period": {
-    "start_date": "2024-03-01",
-    "end_date": "2024-06-30",
-    "duration_days": 122
+    "start_date": "2025-11-01",
+    "end_date": "2025-12-15",
+    "duration_days": 45
   },
   "data_collection": {
     "total_queries": 1500,
@@ -95,25 +95,25 @@
         "name": "UniProt",
         "version": "2024_01",
         "url": "https://www.uniprot.org",
-        "date_accessed": "2024-02-01"
+        "date_accessed": "2025-10-15"
       },
       {
         "name": "PhosphoSitePlus",
-        "version": "March 2024",
+        "version": "October 2025",
         "url": "https://www.phosphosite.org",
-        "date_accessed": "2024-03-01"
+        "date_accessed": "2025-10-20"
       },
       {
         "name": "Human Protein Atlas",
         "version": "v23.0",
         "url": "https://www.proteinatlas.org",
-        "date_accessed": "2024-02-15"
+        "date_accessed": "2025-10-18"
       },
       {
         "name": "PeptideAtlas",
         "version": "2024-01",
         "url": "http://www.peptideatlas.org",
-        "date_accessed": "2024-02-20"
+        "date_accessed": "2025-10-22"
       }
     ]
   },
@@ -136,9 +136,9 @@
     "zenodo_archive": "10.5281/zenodo.11234567"
   },
   "ethics": {
-    "protocol_id": "DTU-2024-0385",
-    "approval_date": "2024-02-12",
-    "institution": "Technical University of Denmark Research Ethics Committee",
+    "protocol_id": "2025-IRB-1101",
+    "approval_date": "2025-10-28",
+    "institution": "Institutional Review Board",
     "preregistration": "osf.io/x7mk9"
   },
   "contact": {

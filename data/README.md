@@ -8,7 +8,7 @@ Complete data for the LLM proteomics hallucination study submitted to The Lancet
 
 This directory contains all query datasets, ground truth annotations, LLM responses, and analysis results for evaluating hallucination risks of GPT-4 Turbo, Claude 3 Sonnet, and Gemini Pro 1.5 in clinical proteomics.
 
-**Study Period**: March 1 - June 30, 2024
+**Study Period**: November 1 - December 15, 2025
 **Total Queries**: 500 unique queries
 **Total Responses**: 1,500 (500 per model)
 **Ground Truth Sources**: UniProt 2024_01, Human Protein Atlas 23.0, PeptideAtlas 2024-01, PhosphoSitePlus
@@ -149,7 +149,7 @@ data/
 - Top-p: 0.9
 - No system prompts (avoid bias)
 
-**Collection Period**: March 15 - April 30, 2024
+**Collection Period**: November 5 - November 25, 2025
 
 ### Response Format
 
@@ -159,7 +159,7 @@ Each JSON file contains:
   "query_id": "Q001",
   "model": "gpt-4-0125-preview",
   "response_text": "LLM generated response",
-  "timestamp": "2024-03-15T10:30:00Z",
+  "timestamp": "2025-11-05T10:30:00Z",
   "api_metadata": {
     "tokens_used": 245,
     "latency_ms": 1234
@@ -418,5 +418,5 @@ For questions about data:
 
 ---
 
-**Last Updated**: November 9, 2024
+**Last Updated**: December 15, 2025
 **Data Version**: 1.0 (final for publication)

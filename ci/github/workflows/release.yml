@@ -48,10 +48,10 @@ jobs:
         run: |
           VERSION="${{ steps.get-version.outputs.version }}"
           if ! [[ $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "❌ Invalid semantic version: $VERSION"
+            echo "ERROR: Invalid semantic version: $VERSION"
             exit 1
           fi
-          echo "✅ Valid semantic version: $VERSION"
+          echo "Valid semantic version: $VERSION"
 
   run-tests:
     name: Run Full Test Suite

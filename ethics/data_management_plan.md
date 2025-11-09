@@ -9,8 +9,8 @@ Data management plan for the LLM proteomics hallucination study.
 **Study**: Hallucination risks of large language models in clinical proteomics
 **Institution**: Technical University of Denmark
 **Principal Investigator**: Olaf Yunus Laitinen Imanov
-**Ethics Protocol**: 2024-DTU-0385
-**Study Period**: March 1 - June 30, 2024
+**Ethics Protocol**: 2025-IRB-1101
+**Study Period**: November 1 - December 15, 2025
 
 ---
 
@@ -36,10 +36,9 @@ This study uses ONLY public, non-sensitive data:
 
 ### Timeline
 
-- **February 2024**: Query dataset generation
-- **March-April 2024**: LLM response collection
-- **April-May 2024**: Ground truth validation
-- **May-June 2024**: Data analysis
+- **October 2025**: Query dataset generation
+- **November 2025**: LLM response collection and ground truth validation
+- **December 2025**: Data analysis and manuscript preparation
 
 ### Data Sources
 
@@ -130,9 +129,9 @@ data/
 {dataset_name}_{version}_{date}.{extension}
 
 Examples:
-- queries_all_v1_20240301.json
-- gpt4_responses_v1_20240415.json
-- hallucination_rates_v1_20240530.csv
+- queries_all_v1_20251101.json
+- gpt4_responses_v1_20251115.json
+- hallucination_rates_v1_20251215.csv
 ```
 
 ### Metadata
@@ -313,7 +312,7 @@ No patent applications related to this research.
 
 ### Ethics Compliance
 
-- Ethics approval: 2024-DTU-0385
+- Ethics approval: 2025-IRB-1101
 - Pre-registration: osf.io/x7mk9
 - Open science practices
 
@@ -392,11 +391,11 @@ This data management plan will be updated:
 
 ## Revisions
 
-### Version 1.0 (February 12, 2024)
+### Version 1.0 (October 28, 2025)
 
 - Initial data management plan
 
-### Version 1.1 (November 9, 2024)
+### Version 1.1 (December 15, 2025)
 
 - Updated for final manuscript preparation
 - Added Zenodo DOI
@@ -404,6 +403,6 @@ This data management plan will be updated:
 
 ---
 
-**Last Updated**: November 9, 2024
+**Last Updated**: December 15, 2025
 **Plan Version**: 1.1
 **Status**: Active

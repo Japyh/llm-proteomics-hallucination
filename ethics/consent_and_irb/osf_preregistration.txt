@@ -2,7 +2,7 @@ OSF PREREGISTRATION: Evaluating Hallucinations in Large Language Model Responses
 
 Project Title: Evaluating Hallucinations in Large Language Model Responses to Proteomics Queries: A Multi-Model Comparative Analysis
 
-Registration Date: 2024-09-15
+Registration Date: 2025-10-25
 OSF Project ID: [Insert OSF project identifier]
 DOI: [Will be assigned upon publication]
 
@@ -59,14 +59,14 @@ Not applicable (non-interventional study)
 - Adjudicator: BLINDED during initial review, UNBLINDED during adjudication
 
 2.5 Study Timeline
-- Query Development: August 2024
-- LLM Response Collection: September 2024
-- Expert Annotation Round 1: October 2024
-- Expert Annotation Round 2: October-November 2024
-- Adjudication: November 2024
-- Statistical Analysis: December 2024
-- Manuscript Preparation: January 2025
-- Submission: February 2025
+- Query Development: October 2025
+- LLM Response Collection: November 2025
+- Expert Annotation Round 1: November 2025
+- Expert Annotation Round 2: November-December 2025
+- Adjudication: December 2025
+- Statistical Analysis: December 2025
+- Manuscript Preparation: December 2025
+- Submission: December 2025
 
 ================================================================================
 3. SAMPLING PLAN

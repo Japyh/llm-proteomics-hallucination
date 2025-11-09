@@ -3,7 +3,7 @@
 ## LLM Proteomics Hallucination Study - Data Privacy Protocol
 
 **Version**: 1.0
-**Effective Date**: 2025-01-15
+**Effective Date**: 2025-10-25
 **Compliance**: HIPAA Privacy Rule 45 CFR §164.514(b), Safe Harbor Method
 
 ---
@@ -48,14 +48,14 @@ After deidentification, no knowledge available to the data custodian could be us
 #### Mass Spectrometry Files
 
 **Original Information**:
-- Patient ID: `PT-2024-001234`
-- Acquisition date: `2024-03-15 14:32:18`
+- Patient ID: `PT-2025-001234`
+- Acquisition date: `2025-11-15 14:32:18`
 - Instrument: `Orbitrap Fusion Lumos S/N FL12345`
 - Operator: `Jane Smith`
 
 **Deidentified**:
 - Study ID: `STUDY_0001` (randomly assigned)
-- Acquisition date: `2024-Q1` (quarter only)
+- Acquisition date: `2025-Q4` (quarter only)
 - Instrument: `Orbitrap Fusion Lumos` (serial number removed)
 - Operator: `[REMOVED]`
 
@@ -86,7 +86,7 @@ def deidentify_ms_file(file):
 **Original Information**:
 ```
 Patient: John Doe, MRN: 12345678
-Sample Collection: 2024-03-15
+Sample Collection: 2025-11-15
 Diagnosis: Stage II Pancreatic Adenocarcinoma
 Physician: Dr. Sarah Johnson
 Hospital: Memorial Hospital, Boston, MA
@@ -95,7 +95,7 @@ Hospital: Memorial Hospital, Boston, MA
 **Deidentified**:
 ```
 Study ID: STUDY_0001
-Sample Collection: 2024-Q1
+Sample Collection: 2025-Q4
 Diagnosis: Pancreatic Cancer (generalized)
 Physician: [REMOVED]
 Location: Massachusetts, USA
@@ -136,7 +136,7 @@ STUDY_0001,45-49,Rare Disease - Hereditary Cancer,MA,12.4
 **Example Transformation**:
 
 Original query:
-> "What is the significance of elevated CA-125 (125 U/mL) in a 52-year-old woman with a family history of ovarian cancer, seen at Dana-Farber Cancer Institute on March 15, 2024?"
+> "What is the significance of elevated CA-125 (125 U/mL) in a 52-year-old woman with a family history of ovarian cancer, seen at Dana-Farber Cancer Institute on November 15, 2025?"
 
 Deidentified query:
 > "What is the significance of elevated CA-125 (125 U/mL) in a woman aged 50-55 with a family history of ovarian cancer?"
@@ -332,8 +332,8 @@ All deidentification actions logged:
 ### 10.2 Version Control
 
 - **Deidentification Script**: Version 1.0.0 (Git hash: abc123)
-- **Last Updated**: 2025-01-15
-- **Validation Date**: 2025-01-20
+- **Last Updated**: 2025-10-25
+- **Validation Date**: 2025-10-28
 
 ## 11. Residual Risk Assessment
 
@@ -393,5 +393,5 @@ MRN:?\s*\d{6,10}
 ---
 
 **Document Version**: 1.0
-**Last Updated**: 2025-01-15
+**Last Updated**: 2025-10-25
 **Approved By**: [Privacy Officer Name]
