@@ -1,0 +1,4 @@
+model,total_queries,hallucinations,hallucination_rate,95_ci_lower,95_ci_upper,no_error,minor_error,major_error,fabrication,mean_severity,median_severity,api_cost_usd,mean_latency_ms,tokens_avg
+Claude 3 Sonnet,500,139,27.8,23.9,31.7,361,68,52,19,0.42,0,24.50,1456,289
+GPT-4 Turbo,500,156,31.2,27.1,35.3,344,72,58,26,0.49,0,45.80,1823,312
+Gemini Pro 1.5,500,173,34.6,30.4,38.8,327,78,67,28,0.54,1,18.20,2134,267

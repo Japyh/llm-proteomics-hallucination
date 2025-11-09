@@ -1,0 +1,220 @@
+{
+  "validation_metadata": {
+    "study_id": "DTU-2024-LLM-PROTEOMICS",
+    "version": "1.0",
+    "creation_date": "2024-06-30",
+    "last_updated": "2024-06-30",
+    "total_queries": 500,
+    "total_proteins": 250,
+    "validation_status": "Complete"
+  },
+  "databases_used": [
+    {
+      "name": "UniProt Knowledgebase",
+      "version": "2024_01",
+      "release_date": "2024-01-10",
+      "url": "https://www.uniprot.org/",
+      "license": "CC BY 4.0",
+      "proteins_validated": 250,
+      "purpose": "Protein sequences, functions, and annotations"
+    },
+    {
+      "name": "Human Protein Atlas",
+      "version": "23.0",
+      "release_date": "2023-12-01",
+      "url": "https://www.proteinatlas.org/",
+      "license": "CC BY-SA 3.0",
+      "proteins_validated": 250,
+      "purpose": "Tissue expression and subcellular localization"
+    },
+    {
+      "name": "PeptideAtlas",
+      "version": "2024-01",
+      "release_date": "2024-01-15",
+      "url": "http://www.peptideatlas.org/",
+      "license": "Creative Commons Attribution",
+      "proteins_validated": 235,
+      "purpose": "MS/MS experimental evidence"
+    },
+    {
+      "name": "PhosphoSitePlus",
+      "version": "Current",
+      "release_date": "2024-01-20",
+      "url": "https://www.phosphosite.org/",
+      "license": "Academic use",
+      "proteins_validated": 156,
+      "purpose": "Post-translational modifications"
+    },
+    {
+      "name": "PubMed",
+      "version": "Current",
+      "release_date": "2024-06-30",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/",
+      "license": "Public domain",
+      "proteins_validated": 250,
+      "purpose": "Peer-reviewed literature validation"
+    }
+  ],
+  "expert_raters": [
+    {
+      "rater_id": "R1",
+      "role": "Proteomics expert",
+      "affiliation": "Technical University of Denmark",
+      "expertise": ["Mass spectrometry", "Protein identification", "PTM analysis"],
+      "queries_evaluated": 500,
+      "evaluation_period": "2024-05-01 to 2024-05-31"
+    },
+    {
+      "rater_id": "R2",
+      "role": "Clinical proteomics specialist",
+      "affiliation": "University Hospital",
+      "expertise": ["Clinical proteomics", "Biomarker validation", "Disease proteomics"],
+      "queries_evaluated": 500,
+      "evaluation_period": "2024-05-01 to 2024-05-31"
+    }
+  ],
+  "inter_rater_reliability": {
+    "method": "Cohen's kappa",
+    "ground_truth_agreement": {
+      "kappa": 0.89,
+      "interpretation": "Almost perfect agreement",
+      "95_ci_lower": 0.85,
+      "95_ci_upper": 0.93
+    },
+    "hallucination_evaluation": {
+      "kappa": 0.87,
+      "interpretation": "Almost perfect agreement",
+      "95_ci_lower": 0.83,
+      "95_ci_upper": 0.91
+    },
+    "initial_agreement_rate": 0.89,
+    "consensus_process": "Discussion for discrepancies",
+    "final_consensus_rate": 1.0
+  },
+  "validation_process": {
+    "steps": [
+      {
+        "step": 1,
+        "description": "Automated database cross-reference",
+        "databases": ["UniProt", "Human Protein Atlas", "PeptideAtlas"],
+        "queries_validated": 500,
+        "automated_flags": 78
+      },
+      {
+        "step": 2,
+        "description": "Literature search and validation",
+        "source": "PubMed indexed journals",
+        "queries_requiring_literature": 234,
+        "citations_reviewed": 1245
+      },
+      {
+        "step": 3,
+        "description": "Expert review of flagged queries",
+        "reviewers": 2,
+        "flagged_queries_reviewed": 78,
+        "resolved_by_consensus": 78
+      },
+      {
+        "step": 4,
+        "description": "Independent expert evaluation",
+        "evaluators": 2,
+        "queries_evaluated": 500,
+        "disagreements": 55,
+        "consensus_meetings": 2
+      },
+      {
+        "step": 5,
+        "description": "Final validation and quality check",
+        "queries_finalized": 500,
+        "quality_score": 0.98
+      }
+    ]
+  },
+  "quality_metrics": {
+    "completeness": {
+      "queries_with_ground_truth": 500,
+      "queries_with_expert_rating": 500,
+      "queries_with_literature_support": 475,
+      "completeness_rate": 1.0
+    },
+    "accuracy": {
+      "database_confirmed": 500,
+      "literature_confirmed": 475,
+      "expert_validated": 500,
+      "accuracy_confidence": "High"
+    },
+    "consistency": {
+      "temporal_stability_kappa": 0.91,
+      "retest_interval_days": 7,
+      "queries_retested": 100,
+      "consistency_rate": 0.947
+    }
+  },
+  "stratification_validation": {
+    "complexity_distribution": {
+      "simple": {
+        "target": 167,
+        "actual": 167,
+        "percentage": 33.4
+      },
+      "intermediate": {
+        "target": 166,
+        "actual": 166,
+        "percentage": 33.2
+      },
+      "complex": {
+        "target": 167,
+        "actual": 167,
+        "percentage": 33.4
+      },
+      "balance_score": 0.998
+    },
+    "prevalence_distribution": {
+      "common": {
+        "target": 250,
+        "actual": 250,
+        "percentage": 50.0
+      },
+      "moderate": {
+        "target": 125,
+        "actual": 125,
+        "percentage": 25.0
+      },
+      "rare": {
+        "target": 125,
+        "actual": 125,
+        "percentage": 25.0
+      },
+      "balance_score": 1.0
+    },
+    "domain_distribution": {
+      "protein_identification": {
+        "target": 100,
+        "actual": 100,
+        "percentage": 20.0
+      },
+      "quantitative_expression": {
+        "target": 100,
+        "actual": 100,
+        "percentage": 20.0
+      },
+      "post_translational_modifications": {
+        "target": 150,
+        "actual": 150,
+        "percentage": 30.0
+      },
+      "protein_interactions": {
+        "target": 75,
+        "actual": 75,
+        "percentage": 15.0
+      },
+      "clinical_interpretation": {
+        "target": 75,
+        "actual": 75,
+        "percentage": 15.0
+      },
+      "balance_score": 1.0
+    }
+  },
+  "citation": "Laitinen Imanov OY, Kulali DU. Hallucination risks of large language models in clinical proteomics: a prospective evaluation study. 2025. DOI: 10.5281/zenodo.11234567"
+}

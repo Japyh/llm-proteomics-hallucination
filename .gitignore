@@ -92,6 +92,10 @@ data/processed/*
 !data/results/protein_identifications.csv
 !data/results/peptide_matches.csv
 !data/results/quantification_results.csv
+!data/results/hallucination_rates.csv
+!data/results/severity_classifications.csv
+!data/results/statistical_analysis.csv
+!data/results/model_comparison.csv
 !data/ground_truth/*.csv
 !data/llm_responses/*.csv
 !data/**/.gitkeep

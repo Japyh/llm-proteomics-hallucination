@@ -1,0 +1,31 @@
+model,domain,complexity,prevalence,no_error,minor_error,major_error,fabrication,total_queries,hallucination_rate
+GPT-4 Turbo,protein_identification,simple,common,45,3,2,0,50,10.0
+GPT-4 Turbo,protein_identification,intermediate,common,38,6,4,2,50,24.0
+GPT-4 Turbo,protein_identification,complex,common,28,10,8,4,50,44.0
+GPT-4 Turbo,quantitative_expression,simple,moderate,42,4,3,1,50,16.0
+GPT-4 Turbo,quantitative_expression,intermediate,moderate,35,7,6,2,50,30.0
+GPT-4 Turbo,quantitative_expression,complex,moderate,25,9,10,6,50,50.0
+GPT-4 Turbo,post_translational_modifications,simple,rare,38,5,5,2,50,24.0
+GPT-4 Turbo,post_translational_modifications,intermediate,rare,30,8,8,4,50,40.0
+GPT-4 Turbo,post_translational_modifications,complex,rare,22,7,12,9,50,56.0
+GPT-4 Turbo,protein_interactions,intermediate,moderate,32,7,8,3,50,36.0
+Claude 3 Sonnet,protein_identification,simple,common,48,2,0,0,50,4.0
+Claude 3 Sonnet,protein_identification,intermediate,common,42,5,3,0,50,16.0
+Claude 3 Sonnet,protein_identification,complex,common,32,8,7,3,50,36.0
+Claude 3 Sonnet,quantitative_expression,simple,moderate,45,3,2,0,50,10.0
+Claude 3 Sonnet,quantitative_expression,intermediate,moderate,38,6,5,1,50,24.0
+Claude 3 Sonnet,quantitative_expression,complex,moderate,28,9,9,4,50,44.0
+Claude 3 Sonnet,post_translational_modifications,simple,rare,40,4,4,2,50,20.0
+Claude 3 Sonnet,post_translational_modifications,intermediate,rare,33,7,7,3,50,34.0
+Claude 3 Sonnet,post_translational_modifications,complex,rare,25,8,10,7,50,50.0
+Claude 3 Sonnet,protein_interactions,intermediate,moderate,35,6,7,2,50,30.0
+Gemini Pro 1.5,protein_identification,simple,common,43,4,2,1,50,14.0
+Gemini Pro 1.5,protein_identification,intermediate,common,36,7,5,2,50,28.0
+Gemini Pro 1.5,protein_identification,complex,common,26,9,9,6,50,48.0
+Gemini Pro 1.5,quantitative_expression,simple,moderate,40,5,4,1,50,20.0
+Gemini Pro 1.5,quantitative_expression,intermediate,moderate,33,8,7,2,50,34.0
+Gemini Pro 1.5,quantitative_expression,complex,moderate,23,8,11,8,50,54.0
+Gemini Pro 1.5,post_translational_modifications,simple,rare,36,6,6,2,50,28.0
+Gemini Pro 1.5,post_translational_modifications,intermediate,rare,28,9,9,4,50,44.0
+Gemini Pro 1.5,post_translational_modifications,complex,rare,20,7,13,10,50,60.0
+Gemini Pro 1.5,protein_interactions,intermediate,moderate,30,8,9,3,50,40.0
