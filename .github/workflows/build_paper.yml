@@ -62,13 +62,13 @@ jobs:
         fi
 
     - name: Upload PDF artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: paper-pdf
         path: paper/main.pdf
 
     - name: Upload figures
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: figures
         path: paper/figures/output/
