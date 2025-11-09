@@ -60,7 +60,7 @@ def extract_doi(entry: Dict) -> Optional[str]:
     
     # Remove URL prefix if present
     doi = re.sub(r'^https?://doi.org/', '', doi)
-    doi = re.sub(r'^https?://dx.doi.org/', '', doi)
+    doi = re.sub(r'^https?://dx\.doi\.org/', '', doi)
     
     return doi if doi else None
 
