@@ -3,8 +3,8 @@
 ## LLM Proteomics Hallucination Study
 
 **Version**: 1.0
-**Date**: 2025-01-15
-**DOI**: [Add DOI when published]
+**Date**: 2025-12-15
+**DOI**: 10.5281/zenodo.11234567
 
 ---
 

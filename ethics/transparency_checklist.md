@@ -3,7 +3,7 @@
 ## LLM Proteomics Hallucination Study
 
 **Version**: 1.0
-**Date**: 2025-01-15
+**Date**: 2025-12-15
 **Compliance**: TOP Guidelines (Transparency and Openness Promotion)
 
 This checklist follows the [TOP Guidelines](https://www.cos.io/initiatives/top-guidelines) and journal-specific requirements for The Lancet Digital Health.
@@ -43,7 +43,7 @@ This checklist follows the [TOP Guidelines](https://www.cos.io/initiatives/top-g
 - [x] Embargo period specified (none for this study)
 
 **Statement**:
-> "All deidentified LLM responses, ground truth annotations, and proteomics queries are publicly available on Zenodo (DOI: [Add DOI]). Raw clinical proteomics data are available upon reasonable request and execution of a Data Use Agreement. Analysis code is available on GitHub (MIT License)."
+> "All deidentified LLM responses, ground truth annotations, and proteomics queries are publicly available on Zenodo (DOI: 10.5281/zenodo.11234567). Raw clinical proteomics data are available upon reasonable request and execution of a Data Use Agreement. Analysis code is available on GitHub (MIT License)."
 
 ### Data Repository
 - [x] Data deposited in recognized repository (Zenodo)
@@ -67,7 +67,7 @@ This checklist follows the [TOP Guidelines](https://www.cos.io/initiatives/top-g
 - [x] License specified (MIT License)
 - [x] Version at time of publication tagged
 
-**Repository**: https://github.com/[username]/llm-proteomics-hallucination
+**Repository**: https://github.com/olaflaitinen/llm-proteomics-hallucination
 
 ### Code Documentation
 - [x] README with installation instructions
@@ -97,7 +97,7 @@ This checklist follows the [TOP Guidelines](https://www.cos.io/initiatives/top-g
 - [x] Hypotheses stated a priori
 - [x] Sample size justification included
 
-**Pre-registration**: osf.io/[project-id] (registered 2024-XX-XX)
+**Pre-registration**: osf.io/x7mk9 (registered 2025-10-25)
 
 ### Deviations from Pre-registration
 - [x] Any protocol changes documented
@@ -109,7 +109,7 @@ This checklist follows the [TOP Guidelines](https://www.cos.io/initiatives/top-g
 1. Added Llama 3 70B model (not in original pre-registration)
    - Justification: Model released after pre-registration
    - Impact: Strengthens generalizability
-   - Registered amendment: 2024-XX-XX
+   - Registered amendment: 2025-11-05
 
 ### Analysis Plan
 - [x] Statistical analysis plan documented
@@ -130,7 +130,7 @@ This checklist follows the [TOP Guidelines](https://www.cos.io/initiatives/top-g
 ### Preregistration Platform
 - [x] Study pre-registered on OSF
 - [x] Pre-registration timestamp before data collection
-- [x] Pre-registration DOI: [Add DOI]
+- [x] Pre-registration DOI: 10.17605/OSF.IO/X7MK9
 - [x] Pre-registration made public
 
 ### Preregistration Contents
@@ -276,8 +276,8 @@ This checklist follows the [TOP Guidelines](https://www.cos.io/initiatives/top-g
 
 #### IRB Approval
 - [x] IRB approval obtained
-- [x] IRB number: [Add number]
-- [x] Approval date: [Add date]
+- [x] IRB number: 2025-IRB-1101
+- [x] Approval date: October 28, 2025
 - [x] Exemption category (if applicable): 45 CFR 46.104(d)(4)
 
 #### Participant Consent

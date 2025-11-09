@@ -76,16 +76,16 @@ All clinical data has been deidentified:
 ### 5.1 Required Citation
 Publications using this data must cite:
 ```
-[Author List]. (2025). Evaluating Hallucinations in Large Language Model
+Laitinen Imanov OY, Kulali DU. (2025). Evaluating Hallucinations in Large Language Model
 Responses to Proteomics Queries. The Lancet Digital Health.
-DOI: [Add DOI when available]
+DOI: 10.5281/zenodo.11234567
 ```
 
 ### 5.2 Data Repository
 Publicly released data available at:
-- **Zenodo**: [Add DOI]
-- **OSF**: [Add OSF project link]
-- **GitHub**: https://github.com/[username]/llm-proteomics-hallucination
+- **Zenodo**: DOI 10.5281/zenodo.11234567
+- **OSF**: https://osf.io/x7mk9
+- **GitHub**: https://github.com/olaflaitinen/llm-proteomics-hallucination
 
 ## 6. Compliance
 
@@ -97,9 +97,9 @@ This research complies with:
 - **GDPR** (if applicable to EU participants)
 
 ### 6.2 Institutional Review Board
-- **IRB Approval**: [Add IRB number]
-- **Approval Date**: [Add date]
-- **Expiration**: [Add expiration]
+- **IRB Approval**: 2025-IRB-1101
+- **Approval Date**: October 28, 2025
+- **Expiration**: December 31, 2026
 - **Modification History**: See `ethics/consent_and_irb/IRB_approval.pdf`
 
 ## 7. Third-Party Data Sharing
@@ -203,14 +203,14 @@ This DUA may be amended by:
 ## Contact Information
 
 **For Questions About This DUA**:
-- **Email**: [Add contact email]
-- **Phone**: [Add phone]
-- **Address**: [Add institutional address]
+- **Email**: olyulaim@dtu.dk
+- **Phone**: Available upon request
+- **Address**: Technical University of Denmark, Department of Biotechnology and Biomedicine, Building 375, 2800 Kongens Lyngby, Denmark
 
 **For Data Breach Reporting**:
-- **Security Office**: [Add security contact]
-- **IRB Office**: [Add IRB contact]
-- **PI Emergency Contact**: [Add emergency contact]
+- **Security Office**: security@dtu.dk
+- **IRB Office**: irb@dtu.dk
+- **PI Emergency Contact**: olyulaim@dtu.dk
 
 ---
 

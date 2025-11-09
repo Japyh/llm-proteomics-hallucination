@@ -163,8 +163,8 @@ Before submission to The Lancet Digital Health:
 ## Contact
 
 For compilation issues:
-- GitHub Issues: [Add repository URL]
-- Email: [Add contact]
+- GitHub Issues: https://github.com/olaflaitinen/llm-proteomics-hallucination/issues
+- Email: olyulaim@dtu.dk
 
 ---
 

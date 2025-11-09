@@ -100,5 +100,5 @@ sudo usermod -aG docker $USER
 ## Contact
 
 For pipeline questions:
-- Issues: GitHub repository
-- Email: [Add contact]
+- Issues: https://github.com/olaflaitinen/llm-proteomics-hallucination/issues
+- Email: olyulaim@dtu.dk
