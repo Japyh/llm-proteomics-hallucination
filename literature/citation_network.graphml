@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns
+                             http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd">
+  <key id="title" for="node" attr.name="title" attr.type="string"/>
+  <key id="authors" for="node" attr.name="authors" attr.type="string"/>
+  <key id="year" for="node" attr.name="year" attr.type="int"/>
+  <key id="doi" for="node" attr.name="doi" attr.type="string"/>
+  <key id="category" for="node" attr.name="category" attr.type="string"/>
+  <key id="citations" for="node" attr.name="citations" attr.type="int"/>
+  <key id="relationship" for="edge" attr.name="relationship" attr.type="string"/>
+  
+  <graph id="LLM_Proteomics_Citations" edgedefault="directed">
+    
+    <!-- LLM Hallucination Papers -->
+    <node id="ji2023survey">
+      <data key="title">Survey of Hallucination in Natural Language Generation</data>
+      <data key="authors">Ji et al.</data>
+      <data key="year">2023</data>
+      <data key="doi">10.1145/3571730</data>
+      <data key="category">LLM_Hallucination</data>
+      <data key="citations">542</data>
+    </node>
+    
+    <node id="zhang2023siren">
+      <data key="title">Siren's Song in the AI Ocean: A Survey on Hallucination in Large Language Models</data>
+      <data key="authors">Zhang et al.</data>
+      <data key="year">2023</data>
+      <data key="doi">arXiv:2309.01219</data>
+      <data key="category">LLM_Hallucination</data>
+      <data key="citations">318</data>
+    </node>
+    
+    <node id="azamfirei2023large">
+      <data key="title">Large language models and the perils of their hallucinations</data>
+      <data key="authors">Azamfirei et al.</data>
+      <data key="year">2023</data>
+      <data key="doi">10.1097/CCM.0000000000005830</data>
+      <data key="category">LLM_Healthcare</data>
+      <data key="citations">124</data>
+    </node>
+    
+    <!-- LLM in Biomedicine -->
+    <node id="singhal2023large">
+      <data key="title">Large language models encode clinical knowledge</data>
+      <data key="authors">Singhal et al.</data>
+      <data key="year">2023</data>
+      <data key="doi">10.1038/s41586-023-06291-2</data>
+      <data key="category">LLM_Healthcare</data>
+      <data key="citations">897</data>
+    </node>
+    
+    <node id="thirunavukarasu2023large">
+      <data key="title">Large language models in medicine</data>
+      <data key="authors">Thirunavukarasu et al.</data>
+      <data key="year">2023</data>
+      <data key="doi">10.1038/s41591-023-02448-8</data>
+      <data key="category">LLM_Healthcare</data>
+      <data key="citations">623</data>
+    </node>
+    
+    <!-- LLM in Proteomics/Bioinformatics -->
+    <node id="abellhart2023proteins">
+      <data key="title">Proteins, Pathways, and Phenotypes: Evaluating Large Language Models on Proteomics Tasks</data>
+      <data key="authors">Abell-Hart et al.</data>
+      <data key="year">2023</data>
+      <data key="doi">10.1101/2023.08.30.555625</data>
+      <data key="category">LLM_Proteomics</data>
+      <data key="citations">15</data>
+    </node>
+    
+    <node id="taylor2022galactica">
+      <data key="title">Galactica: A Large Language Model for Science</data>
+      <data key="authors">Taylor et al.</data>
+      <data key="year">2022</data>
+      <data key="doi">arXiv:2211.09085</data>
+      <data key="category">LLM_Science</data>
+      <data key="citations">412</data>
+    </node>
+    
+    <!-- Proteomics Methods -->
+    <node id="cox2008maxquant">
+      <data key="title">MaxQuant enables high peptide identification rates</data>
+      <data key="authors">Cox &amp; Mann</data>
+      <data key="year">2008</data>
+      <data key="doi">10.1038/nbt.1511</data>
+      <data key="category">Proteomics_Methods</data>
+      <data key="citations">15234</data>
+    </node>
+    
+    <node id="rost2016openms">
+      <data key="title">OpenMS: a flexible open-source software platform for mass spectrometry data analysis</data>
+      <data key="authors">Rost et al.</data>
+      <data key="year">2016</data>
+      <data key="doi">10.1038/nmeth.3959</data>
+      <data key="category">Proteomics_Methods</data>
+      <data key="citations">2134</data>
+    </node>
+    
+    <!-- LLM Evaluation Methods -->
+    <node id="lin2022truthfulqa">
+      <data key="title">TruthfulQA: Measuring How Models Mimic Human Falsehoods</data>
+      <data key="authors">Lin et al.</data>
+      <data key="year">2022</data>
+      <data key="doi">10.18653/v1/2022.acl-long.229</data>
+      <data key="category">LLM_Evaluation</data>
+      <data key="citations">687</data>
+    </node>
+    
+    <node id="guo2017calibration">
+      <data key="title">On Calibration of Modern Neural Networks</data>
+      <data key="authors">Guo et al.</data>
+      <data key="year">2017</data>
+      <data key="doi">10.48550/arXiv.1706.04599</data>
+      <data key="category">ML_Calibration</data>
+      <data key="citations">3421</data>
+    </node>
+    
+    <!-- Clinical Decision Support -->
+    <node id="rajkomar2019machine">
+      <data key="title">Machine Learning in Medicine</data>
+      <data key="authors">Rajkomar et al.</data>
+      <data key="year">2019</data>
+      <data key="doi">10.1056/NEJMra1814259</data>
+      <data key="category">ML_Healthcare</data>
+      <data key="citations">1876</data>
+    </node>
+    
+    <!-- Biomarkers -->
+    <node id="rifai2006protein">
+      <data key="title">Protein biomarker discovery and validation: the long and uncertain path to clinical utility</data>
+      <data key="authors">Rifai et al.</data>
+      <data key="year">2006</data>
+      <data key="doi">10.1038/nbt1235</data>
+      <data key="category">Proteomics_Biomarkers</data>
+      <data key="citations">892</data>
+    </node>
+    
+    <!-- Edges (Citations) -->
+    <edge source="ji2023survey" target="zhang2023siren">
+      <data key="relationship">cited_by</data>
+    </edge>
+    
+    <edge source="abellhart2023proteins" target="ji2023survey">
+      <data key="relationship">cites</data>
+    </edge>
+    
+    <edge source="abellhart2023proteins" target="singhal2023large">
+      <data key="relationship">cites</data>
+    </edge>
+    
+    <edge source="abellhart2023proteins" target="taylor2022galactica">
+      <data key="relationship">cites</data>
+    </edge>
+    
+    <edge source="azamfirei2023large" target="singhal2023large">
+      <data key="relationship">cites</data>
+    </edge>
+    
+    <edge source="singhal2023large" target="lin2022truthfulqa">
+      <data key="relationship">cites</data>
+    </edge>
+    
+    <edge source="singhal2023large" target="rajkomar2019machine">
+      <data key="relationship">cites</data>
+    </edge>
+    
+    <edge source="thirunavukarasu2023large" target="singhal2023large">
+      <data key="relationship">cites</data>
+    </edge>
+    
+    <edge source="abellhart2023proteins" target="cox2008maxquant">
+      <data key="relationship">cites</data>
+    </edge>
+    
+    <edge source="abellhart2023proteins" target="rost2016openms">
+      <data key="relationship">cites</data>
+    </edge>
+    
+  </graph>
+</graphml>

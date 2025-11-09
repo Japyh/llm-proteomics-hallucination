@@ -1,0 +1,346 @@
+OSF PREREGISTRATION: Evaluating Hallucinations in Large Language Model Responses to Proteomics Queries
+
+Project Title: Evaluating Hallucinations in Large Language Model Responses to Proteomics Queries: A Multi-Model Comparative Analysis
+
+Registration Date: 2024-09-15
+OSF Project ID: [Insert OSF project identifier]
+DOI: [Will be assigned upon publication]
+
+================================================================================
+1. STUDY INFORMATION
+================================================================================
+
+1.1 Study Title
+Evaluating Hallucinations in Large Language Model Responses to Proteomics Queries: A Multi-Model Comparative Analysis
+
+1.2 Authors
+- Principal Investigator: [Name, Institution, ORCID]
+- Co-Investigators: [Names, Institutions, ORCIDs]
+- Statistician: [Name, Institution, ORCID]
+- Domain Experts (Proteomics): [Names, Institutions]
+
+1.3 Research Questions
+Primary Research Question:
+What is the rate and severity of hallucinations in large language model (LLM) responses to proteomics-related queries across different models?
+
+Secondary Research Questions:
+1. How does hallucination rate vary by query complexity (low, medium, high)?
+2. Which proteomics domains are most susceptible to LLM hallucinations?
+3. How well calibrated are LLM confidence scores relative to actual accuracy?
+4. What types of hallucinations pose the greatest clinical safety risks?
+
+1.4 Hypotheses
+H1 (Primary): GPT-4 will exhibit a lower hallucination rate than smaller open-source models (Llama 3 70B, Mistral Large 2) across all proteomics query types.
+
+H2: Hallucination rate will increase with query complexity, with high-complexity queries showing ≥2× the hallucination rate of low-complexity queries.
+
+H3: Clinical safety-related hallucinations (e.g., biomarker interpretation, disease diagnosis) will be rated as more severe than technical hallucinations (e.g., protein nomenclature errors).
+
+H4: LLM confidence scores will be poorly calibrated, with models exhibiting overconfidence (confidence > actual accuracy) particularly for hallucinated responses.
+
+H5: Proprietary models (GPT-4, Claude 3 Sonnet, Gemini 1.5 Pro) will demonstrate better calibration than open-source models.
+
+================================================================================
+2. DESIGN PLAN
+================================================================================
+
+2.1 Study Type
+Observational, cross-sectional comparative evaluation
+
+2.2 Study Design
+Multi-model LLM evaluation with expert annotation and statistical analysis
+
+2.3 Randomization
+Not applicable (non-interventional study)
+
+2.4 Blinding
+- Annotators: BLINDED to model identity during annotation
+- Statistician: NOT BLINDED (single-team study)
+- Adjudicator: BLINDED during initial review, UNBLINDED during adjudication
+
+2.5 Study Timeline
+- Query Development: August 2024
+- LLM Response Collection: September 2024
+- Expert Annotation Round 1: October 2024
+- Expert Annotation Round 2: October-November 2024
+- Adjudication: November 2024
+- Statistical Analysis: December 2024
+- Manuscript Preparation: January 2025
+- Submission: February 2025
+
+================================================================================
+3. SAMPLING PLAN
+================================================================================
+
+3.1 Data Collection Procedures
+Proteomics queries will be generated through:
+1. Systematic extraction from published proteomics literature (n=400)
+2. Expert-generated queries covering key proteomics domains (n=300)
+3. Real-world clinical proteomics questions (deidentified) (n=300)
+
+Total: 1,000 queries
+
+3.2 Sample Size Rationale
+Power analysis:
+- Effect size (Cohen's h): 0.3 (medium)
+- Power: 0.80
+- Alpha: 0.01 (Bonferroni correction for 5 models)
+- Required n per model: 175 queries
+- Target n per model: 1,000 queries (over-sampling for subgroup analyses)
+
+With 1,000 queries × 5 models = 5,000 responses, we have >90% power to detect medium effect sizes.
+
+3.3 Sampling Method
+Stratified sampling to ensure balanced representation:
+- Query complexity: Low (33%), Medium (34%), High (33%)
+- Proteomics domains: MS methods (20%), PTMs (15%), Biomarkers (20%), Bioinformatics (15%), Clinical applications (20%), Other (10%)
+- Question type: Factual (40%), Interpretive (30%), Procedural (30%)
+
+3.4 Data Exclusion Criteria
+Queries will be excluded if:
+- Contain identifiable patient information (PHI)
+- Are ambiguous or unanswerable even by experts
+- Are not related to proteomics (quality control failures)
+- Elicit refusals from all LLMs (e.g., requests for medical advice)
+
+LLM responses will be excluded if:
+- API errors result in incomplete responses
+- Responses are <10 words (likely errors)
+- Responses are >5,000 words (likely generation failures)
+
+Maximum allowable exclusions: 5% of initial dataset
+
+================================================================================
+4. VARIABLES
+================================================================================
+
+4.1 Independent Variables (Predictors)
+1. LLM Model: Categorical (5 levels)
+   - GPT-4 Turbo (gpt-4-turbo-2024-04-09)
+   - Claude 3 Sonnet (claude-3-sonnet-20240229)
+   - Gemini 1.5 Pro (gemini-1.5-pro)
+   - Mistral Large 2 (mistral-large-2)
+   - Llama 3 70B (Meta-Llama-3-70B-Instruct)
+
+2. Query Complexity: Ordinal (3 levels)
+   - Low: Single-concept factual questions
+   - Medium: Multi-concept questions requiring integration
+   - High: Complex reasoning, interpretation, or problem-solving
+
+3. Proteomics Domain: Categorical (6 levels)
+   - Mass spectrometry methods
+   - Post-translational modifications
+   - Biomarker discovery/validation
+   - Bioinformatics/databases
+   - Clinical applications
+   - Other
+
+4.2 Dependent Variables (Outcomes)
+Primary Outcome:
+1. Hallucination Severity: Ordinal (4 levels)
+   - 0: No hallucination (fully accurate)
+   - 1: Minor hallucination (trivial errors, no impact on interpretation)
+   - 2: Moderate hallucination (significant errors, may mislead)
+   - 3: Severe hallucination (critical errors, potential for harm)
+
+Secondary Outcomes:
+2. Binary Hallucination Presence: Binary (0/1)
+   - Derived from severity (0 = no hallucination, 1-3 = hallucination present)
+
+3. Hallucination Type: Categorical
+   - Factual error (incorrect information)
+   - Fabrication (plausible but non-existent entities)
+   - Omission (missing critical information)
+   - Contradiction (internal inconsistencies)
+   - Misattribution (correct information, wrong source)
+
+4. Clinical Safety Impact: Ordinal (3 levels)
+   - Low: No clinical impact
+   - Medium: Could lead to inefficiencies or delays
+   - High: Could lead to patient harm or misdiagnosis
+
+5. LLM Confidence: Continuous (if available from API)
+   - Extracted from log probabilities or explicit confidence scores
+
+4.3 Covariates
+- Query length (word count)
+- Presence of numerical data in query
+- Recency of topic (based on publication dates)
+- Number of concepts in query
+
+================================================================================
+5. ANALYSIS PLAN
+================================================================================
+
+5.1 Statistical Models
+
+Primary Analysis:
+Generalized Linear Mixed Model (GLMM) with ordinal logistic regression
+- Dependent variable: Hallucination severity (0-3)
+- Fixed effects: Model, Complexity, Domain, Model×Complexity interaction
+- Random effects: Query (nested within Domain)
+- Link function: Cumulative logit
+
+Model equation:
+logit(P(Y ≤ j)) = α_j - (β_1*Model + β_2*Complexity + β_3*Domain + β_4*Model×Complexity + u_query)
+
+Where j = severity threshold (0, 1, 2, 3)
+
+Secondary Analyses:
+1. Chi-square tests for pairwise model comparisons (binary hallucination)
+2. Kruskal-Wallis test for differences across complexity levels
+3. Expected Calibration Error (ECE) for confidence calibration
+4. Cohen's kappa for inter-rater reliability (target κ > 0.80)
+
+5.2 Statistical Tests
+- Primary hypothesis (H1): Ordinal logistic regression with model as predictor
+  - Alpha: 0.01 (Bonferroni-corrected for 5 models: 0.05/5)
+  - Effect size: Cohen's h for proportions
+
+- H2 (Complexity): Cochran-Armitage test for trend
+  - Alpha: 0.05
+  - Effect size: Cramer's V
+
+- H3 (Severity by domain): Kruskal-Wallis test
+  - Alpha: 0.05
+  - Post-hoc: Dunn's test with Benjamini-Hochberg FDR correction
+
+- H4 (Calibration): ECE with bootstrapped 95% CI
+  - Alpha: 0.05
+  - Benchmark: ECE < 0.10 indicates good calibration
+
+- H5 (Proprietary vs. open-source): Mann-Whitney U test on ECE
+  - Alpha: 0.05
+
+5.3 Multiple Testing Correction
+- Primary comparisons (5 models): Bonferroni correction (α = 0.01)
+- Secondary comparisons (domains, complexity): FDR correction (Benjamini-Hochberg)
+- Exploratory analyses: Clearly labeled as exploratory, no p-value correction
+
+5.4 Inference Criteria
+- Statistical significance: p < 0.01 (primary), p < 0.05 (secondary)
+- Effect sizes: Cohen's h (small: 0.2, medium: 0.5, large: 0.8)
+- Clinical significance: Absolute difference in hallucination rate ≥10%
+
+5.5 Missing Data
+Anticipated missing data:
+- LLM confidence scores (not available for all APIs): Analyzed separately for subset with confidence scores
+- Incomplete responses (<5% expected): Multiple imputation using chained equations (MICE)
+- Missing annotations: Adjudication by third expert
+
+Sensitivity analyses:
+- Complete-case analysis
+- Best-case scenario (assume missing = no hallucination)
+- Worst-case scenario (assume missing = severe hallucination)
+
+5.6 Exploratory Analyses (Not Preregistered)
+- Correlation between model size (parameters) and hallucination rate
+- Text similarity analysis (LLM response vs. ground truth)
+- Temporal patterns (does performance degrade with longer sessions?)
+- Domain-specific error types
+- Prompt engineering experiments
+
+These will be clearly labeled as exploratory in the manuscript.
+
+================================================================================
+6. CONFIRMATORY VS. EXPLORATORY
+================================================================================
+
+Confirmatory (Preregistered):
+- H1-H5 as stated above
+- Statistical tests as specified
+- Primary and secondary outcomes
+
+Exploratory (Not Preregistered):
+- Subgroup analyses by specific protein types
+- Novel hallucination taxonomies
+- Qualitative thematic analysis of errors
+- Correlation with model architecture features
+- Cost-effectiveness analysis (accuracy per dollar)
+
+Any exploratory analyses will be clearly marked in the manuscript with:
+"The following analysis was not preregistered and should be considered exploratory."
+
+================================================================================
+7. QUALITY CONTROL
+================================================================================
+
+7.1 Annotation Quality
+- Dual independent annotation for all responses
+- Annotator training with 50 pilot queries
+- Regular calibration meetings
+- Adjudication for disagreements (Cohen's κ < 0.60)
+- Target inter-rater reliability: κ > 0.80
+
+7.2 Data Quality
+- Automated validation (JSON schema)
+- Manual spot checks (10% of dataset)
+- Checksums for data integrity (SHA-256)
+- Version control for all data and code (Git)
+
+7.3 Code Quality
+- Unit tests (>80% coverage)
+- Peer code review
+- Reproducibility testing (independent replication)
+- Linting and type checking
+
+================================================================================
+8. DEVIATIONS FROM PREREGISTRATION
+================================================================================
+
+Any deviations from this preregistration will be documented in the final manuscript under "Deviations from Preregistration" section. Acceptable reasons for deviation:
+- Technical limitations discovered during implementation
+- Ethical concerns
+- Unanticipated data quality issues
+- Journal reviewer requests
+
+All deviations must be approved by PI and documented in study log.
+
+================================================================================
+9. OTHER INFORMATION
+================================================================================
+
+9.1 Funding
+- NIH Grant [Number]: $XXX,XXX
+- NSF Grant [Number]: $XXX,XXX
+- Institutional Funds: $XX,XXX
+
+9.2 Conflicts of Interest
+None declared at time of preregistration.
+
+9.3 Ethics Approval
+- IRB Approval: [Number], [Date]
+- Exemption Category: 45 CFR 46.104(d)(4) (deidentified data)
+
+9.4 Data Sharing
+All deidentified data, code, and materials will be made publicly available upon publication via:
+- GitHub: Code repository (MIT License)
+- Zenodo: Data archive with DOI
+- OSF: Supplementary materials
+
+9.5 Preregistration Amendments
+Date: [If amended, add date and description of changes]
+
+================================================================================
+10. REFERENCES
+================================================================================
+
+1. Ji, Z., et al. (2023). Survey of Hallucination in Natural Language Generation. ACM Computing Surveys, 55(12), 1-38.
+
+2. Zhang, Y., et al. (2023). Siren's Song in the AI Ocean: A Survey on Hallucination in Large Language Models. arXiv:2309.01219.
+
+3. Abell-Hart, K., et al. (2023). Proteins, Pathways, and Phenotypes: Evaluating Large Language Models on Proteomics Tasks. bioRxiv 2023.08.30.555625.
+
+4. Collins, G. S., et al. (2024). TRIPOD-AI statement: updated guidance for reporting clinical prediction models. BMJ, 385, e078378.
+
+================================================================================
+END OF PREREGISTRATION
+================================================================================
+
+Registration Timestamp: 2024-09-15T14:30:00Z
+Last Updated: 2024-09-15T14:30:00Z
+Status: Public
+OSF Project URL: https://osf.io/[project-id]/
+
+For questions or to request access to materials:
+Contact: [PI Email]

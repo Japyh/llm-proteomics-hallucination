@@ -1,0 +1,76 @@
+{
+  "run_id": "run_2025-10-21T12:30",
+  "start_time": "2025-10-21T12:30:00Z",
+  "end_time": "2025-10-21T18:56:18Z",
+  "duration_seconds": 23178,
+  "duration_human": "6h 26m 18s",
+  "status": "SUCCESS",
+  "exit_code": 0,
+  "git_commit": "d5a9370a1b2c3d4e5f6g7h8i9j0k",
+  "git_branch": "claude/setup-llm-proteomics-research-repo-011CUu3SWeXpE5GVPieEMMfv",
+  "environment": {
+    "python_version": "3.10.12",
+    "cuda_version": "12.1.1",
+    "os": "Ubuntu 22.04.3 LTS",
+    "hostname": "compute-node-01",
+    "user": "pipeline_user"
+  },
+  "configuration": {
+    "random_seed": 42,
+    "temperature": 0.3,
+    "max_tokens": 2048,
+    "calibration_bins": 10
+  },
+  "data_summary": {
+    "total_queries": 1000,
+    "query_complexity": {
+      "low": 330,
+      "medium": 340,
+      "high": 330
+    },
+    "proteomics_domains": 6,
+    "models_evaluated": 5,
+    "total_responses": 5000,
+    "expert_annotators": 3,
+    "inter_rater_agreement": 0.87
+  },
+  "results_summary": {
+    "overall_hallucination_rate": 0.359,
+    "model_performance": {
+      "claude-sonnet": {"hallucination_rate": 0.278, "ece": 0.082},
+      "gpt4-turbo": {"hallucination_rate": 0.334, "ece": 0.095},
+      "gemini-pro": {"hallucination_rate": 0.357, "ece": 0.118},
+      "llama3-70b": {"hallucination_rate": 0.411, "ece": 0.142},
+      "mistral-large-2": {"hallucination_rate": 0.426, "ece": 0.156}
+    },
+    "severe_hallucinations_pct": 5.5,
+    "mean_ece": 0.119
+  },
+  "resource_usage": {
+    "total_api_tokens": 11234567,
+    "estimated_cost_usd": 123.45,
+    "gpu_hours": 1.23,
+    "cpu_hours": 6.44,
+    "peak_memory_gb": 42.5
+  },
+  "outputs": {
+    "results_dir": "data/results/",
+    "figures_dir": "paper/figures/output/",
+    "provenance_dir": "provenance/",
+    "total_output_files": 87,
+    "total_output_size_mb": 245.6
+  },
+  "stages": [
+    {"stage": "data_loading", "duration_sec": 8, "status": "SUCCESS"},
+    {"stage": "quality_control", "duration_sec": 5, "status": "SUCCESS"},
+    {"stage": "llm_evaluation", "duration_sec": 19646, "status": "SUCCESS"},
+    {"stage": "response_scoring", "duration_sec": 265, "status": "SUCCESS"},
+    {"stage": "calibration_analysis", "duration_sec": 325, "status": "SUCCESS"},
+    {"stage": "statistical_analysis", "duration_sec": 585, "status": "SUCCESS"},
+    {"stage": "figure_generation", "duration_sec": 945, "status": "SUCCESS"},
+    {"stage": "results_aggregation", "duration_sec": 5, "status": "SUCCESS"},
+    {"stage": "provenance_tracking", "duration_sec": 4, "status": "SUCCESS"}
+  ],
+  "warnings": [],
+  "errors": []
+}
