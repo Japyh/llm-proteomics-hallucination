@@ -81,6 +81,8 @@ jobs:
 
   docker-test:
     name: Test Docker Build
+    permissions:
+      contents: read
     runs-on: ubuntu-latest
 
     steps:
