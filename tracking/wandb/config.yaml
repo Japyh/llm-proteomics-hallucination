@@ -1,0 +1,14 @@
+project: llm-proteomics-hallucination
+entity: research-team
+
+# Experiment tracking settings
+log_frequency: 10
+save_checkpoints: true
+log_gradients: false
+
+# W&B specific
+mode: online  # online, offline, disabled
+tags:
+  - proteomics
+  - hallucination-detection
+  - lancet-submission

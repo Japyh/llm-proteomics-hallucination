@@ -1,0 +1,13 @@
+Evaluate the following LLM response for factual accuracy in proteomics.
+
+Response to evaluate: {response}
+
+Ground truth: {ground_truth}
+
+Classify the hallucination severity:
+0 - No hallucination (factually accurate)
+1 - Minor hallucination (small inaccuracies, doesn't affect main conclusion)
+2 - Moderate hallucination (significant errors that could mislead)
+3 - Severe hallucination (critical errors that could cause harm)
+
+Provide your assessment and justification.

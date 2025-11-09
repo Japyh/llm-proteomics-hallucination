@@ -1,0 +1,25 @@
+prompts:
+  base_prompt:
+    version: 1.0
+    purpose: Generic proteomics assistant
+    temperature: 0.3
+    max_tokens: 2048
+  
+  proteomics_prompt_v1:
+    version: 1.0
+    purpose: Expert-level proteomics queries
+    temperature: 0.3
+    max_tokens: 2048
+    
+  clinical_safety_prompt:
+    version: 1.0
+    purpose: Clinical decision support (high stakes)
+    temperature: 0.1
+    max_tokens: 1024
+    requires_citation: true
+    
+  hallucination_detection_prompt:
+    version: 1.0
+    purpose: Meta-evaluation of responses
+    temperature: 0.0
+    max_tokens: 512
