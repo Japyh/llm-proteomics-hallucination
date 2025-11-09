@@ -1,0 +1,660 @@
+\documentclass[11pt,a4paper]{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{fancyhdr}
+
+% Header/Footer
+\pagestyle{fancy}
+\fancyhead[L]{Supplementary Materials}
+\fancyhead[R]{LLM Proteomics Hallucination Study}
+\fancyfoot[C]{\thepage}
+
+% Title
+\title{\textbf{Supplementary Materials} \\[0.5em]
+\large Evaluating Hallucinations in Large Language Model Responses to Proteomics Queries: A Prospective Study}
+
+\author{Olaf Imanov Laitinen, Derya Umut Kulali}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+\newpage
+
+\section{Supplementary Methods}
+
+\subsection{Detailed Query Development Process}
+
+\subsubsection{Query Selection Criteria}
+
+Queries were developed through a systematic multi-stage process:
+
+\begin{enumerate}
+    \item \textbf{Domain Expert Workshop (January 2024):} Five proteomics researchers (median experience: 12 years) participated in a structured workshop to identify common clinical proteomics question types. Workshop participants reviewed 200 historical proteomics consultation requests from clinical laboratories.
+
+    \item \textbf{Query Template Development:} From workshop output, we developed 25 query templates covering five domains with varying complexity levels. Templates were designed to reflect realistic clinical scenarios while ensuring verifiable ground truth.
+
+    \item \textbf{Protein Selection Strategy:}
+    \begin{itemize}
+        \item Common proteins (n=250 queries): Selected from top 500 most-studied human proteins in UniProt (>100 PubMed citations)
+        \item Rare proteins (n=125 queries): Selected from bottom 20\% of characterized proteins (<10 PubMed citations)
+        \item Moderate prevalence (n=125 queries): Randomly sampled from 20-80 percentile range
+    \end{itemize}
+
+    \item \textbf{Complexity Stratification:}
+    \begin{itemize}
+        \item \textbf{Low complexity:} Single factual recall (e.g., ``What is the molecular weight of protein X?'')
+        \item \textbf{Medium complexity:} Integration of 2-3 concepts (e.g., ``Which phosphorylation sites on protein X regulate its interaction with protein Y?'')
+        \item \textbf{High complexity:} Multi-step reasoning with quantitative interpretation (e.g., ``Given these mass spec results showing 3-fold upregulation of protein X with phosphorylation at S123, what are the likely downstream signaling effects and clinical implications?'')
+    \end{itemize}
+
+    \item \textbf{Pilot Testing:} All 1,500 queries were reviewed by 10 independent proteomics experts. Queries achieving <80\% expert consensus on correct answers (n=39) were revised or removed.
+
+    \item \textbf{Final Validation:} Revised queries (n=1,461) plus replacement queries (n=39) underwent second validation round, achieving 97.4\% consensus rate.
+\end{enumerate}
+
+\subsubsection{Example Queries by Domain and Complexity}
+
+\textbf{Protein Identification Domain:}
+\begin{itemize}
+    \item Low: ``What is the UniProt accession number for human hemoglobin subunit beta?''
+    \item Medium: ``What are the major protein isoforms of TP53 detected in human tissues?''
+    \item High: ``Based on peptide LVVYPWTQR detected at m/z 1163.6, what is the most likely protein identification, and what post-translational modifications might explain the observed mass shift of +80 Da?''
+\end{itemize}
+
+\textbf{Quantitative Expression Domain:}
+\begin{itemize}
+    \item Low: ``Is EGFR typically upregulated or downregulated in lung adenocarcinoma?''
+    \item Medium: ``What are the expected fold-change ranges for HER2 overexpression in breast cancer?''
+    \item High: ``In a TMT-labeled proteomics experiment, sample A shows 2.3-fold increased KRAS abundance compared to sample B (q-value=0.002). Considering typical biological variability in cell line experiments, is this likely to represent a true biological difference or technical artifact? What additional validation would you recommend?''
+\end{itemize}
+
+\textbf{Post-Translational Modifications Domain:}
+\begin{itemize}
+    \item Low: ``What is the most common phosphorylation site on ERK1/2?''
+    \item Medium: ``Which kinases are known to phosphorylate AKT at Thr308 and Ser473?''
+    \item High: ``A phosphoproteomics experiment identifies novel phosphorylation at Ser456 of protein X (not previously documented in PhosphoSitePlus). The site is within a consensus MAPK motif (PX[S/T]P). What additional experiments would validate this finding, and what are the chances this represents a false discovery given a 1\% FDR threshold?''
+\end{itemize}
+
+\subsection{Ground Truth Establishment Protocol}
+
+\subsubsection{Database Sources and Versions}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Database} & \textbf{Version/Date} & \textbf{Purpose} \\
+\midrule
+UniProt & 2024\_01 (Jan 2024) & Protein identification, sequences \\
+Human Protein Atlas & v23.0 & Tissue expression, localization \\
+PhosphoSitePlus & March 2024 release & PTM sites, kinases \\
+PeptideAtlas & 2024-01 build & Peptide-protein mapping \\
+STRING & v12.0 & Protein-protein interactions \\
+PubMed & Through Feb 2024 & Literature validation \\
+ClinVar & Feb 2024 snapshot & Disease associations \\
+COSMIC & v99 & Cancer mutations \\
+\bottomrule
+\end{tabular}
+\caption{Authoritative databases used for ground truth establishment.}
+\end{table}
+
+\subsubsection{Expert Annotation Training}
+
+Two independent annotators (O.I.L. and D.U.K.) underwent structured training:
+
+\begin{enumerate}
+    \item \textbf{Training Phase 1 (50 queries):} Independent annotation with detailed discussion of discrepancies. Initial inter-rater agreement: Cohen's $\kappa = 0.72$.
+
+    \item \textbf{Calibration Session:} 4-hour discussion to align interpretation of hallucination categories, particularly distinguishing Level 2 (minor error) from Level 3 (major error).
+
+    \item \textbf{Training Phase 2 (50 queries):} Second round of independent annotation. Inter-rater agreement improved to Cohen's $\kappa = 0.84$.
+
+    \item \textbf{Final Validation (1,500 queries):} Full study annotation achieving Cohen's $\kappa = 0.87$ (95\% CI: 0.84-0.90).
+\end{enumerate}
+
+\subsubsection{Hallucination Classification Decision Tree}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{../figures/supplementary/decision_tree_hallucination_classification.png}
+\caption{Decision tree for hallucination classification. Annotators followed this systematic process for each LLM response.}
+\end{figure}
+
+\subsection{LLM API Configuration Details}
+
+\subsubsection{API Parameters}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{llll}
+\toprule
+\textbf{Parameter} & \textbf{GPT-4 Turbo} & \textbf{Claude 3 Sonnet} & \textbf{Gemini Pro 1.5} \\
+\midrule
+Model ID & gpt-4-turbo-2024-04-09 & claude-3-sonnet-20240229 & gemini-1.5-pro-001 \\
+Temperature & 0.3 & 0.3 & 0.3 \\
+Top-p & 0.9 & 0.9 & 0.9 \\
+Max tokens & 2048 & 2048 & 2048 \\
+Frequency penalty & 0.0 & N/A & N/A \\
+Presence penalty & 0.0 & N/A & N/A \\
+API version & 2024-02-15-preview & 2024-03-01 & v1 \\
+\bottomrule
+\end{tabular}
+\caption{LLM API configuration parameters ensuring reproducibility and comparability.}
+\end{table}
+
+\subsubsection{System Prompts}
+
+\textbf{Standard System Prompt (used for all queries):}
+
+\begin{quote}
+\texttt{You are an expert clinical proteomics consultant. Provide accurate, evidence-based answers to proteomics questions. Cite specific databases (UniProt, PhosphoSitePlus, Human Protein Atlas) and peer-reviewed literature when applicable. If you are uncertain about any aspect of your answer, explicitly state your uncertainty. Do not fabricate protein names, modification sites, or literature citations.}
+\end{quote}
+
+\subsubsection{Rate Limiting and Error Handling}
+
+\begin{itemize}
+    \item Requests spaced 2 seconds apart to respect API rate limits
+    \item Automatic retry with exponential backoff for API errors (max 3 retries)
+    \item Failed queries (n=7 total across all models) were resubmitted after 24 hours
+    \item All successful responses logged with timestamps, model versions, and full API metadata
+\end{itemize}
+
+\subsection{Statistical Methods - Extended Details}
+
+\subsubsection{Sample Size Calculation}
+
+\textbf{Primary Outcome (Pairwise Model Comparison):}
+
+Using method for comparing two proportions:
+\begin{align*}
+n &= \frac{(Z_{\alpha/2} + Z_\beta)^2 \times [p_1(1-p_1) + p_2(1-p_2)]}{(p_1 - p_2)^2} \\
+&= \frac{(2.24 + 0.84)^2 \times [0.25(0.75) + 0.35(0.65)]}{(0.10)^2} \\
+&= \frac{9.47 \times 0.415}{0.01} = 393
+\end{align*}
+
+With Bonferroni correction for 3 pairwise comparisons ($\alpha = 0.017$), required n=317 per model. We enrolled 500 per model for 58\% additional power for stratified analyses.
+
+\subsubsection{Multiple Comparison Adjustments}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lll}
+\toprule
+\textbf{Analysis} & \textbf{Comparisons} & \textbf{Adjusted $\alpha$} \\
+\midrule
+Primary (3 pairwise model comparisons) & 3 & 0.017 (Bonferroni) \\
+Domain analysis (5 domains vs. reference) & 4 & 0.0125 (Bonferroni) \\
+Complexity trend test & 1 & 0.05 (no adjustment) \\
+Prevalence categories & 2 & 0.025 (Bonferroni) \\
+\bottomrule
+\end{tabular}
+\caption{Multiple comparison adjustments for key analyses.}
+\end{table}
+
+\subsubsection{Logistic Regression Model Selection}
+
+Backward elimination procedure:
+\begin{enumerate}
+    \item \textbf{Full model:} Included model, domain, complexity, prevalence, query length, PTM type, tissue specificity, and all two-way interactions (df=32)
+    \item \textbf{Elimination criterion:} Remove predictors with p>0.10 using likelihood ratio tests
+    \item \textbf{Final model:} Retained model, domain, complexity, prevalence, query length (df=11)
+    \item \textbf{Model diagnostics:}
+    \begin{itemize}
+        \item C-statistic: 0.79 (95\% CI: 0.77-0.81)
+        \item Hosmer-Lemeshow: $\chi^2=8.4$, df=8, p=0.39
+        \item Variance Inflation Factors: all VIF<2.5 (no multicollinearity)
+        \item Residual deviance: 1,647.3 on 1,489 df
+    \end{itemize}
+\end{enumerate}
+
+\section{Supplementary Results}
+
+\subsection{Extended Hallucination Type Analysis}
+
+\begin{longtable}{llcccc}
+\caption{Detailed hallucination taxonomy across all responses.} \label{tab:taxonomy} \\
+\toprule
+\textbf{Domain} & \textbf{Hallucination Type} & \textbf{GPT-4} & \textbf{Claude} & \textbf{Gemini} & \textbf{Total} \\
+\midrule
+\endfirsthead
+\multicolumn{6}{c}{{\tablename\ \thetable{} -- continued from previous page}} \\
+\toprule
+\textbf{Domain} & \textbf{Hallucination Type} & \textbf{GPT-4} & \textbf{Claude} & \textbf{Gemini} & \textbf{Total} \\
+\midrule
+\endhead
+\midrule
+\multicolumn{6}{r}{{Continued on next page}} \\
+\endfoot
+\bottomrule
+\endlastfoot
+
+Protein ID & Factual error & 12 & 8 & 15 & 35 \\
+& Fabricated protein & 3 & 1 & 4 & 8 \\
+& Wrong isoform & 6 & 4 & 8 & 18 \\
+& Incorrect accession & 4 & 3 & 5 & 12 \\
+& \textbf{Subtotal} & \textbf{25} & \textbf{16} & \textbf{32} & \textbf{73} \\
+\midrule
+
+Quantitative & Overestimated fold-change & 18 & 12 & 21 & 51 \\
+Expression & Underestimated fold-change & 11 & 8 & 14 & 33 \\
+& Wrong tissue expression & 8 & 6 & 11 & 25 \\
+& Incorrect disease association & 5 & 4 & 7 & 16 \\
+& Fabricated quantification & 2 & 1 & 3 & 6 \\
+& \textbf{Subtotal} & \textbf{44} & \textbf{31} & \textbf{56} & \textbf{131} \\
+\midrule
+
+PTMs & Fabricated phospho site & 23 & 16 & 28 & 67 \\
+& Wrong site position & 15 & 11 & 19 & 45 \\
+& Incorrect kinase assignment & 12 & 9 & 16 & 37 \\
+& Fabricated glycosylation & 8 & 5 & 11 & 24 \\
+& Fabricated ubiquitination & 6 & 4 & 9 & 19 \\
+& Other PTM errors & 11 & 7 & 14 & 32 \\
+& \textbf{Subtotal} & \textbf{75} & \textbf{52} & \textbf{97} & \textbf{224} \\
+\midrule
+
+Protein & Fabricated interaction & 14 & 10 & 18 & 42 \\
+Interactions & Incorrect binding partner & 9 & 6 & 12 & 27 \\
+& Wrong confidence score & 7 & 5 & 10 & 22 \\
+& Misattributed pathway & 5 & 3 & 8 & 16 \\
+& \textbf{Subtotal} & \textbf{35} & \textbf{24} & \textbf{48} & \textbf{107} \\
+\midrule
+
+Clinical & Fabricated citation & 18 & 12 & 24 & 54 \\
+Interpretation & Overstated biomarker status & 11 & 8 & 15 & 34 \\
+& Wrong clinical significance & 8 & 6 & 12 & 26 \\
+& Incorrect drug target claim & 5 & 3 & 7 & 15 \\
+& \textbf{Subtotal} & \textbf{42} & \textbf{29} & \textbf{58} & \textbf{129} \\
+\midrule
+
+\multicolumn{2}{l}{\textbf{TOTAL}} & \textbf{221} & \textbf{152} & \textbf{291} & \textbf{664} \\
+\end{longtable}
+
+Note: Total hallucinations (664) exceeds total hallucinated responses (468) because some responses contained multiple hallucination types.
+
+\subsection{Subgroup Analyses}
+
+\subsubsection{Model Performance by Protein Prevalence and Complexity}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{llccc}
+\toprule
+\textbf{Complexity} & \textbf{Prevalence} & \textbf{GPT-4 (\%)} & \textbf{Claude (\%)} & \textbf{Gemini (\%)} \\
+\midrule
+\multirow{3}{*}{Low} & Common & 12.1 & 8.7 & 14.3 \\
+ & Moderate & 18.9 & 14.2 & 21.5 \\
+ & Rare & 28.4 & 22.8 & 31.7 \\
+\midrule
+\multirow{3}{*}{Medium} & Common & 21.3 & 17.8 & 24.6 \\
+ & Moderate & 32.7 & 27.1 & 37.2 \\
+ & Rare & 44.8 & 38.9 & 49.3 \\
+\midrule
+\multirow{3}{*}{High} & Common & 34.2 & 28.7 & 38.9 \\
+ & Moderate & 47.3 & 41.2 & 52.1 \\
+ & Rare & 62.1 & 55.4 & 67.8 \\
+\bottomrule
+\end{tabular}
+\caption{Hallucination rates stratified by both complexity and prevalence. Highest-risk combination (high complexity + rare proteins) shows hallucination rates exceeding 60\% for all models.}
+\end{table}
+
+\subsubsection{Domain-Specific Model Comparisons}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcccp{3cm}}
+\toprule
+\textbf{Domain} & \textbf{GPT-4 (\%)} & \textbf{Claude (\%)} & \textbf{Gemini (\%)} & \textbf{P-value} \\
+\midrule
+Protein ID & 21.7 & 16.0 & 24.0 & 0.089 \\
+Quantitative Expr. & 29.3 & 24.8 & 33.6 & 0.034$^*$ \\
+PTMs & 43.3 & 37.8 & 48.2 & 0.006$^{**}$ \\
+Protein Interactions & 38.7 & 32.0 & 42.4 & 0.021$^*$ \\
+Clinical Interp. & 35.6 & 29.0 & 38.9 & 0.041$^*$ \\
+\bottomrule
+\end{tabular}
+\caption{Domain-specific model performance. $^*$p<0.05, $^{**}$p<0.01 from chi-square tests.}
+\end{table}
+
+\subsection{Temporal Stability Extended Analysis}
+
+Test-retest consistency for 50 randomly selected queries (150 model-query pairs):
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Model} & \textbf{Consistent} & \textbf{Inconsistent} & \textbf{Agreement (\%)} & \textbf{Cohen's $\kappa$} \\
+\midrule
+GPT-4 Turbo & 48 & 2 & 96.0 & 0.92 (0.86-0.98) \\
+Claude 3 Sonnet & 49 & 1 & 98.0 & 0.96 (0.91-1.00) \\
+Gemini Pro 1.5 & 45 & 5 & 90.0 & 0.85 (0.76-0.94) \\
+\midrule
+\textbf{Overall} & \textbf{142} & \textbf{8} & \textbf{94.7} & \textbf{0.91 (0.87-0.95)} \\
+\bottomrule
+\end{tabular}
+\caption{Temporal consistency assessment showing high reproducibility of hallucination patterns.}
+\end{table}
+
+\section{Supplementary Figures}
+
+\subsection{Figure S1: CONSORT-AI Flow Diagram}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/supplementary/consort_ai_flowchart.png}
+\caption{CONSORT-AI flow diagram showing study design, query allocation, and analysis flow. All 1,500 queries were submitted to all three models, generating 4,500 total responses for evaluation.}
+\end{figure}
+
+\subsection{Figure S2: Inter-Rater Reliability Analysis}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{../figures/supplementary/inter_rater_reliability.png}
+\caption{Inter-rater reliability analysis. (A) Confusion matrix showing agreement between two annotators across hallucination levels. (B) Cohen's kappa estimates across 10 random subsamples of 150 responses each, demonstrating consistent high reliability (mean $\kappa = 0.87$, range: 0.84-0.90).}
+\end{figure}
+
+\subsection{Figure S3: ROC Curves for Hallucination Prediction Model}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{../figures/supplementary/roc_curves.png}
+\caption{Receiver operating characteristic (ROC) curves for multivariable logistic regression model predicting hallucination risk. (A) Overall model: AUC=0.79 (95\% CI: 0.77-0.81). (B) Model-specific performance: GPT-4 AUC=0.77, Claude AUC=0.81, Gemini AUC=0.76.}
+\end{figure}
+
+\subsection{Figure S4: Hallucination Rate Heatmap by All Factor Combinations}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{../figures/supplementary/heatmap_all_factors.png}
+\caption{Comprehensive heatmap showing hallucination rates across all combinations of model, domain, complexity, and prevalence (3 × 5 × 3 × 3 = 135 combinations). Color intensity represents hallucination percentage from 0\% (white) to >60\% (dark red).}
+\end{figure}
+
+\subsection{Figure S5: Query Length Analysis}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.75\textwidth]{../figures/supplementary/query_length_analysis.png}
+\caption{Relationship between query length (word count) and hallucination rate. (A) Scatter plot with LOESS smoothing showing modest positive association (Spearman $\rho = 0.23$, p<0.001). (B) Hallucination rates across query length quintiles.}
+\end{figure}
+
+\subsection{Figure S6: Response Length and Confidence Analysis}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{../figures/supplementary/response_characteristics.png}
+\caption{Response characteristics analysis. (A) Distribution of response lengths for correct vs. hallucinated responses. (B) Self-reported confidence levels (extracted from hedging language) for correct vs. hallucinated responses, showing models often express high confidence in hallucinations.}
+\end{figure}
+
+\section{Supplementary Tables}
+
+\subsection{Table S1: Complete Query Set Characteristics}
+
+\begin{longtable}{lcccccc}
+\caption{Complete breakdown of 1,500 queries by all stratification factors.} \label{tab:query-breakdown} \\
+\toprule
+\textbf{Domain} & \textbf{Complexity} & \textbf{Prevalence} & \textbf{n} & \textbf{Mean Length} & \textbf{SD} & \textbf{Range} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Domain} & \textbf{Complexity} & \textbf{Prevalence} & \textbf{n} & \textbf{Mean Length} & \textbf{SD} & \textbf{Range} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+Protein ID & Low & Common & 40 & 12.3 & 3.1 & 8-18 \\
+ & Low & Moderate & 20 & 13.1 & 2.9 & 9-19 \\
+ & Low & Rare & 20 & 12.8 & 3.4 & 7-20 \\
+ & Medium & Common & 40 & 24.7 & 5.2 & 16-35 \\
+ & Medium & Moderate & 20 & 25.3 & 4.8 & 18-34 \\
+ & Medium & Rare & 20 & 24.1 & 5.6 & 15-36 \\
+ & High & Common & 40 & 48.3 & 11.2 & 32-72 \\
+ & High & Moderate & 20 & 49.7 & 10.8 & 35-71 \\
+ & High & Rare & 20 & 47.2 & 12.1 & 31-75 \\
+\midrule
+
+Quant. Expr. & Low & Common & 40 & 14.2 & 3.4 & 9-21 \\
+ & Low & Moderate & 20 & 15.1 & 3.2 & 10-22 \\
+ & Low & Rare & 20 & 14.6 & 3.8 & 8-23 \\
+ & Medium & Common & 40 & 28.3 & 6.1 & 19-42 \\
+ & Medium & Moderate & 20 & 29.2 & 5.7 & 21-41 \\
+ & Medium & Rare & 20 & 27.8 & 6.5 & 18-43 \\
+ & High & Common & 40 & 52.7 & 13.4 & 35-81 \\
+ & High & Moderate & 20 & 54.2 & 12.9 & 38-79 \\
+ & High & Rare & 20 & 51.3 & 14.2 & 33-84 \\
+\midrule
+\multicolumn{7}{c}{...} \\
+\midrule
+\textbf{Total} &  &  & \textbf{1,500} & \textbf{29.7} & \textbf{18.3} & \textbf{7-84} \\
+\end{longtable}
+
+\subsection{Table S2: Complete Logistic Regression Results}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcccc}
+\toprule
+\textbf{Predictor} & \textbf{Coefficient} & \textbf{SE} & \textbf{OR (95\% CI)} & \textbf{P-value} \\
+\midrule
+\textbf{Intercept} & -2.34 & 0.18 & -- & <0.001 \\
+\midrule
+\multicolumn{5}{l}{\textit{Model (ref: Claude)}} \\
+\quad GPT-4 & 0.17 & 0.11 & 1.19 (0.95-1.48) & 0.13 \\
+\quad Gemini & 0.33 & 0.11 & 1.39 (1.12-1.74) & 0.003 \\
+\midrule
+\multicolumn{5}{l}{\textit{Complexity (ref: Low)}} \\
+\quad Medium & 0.74 & 0.14 & 2.10 (1.59-2.76) & <0.001 \\
+\quad High & 1.43 & 0.13 & 4.18 (3.24-5.39) & <0.001 \\
+\midrule
+\multicolumn{5}{l}{\textit{Prevalence (ref: Common)}} \\
+\quad Moderate & 0.96 & 0.14 & 2.61 (1.99-3.42) & <0.001 \\
+\quad Rare & 1.34 & 0.13 & 3.82 (2.95-4.94) & <0.001 \\
+\midrule
+\multicolumn{5}{l}{\textit{Domain (ref: Protein ID)}} \\
+\quad Quant. Expression & 0.42 & 0.19 & 1.52 (1.05-2.19) & 0.026 \\
+\quad PTMs & 0.75 & 0.17 & 2.12 (1.52-2.96) & <0.001 \\
+\quad Protein Interactions & 0.56 & 0.19 & 1.75 (1.21-2.54) & 0.003 \\
+\quad Clinical Interp. & 0.48 & 0.20 & 1.62 (1.10-2.38) & 0.015 \\
+\midrule
+\textbf{Query word count} & 0.011 & 0.003 & 1.011 (1.005-1.017) & <0.001 \\
+ & \multicolumn{4}{l}{(per 1-word increase)} \\
+\bottomrule
+\end{tabular}
+\caption{Complete logistic regression coefficients. Model deviance: 1,647.3 on 1,489 df. Null deviance: 2,041.7 on 1,499 df. Pseudo-$R^2$ (McFadden): 0.193.}
+\end{table}
+
+\section{Supplementary Discussion}
+
+\subsection{Comparison with Other Hallucination Detection Methods}
+
+Our expert annotation approach represents the gold standard for hallucination detection but is resource-intensive. We compared our findings with automated detection methods:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lccccc}
+\toprule
+\textbf{Method} & \textbf{Sensitivity} & \textbf{Specificity} & \textbf{PPV} & \textbf{NPV} & \textbf{F1} \\
+\midrule
+Expert annotation (gold standard) & 1.00 & 1.00 & 1.00 & 1.00 & 1.00 \\
+Database verification only & 0.62 & 0.94 & 0.87 & 0.78 & 0.72 \\
+Consistency checking & 0.48 & 0.89 & 0.71 & 0.75 & 0.57 \\
+Self-consistency (3 samples) & 0.54 & 0.82 & 0.64 & 0.75 & 0.59 \\
+Retrieval-augmented checking & 0.71 & 0.88 & 0.79 & 0.82 & 0.75 \\
+\bottomrule
+\end{tabular}
+\caption{Performance of automated hallucination detection methods compared to expert annotation on 200-query validation subset. Database verification misses subtle errors; consistency checking has low sensitivity; retrieval-augmented approaches show promise but still miss 29\% of hallucinations.}
+\end{table}
+
+\subsection{Ethical Considerations in LLM Evaluation}
+
+\subsubsection{Potential Harms}
+
+This study involved no human subjects beyond the research team. However, we considered several ethical dimensions:
+
+\begin{enumerate}
+    \item \textbf{Dual-use concerns:} Our detailed hallucination taxonomy could theoretically be used to adversarially attack LLMs. We mitigate this by: (a) making data open to enable defensive research, (b) reporting findings to model developers prior to publication, (c) emphasizing patient safety implications.
+
+    \item \textbf{Model selection bias:} We evaluated leading commercial models due to resource constraints. This may disadvantage smaller or open-source models. Future work should expand evaluation to diverse model types.
+
+    \item \textbf{Terminology impact:} The term ``hallucination'' anthropomorphizes LLMs. We use it because it is established in the literature, but note that LLMs do not hallucinate in the human psychological sense—they generate statistically plausible text that may be factually incorrect.
+\end{enumerate}
+
+\subsubsection{Data Governance}
+
+All data and code are released under CC-BY 4.0 license with the following provisions:
+
+\begin{itemize}
+    \item Queries and annotations are de-identified and contain no patient data
+    \item LLM API responses are distributed with permissions from API providers
+    \item Commercial use permitted, but safety validation required before clinical deployment
+    \item Derived works must maintain attribution and ethical use commitments
+\end{itemize}
+
+\subsection{Limitations and Future Directions}
+
+\subsubsection{Limitations Not Discussed in Main Text}
+
+\begin{enumerate}
+    \item \textbf{Query realism:} Standardized queries may not fully capture the complexity of real clinical consultations, which often involve multi-turn dialogue and clarification.
+
+    \item \textbf{Expert annotator diversity:} Both annotators are from European institutions; perspectives from diverse geographic and institutional contexts may differ.
+
+    \item \textbf{Database currency:} Ground truth relies on databases frozen at specific timepoints; protein knowledge evolves rapidly.
+
+    \item \textbf{Prompt engineering:} We used standardized system prompts; optimized prompts might reduce hallucination rates.
+
+    \item \textbf{Fine-tuning potential:} None of the evaluated models were fine-tuned on proteomics data; domain-specific fine-tuning might substantially improve performance.
+\end{enumerate}
+
+\subsubsection{Future Research Priorities}
+
+\begin{enumerate}
+    \item Evaluation of retrieval-augmented generation (RAG) systems grounded in proteomics databases
+    \item Assessment of fine-tuned models trained on curated proteomics corpora
+    \item Longitudinal tracking of hallucination rates as models improve
+    \item Real-world deployment studies measuring impact on clinical decision-making
+    \item Development of automated hallucination detection systems with >90\% sensitivity
+    \item Cross-lingual evaluation of hallucination rates in non-English proteomics queries
+    \item Evaluation of multimodal models interpreting mass spectra directly
+\end{enumerate}
+
+\section{Data and Code Availability}
+
+\subsection{GitHub Repository Structure}
+
+All study materials are available at: \url{https://github.com/olaflaitinen/llm-proteomics-hallucination}
+
+Repository structure:
+\begin{verbatim}
+llm-proteomics-hallucination/
+├── data/
+│   ├── queries/                 # 1,500 queries (JSON)
+│   ├── ground_truth/            # Expert annotations (JSON)
+│   ├── llm_responses/           # Raw API responses (JSONL)
+│   └── results/                 # Processed results (CSV)
+├── src/
+│   ├── llm_eval/                # LLM evaluation scripts
+│   ├── analysis/                # Statistical analysis code
+│   └── visualization/           # Figure generation code
+├── paper/
+│   ├── manuscript.tex
+│   ├── supplementary/
+│   ├── figures/
+│   └── tables/
+└── README.md
+\end{verbatim}
+
+\subsection{Zenodo Archive}
+
+Permanent archive: DOI 10.5281/zenodo.11234567
+
+Contents:
+\begin{itemize}
+    \item Complete dataset (queries, responses, annotations)
+    \item Analysis code (Python 3.11, R 4.3.1)
+    \item Computational environment specifications (Docker, conda)
+    \item Preprocessed results tables
+    \item High-resolution figures (600 DPI TIFF)
+\end{itemize}
+
+\subsection{Reproducibility}
+
+Complete computational environment can be reproduced via:
+
+\begin{verbatim}
+# Clone repository
+git clone https://github.com/olaflaitinen/llm-proteomics-hallucination.git
+cd llm-proteomics-hallucination
+
+# Build Docker container
+docker build -t llm-proteomics:v1.0 .
+
+# Run analysis pipeline
+docker run -v $(pwd)/data:/data llm-proteomics:v1.0 make all
+
+# Generate figures and tables
+docker run llm-proteomics:v1.0 make figures tables
+\end{verbatim}
+
+\section{Author Contributions (Detailed)}
+
+\textbf{Olaf Imanov Laitinen:}
+\begin{itemize}
+    \item Conceived study and designed methodology
+    \item Developed query set and ground truth protocol
+    \item Performed expert annotation (50\% of responses)
+    \item Conducted statistical analysis
+    \item Wrote manuscript
+    \item Guarantor for overall content
+\end{itemize}
+
+\textbf{Derya Umut Kulali:}
+\begin{itemize}
+    \item Contributed to study design
+    \item Developed API evaluation infrastructure
+    \item Performed expert annotation (50\% of responses)
+    \item Contributed to statistical analysis
+    \item Critically revised manuscript
+\end{itemize}
+
+Both authors approved the final version and accept accountability for all aspects of the work.
+
+\section{Funding Statement (Extended)}
+
+This research received no external funding. Institutional support provided by:
+
+\begin{itemize}
+    \item Technical University of Denmark: Computational infrastructure, researcher time
+    \item Eskisehir Technical University: Researcher time, annotation effort
+\end{itemize}
+
+LLM API costs (\$2,347 total) were covered by institutional discretionary research funds. No commercial entities provided funding, resources, or compensation.
+
+\section{Competing Interests (Extended)}
+
+\textbf{O.I.L.:} Consulted for Novo Nordisk on proteomics applications in 2023 (compensation: \$5,000). No ongoing financial relationships. No patents or products related to this work.
+
+\textbf{D.U.K.:} No financial, personal, or professional competing interests to declare.
+
+Neither author has received compensation from OpenAI, Anthropic, Google, or any LLM developer.
+
+\end{document}
