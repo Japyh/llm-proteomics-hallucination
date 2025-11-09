@@ -1,0 +1,11 @@
+timestamp,query_id,model,response_id,status,latency_ms,tokens_used,error_type,retry_count,auditor,notes
+2024-03-10T09:15:23Z,TEST_001,gpt4-turbo,R001_GPT4,success,1247,63,,0,automated,
+2024-03-10T09:18:45Z,TEST_002,gpt4-turbo,R002_GPT4,success,2134,119,,0,automated,
+2024-03-10T10:22:15Z,TEST_001,claude-sonnet,R003_CLAUDE,success,892,73,,0,automated,
+2024-03-10T10:28:42Z,TEST_002,claude-sonnet,R004_CLAUDE,success,1523,122,,0,automated,
+2024-03-10T11:15:42Z,TEST_001,gemini-pro,R005_GEMINI,success,1456,65,,0,automated,
+2024-03-10T11:22:18Z,HC_001,gemini-pro,R006_GEMINI,success,2847,187,,0,automated,Flagged for fabrication
+2024-03-10T11:35:22Z,TEST_003,gemini-pro,R007_GEMINI,failure,5123,0,timeout,2,automated,API timeout after 2 retries
+2024-03-10T11:40:15Z,TEST_003,gemini-pro,R008_GEMINI,success,1834,98,,3,automated,Success on retry
+2024-03-10T12:05:11Z,TEST_001,mistral-large,R009_MISTRAL,success,1678,75,,0,automated,
+2024-03-10T13:12:45Z,LC_001,llama3-70b,R010_LLAMA,success,3421,66,,0,automated,Local deployment

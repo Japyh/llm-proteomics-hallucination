@@ -1,0 +1,64 @@
+{
+  "study_metadata": {
+    "total_queries": 1500,
+    "total_responses": 4500,
+    "models_evaluated": 3,
+    "evaluation_period": "2024-03-01 to 2024-06-30"
+  },
+  "overall_metrics": {
+    "hallucination_rate": 0.312,
+    "hallucination_rate_ci": [0.287, 0.338],
+    "inter_rater_kappa": 0.87,
+    "inter_rater_kappa_ci": [0.84, 0.90]
+  },
+  "model_performance": {
+    "gpt4-turbo": {
+      "hallucination_rate": 0.334,
+      "ci": [0.301, 0.369],
+      "rank": 3
+    },
+    "claude-sonnet": {
+      "hallucination_rate": 0.278,
+      "ci": [0.246, 0.312],
+      "rank": 1
+    },
+    "gemini-pro": {
+      "hallucination_rate": 0.324,
+      "ci": [0.291, 0.359],
+      "rank": 2
+    }
+  },
+  "domain_analysis": {
+    "protein_identification": {"rate": 0.213, "rank": 1},
+    "quantitative_expression": {"rate": 0.287, "rank": 2},
+    "clinical_interpretation": {"rate": 0.287, "rank": 2},
+    "protein_interactions": {"rate": 0.353, "rank": 4},
+    "ptm": {"rate": 0.420, "rank": 5}
+  },
+  "complexity_analysis": {
+    "low": {"rate": 0.184, "queries": 500},
+    "medium": {"rate": 0.316, "queries": 500},
+    "high": {"rate": 0.478, "queries": 500}
+  },
+  "prevalence_analysis": {
+    "common": {"rate": 0.143, "queries": 750},
+    "moderate": {"rate": 0.328, "queries": 375},
+    "rare": {"rate": 0.472, "queries": 375}
+  },
+  "statistical_tests": {
+    "chi_square_models": {"statistic": 12.4, "p_value": 0.002, "df": 2},
+    "chi_square_domains": {"statistic": 67.3, "p_value": 0.0, "df": 4},
+    "cochran_armitage_trend": {"z_score": 18.7, "p_value": 0.0}
+  },
+  "logistic_regression": {
+    "complexity_high_vs_low": {"or": 5.11, "ci": [3.68, 7.09], "p": 0.0},
+    "prevalence_rare_vs_common": {"or": 3.07, "ci": [2.29, 4.12], "p": 0.0},
+    "domain_ptm_vs_protein_id": {"or": 2.58, "ci": [1.80, 3.70], "p": 0.0},
+    "model_auc": 0.74
+  },
+  "bayesian_comparison": {
+    "prob_claude_better_than_gpt4": 0.873,
+    "prob_claude_better_than_gemini": 0.912,
+    "prob_gemini_better_than_gpt4": 0.623
+  }
+}

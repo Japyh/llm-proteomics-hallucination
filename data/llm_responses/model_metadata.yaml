@@ -1,0 +1,124 @@
+models:
+  gpt4_turbo:
+    full_name: "GPT-4 Turbo"
+    model_id: "gpt-4-turbo-2024-04-09"
+    provider: "OpenAI"
+    api_version: "2024-02-15-preview"
+    parameters:
+      temperature: 0.3
+      top_p: 0.9
+      max_tokens: 2048
+      frequency_penalty: 0.0
+      presence_penalty: 0.0
+    deployment:
+      type: "cloud_api"
+      region: "us-east-1"
+      rate_limit: "10000 tokens/min"
+    evaluation_period:
+      start: "2024-03-10"
+      end: "2024-03-28"
+    statistics:
+      total_queries: 500
+      successful_responses: 500
+      failed_responses: 0
+      mean_latency_ms: 1547
+      median_latency_ms: 1423
+
+  claude_sonnet:
+    full_name: "Claude 3 Sonnet"
+    model_id: "claude-3-sonnet-20240229"
+    provider: "Anthropic"
+    api_version: "2024-03-01"
+    parameters:
+      temperature: 0.3
+      top_p: 0.9
+      max_tokens: 2048
+    deployment:
+      type: "cloud_api"
+      region: "us-west-2"
+      rate_limit: "5000 tokens/min"
+    evaluation_period:
+      start: "2024-03-10"
+      end: "2024-03-28"
+    statistics:
+      total_queries: 500
+      successful_responses: 500
+      failed_responses: 0
+      mean_latency_ms: 1203
+      median_latency_ms: 1124
+
+  gemini_pro:
+    full_name: "Gemini 1.5 Pro"
+    model_id: "gemini-1.5-pro-001"
+    provider: "Google"
+    api_version: "v1"
+    parameters:
+      temperature: 0.3
+      top_p: 0.9
+      max_output_tokens: 2048
+    deployment:
+      type: "cloud_api"
+      region: "us-central1"
+      rate_limit: "60 requests/min"
+    evaluation_period:
+      start: "2024-03-10"
+      end: "2024-03-28"
+    statistics:
+      total_queries: 500
+      successful_responses: 498
+      failed_responses: 2
+      mean_latency_ms: 1834
+      median_latency_ms: 1689
+
+  mistral_large:
+    full_name: "Mistral Large"
+    model_id: "mistral-large-2402"
+    provider: "Mistral AI"
+    api_version: "v1"
+    parameters:
+      temperature: 0.3
+      top_p: 0.9
+      max_tokens: 2048
+    deployment:
+      type: "cloud_api"
+      region: "eu-west-1"
+      rate_limit: "100 requests/min"
+    evaluation_period:
+      start: "2024-03-10"
+      end: "2024-03-15"
+    statistics:
+      total_queries: 100
+      successful_responses: 98
+      failed_responses: 2
+      mean_latency_ms: 1923
+      median_latency_ms: 1812
+
+  llama3_70b:
+    full_name: "Llama 3 70B Instruct"
+    model_id: "llama3-70b-instruct"
+    provider: "Meta"
+    parameters:
+      temperature: 0.3
+      top_p: 0.9
+      max_tokens: 2048
+    deployment:
+      type: "local_vllm"
+      hardware: "8x NVIDIA A100 80GB"
+      quantization: "FP16"
+    evaluation_period:
+      start: "2024-03-10"
+      end: "2024-03-12"
+    statistics:
+      total_queries: 50
+      successful_responses: 50
+      failed_responses: 0
+      mean_latency_ms: 3104
+      median_latency_ms: 2987
+
+evaluation_metadata:
+  system_prompt: "You are an expert clinical proteomics consultant. Provide accurate, evidence-based answers..."
+  response_format: "plain_text"
+  evaluation_framework: "prospective_benchmark"
+  annotation_method: "dual_expert_blind"
+  inter_rater_agreement: 0.87
+  total_annotated_responses: 1500
