@@ -1,0 +1,65 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{hyperref}
+
+\title{Supplementary Material\\
+\large Evaluating Hallucinations in Large Language Model Responses to Proteomics Queries}
+
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Supplementary Methods}
+
+\subsection*{S1. Query Generation Protocol}
+Detailed methodology for generating the 1,000 proteomics queries used in this study, including stratification by complexity and domain.
+
+\subsection*{S2. Expert Annotation Guidelines}
+Complete annotation protocol provided to the three expert annotators, including training materials and adjudication procedures.
+
+\subsection*{S3. Statistical Analysis Details}
+Full specification of Bayesian Beta-Binomial models, prior distributions, and convergence diagnostics.
+
+\section*{Supplementary Results}
+
+\subsection*{S4. Complete Model Performance Metrics}
+Extended tables showing all performance metrics for each model across all query categories.
+
+\subsection*{S5. Domain-Specific Error Analysis}
+Detailed breakdown of hallucination types by proteomics domain.
+
+\subsection*{S6. Calibration Analysis}
+Full calibration curves and ECE/MCE metrics for all models.
+
+\section*{Supplementary Figures}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/output/supplementary_model_comparison.png}
+\caption{\textbf{Supplementary Figure 1.} Extended model performance comparison.}
+\end{figure}
+
+\section*{Supplementary Tables}
+
+\begin{table}[h]
+\centering
+\caption{\textbf{Supplementary Table 1.} Complete dataset characteristics.}
+\begin{tabular}{lc}
+\toprule
+Characteristic & Value \\
+\midrule
+Total queries & 1,000 \\
+Models evaluated & 5 \\
+Expert annotators & 3 \\
+Inter-rater agreement ($\kappa$) & 0.87 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\end{document}

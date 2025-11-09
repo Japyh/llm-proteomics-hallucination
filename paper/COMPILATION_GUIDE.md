@@ -1,461 +1,172 @@
 # Manuscript Compilation Guide
 
-This document provides detailed instructions for compiling the manuscript "Hallucination risks of large language models in clinical proteomics: a prospective evaluation study" for submission to The Lancet Digital Health.
+## LLM Proteomics Hallucination Study - The Lancet Digital Health
 
 ---
 
-## Requirements
+## Prerequisites
 
-### LaTeX Distribution
+### Required Software
+- LaTeX distribution (TeX Live 2023 or later)
+- Python 3.10+ (for figure generation)
+- R 4.3+ (for table generation)
+- Make (for automation)
 
-**Recommended**: TeX Live 2023 or later
+### LaTeX Packages
+All required packages are specified in `latex/packages.tex`. Key packages:
+- `lancetdigitalhealth.cls` (journal class file)
+- `graphicx`, `booktabs`, `natbib`
+- `hyperref`, `cleveref`
 
-**Installation (Ubuntu/Debian)**:
+## Compilation Steps
+
+### Method 1: Using Makefile (Recommended)
+
 ```bash
-sudo apt-get update
-sudo apt-get install texlive-full
+# From repository root
+make paper
+
+# Or step by step
+make figures    # Generate all figures
+make tables     # Generate all tables
+make manuscript # Compile PDF
 ```
 
-**Installation (macOS)**:
-```bash
-brew install --cask mactex
-```
+### Method 2: Manual Compilation
 
-**Installation (Windows)**:
-Download and install MiKTeX from: https://miktex.org/download
-
-### Required LaTeX Packages
-
-The manuscript requires the following packages (all included in TeX Live Full):
-- elsarticle (Elsevier document class)
-- float (figure positioning)
-- amsmath (mathematical typesetting)
-- graphicx (figure inclusion)
-- hyperref (PDF metadata and links)
-- inputenc (UTF-8 encoding)
-- times (Times font family)
-- geometry (page layout)
-- setspace (line spacing)
-- lineno (line numbering)
-- cite (superscript citations)
-- xcolor (colored text)
-
-### Python Requirements for Figures
-
-**Version**: Python 3.11+
-
-**Install Dependencies**:
+#### Step 1: Generate Figures
 ```bash
 cd paper/figures
-pip install -r requirements.txt
-```
-
-**Required Packages**:
-- matplotlib>=3.8.0
-- numpy>=1.24.0
-- scipy>=1.11.0
-
----
-
-## Compilation Instructions
-
-### Step 1: Generate All Figures
-
-Navigate to the figures directory and run all generation scripts:
-
-```bash
-cd paper/figures
-
-# Generate Figure 1 (Hallucination rates by complexity and prevalence)
 python generate_figure_1.py
-
-# Generate Figure 2 (Severity heatmap)
 python generate_figure_2.py
-
-# Generate Figure 3 (Response consistency)
 python generate_figure_3.py
-
-# Generate Figure 4 (Calibration plot)
 python generate_figure_4.py
+python generate_figure_5.py
+python generate_figure_6.py
 ```
 
-**Expected Output**:
-- `output/Figure_1_Hallucination_Rates.png` (243 KB, 300 DPI)
-- `output/Figure_2_Severity_Distribution.png` (464 KB, 300 DPI)
-- `output/Figure_3_Response_Consistency.png` (470 KB, 300 DPI)
-- `output/Figure_4_Calibration_Plot.png` (552 KB, 300 DPI)
-
-**Verification**:
+#### Step 2: Generate Tables
 ```bash
-ls -lh output/*.png
-# All files should be present with sizes matching above
+cd paper/tables
+Rscript make_table_1_summary.R
+Rscript make_table_2_model_perf.R
+Rscript make_table_3_domainwise.R
+Rscript make_table_4_multivariable.R
+Rscript make_table_5_bias_audit.R
 ```
 
-### Step 2: Compile Manuscript PDF
-
-Navigate to the paper directory:
-
+#### Step 3: Compile LaTeX
 ```bash
-cd /home/user/llm-proteomics-hallucination/paper
-```
-
-#### Method 1: Standard LaTeX Compilation (Recommended)
-
-```bash
-# First pass: Process document structure
-pdflatex manuscript.tex
-
-# Process bibliography
-bibtex manuscript
-
-# Second pass: Resolve references
-pdflatex manuscript.tex
-
-# Third pass: Final resolution of all cross-references
-pdflatex manuscript.tex
-```
-
-**Expected Output**: `manuscript.pdf` (~2.5 MB)
-
-#### Method 2: Using latexmk (Alternative)
-
-```bash
-latexmk -pdf -interaction=nonstopmode manuscript.tex
-```
-
-This automatically runs all necessary passes.
-
-#### Method 3: Using pdflatex with shell escape (if needed)
-
-```bash
-pdflatex -shell-escape manuscript.tex
-bibtex manuscript
-pdflatex -shell-escape manuscript.tex
-pdflatex -shell-escape manuscript.tex
-```
-
-### Step 3: Verify PDF Output
-
-**Check PDF Properties**:
-- Title: "Hallucination risks of large language models in clinical proteomics"
-- Authors: Olaf Yunus Laitinen Imanov, Derya Umut Kulali
-- Page count: ~30-35 pages
-- All 4 figures included and properly positioned
-- All 4 tables included with correct formatting
-- Line numbers present
-- Citations formatted as superscripts
-
-**Visual Inspection**:
-1. Open manuscript.pdf
-2. Verify all figures display correctly at high resolution
-3. Check tables are properly formatted
-4. Ensure no overflow text or formatting errors
-5. Verify bibliography is complete (34 references)
-
-### Step 4: Clean Up Auxiliary Files (Optional)
-
-```bash
-# Remove LaTeX auxiliary files
-rm -f *.aux *.bbl *.blg *.log *.out *.toc *.lof *.lot
-
-# Or use latexmk to clean
-latexmk -c
-```
-
----
-
-## Troubleshooting
-
-### Common Issues
-
-#### Issue 1: Missing Package Errors
-
-**Error**: `! LaTeX Error: File 'elsarticle.cls' not found.`
-
-**Solution**:
-```bash
-# Update package database
-sudo tlmgr update --self
-
-# Install elsarticle
-sudo tlmgr install elsarticle
-
-# Or install all required packages
-sudo tlmgr install elsarticle float amsmath graphicx hyperref times geometry setspace lineno cite xcolor
-```
-
-#### Issue 2: Figure Not Found
-
-**Error**: `! LaTeX Error: File 'figures/output/Figure_1_Hallucination_Rates.png' not found.`
-
-**Solution**:
-1. Verify figures were generated:
-```bash
-ls -l figures/output/Figure_*.png
-```
-
-2. If missing, regenerate figures:
-```bash
-cd figures
-python generate_figure_1.py
-# ... repeat for all figures
-```
-
-3. Check path in manuscript.tex matches actual file location
-
-#### Issue 3: Bibliography Not Updating
-
-**Solution**:
-1. Delete auxiliary files:
-```bash
-rm manuscript.aux manuscript.bbl manuscript.blg
-```
-
-2. Recompile from scratch:
-```bash
+cd paper/latex
 pdflatex manuscript.tex
 bibtex manuscript
 pdflatex manuscript.tex
-pdflatex manuscript.tex
+pdflatex manuscript.tex  # Second pass for references
 ```
 
-#### Issue 4: Font Warnings
+### Method 3: Using Overleaf
 
-**Warning**: `Font shape 'OT1/times/m/n' undefined`
-
-**Solution**:
-```bash
-# Install Times font package
-sudo tlmgr install times
-
-# Alternative: Install complete font collection
-sudo tlmgr install collection-fontsrecommended
-```
-
-#### Issue 5: Figures Appear Low Resolution
-
-**Solution**:
-1. Verify figures generated at 300 DPI:
-```python
-# In generate_figure_*.py, check:
-plt.savefig(output_path, dpi=300, bbox_inches='tight')
-```
-
-2. Regenerate figures if necessary
-
-3. Ensure PDF viewer is not downscaling (zoom to 100%)
-
-#### Issue 6: Line Numbers Not Appearing
-
-**Solution**:
-Verify lineno package is loaded and enabled in manuscript.tex:
-```latex
-\usepackage{lineno}
-\modulolinenumbers[5]
-\linenumbers
-```
-
----
+1. Upload all files to Overleaf project
+2. Set compiler to `pdfLaTeX`
+3. Main document: `manuscript.tex`
+4. Compile (Ctrl+S or ⌘S)
 
 ## File Structure
 
 ```
 paper/
-├── manuscript.tex              # Main manuscript file
+├── manuscript.tex          # Main manuscript
+├── abstract.tex            # Abstract (included)
+├── latex/
+│   ├── lancetdigitalhealth.cls
+│   ├── macros.tex
+│   ├── packages.tex
+│   ├── notation.tex
+│   └── references.bib
 ├── figures/
-│   ├── generate_figure_1.py   # Figure 1 generation script
-│   ├── generate_figure_2.py   # Figure 2 generation script
-│   ├── generate_figure_3.py   # Figure 3 generation script
-│   ├── generate_figure_4.py   # Figure 4 generation script
-│   ├── figure_config.py        # Shared matplotlib configuration
-│   └── output/
-│       ├── Figure_1_Hallucination_Rates.png
-│       ├── Figure_2_Severity_Distribution.png
-│       ├── Figure_3_Response_Consistency.png
-│       └── Figure_4_Calibration_Plot.png
-├── COMPILATION_GUIDE.md        # This file
-└── README.md                   # Paper directory overview
+│   └── output/            # All figures must be here
+├── tables/
+│   └── outputs/           # All table CSVs/Excel
+└── supplementary/
+    └── supplementary.tex  # Supplementary material
 ```
 
----
+## Figure Requirements
 
-## Manuscript Specifications
+### Format Specifications (The Lancet Digital Health)
+- **Main figures**: TIFF, 600 DPI, RGB color
+- **Minimum width**: 85 mm (single column) or 170 mm (double column)
+- **Font size**: ≥8 pt in final size
+- **File size**: <10 MB per figure
 
-### Journal Requirements (The Lancet Digital Health)
+### Our Figures
+All figures generated at 600 DPI in both PNG (preview) and TIFF (submission):
 
-**Format**: Research Article
-**Document Class**: elsarticle (review mode, 10pt)
-**Page Limits**: No strict limit for online-only articles
-**Word Count**: ~4,500 words (excluding abstract, tables, figures, references)
-**Abstract**: ~300 words (structured)
-**References**: Vancouver style (numeric superscripts)
-**Figures**: Maximum 6 (we use 4)
-**Tables**: Maximum 6 (we use 4)
+| Figure | Filename | Description |
+|--------|----------|-------------|
+| 1 | fig1_hallucination_rate_vs_complexity | Bar chart by model and complexity |
+| 2 | fig2_heatmap_severity | Heatmap of severity by domain |
+| 3 | fig3_consistency_matrix | Confusion matrix |
+| 4 | fig4_calibration_curve | Calibration curves |
+| 5 | fig5_domain_breakdown | Domain-specific error profiles |
+| 6 | fig6_bayesian_posterior | Posterior distributions |
 
-### Formatting Specifications
+## Table Requirements
 
-**Margins**:
-- Top: 1 inch
-- Bottom: 1 inch
-- Left: 1 inch
-- Right: 1.06 inches
+- **Format**: Should be editable (not images)
+- **Size**: Maximum width 170 mm
+- **Font**: Arial, 10 pt minimum
+- **Numbers**: Rounded appropriately (2-3 decimal places)
+- **Statistical values**: Report with 95% CI where applicable
 
-**Line Spacing**: Single-spaced
+## Common Issues
 
-**Line Numbers**: Every 5 lines (modulo 5)
+### Issue 1: Missing Figures
+```
+LaTeX Error: File 'fig1_hallucination_rate_vs_complexity.png' not found
+```
+**Solution**: Run figure generation scripts first.
 
-**Font**: Times (10pt)
-
-**Section Formatting**:
-- Sections: Large, bold, sans-serif
-- Subsections: Normal size, bold, sans-serif
-- Subsubsections: Small, bold, sans-serif
-
-**Citations**: Superscript numbers in square brackets
-
-### Figure Specifications
-
-**Resolution**: 300 DPI minimum
-**Format**: PNG (high quality) or TIFF
-**Width**: Full column width (6.5 inches) or double column (14 cm)
-**Color**: Color figures accepted for online publication
-**File Size**: <10 MB per figure (our figures: 243-552 KB each)
-
-### Table Specifications
-
-**Format**: LaTeX tabular environment
-**Width**: Fit within text width
-**Font**: Match main text (10pt)
-**Borders**: Horizontal lines only (toprule, midrule, bottomrule)
-**Captions**: Above table
-**Footnotes**: Below table
-
----
-
-## Quality Checks
-
-### Pre-Submission Checklist
-
-- [ ] All 4 figures generated at 300 DPI
-- [ ] All 4 tables formatted correctly
-- [ ] Line numbers present throughout
-- [ ] All citations in superscript format
-- [ ] Bibliography contains all 34 references
-- [ ] No orphaned or widowed lines
-- [ ] No overfull hbox warnings
-- [ ] PDF metadata correctly set
-- [ ] Abstract under 300 words
-- [ ] Main text ~4,500 words
-- [ ] All author affiliations correct
-- [ ] Ethics approval number present
-- [ ] Pre-registration link included
-- [ ] Data sharing statement complete
-- [ ] Conflict of interest statement present
-- [ ] Author contributions documented
-- [ ] No typos or grammatical errors
-
-### Automated Checks
-
+### Issue 2: Bibliography Not Updating
+**Solution**: Run BibTeX, then pdfLaTeX twice:
 ```bash
-# Count words in main text (excluding tables, figures, references)
-detex manuscript.tex | wc -w
-
-# Count references
-grep "bibitem" manuscript.tex | wc -l
-
-# Check for overfull boxes
-grep "Overfull" manuscript.log
-
-# Check for undefined references
-grep "undefined" manuscript.log
+bibtex manuscript
+pdflatex manuscript.tex
+pdflatex manuscript.tex
 ```
+
+### Issue 3: Overfull hbox
+**Solution**: LaTeX cannot break lines properly. Add `\sloppy` or manual line breaks.
+
+### Issue 4: Unicode Characters
+**Solution**: Use `\usepackage[utf8]{inputenc}` and ensure text editor saves as UTF-8.
+
+## Submission Checklist
+
+Before submission to The Lancet Digital Health:
+
+- [ ] Manuscript compiled without errors
+- [ ] All 6 figures included (TIFF, 600 DPI)
+- [ ] All 5 tables included (editable format)
+- [ ] References formatted (Vancouver style)
+- [ ] Word count ≤4,000 words (excluding abstract, refs, tables)
+- [ ] Abstract ≤300 words, structured
+- [ ] Supplementary material compiled separately
+- [ ] TRIPOD-AI checklist completed
+- [ ] Author contributions (CRediT)
+- [ ] Conflicts of interest declared
+- [ ] Funding statement included
+- [ ] Data availability statement
+- [ ] Code availability statement
+- [ ] Ethics approval documented
+
+## Contact
+
+For compilation issues:
+- GitHub Issues: [Add repository URL]
+- Email: [Add contact]
 
 ---
 
-## Submission Preparation
-
-### Files to Prepare for Submission
-
-1. **Manuscript PDF**: `manuscript.pdf`
-2. **Manuscript Source**: `manuscript.tex`
-3. **Figure Files** (separate, high-resolution):
-   - `Figure_1_Hallucination_Rates.png`
-   - `Figure_2_Severity_Distribution.png`
-   - `Figure_3_Response_Consistency.png`
-   - `Figure_4_Calibration_Plot.png`
-4. **Supplementary Materials** (if applicable):
-   - Supplementary tables
-   - Supplementary figures
-   - Code repository link
-   - Data repository link
-
-### Cover Letter Template
-
-```
-Dear Editors of The Lancet Digital Health,
-
-We submit for your consideration our research article titled "Hallucination risks of large language models in clinical proteomics: a prospective evaluation study."
-
-This prospective evaluation study provides the first systematic assessment of hallucination rates in frontier large language models (GPT-4 Turbo, Claude 3 Sonnet, Gemini Pro 1.5) when queried about clinical proteomics data. Using 1,500 standardized queries, we demonstrate overall hallucination rates of 27.8-34.6%, escalating to over 50% for complex queries about rare proteins.
-
-Our findings have immediate implications for patient safety and AI deployment in specialized clinical domains. We identify critical risk factors including query complexity (OR=5.1) and protein rarity (OR=5.4), and demonstrate that current error rates are incompatible with safe clinical deployment without rigorous human oversight.
-
-This work addresses a critical gap in understanding LLM reliability for clinical decision support in specialized medical domains and provides an evidence-based framework for regulatory evaluation and clinical deployment strategies.
-
-We confirm that this manuscript has not been published elsewhere and is not under consideration by another journal. All authors have approved the manuscript and agree with its submission to The Lancet Digital Health.
-
-Sincerely,
-Olaf Yunus Laitinen Imanov, Ph.D. Candidate
-Corresponding Author
-```
-
----
-
-## Revision Workflow
-
-### After Peer Review
-
-1. **Track Changes**:
-```bash
-# Create revision branch
-git checkout -b revision-lancet-1
-
-# Make changes to manuscript.tex
-# Commit changes with clear messages
-git commit -m "revision: Address reviewer 1 comment 3"
-```
-
-2. **Generate Change-Marked PDF**:
-```bash
-# Use latexdiff for change tracking
-latexdiff manuscript-original.tex manuscript-revised.tex > manuscript-diff.tex
-pdflatex manuscript-diff.tex
-```
-
-3. **Response to Reviewers**:
-Create detailed point-by-point response document
-
-4. **Resubmission Package**:
-- Revised manuscript PDF
-- Marked-up manuscript PDF (with changes highlighted)
-- Response to reviewers document
-- Updated figure files (if modified)
-
----
-
-## Contact for Assistance
-
-**Technical Issues**:
-- GitHub Issues: https://github.com/olaflaitinen/llm-proteomics-hallucination/issues
-
-**Manuscript Questions**:
-- Corresponding Author: olyulaim@dtu.dk
-
-**LaTeX Support**:
-- TeX Stack Exchange: https://tex.stackexchange.com/
-- Overleaf Documentation: https://www.overleaf.com/learn
-
----
-
-**Last Updated**: November 9, 2024
+**Last Updated**: 2025-01-15
 **Document Version**: 1.0

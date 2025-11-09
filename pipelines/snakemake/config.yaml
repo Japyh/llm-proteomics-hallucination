@@ -1,0 +1,76 @@
+# Snakemake Configuration
+# LLM Proteomics Hallucination Pipeline
+
+# Input/Output
+data_dir: "../data"
+queries: "queries/test_queries.jsonl"
+ground_truth: "ground_truth/expert_annotations_adjudicated.json"
+output_dir: "results"
+
+# LLM Models
+models:
+  - gpt4-turbo
+  - claude-sonnet
+  - gemini-pro
+  - llama3-70b
+  - mistral-large-2
+
+# LLM Inference Parameters
+inference:
+  temperature: 0.3
+  top_p: 0.9
+  max_tokens: 2048
+  seed: 42
+
+# Evaluation Parameters
+evaluation:
+  calibration_bins: 10
+  confidence_threshold: 0.8
+  severity_levels: [0, 1, 2, 3]
+
+# Statistical Analysis
+statistics:
+  alpha: 0.01  # Bonferroni-corrected
+  fdr_q: 0.05
+  bootstrap_iterations: 10000
+  mcmc_chains: 4
+  mcmc_iterations: 2000
+  mcmc_warmup: 1000
+
+# Bias Audit
+bias:
+  domains: 
+    - mass_spectrometry
+    - ptms
+    - biomarkers
+    - bioinformatics
+    - clinical
+  complexity_levels:
+    - low
+    - medium
+    - high
+
+# Figure Generation
+figures:
+  dpi: 600
+  format: "tiff"
+  style: "lancet"
+  color_palette: "colorblind"
+
+# Resources
+resources:
+  default:
+    threads: 4
+    mem_mb: 16000
+  llm_eval:
+    threads: 8
+    mem_mb: 32000
+  analysis:
+    threads: 16
+    mem_mb: 64000
+
+# Conda Environments
+conda:
+  analysis: "envs/analysis.yaml"
+  visualization: "envs/viz.yaml"
+  llm: "envs/llm.yaml"

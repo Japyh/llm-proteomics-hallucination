@@ -1,0 +1,23 @@
+% Abstract for The Lancet Digital Health submission
+% LLM Proteomics Hallucination Study
+
+\begin{abstract}
+
+\textbf{Background:}
+Large language models (LLMs) are increasingly used to answer complex biomedical questions, yet their tendency to generate plausible but incorrect information (hallucinations) poses significant risks in proteomics research and clinical applications. We evaluated hallucination rates across multiple LLMs on proteomics-specific queries.
+
+\textbf{Methods:}
+We compiled 1,000 proteomics queries spanning mass spectrometry methods, post-translational modifications, biomarker discovery, and clinical applications. Five LLMs (GPT-4 Turbo, Claude 3 Sonnet, Gemini 1.5 Pro, Llama 3 70B, Mistral Large 2) generated responses, which were evaluated by three expert annotators using a 4-level severity scale (0=accurate, 1=minor error, 2=moderate error, 3=severe error). We analyzed hallucination rates, calibration (Expected Calibration Error, ECE), and clinical safety implications using Bayesian statistical models.
+
+\textbf{Findings:}
+Overall hallucination rate was 35.9\% (95\% CI: 34.2--37.6\%). Claude 3 Sonnet exhibited the lowest rate (27.8\%, 95\% CI: 25.4--30.2\%), while Mistral Large 2 showed the highest (42.6\%, 95\% CI: 40.0--45.2\%). Hallucination rates increased with query complexity (low: 18.3\%, medium: 32.1\%, high: 57.2\%; $p$ < 0.001, Cochran-Armitage trend test). Calibration varied significantly (ECE range: 0.082--0.156), with proprietary models demonstrating better calibration than open-source alternatives. Severe hallucinations (severity=3) occurred in 5.5\% of responses, with clinical safety-related queries showing elevated risk (OR=2.34, 95\% CI: 1.87--2.93).
+
+\textbf{Interpretation:}
+LLMs demonstrate substantial hallucination rates on proteomics queries, with performance degrading markedly on complex questions. Severe hallucinations, though relatively rare, pose critical risks for clinical decision-making. Poor calibration suggests LLMs are overconfident in incorrect responses. These findings underscore the need for rigorous verification mechanisms before deploying LLMs in proteomics research or clinical settings.
+
+\textbf{Funding:}
+NIH grant [Number], NSF grant [Number].
+
+\end{abstract}
+
+\keywords{Large language models, hallucination, proteomics, mass spectrometry, artificial intelligence, clinical decision support, biomarkers, calibration, Bayesian analysis}
