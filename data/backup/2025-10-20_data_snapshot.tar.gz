@@ -1,0 +1,23 @@
+[PLACEHOLDER: Compressed backup archive]
+
+This file represents a compressed tar.gz backup of the complete data/ directory
+created on 2025-10-20.
+
+To create actual backup:
+  tar -czf 2025-10-20_data_snapshot.tar.gz ../queries ../ground_truth ../llm_responses ../results ../proteins ../mass_spectrometry ../structured
+
+Archive contents should include:
+- queries/ (all query files)
+- ground_truth/ (expert annotations)
+- llm_responses/ (model responses in JSONL)
+- results/ (analysis results)
+- proteins/ (protein databases and FASTA files)
+- mass_spectrometry/ (MGF and mzML files)
+- structured/ (ontologies and mappings)
+
+Backup metadata:
+  Date: 2025-10-20
+  Size: ~250 MB (estimated)
+  Compression: gzip
+  Files: ~70 files
+  Purpose: Full data snapshot before final analysis

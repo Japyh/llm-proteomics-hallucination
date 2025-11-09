@@ -1,0 +1,6 @@
+go_id,term,category,definition
+GO:0006915,apoptotic process,biological_process,A programmed cell death process
+GO:0003677,DNA binding,molecular_function,Interacts selectively with DNA
+GO:0005634,nucleus,cellular_component,Membrane-bounded organelle containing chromosomes
+GO:0015671,oxygen transport,biological_process,Directed movement of oxygen
+GO:0005344,oxygen carrier activity,molecular_function,Binding and carrying oxygen

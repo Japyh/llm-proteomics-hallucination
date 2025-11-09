@@ -1,0 +1,23 @@
+[
+  {
+    "uniprot_accession": "P04637",
+    "gene_name": "TP53",
+    "domains": [
+      {"name": "TAD1", "start": 1, "end": 40, "type": "transactivation"},
+      {"name": "TAD2", "start": 40, "end": 61, "type": "transactivation"},
+      {"name": "DNA_binding", "start": 102, "end": 292, "type": "DNA_binding"},
+      {"name": "Tetramerization", "start": 326, "end": 356, "type": "oligomerization"},
+      {"name": "Regulatory", "start": 363, "end": 393, "type": "regulatory"}
+    ]
+  },
+  {
+    "uniprot_accession": "P00533",
+    "gene_name": "EGFR",
+    "domains": [
+      {"name": "Receptor_L_domain", "start": 1, "end": 165, "type": "ligand_binding"},
+      {"name": "Furin-like_repeat", "start": 166, "end": 312, "type": "ligand_binding"},
+      {"name": "Transmembrane", "start": 645, "end": 668, "type": "transmembrane"},
+      {"name": "Protein_kinase", "start": 712, "end": 979, "type": "kinase"}
+    ]
+  }
+]

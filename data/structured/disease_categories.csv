@@ -1,0 +1,6 @@
+disease_category,disease_name,associated_proteins,prevalence,clinical_significance
+cancer,Lung adenocarcinoma,"EGFR,TP53,KRAS",common,high
+hematologic,Sickle cell anemia,"HBB",rare,high
+metabolic,Diabetes mellitus type 2,"INS,IRS1,IRS2",common,high
+neurological,Alzheimers disease,"APP,PSEN1,PSEN2",common,high
+cardiovascular,Hypertrophic cardiomyopathy,"MYH7,MYBPC3",moderate,high

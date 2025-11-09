@@ -1,0 +1,19 @@
+[
+  {
+    "complex_name": "MRN_complex",
+    "components": [
+      {"uniprot": "P49959", "gene": "MRE11A", "stoichiometry": 2},
+      {"uniprot": "Q92878", "gene": "RAD50", "stoichiometry": 2},
+      {"uniprot": "O60934", "gene": "NBN", "stoichiometry": 2}
+    ],
+    "function": "DNA double-strand break repair"
+  },
+  {
+    "complex_name": "Hemoglobin",
+    "components": [
+      {"uniprot": "P69905", "gene": "HBA1", "stoichiometry": 2},
+      {"uniprot": "P68871", "gene": "HBB", "stoichiometry": 2}
+    ],
+    "function": "Oxygen transport"
+  }
+]

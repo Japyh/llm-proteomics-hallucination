@@ -1,0 +1,6 @@
+uniprot_accession,gene_name,go_id,go_term,evidence_code,reference
+P04637,TP53,GO:0006915,apoptotic process,IDA,PMID:12345678
+P04637,TP53,GO:0003677,DNA binding,IDA,PMID:12345679
+P04637,TP53,GO:0005634,nucleus,IDA,PMID:12345680
+P68871,HBB,GO:0015671,oxygen transport,TAS,PMID:23456789
+P68871,HBB,GO:0005344,oxygen carrier activity,TAS,PMID:23456790

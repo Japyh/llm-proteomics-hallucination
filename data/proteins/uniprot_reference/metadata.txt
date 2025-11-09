@@ -1,0 +1,17 @@
+UniProt Reference Proteomes Metadata
+=====================================
+Download Date: 2024-02-01
+UniProt Release: 2024_01
+
+Human Proteome (UP000005640):
+  - Total entries: 20,600 (sample: 3 shown)
+  - Reviewed (Swiss-Prot): 20,600
+  - Source: Homo sapiens (Human)
+
+Mouse Proteome (UP000000589):
+  - Total entries: 17,100 (sample: 2 shown)
+  - Source: Mus musculus (Mouse)
+
+Yeast Proteome (UP000002311):
+  - Total entries: 6,060 (sample: 1 shown)
+  - Source: Saccharomyces cerevisiae (Baker's yeast)

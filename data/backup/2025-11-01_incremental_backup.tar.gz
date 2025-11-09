@@ -1,0 +1,24 @@
+[PLACEHOLDER: Compressed incremental backup archive]
+
+This file represents an incremental compressed backup of changes made to the
+data/ directory between 2025-10-20 and 2025-11-01.
+
+To create actual incremental backup:
+  find ../results ../llm_responses -type f -newermt "2025-10-20" -print0 | tar -czf 2025-11-01_incremental_backup.tar.gz --null -T -
+
+Archive contents should include:
+- Updated results files (new analysis outputs)
+- Additional LLM responses (supplementary experiments)
+- Revised annotations (post-adjudication updates)
+
+Incremental backup metadata:
+  Date: 2025-11-01
+  Base snapshot: 2025-10-20_data_snapshot.tar.gz
+  Size: ~45 MB (estimated)
+  Compression: gzip
+  Files: ~15 modified/new files
+  Purpose: Capture changes after additional model evaluation rounds
+
+Restore procedure:
+  1. Extract base snapshot: tar -xzf 2025-10-20_data_snapshot.tar.gz
+  2. Apply incremental: tar -xzf 2025-11-01_incremental_backup.tar.gz

@@ -1,0 +1,26 @@
+{
+  "overall_qc": {
+    "status": "PASS",
+    "timestamp": "2024-02-16T18:30:00Z"
+  },
+  "identification_metrics": {
+    "total_proteins_identified": 5234,
+    "protein_fdr": 0.01,
+    "peptide_fdr": 0.01,
+    "mean_peptides_per_protein": 12.4
+  },
+  "mass_accuracy": {
+    "mean_ppm_error": 2.3,
+    "median_ppm_error": 1.8,
+    "std_ppm_error": 3.1
+  },
+  "chromatography_qc": {
+    "peak_width_consistency_cv": 8.5,
+    "retention_time_stability_cv": 2.1,
+    "total_ion_current_cv": 12.3
+  },
+  "contamination": {
+    "keratin_contamination_pct": 0.3,
+    "trypsin_autolysis_pct": 0.2
+  }
+}

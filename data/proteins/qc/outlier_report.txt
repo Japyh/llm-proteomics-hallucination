@@ -1,0 +1,22 @@
+Protein Data Quality Control - Outlier Report
+==============================================
+Analysis Date: 2024-03-01
+Total Samples: 3
+
+Outliers Detected:
+------------------
+1. Sample_003: 
+   - Low protein count (4892 vs expected >5000)
+   - Higher contamination (1.2% vs threshold <1.0%)
+   - Recommendation: Repeat sample preparation
+
+2. PROT_2134 (all samples):
+   - Unusually low peptide count (2 peptides)
+   - Low coverage (15%)
+   - Action: Flag for manual review
+
+Summary:
+--------
+Total outliers: 2
+Critical: 0
+Warning: 2

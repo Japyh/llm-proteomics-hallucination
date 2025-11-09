@@ -1,0 +1,6 @@
+biomarker_name,uniprot_accession,gene_name,disease,biomarker_type,validation_status,fda_approved
+CA-125,Q8WXI7,MUC16,Ovarian cancer,diagnostic,validated,TRUE
+PSA,P07288,KLK3,Prostate cancer,diagnostic,validated,TRUE
+HER2,P04626,ERBB2,Breast cancer,prognostic,validated,TRUE
+CEA,P06731,CEACAM5,Colorectal cancer,monitoring,validated,TRUE
+Troponin I,P19429,TNNI3,Myocardial infarction,diagnostic,validated,TRUE

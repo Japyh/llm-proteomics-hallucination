@@ -1,0 +1,8 @@
+evidence_code	category	description	reliability
+IDA	experimental	Inferred from Direct Assay	high
+IPI	experimental	Inferred from Physical Interaction	high
+IMP	experimental	Inferred from Mutant Phenotype	high
+TAS	curated	Traceable Author Statement	medium
+NAS	curated	Non-traceable Author Statement	medium
+ISS	computational	Inferred from Sequence or Structural Similarity	low
+IEA	automated	Inferred from Electronic Annotation	low

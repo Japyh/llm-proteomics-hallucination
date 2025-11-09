@@ -1,0 +1,20 @@
+[
+  {
+    "ontology_id": "GO:0006915",
+    "term": "apoptotic process",
+    "definition": "A programmed cell death process which begins when a cell receives an internal or external signal.",
+    "category": "biological_process",
+    "synonyms": ["programmed cell death by apoptosis"],
+    "parent_terms": ["GO:0012501"],
+    "evidence_code": "IDA"
+  },
+  {
+    "ontology_id": "GO:0003677",
+    "term": "DNA binding",
+    "definition": "Any molecular function by which a gene product interacts selectively and non-covalently with DNA.",
+    "category": "molecular_function",
+    "synonyms": ["microtubule/chromatin interaction", "plasmid binding"],
+    "parent_terms": ["GO:0003674"],
+    "evidence_code": "IDA"
+  }
+]

@@ -1,0 +1,25 @@
+protein_database:
+  source: UniProt
+  version: "2024_01"
+  download_date: "2024-02-01"
+  organism: Homo sapiens
+  taxonomy_id: 9606
+
+statistics:
+  total_proteins_identified: 5234
+  high_confidence: 4892
+  medium_confidence: 312
+  low_confidence: 30
+
+quality_metrics:
+  mean_sequence_coverage: 68.5
+  median_sequence_coverage: 72.3
+  mean_peptide_count: 12.4
+  identification_fdr: 0.01
+
+ptm_analysis:
+  total_ptm_sites: 1247
+  phosphorylation: 1089
+  acetylation: 98
+  ubiquitination: 45
+  glycosylation: 15

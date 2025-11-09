@@ -1,0 +1,26 @@
+instrument:
+  model: "Thermo Scientific Orbitrap Fusion Lumos"
+  serial_number: "FSN12345"
+  calibration_date: "2024-02-01"
+
+acquisition_parameters:
+  ms1_resolution: 120000
+  ms2_resolution: 30000
+  ms1_scan_range: [350, 1800]
+  collision_energy: "HCD 30%"
+  isolation_window: 1.6
+  dynamic_exclusion: 30
+
+chromatography:
+  column: "Waters ACQUITY UPLC Peptide CSH C18"
+  column_length_cm: 25
+  column_diameter_um: 75
+  gradient_length_min: 90
+  flow_rate_nl_min: 300
+
+sample_prep:
+  digestion_enzyme: "Trypsin"
+  digestion_time_hours: 16
+  labeling_method: "TMT11plex"
+  fractionation: "High pH RP"
+  num_fractions: 12
