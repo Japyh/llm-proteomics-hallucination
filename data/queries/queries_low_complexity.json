@@ -1,0 +1,56 @@
+[
+  {
+    "query_id": "LC_001",
+    "query_text": "What is the gene name for UniProt P04637?",
+    "domain": "protein_identification",
+    "complexity": "low",
+    "protein_prevalence": "common",
+    "protein_name": "TP53",
+    "ground_truth": {
+      "answer": "TP53",
+      "source": "UniProt 2024_01",
+      "confidence": "high"
+    },
+    "metadata": {
+      "created_date": "2024-03-01",
+      "reviewer": "expert_1",
+      "split": "train"
+    }
+  },
+  {
+    "query_id": "LC_002",
+    "query_text": "Is EGFR a receptor tyrosine kinase?",
+    "domain": "protein_identification",
+    "complexity": "low",
+    "protein_prevalence": "common",
+    "protein_name": "EGFR",
+    "ground_truth": {
+      "answer": "Yes, EGFR (Epidermal Growth Factor Receptor, P00533) is a receptor tyrosine kinase.",
+      "source": "UniProt 2024_01",
+      "confidence": "high"
+    },
+    "metadata": {
+      "created_date": "2024-03-01",
+      "reviewer": "expert_1",
+      "split": "train"
+    }
+  },
+  {
+    "query_id": "LC_003",
+    "query_text": "What is the cellular localization of histone H3?",
+    "domain": "protein_identification",
+    "complexity": "low",
+    "protein_prevalence": "common",
+    "protein_name": "H3",
+    "ground_truth": {
+      "answer": "Histone H3 is located in the nucleus, specifically in chromatin where it forms part of the nucleosome core.",
+      "source": "UniProt, Human Protein Atlas",
+      "confidence": "high"
+    },
+    "metadata": {
+      "created_date": "2024-03-01",
+      "reviewer": "expert_2",
+      "split": "train"
+    }
+  }
+]

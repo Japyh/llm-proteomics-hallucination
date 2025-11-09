@@ -1,0 +1,77 @@
+[
+  {
+    "query_id": "TEST_001",
+    "model": "gpt4-turbo",
+    "response_id": "R001_GPT4",
+    "annotator_1": {
+      "annotator_id": "expert_1",
+      "hallucination_level": 0,
+      "hallucination_types": [],
+      "evidence": "Response correctly identifies P68871 as UniProt accession for HBB",
+      "confidence": 1.0,
+      "annotation_time_seconds": 12,
+      "timestamp": "2024-03-15T10:30:00Z"
+    },
+    "annotator_2": {
+      "annotator_id": "expert_2",
+      "hallucination_level": 0,
+      "hallucination_types": [],
+      "evidence": "Accurate, matches UniProt database exactly",
+      "confidence": 1.0,
+      "annotation_time_seconds": 8,
+      "timestamp": "2024-03-15T14:20:00Z"
+    },
+    "agreement": "full",
+    "requires_adjudication": false
+  },
+  {
+    "query_id": "TEST_002",
+    "model": "claude-sonnet",
+    "response_id": "R002_CLAUDE",
+    "annotator_1": {
+      "annotator_id": "expert_1",
+      "hallucination_level": 1,
+      "hallucination_types": ["minor_factual_error"],
+      "evidence": "Response lists correct proteins but includes outdated UniProt IDs for one protein",
+      "confidence": 0.9,
+      "annotation_time_seconds": 45,
+      "timestamp": "2024-03-15T10:45:00Z"
+    },
+    "annotator_2": {
+      "annotator_id": "expert_2",
+      "hallucination_level": 1,
+      "hallucination_types": ["minor_factual_error"],
+      "evidence": "Minor version issue with one UniProt accession, otherwise accurate",
+      "confidence": 0.85,
+      "annotation_time_seconds": 38,
+      "timestamp": "2024-03-15T14:35:00Z"
+    },
+    "agreement": "full",
+    "requires_adjudication": false
+  },
+  {
+    "query_id": "HC_001",
+    "model": "gemini-pro",
+    "response_id": "R003_GEMINI",
+    "annotator_1": {
+      "annotator_id": "expert_1",
+      "hallucination_level": 3,
+      "hallucination_types": ["fabricated_protein", "fabricated_kinase"],
+      "evidence": "Response fabricates specific kinase and downstream pathways for hypothetical protein P12345 which does not exist in UniProt",
+      "confidence": 1.0,
+      "annotation_time_seconds": 120,
+      "timestamp": "2024-03-15T11:00:00Z"
+    },
+    "annotator_2": {
+      "annotator_id": "expert_2",
+      "hallucination_level": 3,
+      "hallucination_types": ["fabricated_protein", "fabricated_citation"],
+      "evidence": "Complete fabrication - P12345 does not exist, cited papers are non-existent",
+      "confidence": 1.0,
+      "annotation_time_seconds": 95,
+      "timestamp": "2024-03-15T14:50:00Z"
+    },
+    "agreement": "full",
+    "requires_adjudication": false
+  }
+]

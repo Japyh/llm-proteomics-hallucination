@@ -1,0 +1,38 @@
+[
+  {
+    "query_id": "TEST_001",
+    "query_text": "What is the UniProt accession for human hemoglobin subunit beta?",
+    "domain": "protein_identification",
+    "complexity": "low",
+    "protein_prevalence": "common",
+    "protein_name": "HBB",
+    "ground_truth": {
+      "answer": "P68871",
+      "source": "UniProt 2024_01",
+      "confidence": "high"
+    },
+    "metadata": {
+      "created_date": "2024-03-10",
+      "reviewer": "expert_1",
+      "split": "test"
+    }
+  },
+  {
+    "query_id": "TEST_002",
+    "query_text": "What proteins interact with BRCA1 in DNA repair?",
+    "domain": "protein_interactions",
+    "complexity": "medium",
+    "protein_prevalence": "common",
+    "protein_name": "BRCA1",
+    "ground_truth": {
+      "answer": "BRCA1 interacts with multiple proteins in DNA repair including BRCA2 (P51587), RAD51 (Q06609), BARD1 (Q99728), PALB2 (Q86YC2), and the MRN complex (MRE11, RAD50, NBS1).",
+      "source": "STRING v12.0, BioGRID",
+      "confidence": "high"
+    },
+    "metadata": {
+      "created_date": "2024-03-10",
+      "reviewer": "expert_2",
+      "split": "test"
+    }
+  }
+]

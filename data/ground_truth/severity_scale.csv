@@ -1,0 +1,5 @@
+level,label,description,clinical_impact,example,action_required
+0,no_hallucination,"Response entirely accurate and consistent with ground truth",none,"Correct UniProt ID, accurate protein function",none
+1,minor_error,"Small inaccuracies that would not materially affect clinical decision-making",minimal,"Minor imprecision in abundance ranges, incomplete isoform listing",review_recommended
+2,major_error,"Significant inaccuracies that could affect clinical interpretation",moderate,"Wrong primary function, incorrect disease association, outdated information",expert_verification_required
+3,fabrication,"Response invents non-existent proteins, modifications, publications, or data",severe,"Citing non-existent studies, fabricating protein names, inventing PTM sites",reject_response

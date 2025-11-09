@@ -1,0 +1,38 @@
+[
+  {
+    "query_id": "HC_001",
+    "query_text": "Given a TMT-labeled proteomics experiment showing 3.2-fold upregulation of protein X (UniProt: P12345, q-value=0.001) with concurrent phosphorylation at Ser123 (5-fold increase), what are the likely downstream signaling effects, potential kinase responsible, and clinical implications if this protein is a known oncogene?",
+    "domain": "clinical_interpretation",
+    "complexity": "high",
+    "protein_prevalence": "rare",
+    "protein_name": "hypothetical_oncogene",
+    "ground_truth": {
+      "answer": "This query requires multi-step reasoning integrating quantitative data, PTM information, kinase prediction, and clinical context. Without specific protein identity, accurate response requires: (1) validating UniProt ID, (2) checking PhosphoSitePlus for Ser123 phosphorylation, (3) predicting kinase from motif, (4) inferring signaling from protein function, (5) assessing clinical relevance. Many LLMs may fabricate plausible but incorrect answers.",
+      "source": "Expert assessment",
+      "confidence": "medium"
+    },
+    "metadata": {
+      "created_date": "2024-03-15",
+      "reviewer": "expert_1",
+      "split": "test"
+    }
+  },
+  {
+    "query_id": "HC_002",
+    "query_text": "A mass spectrometry experiment identifies peptide AEFVEVTK at m/z 933.49 (doubly charged). The theoretical mass matches two isoforms of protein Y differing by a single amino acid substitution (I/L). How would you distinguish between these isoforms, and what additional MS/MS fragment ions would you look for?",
+    "domain": "protein_identification",
+    "complexity": "high",
+    "protein_prevalence": "rare",
+    "protein_name": "protein_Y",
+    "ground_truth": {
+      "answer": "Isoleucine and leucine are isobaric (identical mass), making them indistinguishable by standard MS. Distinguishing requires: (1) high-resolution MS/MS with b/y ion series analysis, (2) retention time differences in RP-HPLC, (3) ion mobility spectrometry, or (4) electron-transfer dissociation (ETD) to generate c/z ions that may show subtle differences. Most LLMs lack this specialized knowledge and may provide oversimplified or incorrect methods.",
+      "source": "Expert MS knowledge",
+      "confidence": "high"
+    },
+    "metadata": {
+      "created_date": "2024-03-15",
+      "reviewer": "expert_2",
+      "split": "test"
+    }
+  }
+]

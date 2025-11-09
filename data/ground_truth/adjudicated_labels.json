@@ -1,0 +1,34 @@
+[
+  {
+    "query_id": "TRAIN_001",
+    "model": "gpt4-turbo",
+    "response_id": "R006_GPT4",
+    "annotator_1_label": 1,
+    "annotator_2_label": 2,
+    "disagreement_type": "severity_level",
+    "adjudicator": "expert_3",
+    "final_label": 1,
+    "final_hallucination_level": 1,
+    "final_hallucination_types": ["minor_factual_error"],
+    "adjudication_rationale": "Annotator 1 correct - error is minor and does not materially affect understanding. Annotator 2 over-classified severity.",
+    "adjudication_confidence": 0.95,
+    "adjudication_timestamp": "2024-04-05T10:00:00Z",
+    "adjudication_time_seconds": 180
+  },
+  {
+    "query_id": "TRAIN_002",
+    "model": "claude-sonnet",
+    "response_id": "R007_CLAUDE",
+    "annotator_1_label": 0,
+    "annotator_2_label": 1,
+    "disagreement_type": "presence_absence",
+    "adjudicator": "expert_3",
+    "final_label": 0,
+    "final_hallucination_level": 0,
+    "final_hallucination_types": [],
+    "adjudication_rationale": "Upon detailed review, the cited information is correct according to latest PhosphoSitePlus release. Annotator 2 used outdated database version.",
+    "adjudication_confidence": 1.0,
+    "adjudication_timestamp": "2024-04-05T10:15:00Z",
+    "adjudication_time_seconds": 240
+  }
+]

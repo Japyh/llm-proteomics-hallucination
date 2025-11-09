@@ -1,0 +1,38 @@
+[
+  {
+    "query_id": "VAL_001",
+    "query_text": "What is the molecular weight of human albumin?",
+    "domain": "protein_identification",
+    "complexity": "low",
+    "protein_prevalence": "common",
+    "protein_name": "ALB",
+    "ground_truth": {
+      "answer": "Human serum albumin (ALB, P02768) has a molecular weight of approximately 66.5 kDa (66,478 Da).",
+      "source": "UniProt 2024_01",
+      "confidence": "high"
+    },
+    "metadata": {
+      "created_date": "2024-03-05",
+      "reviewer": "expert_1",
+      "split": "validation"
+    }
+  },
+  {
+    "query_id": "VAL_002",
+    "query_text": "Which kinases phosphorylate ERK1/2 at their activation loop?",
+    "domain": "ptm",
+    "complexity": "medium",
+    "protein_prevalence": "common",
+    "protein_name": "MAPK1/MAPK3",
+    "ground_truth": {
+      "answer": "ERK1/2 are phosphorylated by MEK1 (MAP2K1) and MEK2 (MAP2K2) at Thr202/Tyr204 (ERK1) and Thr185/Tyr187 (ERK2) within the activation loop.",
+      "source": "PhosphoSitePlus March 2024",
+      "confidence": "high"
+    },
+    "metadata": {
+      "created_date": "2024-03-05",
+      "reviewer": "expert_2",
+      "split": "validation"
+    }
+  }
+]

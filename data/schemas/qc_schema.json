@@ -1,0 +1,214 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/olaflaitinen/llm-proteomics-hallucination/schemas/qc.json",
+  "title": "Quality Control Metrics Schema",
+  "description": "Schema for quality control metrics in proteomics data and LLM evaluation",
+  "type": "object",
+  "required": ["qc_id", "qc_type", "timestamp", "status"],
+  "properties": {
+    "qc_id": {
+      "type": "string",
+      "description": "Unique QC check identifier",
+      "pattern": "^QC[0-9]{6}$"
+    },
+    "qc_type": {
+      "type": "string",
+      "enum": [
+        "data_integrity",
+        "schema_validation",
+        "annotation_consistency",
+        "response_format",
+        "protein_metadata",
+        "msms_quality",
+        "statistical_validity"
+      ],
+      "description": "Type of quality control check"
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When QC check was performed"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["passed", "failed", "warning", "not_applicable"],
+      "description": "QC check result status"
+    },
+    "metrics": {
+      "type": "object",
+      "description": "QC-specific metrics",
+      "properties": {
+        "completeness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Data completeness ratio (0-1)"
+        },
+        "accuracy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Data accuracy score (0-1)"
+        },
+        "missing_values_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of missing values"
+        },
+        "missing_values_percentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Percentage of missing values"
+        },
+        "outlier_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of outliers detected"
+        },
+        "outlier_percentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Percentage of outliers"
+        },
+        "schema_violations": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of schema validation errors"
+        },
+        "duplicate_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Number of duplicate entries"
+        }
+      }
+    },
+    "proteomics_specific": {
+      "type": "object",
+      "description": "Proteomics-specific QC metrics",
+      "properties": {
+        "identification_fdr": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "False discovery rate for protein identification"
+        },
+        "peptide_count_mean": {
+          "type": "number",
+          "minimum": 0,
+          "description": "Mean peptide count per protein"
+        },
+        "sequence_coverage_mean": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Mean sequence coverage percentage"
+        },
+        "mass_accuracy_ppm": {
+          "type": "number",
+          "description": "Mass accuracy in parts per million"
+        },
+        "retention_time_cv": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Retention time coefficient of variation"
+        }
+      }
+    },
+    "llm_evaluation_specific": {
+      "type": "object",
+      "description": "LLM evaluation-specific QC metrics",
+      "properties": {
+        "response_rate": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Proportion of successful responses"
+        },
+        "annotation_agreement": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Inter-annotator agreement (kappa)"
+        },
+        "hallucination_detection_sensitivity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Sensitivity of hallucination detection"
+        },
+        "hallucination_detection_specificity": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Specificity of hallucination detection"
+        }
+      }
+    },
+    "thresholds": {
+      "type": "object",
+      "description": "QC threshold values",
+      "properties": {
+        "minimum_completeness": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.95
+        },
+        "maximum_missing_percentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 5.0
+        },
+        "maximum_outlier_percentage": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 1.0
+        },
+        "minimum_kappa": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "default": 0.80
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["severity", "message"],
+        "properties": {
+          "severity": {
+            "type": "string",
+            "enum": ["critical", "warning", "info"]
+          },
+          "message": {
+            "type": "string"
+          },
+          "affected_items": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "recommendation": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "performed_by": {
+      "type": "string",
+      "description": "Person or system that performed QC"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes about QC check"
+    }
+  }
+}

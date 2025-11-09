@@ -1,0 +1,52 @@
+[
+  {
+    "query_id": "VAL_001",
+    "model": "gpt4-turbo",
+    "response_id": "R004_GPT4",
+    "annotator_1": {
+      "annotator_id": "expert_1",
+      "hallucination_level": 0,
+      "hallucination_types": [],
+      "evidence": "Molecular weight correctly stated as 66.5 kDa, UniProt ID correct",
+      "confidence": 1.0,
+      "annotation_time_seconds": 10,
+      "timestamp": "2024-04-01T09:15:00Z"
+    },
+    "annotator_2": {
+      "annotator_id": "expert_2",
+      "hallucination_level": 0,
+      "hallucination_types": [],
+      "evidence": "Accurate response, all details verified against UniProt",
+      "confidence": 1.0,
+      "annotation_time_seconds": 12,
+      "timestamp": "2024-04-01T13:20:00Z"
+    },
+    "agreement": "full",
+    "requires_adjudication": false
+  },
+  {
+    "query_id": "VAL_002",
+    "model": "claude-sonnet",
+    "response_id": "R005_CLAUDE",
+    "annotator_1": {
+      "annotator_id": "expert_1",
+      "hallucination_level": 0,
+      "hallucination_types": [],
+      "evidence": "Correctly identifies MEK1/2 as ERK1/2 kinases, phosphorylation sites accurate",
+      "confidence": 1.0,
+      "annotation_time_seconds": 25,
+      "timestamp": "2024-04-01T09:30:00Z"
+    },
+    "annotator_2": {
+      "annotator_id": "expert_2",
+      "hallucination_level": 0,
+      "hallucination_types": [],
+      "evidence": "Perfect accuracy, matches PhosphoSitePlus data",
+      "confidence": 1.0,
+      "annotation_time_seconds": 20,
+      "timestamp": "2024-04-01T13:35:00Z"
+    },
+    "agreement": "full",
+    "requires_adjudication": false
+  }
+]

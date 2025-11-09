@@ -1,0 +1,56 @@
+[
+  {
+    "query_id": "TRAIN_001",
+    "query_text": "What is the UniProt accession number for human insulin?",
+    "domain": "protein_identification",
+    "complexity": "low",
+    "protein_prevalence": "common",
+    "protein_name": "INS",
+    "ground_truth": {
+      "answer": "P01308",
+      "source": "UniProt 2024_01",
+      "confidence": "high"
+    },
+    "metadata": {
+      "created_date": "2024-03-01",
+      "reviewer": "expert_1",
+      "split": "train"
+    }
+  },
+  {
+    "query_id": "TRAIN_002",
+    "query_text": "What are the known phosphorylation sites on human AKT1?",
+    "domain": "ptm",
+    "complexity": "medium",
+    "protein_prevalence": "common",
+    "protein_name": "AKT1",
+    "ground_truth": {
+      "answer": "Major phosphorylation sites on AKT1 include Thr308 and Ser473. Thr308 is phosphorylated by PDK1, while Ser473 is phosphorylated by mTORC2.",
+      "source": "PhosphoSitePlus March 2024",
+      "confidence": "high"
+    },
+    "metadata": {
+      "created_date": "2024-03-01",
+      "reviewer": "expert_2",
+      "split": "train"
+    }
+  },
+  {
+    "query_id": "TRAIN_003",
+    "query_text": "Is p53 upregulated or downregulated in most cancers?",
+    "domain": "clinical_interpretation",
+    "complexity": "low",
+    "protein_prevalence": "common",
+    "protein_name": "TP53",
+    "ground_truth": {
+      "answer": "p53 function is typically lost in most cancers, either through mutation (50% of cancers), deletion, or degradation. Wild-type p53 levels may be low due to MDM2-mediated degradation.",
+      "source": "Human Protein Atlas, Cancer literature",
+      "confidence": "high"
+    },
+    "metadata": {
+      "created_date": "2024-03-02",
+      "reviewer": "expert_1",
+      "split": "train"
+    }
+  }
+]

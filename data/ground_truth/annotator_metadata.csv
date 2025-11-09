@@ -1,0 +1,4 @@
+annotator_id,name,affiliation,years_experience,specialty,certification,total_annotations,annotation_start_date,annotation_end_date
+expert_1,Reviewer A,Technical University of Denmark,12,mass_spectrometry_proteomics,board_certified,750,2024-03-15,2024-06-30
+expert_2,Reviewer B,Max Planck Institute,15,clinical_proteomics,board_certified,750,2024-03-15,2024-06-30
+expert_3,Adjudicator C,Karolinska Institute,18,proteomics_bioinformatics,board_certified,127,2024-04-05,2024-06-15
