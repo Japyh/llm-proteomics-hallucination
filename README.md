@@ -73,33 +73,52 @@ This prospective evaluation study tested three frontier LLMs (GPT-4 Turbo, Claud
 
 ```
 llm-proteomics-hallucination/
-├── paper/                          # Manuscript and figures
+├── paper/                          # Manuscript and LaTeX source
 │   ├── manuscript.tex              # Complete Lancet Digital Health manuscript
+│   ├── abstract.tex                # Structured abstract (250 words)
 │   ├── COMPILATION_GUIDE.md        # Detailed compilation instructions
 │   ├── README.md                   # Paper documentation
+│   ├── journal_checklists/         # Compliance checklists
+│   │   ├── CONSORT_extension_AI.md # CONSORT-AI checklist
+│   │   └── EQUATOR_compliance.md   # TRIPOD-AI and STARD compliance
+│   ├── supplementary/              # Supplementary materials
+│   │   └── extended_methods.md     # Extended methodology
+│   ├── tables/                     # Manuscript tables
+│   │   └── outputs/                # Generated table files
 │   └── figures/
 │       ├── generate_figure_1.py    # Hallucination rates by complexity/prevalence
 │       ├── generate_figure_2.py    # Severity heatmap
 │       ├── generate_figure_3.py    # Response consistency analysis
 │       ├── generate_figure_4.py    # Calibration plot
+│       ├── templates/              # Figure templates
 │       └── output/                 # Generated figures (300 DPI PNG)
 │
 ├── data/                           # Research data
 │   ├── queries/                    # Query datasets (queries_all.json)
 │   ├── ground_truth/               # Expert annotations
-│   ├── llm_responses/              # LLM response data
+│   ├── llm_responses/              # LLM response data (1,500 responses)
 │   ├── results/                    # Analysis results
-│   ├── proteins/                   # Protein sequences (FASTA)
-│   ├── mass_spectrometry/          # MS/MS spectra (MGF)
+│   ├── schemas/                    # JSON schemas for data validation
+│   ├── proteins/                   # Protein sequences and metadata
+│   │   ├── uniprot_reference/      # UniProt reference data
+│   │   └── qc/                     # Quality control logs
+│   ├── mass_spectrometry/          # MS/MS spectra
+│   │   ├── mzML/                   # Standardized spectra format
+│   │   ├── raw_msms_files/         # Raw mass spectrometry files
+│   │   └── spectra_plots/          # Visualization outputs
 │   ├── structured/                 # Protein annotations (JSON)
+│   ├── backup/                     # Data backups
+│   ├── database_snapshots/         # Database versioning
 │   ├── generators/                 # Data generation scripts
 │   └── README.md                   # Complete data documentation
 │
-├── src/                            # Analysis code
+├── src/                            # Source code
 │   ├── data_processing/            # Data handling modules
-│   ├── llm_evaluation/             # LLM testing framework
-│   ├── analysis/                   # Statistical analysis
-│   └── utils/                      # Utilities
+│   ├── llm_eval/                   # LLM evaluation framework
+│   │   ├── clients/                # API clients (OpenAI, Anthropic, Gemini)
+│   │   └── prompts/                # Prompt templates
+│   ├── analysis/                   # Statistical analysis modules
+│   └── utils/                      # Utility functions
 │
 ├── notebooks/                      # Jupyter analysis notebooks
 │   ├── 00_setup_and_verification.ipynb
@@ -107,23 +126,75 @@ llm-proteomics-hallucination/
 │   ├── 02_llm_benchmark.ipynb
 │   ├── 03_hallucination_analysis.ipynb
 │   ├── 04_statistical_analysis.ipynb
-│   └── 05_results_visualization.ipynb
+│   ├── 05_results_visualization.ipynb
+│   └── src/                        # Notebook-specific utilities
+│       ├── analysis/
+│       ├── data_processing/
+│       ├── llm_evaluation/
+│       └── utils/
 │
 ├── tests/                          # Test suite (pytest)
-│   ├── test_llm_client.py
-│   ├── test_hallucination_detector.py
-│   └── conftest.py
+│   ├── unit/                       # Unit tests
+│   │   ├── test_metrics.py
+│   │   ├── test_schemas.py
+│   │   ├── test_calibration.py
+│   │   └── test_transformations.py
+│   ├── integration/                # Integration tests
+│   │   ├── test_end_to_end.py
+│   │   └── test_pipeline_makefile.py
+│   └── data_quality/               # Data validation tests
+│       ├── test_llm_responses_format.py
+│       ├── test_queries_schema.py
+│       └── test_annotations_consistency.py
 │
-├── ethics/                         # Ethics documentation
-│   ├── ethics_protocol.md
-│   └── data_management_plan.md
+├── pipelines/                      # Workflow automation
+│   ├── snakemake/                  # Snakemake workflows
+│   │   └── rules/                  # Individual workflow rules
+│   └── nextflow/                   # Nextflow pipelines
+│       └── modules/                # Pipeline modules
+│
+├── ethics/                         # Ethics and compliance
+│   ├── ethics_protocol.md          # IRB protocol documentation
+│   ├── data_management_plan.md     # Data management procedures
+│   ├── data_use_agreement.md       # Data sharing terms
+│   ├── deidentification_procedure.md # Privacy protocols
+│   ├── transparency_checklist.md   # TOP Guidelines compliance
+│   ├── consent_and_irb/            # IRB and consent documents
+│   │   └── osf_preregistration.txt # OSF pre-registration
+│   └── data_privacy/               # Privacy documentation
+│
+├── configs/                        # Configuration files
+│   ├── models/                     # Model configurations
+│   └── evaluation/                 # Evaluation parameters
+│
+├── tracking/                       # Experiment tracking
+│   ├── mlflow/                     # MLflow experiment logs
+│   │   └── server/                 # MLflow server config
+│   └── wandb/                      # Weights & Biases integration
+│
+├── provenance/                     # Reproducibility tracking
+│   ├── checksums/                  # File integrity verification
+│   └── build_logs/                 # Build and execution logs
+│
+├── containers/                     # Containerization
+│   └── sbom/                       # Software bill of materials
+│
+├── ci/                             # Continuous integration
+│   └── github/
+│       └── workflows/              # GitHub Actions workflows
 │
 ├── literature/                     # References
-│   ├── bibliography.bib
-│   └── reading_list.md
+│   ├── bibliography.bib            # BibTeX references
+│   └── reading_list.md             # Curated literature
 │
 ├── STUDY_PROTOCOL.md               # Complete study protocol
+├── FILE_CHECKLIST.md               # Repository completeness checklist
+├── CITATION.cff                    # Citation metadata
+├── zenodo.json                     # Zenodo archival metadata
 ├── requirements.txt                # Python dependencies
+│── requirements-dev.txt            # Development dependencies
+├── pyproject.toml                  # Python project configuration
+├── setup.cfg                       # Setup configuration
 ├── environment.yml                 # Conda environment
 └── README.md                       # This file
 ```
