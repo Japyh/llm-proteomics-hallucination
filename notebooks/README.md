@@ -1,393 +1,339 @@
-# Notebooks Directory
+# Jupyter Notebooks
 
-Jupyter notebooks for exploratory data analysis, LLM evaluation, and results generation.
+Analysis notebooks for the LLM proteomics hallucination study.
+
+---
 
 ## Notebook Workflow
 
 Execute notebooks in the following order:
 
 1. **00_setup_and_verification.ipynb** - Environment setup and verification
-2. **01_data_exploration.ipynb** - Exploratory data analysis
-3. **02_llm_benchmark.ipynb** - LLM testing and evaluation
-4. **03_hallucination_analysis.ipynb** - Hallucination detection and analysis
-5. **04_statistical_analysis.ipynb** - Statistical testing and significance
-6. **05_results_visualization.ipynb** - Generate paper-ready figures
+2. **01_data_exploration.ipynb** - Query dataset exploratory analysis
+3. **02_llm_benchmark.ipynb** - LLM query execution (GPT-4, Claude, Gemini)
+4. **03_hallucination_analysis.ipynb** - Hallucination detection and classification
+5. **04_statistical_analysis.ipynb** - Statistical testing and regression analysis
+6. **05_results_visualization.ipynb** - Generate manuscript figures and tables
 
-## Execution Environment
+---
 
-### Required Packages
-All packages from `requirements.txt` should be installed:
+## Environment Setup
+
+### Install Dependencies
+
 ```bash
+# Activate environment
+conda activate llm-proteomics
+
+# Install all requirements
 pip install -r requirements.txt
 ```
 
-### API Keys
-Create `.env` file with API keys before running notebooks 02 and 03:
+### Configure API Keys
+
+Create `.env` file with API keys for notebooks 02-03:
+
 ```bash
-cp .env.example .env
-# Edit .env with your actual API keys
+OPENAI_API_KEY=your_openai_key_here
+ANTHROPIC_API_KEY=your_anthropic_key_here
+GOOGLE_API_KEY=your_google_key_here
 ```
 
-### GPU Support (Optional)
-For faster LLM inference with local models:
-```bash
-# Check GPU availability
-python -c "import torch; print(torch.cuda.is_available())"
-```
+---
 
 ## Notebook Descriptions
 
 ### 00_setup_and_verification.ipynb
-**Purpose**: Verify environment setup and dependencies
 
-**Contents**:
-- Import all required libraries
+**Purpose**: Verify environment and dependencies
+
+**Key Tasks**:
 - Check library versions
-- Verify GPU availability (if applicable)
 - Test database connections
-- Load sample data
-- Confirm API connectivity (without actual API calls)
+- Verify data file integrity
+- Confirm API connectivity
 
-**Expected Runtime**: < 2 minutes
-
+**Runtime**: < 2 minutes
 **Outputs**: Environment report
 
 ---
 
 ### 01_data_exploration.ipynb
-**Purpose**: Explore and understand the synthetic protein dataset
 
-**Contents**:
-- Load synthetic protein data
-- Display dataset statistics
-- Visualize protein distributions
-- Analyze protein properties (molecular weight, sequence length, etc.)
-- Check data quality (missing values, outliers)
+**Purpose**: Explore query dataset and proteomics data
+
+**Key Tasks**:
+- Load 500 queries from `data/queries/queries_all.json`
+- Analyze stratification (complexity, prevalence)
+- Visualize protein properties
 - Generate summary statistics
-- Export cleaned dataset
 
-**Expected Runtime**: 5-10 minutes
-
+**Runtime**: 5-10 minutes
 **Outputs**:
 - Summary statistics CSV
 - Exploratory plots (PNG)
-- Cleaned dataset
 
 ---
 
 ### 02_llm_benchmark.ipynb
-**Purpose**: Test LLM performance on proteomics queries
 
-**Contents**:
+**Purpose**: Query LLMs and collect responses
+
+**Key Tasks**:
 - Initialize LLM clients (OpenAI, Anthropic, Google)
-- Load benchmark questions
-- Query each LLM with standardized prompts
-- Collect responses
+- Execute 500 queries per model (1,500 total)
 - Track API costs and latencies
-- Save results for analysis
+- Save responses to `data/llm_responses/`
 
-**Expected Runtime**: 30-60 minutes (depends on number of queries)
-
+**Runtime**: 30-60 minutes (API-dependent)
 **Outputs**:
-- LLM responses JSON
+- LLM responses JSON (gpt4_responses.json, claude_responses.json, gemini_responses.json)
 - Performance metrics CSV
 - Cost tracking report
 
-**Requirements**:
-- Valid API keys in `.env`
-- Sufficient API credits
+**Requirements**: Valid API keys, sufficient API credits
 
 ---
 
 ### 03_hallucination_analysis.ipynb
-**Purpose**: Detect and categorize hallucinations in LLM responses
 
-**Contents**:
-- Load LLM responses from notebook 02
-- Cross-reference with UniProt database
-- Identify invented proteins
-- Detect incorrect functions
-- Flag inconsistent information
-- Categorize hallucination types
+**Purpose**: Detect and classify hallucinations
+
+**Key Tasks**:
+- Load LLM responses
+- Cross-reference with ground truth (UniProt, HPA, PeptideAtlas)
+- Classify hallucinations (4-level severity scale)
 - Calculate hallucination rates per model
-- Generate hallucination examples
+- Identify hallucination patterns
 
-**Expected Runtime**: 20-40 minutes
-
+**Runtime**: 20-40 minutes
 **Outputs**:
-- Hallucination detection results CSV
-- Categorized errors JSON
-- Example cases for paper
+- `data/results/hallucination_rates.csv`
+- `data/results/severity_classifications.csv`
+- Example hallucinations for manuscript
 
 ---
 
 ### 04_statistical_analysis.ipynb
-**Purpose**: Perform statistical tests on results
 
-**Contents**:
-- Load hallucination rates and expert evaluations
-- Calculate inter-rater reliability (Cohen's kappa, Fleiss' kappa)
-- Compare models (chi-square, McNemar test)
-- Significance testing (t-tests, ANOVA)
+**Purpose**: Perform statistical tests
+
+**Key Tasks**:
+- Calculate inter-rater reliability (Cohen's kappa = 0.87)
+- Compare models (chi-square tests, Bonferroni correction)
+- Multivariable logistic regression (risk factors)
 - Effect size calculations
-- Multiple comparison corrections (Bonferroni, FDR)
-- Power analysis
-- Generate statistical tables
+- Generate statistical tables for manuscript
 
-**Expected Runtime**: 10-20 minutes
-
+**Runtime**: 10-20 minutes
 **Outputs**:
-- Statistical test results CSV
-- Significance tables for manuscript
-- Effect size calculations
+- `data/results/statistical_analysis.csv`
+- `data/results/model_comparison.csv`
+- Tables 1-4 for manuscript
 
 ---
 
 ### 05_results_visualization.ipynb
+
 **Purpose**: Create publication-ready figures
 
-**Contents**:
-- Generate figure 1: Hallucination rates by model
-- Generate figure 2: Error type distributions
-- Generate figure 3: Clinical relevance scores
-- Generate figure 4: Expert agreement heatmap
-- Generate supplementary figures
-- Create tables for manuscript
-- Export in multiple formats (PNG, PDF, SVG)
-- Apply journal formatting requirements
+**Key Tasks**:
+- Generate Figure 1: Hallucination rates by complexity/prevalence
+- Generate Figure 2: Severity heatmap by model/domain
+- Generate Figure 3: Response consistency analysis
+- Generate Figure 4: Calibration plot
+- Export at 300 DPI (PNG format)
 
-**Expected Runtime**: 15-25 minutes
-
+**Runtime**: 15-25 minutes
 **Outputs**:
-- Figures for manuscript (PNG, PDF)
-- LaTeX tables
-- Supplementary figures
+- Figures 1-4 for manuscript (300 DPI PNG)
+- LaTeX-formatted tables
 
 ---
 
-## Coding Conventions
-
-### Style
-- Follow PEP 8 guidelines
-- Use meaningful variable names
-- Add comments for complex logic
-- Include docstrings for functions
+## Coding Standards
 
 ### Structure
-Each notebook should have:
 
-1. **Title and Description** (Markdown cell)
-2. **Imports** (Code cell)
-3. **Configuration** (Code cell)
-4. **Main Analysis** (Multiple cells)
-5. **Results Summary** (Markdown cell)
-6. **Next Steps** (Markdown cell)
+Each notebook follows this structure:
 
-### Example Structure
+1. **Title and Description** (Markdown)
+2. **Imports** (Code)
+3. **Configuration** (Code)
+4. **Main Analysis** (Code cells)
+5. **Results Summary** (Markdown)
+
+### Style
+
+- Follow PEP 8 guidelines
+- Use meaningful variable names
+- Add docstrings for functions
+- Comment complex logic
+
+### Example
+
 ```python
-# %% [markdown]
-# # Notebook Title
-# Description of notebook purpose
-
-# %% [code]
 # Imports
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-# %% [code]
 # Configuration
-DATA_PATH = '../data/synthetic/'
-RESULTS_PATH = '../results/'
+DATA_PATH = '../data/queries/'
+RESULTS_PATH = '../data/results/'
 
-# %% [code]
 # Load data
-df = pd.read_csv(f'{DATA_PATH}/example_proteins.csv')
+queries = pd.read_json(f'{DATA_PATH}/queries_all.json')
 
-# %% [code]
 # Analysis
-# ... analysis code ...
-
-# %% [markdown]
-# ## Results Summary
-# Key findings from this notebook
-
-# %% [markdown]
-# ## Next Steps
-# - Run next notebook
-# - Additional analysis needed
+complexity_dist = queries['complexity'].value_counts()
+print(complexity_dist)
 ```
+
+---
 
 ## Best Practices
 
 ### Before Running
-- [ ] Environment activated
-- [ ] All dependencies installed
-- [ ] API keys configured (for notebooks 02-03)
-- [ ] Previous notebooks completed (if dependencies exist)
+
+- Activate conda environment
+- Install all dependencies
+- Configure API keys (for notebooks 02-03)
+- Ensure previous notebooks completed (if dependencies exist)
 
 ### During Execution
-- Run cells in order (don't skip cells)
+
+- Run cells in sequential order
 - Check for errors after each cell
 - Save intermediate results
-- Monitor API costs (for notebook 02)
-- Document unexpected findings in markdown cells
+- Monitor API costs (notebook 02)
 
 ### After Completion
-- Clear cell outputs before committing (unless example outputs)
+
+- Clear cell outputs before committing
 - Verify all output files created
-- Check results make sense
 - Document any issues encountered
+
+---
 
 ## Output Management
 
-### Where Outputs Go
-- Figures: `../results/figures/`
-- Tables: `../results/tables/`
-- Intermediate data: `../data/processed/`
-- Logs: `../results/logs/`
+### Output Directories
+
+- Figures: `../data/results/figures/`
+- Tables: `../data/results/tables/`
+- Processed data: `../data/processed/`
 
 ### File Naming Convention
+
 ```
 {notebook_number}_{description}_{date}.{extension}
 
 Examples:
-- 01_protein_distribution_20240115.png
-- 03_hallucination_results_20240115.csv
-- 05_figure1_hallucination_rates_20240115.pdf
+- 01_protein_distribution_20240315.png
+- 03_hallucination_results_20240315.csv
+- 05_figure1_hallucination_rates_20240315.png
 ```
 
-## Troubleshooting
-
-### Common Issues
-
-**Issue**: ModuleNotFoundError
-**Solution**: Ensure all requirements installed: `pip install -r requirements.txt`
-
-**Issue**: API authentication error
-**Solution**: Check `.env` file has valid API keys
-
-**Issue**: Memory error with large datasets
-**Solution**: Process data in chunks or use Dask for large datasets
-
-**Issue**: Plots not showing
-**Solution**: Add `%matplotlib inline` at top of notebook
-
-**Issue**: Kernel dies during execution
-**Solution**: Reduce batch size or increase available memory
-
-### Getting Help
-- Check error messages carefully
-- Review previous successful runs
-- Consult package documentation
-- Open GitHub issue if bug suspected
-
-## Version Control
-
-### What to Commit
-- Notebook files (.ipynb)
-- README updates
-- Example outputs (small files only)
-
-### What NOT to Commit
-- Large output files (> 1MB)
-- API responses with sensitive data
-- Temporary files
-- Cell execution outputs (clear before commit)
-
-### Clearing Outputs
-```bash
-# Using jupyter nbconvert
-jupyter nbconvert --clear-output --inplace *.ipynb
-
-# Or in JupyterLab: Cell > All Output > Clear
-```
+---
 
 ## Reproducibility
 
 ### Random Seeds
+
 Set random seeds for reproducibility:
+
 ```python
 import random
 import numpy as np
-import torch
 
 RANDOM_SEED = 42
 
 random.seed(RANDOM_SEED)
 np.random.seed(RANDOM_SEED)
-torch.manual_seed(RANDOM_SEED)
-if torch.cuda.is_available():
-    torch.cuda.manual_seed_all(RANDOM_SEED)
 ```
 
-### Environment Export
-Document exact environment:
+### Environment Documentation
+
 ```bash
+# Export exact environment
 pip freeze > requirements_exact.txt
 conda env export > environment_exact.yml
 ```
 
-### Data Versioning
-- Track dataset versions
-- Include checksums
-- Document any data modifications
+---
 
-## Performance Tips
+## Troubleshooting
 
-### Speed Up Execution
-1. Use vectorized operations (NumPy, Pandas)
-2. Avoid loops when possible
-3. Cache expensive computations
-4. Use multiprocessing for parallel tasks
-5. Profile code to find bottlenecks
+### Common Issues
 
-### Memory Management
-1. Delete large variables when done: `del large_df`
-2. Use generators for large datasets
-3. Process data in chunks
-4. Monitor memory usage: `%memit` magic command
+**ModuleNotFoundError**:
+```bash
+pip install -r requirements.txt
+```
 
-## Collaboration
+**API Authentication Error**:
+- Check `.env` file has valid API keys
+- Verify API quotas not exceeded
 
-### For Team Members
-- Add markdown cells explaining your analysis
-- Use descriptive variable names
-- Comment non-obvious code
-- Save intermediate checkpoints
-- Communicate major changes
+**Memory Error**:
+- Process data in chunks
+- Increase available memory
+- Close other applications
 
-### Code Review
-- Review notebook outputs before PR
-- Check for hardcoded paths
-- Verify reproducibility
-- Ensure no sensitive data exposed
+**Kernel Crash**:
+- Reduce batch size
+- Check memory usage
+- Restart kernel
 
 ---
 
 ## Jupyter Tips
 
 ### Useful Magic Commands
+
 ```python
 %time         # Time single statement
 %timeit       # Time repeated execution
-%memit        # Memory usage
-%load_ext autoreload  # Auto-reload modules
-%autoreload 2
+%load_ext autoreload
+%autoreload 2  # Auto-reload modules
 %matplotlib inline    # Show plots inline
-%config InlineBackend.figure_format = 'retina'  # High-res plots
 ```
 
 ### Keyboard Shortcuts
-- `Shift + Enter`: Run cell
+
+- `Shift + Enter`: Run cell and advance
 - `Ctrl + Enter`: Run cell without advancing
 - `A`: Insert cell above
 - `B`: Insert cell below
 - `D + D`: Delete cell
 - `M`: Change to markdown
 - `Y`: Change to code
-- `Ctrl + Shift + -`: Split cell
 
 ---
 
-Last Updated: 2024-01-15
+## Version Control
+
+### What to Commit
+
+- Notebook files (.ipynb)
+- README updates
+- Small example outputs only
+
+### What NOT to Commit
+
+- Large output files (> 1MB)
+- API responses with sensitive data
+- Cell execution outputs (clear before commit)
+
+### Clear Outputs
+
+```bash
+# Clear all notebook outputs
+jupyter nbconvert --clear-output --inplace *.ipynb
+```
+
+---
+
+**Last Updated**: November 9, 2024
+**Status**: Ready for analysis

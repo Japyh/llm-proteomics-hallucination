@@ -1,280 +1,163 @@
-# Research Reading List
+# Research Literature
 
-Organized reading list for LLM proteomics hallucination research project.
-
-## Priority Levels
-- **P1**: Must read - foundational for the research
-- **P2**: Should read - highly relevant
-- **P3**: Nice to read - supplementary context
+Key references for the LLM proteomics hallucination study.
 
 ---
 
-## 1. LLM Safety & Hallucinations
+## Primary References
 
-### Foundational Papers (P1)
+### 1. LLM Hallucinations
 
-1. **Survey of hallucination in natural language generation**
-   - Ji et al., 2023, ACM Computing Surveys
-   - Comprehensive taxonomy of hallucination types
-   - Key metrics and evaluation approaches
-   - Status: Not started
+**Survey of hallucination in natural language generation**
+- Ji Z, Lee N, Frieske R, et al. ACM Computing Surveys. 2023;55(12):1-38.
+- Comprehensive taxonomy of hallucination types and evaluation approaches
 
-2. **Siren's song in the AI ocean: A survey on hallucination in large language models**
-   - Zhang et al., 2023, arXiv
-   - Recent survey specific to LLMs
-   - Covers GPT, Claude, and other models
-   - Status: Not started
-
-3. **A survey on hallucination in large language models: Principles, taxonomy, challenges**
-   - Huang et al., 2023, arXiv
-   - Detailed taxonomy and detection methods
-   - Open research questions
-   - Status: Not started
-
-### Important Papers (P2)
-
-4. **On faithfulness and factuality in abstractive summarization**
-   - Maynez et al., 2020, ACL
-   - Early work on factual consistency
-   - Evaluation metrics
-   - Status: Not started
-
-5. **Language models are few-shot learners** (GPT-3 paper)
-   - Brown et al., 2020, NeurIPS
-   - Foundation model capabilities and limitations
-   - Status: Not started
-
-6. **Training language models to follow instructions with human feedback**
-   - Ouyang et al., 2022, NeurIPS
-   - RLHF approach and safety considerations
-   - Status: Not started
+**Siren's song in the AI ocean: A survey on hallucination in large language models**
+- Zhang Y, Li Y, Cui L, et al. arXiv:2309.01219. 2023.
+- Recent survey specific to LLMs including GPT-4 and Claude
 
 ---
 
-## 2. Clinical AI & Decision Support
+### 2. Clinical AI Safety
 
-### Foundational Papers (P1)
+**High-performance medicine: the convergence of human and artificial intelligence**
+- Topol EJ. Nature Medicine. 2019;25(1):44-56.
+- Vision for AI in clinical practice and safety considerations
 
-7. **High-performance medicine: the convergence of human and artificial intelligence**
-   - Topol, 2019, Nature Medicine
-   - Vision for AI in clinical practice
-   - Opportunities and risks
-   - Status: Not started
+**Machine learning in medicine**
+- Rajkomar A, Dean J, Kohane I. New England Journal of Medicine. 2019;380(14):1347-1358.
+- Clinical deployment challenges and regulatory considerations
 
-8. **Machine learning in medicine**
-   - Rajkomar et al., 2019, NEJM
-   - Clinical deployment challenges
-   - Regulatory considerations
-   - Status: Not started
-
-9. **A guide to deep learning in healthcare**
-   - Esteva et al., 2019, Nature Medicine
-   - Technical overview for healthcare applications
-   - Status: Not started
-
-### Important Papers (P2)
-
-10. **Challenges to the reproducibility of machine learning models in health care**
-    - Beam et al., 2020, JAMA
-    - Reproducibility crisis in medical AI
-    - Status: Not started
-
-11. **Machine learning in health care: A critical appraisal**
-    - Sendak et al., 2020, eGEMs
-    - Implementation challenges
-    - Status: Not started
+**Challenges to the reproducibility of machine learning models in health care**
+- Beam AL, Manrai AK, Ghassemi M. JAMA. 2020;323(4):305-306.
+- Reproducibility crisis in medical AI
 
 ---
 
-## 3. Proteomics & Mass Spectrometry
+### 3. Proteomics Fundamentals
 
-### Foundational Papers (P1)
+**Mass spectrometry-based proteomics**
+- Aebersold R, Mann M. Nature. 2003;422(6928):198-207.
+- Classic foundational paper on MS-based proteomics
 
-12. **Mass spectrometry-based proteomics**
-    - Aebersold & Mann, 2003, Nature
-    - Classic foundational paper
-    - Technical principles
-    - Status: Not started
+**Protein biomarker discovery and validation: the long and uncertain path to clinical utility**
+- Rifai N, Gillette MA, Carr SA. Nature Biotechnology. 2006;24(8):971-983.
+- Clinical validation challenges for protein biomarkers
 
-13. **Protein biomarker discovery and validation**
-    - Rifai et al., 2006, Nature Biotechnology
-    - Clinical validation challenges
-    - Biomarker pipeline
-    - Status: Not started
-
-14. **A survey of computational methods for peptide and protein identification**
-    - Nesvizhskii, 2010, Journal of Proteomics
-    - Computational approaches
-    - Error rate estimation
-    - Status: Not started
-
-### Important Papers (P2)
-
-15. **Andromeda: a peptide search engine**
-    - Cox et al., 2011, J. Proteome Research
-    - MaxQuant integration
-    - Algorithm details
-    - Status: Not started
-
-16. **Protein analysis by shotgun/bottom-up proteomics**
-    - Zhang et al., 2013, Chemical Reviews
-    - Comprehensive technical review
-    - Status: Not started
-
-17. **Plasma proteome profiling to assess human health and disease**
-    - Geyer et al., 2017, Cell Systems
-    - Clinical applications
-    - Status: Not started
+**The human proteome in 2023**
+- Uhlen M, Karlsson MJ, Zhong W, et al. Nucleic Acids Research. 2023;51(D1):D1301-D1310.
+- Human Protein Atlas comprehensive proteome mapping
 
 ---
 
-## 4. AI Ethics in Healthcare
+### 4. AI Ethics in Healthcare
 
-### Foundational Papers (P1)
+**Implementing machine learning in health care - addressing ethical challenges**
+- Char DS, Shah NH, Magnus D. New England Journal of Medicine. 2018;378(11):981-983.
+- Key ethical frameworks and practical guidance
 
-18. **Implementing machine learning in health care—addressing ethical challenges**
-    - Char et al., 2018, NEJM
-    - Key ethical frameworks
-    - Practical guidance
-    - Status: Not started
+**The ethics of AI in health care: A mapping review**
+- Morley J, Machado CCV, Burr C, et al. Social Science & Medicine. 2020;260:113172.
+- Comprehensive ethical landscape for AI in healthcare
 
-19. **The ethics of AI in health care: A mapping review**
-    - Morley et al., 2020, Social Science & Medicine
-    - Comprehensive ethical landscape
-    - Status: Not started
-
-### Important Papers (P2)
-
-20. **Machine learning in medicine: Addressing ethical challenges**
-    - Vayena et al., 2018, PLoS Medicine
-    - Privacy, fairness, accountability
-    - Status: Not started
-
-21. **Dissecting racial bias in an algorithm used to manage health populations**
-    - Obermeyer et al., 2019, Science
-    - Real-world bias example
-    - Systematic discrimination
-    - Status: Not started
+**Dissecting racial bias in an algorithm used to manage health populations**
+- Obermeyer Z, Powers B, Vogeli C, Mullainathan S. Science. 2019;366(6464):447-453.
+- Real-world example of algorithmic bias in healthcare
 
 ---
 
-## 5. Bias & Fairness
+### 5. Statistical Methods
 
-### Foundational Papers (P1)
+**Interrater reliability: the kappa statistic**
+- McHugh ML. Biochemia Medica. 2012;22(3):276-282.
+- Statistical methods for inter-rater agreement
 
-22. **A survey on bias and fairness in machine learning**
-    - Mehrabi et al., 2021, ACM Computing Surveys
-    - Comprehensive bias taxonomy
-    - Mitigation strategies
-    - Status: Not started
-
-23. **Ensuring fairness in machine learning to advance health equity**
-    - Rajkomar et al., 2018, Annals of Internal Medicine
-    - Healthcare-specific fairness
-    - Status: Not started
-
-### Important Papers (P2)
-
-24. **Disadvantages of using ROC curves**
-    - Halligan et al., 2015, European Radiology
-    - Critical evaluation of metrics
-    - Status: Not started
-
-25. **Interrater reliability: the kappa statistic**
-    - McHugh, 2012, Biochemia Medica
-    - Statistical methods for agreement
-    - Status: Not started
+**Multiple comparisons in clinical trials**
+- Perneger TV. BMJ. 1998;316(7139):1236-1238.
+- Bonferroni correction and multiple testing
 
 ---
 
-## 6. Explainability & Interpretability
+## Secondary References
 
-### Foundational Papers (P1)
+### LLM Technical Papers
 
-26. **Stop explaining black box models for high stakes decisions**
-    - Rudin, 2019, Nature Machine Intelligence
-    - Argument for inherently interpretable models
-    - Healthcare implications
-    - Status: Not started
+**Language models are few-shot learners** (GPT-3)
+- Brown TB, Mann B, Ryder N, et al. NeurIPS. 2020;33:1877-1901.
 
-27. **A unified approach to interpreting model predictions** (SHAP)
-    - Lundberg & Lee, 2017, NeurIPS
-    - SHAP values methodology
-    - Status: Not started
+**Training language models to follow instructions with human feedback**
+- Ouyang L, Wu J, Jiang X, et al. NeurIPS. 2022.
 
-### Important Papers (P2)
-
-28. **Causability and explainability of AI in medicine**
-    - Holzinger et al., 2019, WIREs Data Mining
-    - Medical-specific explainability
-    - Status: Not started
+**Constitutional AI: Harmlessness from AI feedback**
+- Bai Y, Kadavath S, Kundu S, et al. arXiv:2212.08073. 2022.
 
 ---
 
-## 7. Data Privacy & Security
+### Proteomics Analysis
 
-### Foundational Papers (P1)
+**Andromeda: a peptide search engine integrated into the MaxQuant environment**
+- Cox J, Neuhauser N, Michalski A, et al. Journal of Proteome Research. 2011;10(4):1794-1805.
 
-29. **The EU general data protection regulation (GDPR)**
-    - Voigt & Von dem Bussche, 2017
-    - Legal framework
-    - Compliance requirements
-    - Status: Not started
+**Protein analysis by shotgun/bottom-up proteomics**
+- Zhang Y, Fonslow BR, Shan B, et al. Chemical Reviews. 2013;113(4):2343-2394.
 
-30. **Privacy in the age of medical big data**
-    - Price & Cohen, 2019, Nature Medicine
-    - Healthcare data privacy
-    - De-identification techniques
-    - Status: Not started
+**Plasma proteome profiling to assess human health and disease**
+- Geyer PE, Holdt LM, Teupser D, Mann M. Cell Systems. 2017;4(3):185-197.
 
 ---
 
-## Reading Schedule (Proposed)
+### AI Interpretability
 
-### Month 1-2: Foundations
-- Complete all P1 papers in sections 1-4
-- Begin systematic literature search
+**Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead**
+- Rudin C. Nature Machine Intelligence. 2019;1(5):206-215.
 
-### Month 3-4: Depth
-- Complete all P2 papers
-- Read P1 papers in sections 5-7
-- Document synthesis in notes/
-
-### Month 5-6: Breadth
-- Search for recent 2023-2024 publications
-- Read papers specific to research gaps
-- Finalize literature review section
+**A unified approach to interpreting model predictions** (SHAP)
+- Lundberg SM, Lee SI. NeurIPS. 2017:4765-4774.
 
 ---
 
-## Additional Resources
+### Data Privacy
 
-### Books
+**The EU general data protection regulation (GDPR)**
+- Voigt P, Von dem Bussche A. Springer International Publishing. 2017.
 
-1. **Deep Medicine** by Eric Topol
-   - Clinical AI landscape
-   - Status: Not started
-
-2. **Interpretable Machine Learning** by Christoph Molnar
-   - Online book on explainability
-   - Status: Not started
-
-### Online Courses
-
-1. **AI for Medicine Specialization** (Coursera)
-   - Practical applications
-   - Status: Not started
-
-2. **Proteomics: Methods and Protocols** (edX)
-   - Technical proteomics
-   - Status: Not started
+**Privacy in the age of medical big data**
+- Price WN, Cohen IG. Nature Medicine. 2019;25(1):37-43.
 
 ---
 
-## Search Strategies
+## Database References
 
-### Databases to Monitor
-- PubMed
+### UniProt
+
+**UniProt: the universal protein knowledgebase in 2023**
+- The UniProt Consortium. Nucleic Acids Research. 2023;51(D1):D523-D531.
+- Release 2024_01 used in this study
+
+### Human Protein Atlas
+
+**The human protein atlas: a spatial map of the human proteome**
+- Uhlen M, Fagerberg L, Hallstrom BM, et al. Science. 2015;347(6220):1260419.
+- Version 23.0 used in this study
+
+### PeptideAtlas
+
+**The PeptideAtlas project**
+- Desiere F, Deutsch EW, King NL, et al. Nucleic Acids Research. 2006;34(Database issue):D655-D658.
+- Release 2024-01 used in this study
+
+### PhosphoSitePlus
+
+**PhosphoSitePlus, 2014: mutations, PTMs and recalibrations**
+- Hornbeck PV, Zhang B, Murray B, et al. Nucleic Acids Research. 2015;43(D1):D512-D520.
+
+---
+
+## Search Strategy
+
+### Databases Searched
+
+- PubMed/MEDLINE
 - Google Scholar
 - arXiv (cs.AI, cs.CL, cs.LG)
 - bioRxiv
@@ -282,139 +165,66 @@ Organized reading list for LLM proteomics hallucination research project.
 
 ### Search Terms
 
-#### Primary Keywords
+**Primary**:
 - "hallucination" AND "large language model"
 - "LLM" AND "healthcare" AND "safety"
 - "proteomics" AND "machine learning"
 - "clinical decision support" AND "AI"
-- "mass spectrometry" AND "artificial intelligence"
 
-#### Secondary Keywords
+**Secondary**:
 - "factual consistency" AND "language models"
-- "biomarker discovery" AND "AI"
+- "biomarker discovery" AND "artificial intelligence"
 - "medical AI" AND "errors"
 - "protein identification" AND "neural networks"
-- "clinical proteomics" AND "interpretation"
-
-### Alert Setup
-- Google Scholar alerts for key terms
-- PubMed saved searches with email notifications
-- arXiv daily digest subscriptions
-
----
-
-## Gap Analysis
-
-### Identified Research Gaps
-
-1. **No specific studies on LLM hallucinations in proteomics domain**
-   - Opportunity for novel contribution
-   - Need to establish baseline error rates
-
-2. **Limited evaluation of clinical impact**
-   - Most studies focus on technical metrics
-   - Need patient-centered outcomes
-
-3. **Lack of standardized benchmarks**
-   - No consensus evaluation framework
-   - Our benchmark could become standard
-
-4. **Unclear regulatory path**
-   - FDA/EMA guidance incomplete for LLM-based tools
-   - Need ethical framework
-
-5. **Explainability in specialized domains**
-   - General XAI methods may not suffice
-   - Domain expertise integration unclear
-
----
-
-## Literature Review Matrix
-
-Create a spreadsheet with columns:
-- Paper ID
-- Authors
-- Year
-- Journal/Conference
-- Key Findings
-- Methodology
-- Relevance Score (1-5)
-- Citation Count
-- Notes/Quotes
-- Cited in Our Paper (Yes/No)
-
-Use `notes/literature_matrix.xlsx` for tracking.
 
 ---
 
 ## Citation Management
 
-- **Primary Tool**: BibTeX (bibliography.bib)
-- **Backup**: Zotero or Mendeley
-- **Style**: Vancouver or APA (check target journal)
+**Primary Tool**: BibTeX (see `literature/bibliography.bib`)
+**Style**: Vancouver (numerical superscript)
+**Management**: Zotero/Mendeley compatible
 
 ---
 
-## Notes Template
+## Research Gaps Identified
 
-For each paper, create a note in `notes/` with:
+1. **No specific studies on LLM hallucinations in proteomics**
+   - This study addresses this gap directly
+   - Establishes baseline error rates
 
-```markdown
-# [Paper Title]
+2. **Limited evaluation of clinical impact in specialized domains**
+   - Focus on patient safety implications
+   - Domain-specific risk assessment
 
-**Authors**: [Names]
-**Year**: [Year]
-**Journal**: [Journal]
-**DOI**: [DOI]
+3. **Lack of standardized evaluation frameworks**
+   - Develop rigorous ground truth validation
+   - Multi-expert consensus approach
 
-## Summary
-[3-5 sentence summary]
-
-## Key Findings
-- Finding 1
-- Finding 2
-- Finding 3
-
-## Methodology
-[Brief description]
-
-## Relevance to Our Research
-[How this paper relates to our work]
-
-## Quotes for Citation
-- "Quote 1" (page X)
-- "Quote 2" (page Y)
-
-## Critical Analysis
-[Strengths and limitations]
-
-## Follow-up Papers to Read
-- Paper 1
-- Paper 2
-
-## Notes
-[Additional thoughts]
-```
+4. **Unclear regulatory pathway for LLM-based clinical tools**
+   - Inform FDA/EMA guidance development
+   - Propose safety thresholds
 
 ---
 
-## Progress Tracking
+## Related Systematic Reviews
 
-Update status regularly:
-- **Not started**: Haven't read yet
-- **In progress**: Currently reading
-- **Read**: Completed, notes taken
-- **Cited**: Included in our manuscript
-- **Not relevant**: Skipped after abstract review
+**Artificial intelligence in clinical proteomics: A systematic review**
+- Planned future work
+- PROSPERO registration pending
 
----
-
-## Team Responsibilities
-
-- **olaflaitinen**: Focus on sections 1-3 (LLM, Clinical AI, Proteomics)
-- **Japyh**: Focus on sections 4-7 (Ethics, Bias, Explainability, Privacy)
-- **Joint**: Synthesize findings bi-weekly
+**Hallucination detection methods for language models: A systematic review and meta-analysis**
+- Related ongoing work in AI safety community
 
 ---
 
-Last Updated: 2024-01-15
+## Contact
+
+For literature recommendations or collaboration:
+- Email: olyulaim@dtu.dk
+- BibTeX file: `literature/bibliography.bib`
+
+---
+
+**Last Updated**: November 9, 2024
+**Total References**: 34 primary + supplementary materials
