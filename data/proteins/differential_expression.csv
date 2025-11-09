@@ -1,0 +1,5 @@
+protein_id,uniprot_accession,gene_name,condition_a,condition_b,fold_change,log2_fold_change,p_value,q_value,significant
+PROT_001,P04637,TP53,normal,cancer,0.42,-1.25,0.0001,0.002,TRUE
+PROT_002,P68871,HBB,normal,cancer,1.85,0.89,0.15,0.25,FALSE
+PROT_004,P00533,EGFR,normal,cancer,3.24,1.70,0.00001,0.0001,TRUE
+PROT_005,P31749,AKT1,normal,cancer,2.18,1.12,0.005,0.015,TRUE

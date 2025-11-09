@@ -1,0 +1,6 @@
+protein_id,uniprot_accession,gene_name,protein_name,peptide_count,sequence_coverage,mol_weight_kda,score,fdr
+PROT_001,P04637,TP53,Cellular tumor antigen p53,15,78.5,43.7,245.3,0.001
+PROT_002,P68871,HBB,Hemoglobin subunit beta,12,92.1,15.9,312.7,0.0001
+PROT_003,P01308,INS,Insulin,8,85.3,5.8,189.4,0.001
+PROT_004,P00533,EGFR,Epidermal growth factor receptor,45,65.2,134.3,456.8,0.0001
+PROT_005,P31749,AKT1,RAC-alpha serine/threonine-protein kinase,23,71.8,55.7,278.9,0.001

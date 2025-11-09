@@ -1,38 +1,10 @@
 defaults:
-  - default
-  - pipelines
   - _self_
+  - models: gpt4_turbo_2024_03
+  - evaluation: query_splits
 
 hydra:
   run:
     dir: outputs/${now:%Y-%m-%d}/${now:%H-%M-%S}
   sweep:
     dir: multirun/${now:%Y-%m-%d}/${now:%H-%M-%S}
-    subdir: ${hydra.job.num}
-
-  # Logging
-  job_logging:
-    version: 1
-    formatters:
-      simple:
-        format: '[%(levelname)s] - %(message)s'
-    handlers:
-      console:
-        class: logging.StreamHandler
-        formatter: simple
-        stream: ext://sys.stdout
-    root:
-      level: INFO
-      handlers: [console]
-
-  # Runtime choices
-  runtime:
-    choices:
-      model: ???
-      evaluation: ???
-
-  # Sweeper (for hyperparameter tuning)
-  sweeper:
-    params:
-      model.parameters.temperature: 0.5,0.7,0.9
-      model.parameters.max_tokens: 300,500,700

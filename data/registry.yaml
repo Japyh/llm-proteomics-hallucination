@@ -1,31 +1,29 @@
-# Data Registry for LLM Proteomics Hallucination Study
-
-version: 1.0.0
-created: 2024-11-09
-updated: 2024-11-09
+version: "1.0.0"
+last_updated: "2025-11-09"
 
 datasets:
-  queries:
+  queries_all:
     path: queries/queries_all.json
-    format: json
-    size: 500
+    description: Complete set of 600 proteomics queries
     schema: schemas/query_schema.json
-    checksum: sha256:abc123...
     
-  ground_truth:
+  annotations:
     path: ground_truth/adjudicated_labels.json
-    format: json
-    size: 500
+    description: Expert-adjudicated hallucination labels
     schema: schemas/annotation_schema.json
-    checksum: sha256:def456...
     
   llm_responses:
-    path: llm_responses/
-    format: jsonl
-    models: [gpt4_turbo, claude_sonnet, gemini_pro]
-    total_responses: 1500
-    
+    gpt4:
+      path: llm_responses/gpt4_turbo_responses.jsonl
+      model_version: gpt-4-turbo-2024-04-09
+    claude:
+      path: llm_responses/claude_sonnet_responses.jsonl
+      model_version: claude-3-sonnet-20240229
+    gemini:
+      path: llm_responses/gemini_pro_responses.jsonl
+      model_version: gemini-1.5-pro
+
   results:
-    path: results/
-    format: csv
-    files: [hallucination_rates.csv, model_comparison.csv, severity_distribution.csv]
+    hallucination_rates: results/hallucination_rates.csv
+    model_comparison: results/model_comparison.csv
+    bias_metrics: results/bias_metrics.csv

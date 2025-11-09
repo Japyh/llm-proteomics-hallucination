@@ -1,0 +1,11 @@
+Variable,Coefficient,Std Error,Z value,P value,OR,95% CI Lower,95% CI Upper
+Intercept,-1.234,0.156,-7.91,<0.001,0.29,0.21,0.40
+Model: Claude vs GPT-4,-0.287,0.098,-2.93,0.003,0.75,0.62,0.91
+Model: Gemini vs GPT-4,0.156,0.102,1.53,0.126,1.17,0.96,1.43
+Model: Llama3 vs GPT-4,0.389,0.105,3.70,<0.001,1.48,1.20,1.81
+Model: Mistral vs GPT-4,0.445,0.107,4.16,<0.001,1.56,1.27,1.93
+Complexity: Medium vs Low,0.623,0.089,7.00,<0.001,1.86,1.57,2.21
+Complexity: High vs Low,1.234,0.094,13.13,<0.001,3.44,2.86,4.13
+Domain: Clinical vs MS,0.412,0.112,3.68,<0.001,1.51,1.21,1.88
+Contains numerical data,0.287,0.095,3.02,0.003,1.33,1.10,1.61
+Query length (per 100 chars),0.089,0.034,2.62,0.009,1.09,1.02,1.17

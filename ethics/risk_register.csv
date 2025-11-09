@@ -1,0 +1,6 @@
+Risk ID,Risk Description,Likelihood,Impact,Mitigation
+R001,Data breach,Low,High,Encryption + access controls
+R002,Model hallucination misuse,Medium,High,Clear documentation of limitations
+R003,Bias in findings,Medium,Medium,Systematic bias audit
+R004,Reproducibility failure,Low,Medium,Version control + tests
+R005,Ethical concerns,Low,High,IRB oversight + transparency

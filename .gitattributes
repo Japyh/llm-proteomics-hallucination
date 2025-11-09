@@ -1,70 +1,29 @@
-# Git LFS tracking for large files
-*.tiff filter=lfs diff=lfs merge=lfs -text
-*.tif filter=lfs diff=lfs merge=lfs -text
-*.mgf filter=lfs diff=lfs merge=lfs -text
-*.mzML filter=lfs diff=lfs merge=lfs -text
-*.fasta filter=lfs diff=lfs merge=lfs -text
-*.h5 filter=lfs diff=lfs merge=lfs -text
-*.tar.gz filter=lfs diff=lfs merge=lfs -text
-*.zip filter=lfs diff=lfs merge=lfs -text
-*.pdf filter=lfs diff=lfs merge=lfs -text
-
-# Line ending normalization
+# Auto detect text files and perform LF normalization
 * text=auto
 
-# Source code
+# Python files
 *.py text eol=lf
-*.R text eol=lf
-*.sh text eol=lf
-*.bash text eol=lf
+*.pyx text eol=lf
+*.ipynb text eol=lf
 
-# Configuration files
-*.yaml text eol=lf
-*.yml text eol=lf
-*.json text eol=lf
-*.toml text eol=lf
+# Shell scripts
+*.sh text eol=lf
 
 # Documentation
 *.md text eol=lf
-*.txt text eol=lf
-*.tex text eol=lf
-*.bib text eol=lf
+*.rst text eol=lf
 
 # Data files
 *.csv text eol=lf
-*.tsv text eol=lf
-*.jsonl text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
 
 # Binary files
+*.pdf binary
 *.png binary
 *.jpg binary
 *.jpeg binary
-*.gif binary
-*.ico binary
-*.db binary
-*.sqlite binary
-
-# Jupyter notebooks
-*.ipynb text eol=lf linguist-documentation
-
-# R Markdown
-*.Rmd text eol=lf
-
-# Snakemake
-*.smk text eol=lf
-Snakefile text eol=lf
-
-# Nextflow
-*.nf text eol=lf
-
-# Docker
-Dockerfile text eol=lf
-*.dockerfile text eol=lf
-
-# LaTeX generated files (exclude from repo)
-*.aux binary
-*.log binary
-*.out binary
-*.toc binary
-*.bbl binary
-*.blg binary
+*.tiff binary
+*.h5 binary
+*.hdf5 binary

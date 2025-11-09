@@ -1,0 +1,7 @@
+run_id,sample_id,ms_instrument,acquisition_date,total_spectra,ms1_count,ms2_count,runtime_min,qc_status
+patient001_runA,PAT001,Orbitrap Fusion Lumos,2024-02-15,45231,8934,36297,90,PASS
+patient001_runB,PAT001,Orbitrap Fusion Lumos,2024-02-15,44892,8823,36069,90,PASS
+patient002_runA,PAT002,Orbitrap Fusion Lumos,2024-02-16,42134,8312,33822,90,PASS
+patient002_runB,PAT002,Orbitrap Fusion Lumos,2024-02-16,41987,8289,33698,90,PASS
+reference_mix,REF_MIX,Orbitrap Fusion Lumos,2024-02-14,38942,7734,31208,90,PASS
+blanks_control,BLANK,Orbitrap Fusion Lumos,2024-02-14,1234,456,778,90,PASS

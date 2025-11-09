@@ -1,81 +1,33 @@
-"""
-Snakemake pipeline for LLM Proteomics Hallucination Study
-Author: Olaf Yunus Laitinen Imanov
-Institution: Technical University of Denmark
-"""
+# Snakemake workflow for LLM evaluation
 
-configfile: "../../configs/pipelines.yaml"
+configfile: "configs/default.yaml"
 
-# Include rules
-include: "rules/00_prepare.smk"
-include: "rules/10_llm_eval.smk"
-include: "rules/20_analysis.smk"
-include: "rules/30_visualization.smk"
-include: "rules/40_bias_audit.smk"
-include: "rules/50_paper_assets.smk"
-
-# Target rules
 rule all:
     input:
-        "data/results/hallucination_rates.csv",
-        "data/results/model_comparison.csv",
-        "paper/figures/output/fig1_hallucination_rate_vs_complexity.png",
-        "paper/figures/output/fig2_heatmap_severity.png",
-        "paper/manuscript.pdf"
+        "results/hallucination_rates.csv",
+        "results/model_comparison.csv",
+        "paper/figures/output/fig1_hallucination_rate_vs_complexity.png"
 
-rule prepare_data:
+rule run_llm_eval:
     input:
-        "data/queries/queries_all.json"
-    output:
-        "data/queries/queries_train.json",
-        "data/queries/queries_validation.json",
-        "data/queries/queries_test.json"
-    shell:
-        "python src/data_processing/loaders.py --split"
-
-rule run_llm_evaluation:
-    input:
-        "data/queries/queries_all.json"
+        queries="data/queries/queries_all.json"
     output:
         "data/llm_responses/{model}_responses.jsonl"
-    params:
-        model="{model}"
     shell:
-        "python src/llm_eval/runner.py --model {params.model}"
+        "python src/llm_eval/runner.py --model {wildcards.model} --input {input.queries} --output {output}"
 
 rule analyze_results:
     input:
-        expand("data/llm_responses/{model}_responses.jsonl", 
-               model=["gpt4_turbo", "claude_sonnet", "gemini_pro"])
+        expand("data/llm_responses/{model}_responses.jsonl", model=["gpt4", "claude", "gemini"])
     output:
-        "data/results/hallucination_rates.csv",
-        "data/results/model_comparison.csv"
+        "results/hallucination_rates.csv"
     shell:
-        "python src/analysis/stats_models.py"
+        "python src/analysis/stats_models.py --input {input} --output {output}"
 
 rule generate_figures:
     input:
-        "data/results/hallucination_rates.csv"
+        "results/hallucination_rates.csv"
     output:
         "paper/figures/output/fig1_hallucination_rate_vs_complexity.png"
     shell:
         "python paper/figures/generate_figure_1.py"
-
-rule compile_manuscript:
-    input:
-        "paper/manuscript.tex",
-        expand("paper/figures/output/fig{n}_*.png", n=range(1,7))
-    output:
-        "paper/manuscript.pdf"
-    shell:
-        """
-        cd paper && \
-        pdflatex manuscript.tex && \
-        bibtex manuscript && \
-        pdflatex manuscript.tex && \
-        pdflatex manuscript.tex
-        """
-
-rule clean:
-    shell:
-        "rm -rf data/llm_responses/* data/results/* paper/figures/output/*"

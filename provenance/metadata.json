@@ -1,33 +1,6 @@
 {
-  "project": {
-    "name": "llm-proteomics-hallucination",
-    "version": "1.0.0",
-    "doi": "10.5281/zenodo.11234567"
-  },
-  "authors": [
-    {
-      "name": "Olaf Yunus Laitinen Imanov",
-      "orcid": "",
-      "affiliation": "Technical University of Denmark"
-    },
-    {
-      "name": "Derya Umut Kulali",
-      "orcid": "",
-      "affiliation": "Eskisehir Technical University"
-    }
-  ],
-  "study": {
-    "period": "2024-03-01 to 2024-06-30",
-    "ethics_approval": "DTU-2024-0385",
-    "preregistration": "osf.io/x7mk9"
-  },
-  "data": {
-    "total_queries": 500,
-    "total_responses": 1500,
-    "models": ["GPT-4 Turbo", "Claude 3 Sonnet", "Gemini Pro 1.5"]
-  },
-  "results": {
-    "overall_hallucination_rate": 0.312,
-    "confidence_interval": [0.287, 0.338]
-  }
+  "study": "LLM Proteomics",
+  "version": "1.0.0",
+  "irb": "2025-IRB-1101",
+  "seed": 42
 }

@@ -1,71 +1,44 @@
-# Architecture Documentation
+# Architecture
 
 ## System Overview
 
+This repository implements a comprehensive evaluation framework for assessing hallucinations in large language models applied to clinical proteomics.
+
+## Directory Structure
+
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                     LLM Proteomics Study                     │
-├─────────────────────────────────────────────────────────────┤
-│                                                              │
-│  ┌──────────────┐    ┌──────────────┐    ┌──────────────┐ │
-│  │  Data Layer  │───▶│ Processing   │───▶│   Analysis   │ │
-│  │              │    │   Layer      │    │    Layer     │ │
-│  └──────────────┘    └──────────────┘    └──────────────┘ │
-│         │                    │                   │          │
-│         ▼                    ▼                   ▼          │
-│  ┌──────────────────────────────────────────────────────┐ │
-│  │              LLM Evaluation Framework                 │ │
-│  └──────────────────────────────────────────────────────┘ │
-│         │                                                   │
-│         ▼                                                   │
-│  ┌──────────────────────────────────────────────────────┐ │
-│  │         Results, Figures, Manuscript                  │ │
-│  └──────────────────────────────────────────────────────┘ │
-│                                                              │
-└─────────────────────────────────────────────────────────────┘
+.
+├── notebooks/          # Jupyter notebooks for analysis
+├── src/               # Source code
+│   ├── llm_eval/      # LLM evaluation modules
+│   ├── analysis/      # Statistical analysis
+│   └── data_processing/ # Data processing utilities
+├── data/              # Datasets and results
+├── paper/             # Manuscript and figures
+├── tests/             # Unit and integration tests
+└── configs/           # Configuration files
 ```
 
-## Component Details
+## Key Components
 
-### Data Layer
-- **Queries**: Proteomics questions stratified by complexity
-- **Ground Truth**: Expert-validated annotations
-- **LLM Responses**: API responses from GPT-4, Claude, Gemini
-- **Proteins**: UniProt sequences, MS/MS spectra
+### 1. LLM Evaluation Pipeline
+- Multi-model client wrappers (OpenAI, Anthropic, Google)
+- Prompt management and versioning
+- Response caching and logging
 
-### Processing Layer
-- **Loaders**: Data ingestion and validation
-- **Transformers**: Feature engineering, normalization
-- **Quality Control**: Missing value handling, outlier detection
+### 2. Analysis Framework
+- Statistical modeling (frequentist and Bayesian)
+- Bias detection and measurement
+- Robustness testing
 
-### Analysis Layer
-- **Statistical Tests**: Chi-square, logistic regression, Bonferroni
-- **Metrics**: Hallucination rates, Cohen's kappa, calibration
-- **Visualization**: Matplotlib figures for manuscript
+### 3. Data Management
+- Query generation and management
+- Expert annotation workflow
+- MS/MS validation integration
 
-### LLM Evaluation
-- **Clients**: OpenAI, Anthropic, Google API wrappers
-- **Prompts**: Standardized query templates
-- **Scoring**: Automated hallucination detection
-- **Caching**: Response caching for reproducibility
+## Design Principles
 
-## Data Flow
-
-1. **Queries** → LLM APIs → **Responses**
-2. **Responses** + **Ground Truth** → **Hallucination Detection**
-3. **Detection Results** → **Statistical Analysis**
-4. **Analysis** → **Figures & Tables**
-5. **Assets** → **Manuscript Compilation**
-
-## Technology Stack
-
-- **Python**: 3.11+
-- **Key Libraries**: pandas, numpy, scipy, scikit-learn, matplotlib
-- **LLM APIs**: OpenAI, Anthropic, Google
-- **Workflow**: Snakemake, Make
-- **Containers**: Docker, docker-compose
-- **Tracking**: MLflow, Weights & Biases
-
----
-**Version**: 1.0.0
-**Last Updated**: November 9, 2024
+1. **Reproducibility**: All analyses use seed 42
+2. **Transparency**: Full audit logs and provenance tracking
+3. **Modularity**: Loosely coupled components
+4. **Testability**: Comprehensive unit and integration tests

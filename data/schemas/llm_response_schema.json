@@ -1,115 +1,16 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "LLM Response Schema",
-  "description": "Schema for LLM responses to proteomics queries",
   "type": "object",
-  "required": ["response_id", "query_id", "model_name", "model_version", "timestamp", "response_text", "metadata"],
+  "required": ["response_id", "query_id", "model", "response_text"],
   "properties": {
-    "response_id": {
-      "type": "string",
-      "pattern": "^R[0-9]{4}$",
-      "description": "Unique response identifier (e.g., R0001)"
-    },
-    "query_id": {
-      "type": "string",
-      "pattern": "^Q[0-9]{3}$",
-      "description": "Reference to query ID"
-    },
-    "model_name": {
-      "type": "string",
-      "enum": ["gpt-4-0125-preview", "claude-3-sonnet-20240229", "gemini-1.5-pro"],
-      "description": "LLM model identifier"
-    },
-    "model_version": {
-      "type": "string",
-      "description": "Specific model version or API version"
-    },
-    "timestamp": {
-      "type": "string",
-      "format": "date-time",
-      "description": "Response generation timestamp (ISO 8601)"
-    },
-    "response_text": {
-      "type": "string",
-      "minLength": 1,
-      "maxLength": 10000,
-      "description": "Full text of LLM response"
-    },
-    "metadata": {
-      "type": "object",
-      "required": ["temperature", "max_tokens", "completion_tokens", "prompt_tokens"],
-      "properties": {
-        "temperature": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 2,
-          "description": "Sampling temperature"
-        },
-        "max_tokens": {
-          "type": "integer",
-          "minimum": 1,
-          "description": "Maximum tokens in response"
-        },
-        "completion_tokens": {
-          "type": "integer",
-          "minimum": 0,
-          "description": "Actual tokens in completion"
-        },
-        "prompt_tokens": {
-          "type": "integer",
-          "minimum": 0,
-          "description": "Tokens in prompt"
-        },
-        "top_p": {
-          "type": "number",
-          "minimum": 0,
-          "maximum": 1,
-          "description": "Nucleus sampling parameter"
-        },
-        "finish_reason": {
-          "type": "string",
-          "enum": ["stop", "length", "content_filter", "null"],
-          "description": "Reason for completion termination"
-        },
-        "latency_ms": {
-          "type": "integer",
-          "minimum": 0,
-          "description": "Response latency in milliseconds"
-        }
-      }
-    },
-    "citations": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "text": {
-            "type": "string",
-            "description": "Citation text in response"
-          },
-          "verified": {
-            "type": "boolean",
-            "description": "Whether citation was verified"
-          },
-          "pubmed_id": {
-            "type": ["string", "null"],
-            "pattern": "^[0-9]{8}$"
-          }
-        }
-      },
-      "description": "Citations provided in response"
-    },
-    "proteins_mentioned": {
-      "type": "array",
-      "items": {
-        "type": "string",
-        "pattern": "^[A-Z0-9]+$"
-      },
-      "description": "UniProt IDs of proteins mentioned"
-    },
-    "error": {
-      "type": ["string", "null"],
-      "description": "Error message if response generation failed"
-    }
+    "response_id": {"type": "string"},
+    "query_id": {"type": "string"},
+    "model": {"type": "string"},
+    "response_text": {"type": "string"},
+    "temperature": {"type": "number"},
+    "max_tokens": {"type": "integer"},
+    "timestamp": {"type": "string", "format": "date-time"},
+    "latency_ms": {"type": "integer"}
   }
 }

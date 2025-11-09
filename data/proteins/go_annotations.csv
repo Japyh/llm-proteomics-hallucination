@@ -1,0 +1,9 @@
+uniprot_accession,gene_name,go_id,go_term,go_category,evidence_code
+P04637,TP53,GO:0006915,apoptotic process,biological_process,IDA
+P04637,TP53,GO:0003677,DNA binding,molecular_function,IDA
+P04637,TP53,GO:0005634,nucleus,cellular_component,IDA
+P68871,HBB,GO:0015671,oxygen transport,biological_process,TAS
+P68871,HBB,GO:0005344,oxygen carrier activity,molecular_function,TAS
+P68871,HBB,GO:0005737,cytoplasm,cellular_component,IDA
+P01308,INS,GO:0005179,hormone activity,molecular_function,TAS
+P01308,INS,GO:0005576,extracellular region,cellular_component,IDA

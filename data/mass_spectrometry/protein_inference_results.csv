@@ -1,0 +1,6 @@
+protein_accession,gene_name,num_unique_peptides,num_total_peptides,coverage_pct,score,q_value,classification
+P04637,TP53,15,23,78.5,245.3,0.001,conclusive
+P68871,HBB,12,18,92.1,312.7,0.0001,conclusive
+P01308,INS,8,11,85.3,189.4,0.001,conclusive
+P00533,EGFR,45,78,65.2,456.8,0.0001,conclusive
+P31749,AKT1,23,34,71.8,278.9,0.001,conclusive

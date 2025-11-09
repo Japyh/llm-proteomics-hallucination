@@ -1,31 +1,28 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Query Schema",
+  "title": "Proteomics Query Schema",
   "type": "object",
-  "required": ["query_id", "query_text", "domain", "complexity", "protein_prevalence"],
+  "required": ["query_id", "text", "complexity", "domain"],
   "properties": {
     "query_id": {
       "type": "string",
-      "pattern": "^Q[0-9]{3}$"
+      "pattern": "^Q[0-9]{5}$"
     },
-    "query_text": {
+    "text": {
       "type": "string",
       "minLength": 10
-    },
-    "domain": {
-      "type": "string",
-      "enum": ["protein_identification", "quantitative_expression", "post_translational_modifications", "protein_interactions", "clinical_interpretation"]
     },
     "complexity": {
       "type": "string",
       "enum": ["simple", "intermediate", "complex"]
     },
-    "protein_prevalence": {
+    "domain": {
       "type": "string",
-      "enum": ["common", "moderate", "rare"]
+      "enum": ["oncology", "neurology", "cardiology", "immunology", "metabolism"]
     },
-    "expected_answer": {
-      "type": "string"
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
     }
   }
 }

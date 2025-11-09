@@ -1,149 +1,20 @@
 {
-  "dataset_name": "LLM Proteomics Hallucination Evaluation Dataset",
-  "version": "1.0.0",
-  "date_created": "2025-11-01",
-  "date_updated": "2025-12-15",
-  "description": "Comprehensive dataset for evaluating hallucination rates in large language model responses to proteomics queries",
-  "authors": [
-    {
-      "name": "Olaf Imanov Laitinen",
-      "affiliation": "Technical University of Denmark",
-      "email": "olyulaim@dtu.dk",
-      "orcid": "0000-0000-0000-0001"
-    },
-    {
-      "name": "Derya Umut Kulali",
-      "affiliation": "Eskisehir Technical University",
-      "email": "d_u_k@ogr.eskisehir.edu.tr",
-      "orcid": "0000-0000-0000-0002"
-    }
-  ],
-  "license": "CC-BY-4.0",
-  "doi": "10.5281/zenodo.11234567",
-  "citation": "Laitinen, O.I., Kulali, D.U. (2024). Evaluating Hallucinations in Large Language Model Responses to Proteomics Queries. The Lancet Digital Health.",
-  "study_period": {
-    "start_date": "2025-11-01",
-    "end_date": "2025-12-15",
-    "duration_days": 45
+  "study": {
+    "title": "LLM Proteomics Hallucination Study",
+    "irb_protocol": "2025-IRB-1101",
+    "version": "1.0.0",
+    "date": "2025-11-09"
   },
   "data_collection": {
-    "total_queries": 1500,
-    "models_evaluated": 3,
-    "total_responses": 4500,
-    "annotators": 2,
-    "annotation_rounds": 2
+    "start_date": "2025-10-01",
+    "end_date": "2025-11-01",
+    "n_queries": 600,
+    "n_annotators": 3,
+    "random_seed": 42
   },
-  "statistics": {
-    "overall_hallucination_rate": 0.312,
-    "overall_hallucination_rate_ci": [0.287, 0.338],
-    "inter_rater_agreement_kappa": 0.87,
-    "inter_rater_agreement_kappa_ci": [0.84, 0.90]
-  },
-  "domains": [
-    {
-      "name": "protein_identification",
-      "query_count": 300,
-      "hallucination_rate": 0.213
-    },
-    {
-      "name": "quantitative_expression",
-      "query_count": 300,
-      "hallucination_rate": 0.287
-    },
-    {
-      "name": "ptm",
-      "query_count": 300,
-      "hallucination_rate": 0.420
-    },
-    {
-      "name": "protein_interactions",
-      "query_count": 300,
-      "hallucination_rate": 0.353
-    },
-    {
-      "name": "clinical_interpretation",
-      "query_count": 300,
-      "hallucination_rate": 0.287
-    }
-  ],
-  "models": [
-    {
-      "name": "gpt4-turbo",
-      "version": "gpt-4-turbo-2024-04-09",
-      "provider": "OpenAI",
-      "hallucination_rate": 0.334,
-      "query_count": 500
-    },
-    {
-      "name": "claude-sonnet",
-      "version": "claude-3-sonnet-20240229",
-      "provider": "Anthropic",
-      "hallucination_rate": 0.278,
-      "query_count": 500
-    },
-    {
-      "name": "gemini-pro",
-      "version": "gemini-1.5-pro-001",
-      "provider": "Google",
-      "hallucination_rate": 0.324,
-      "query_count": 500
-    }
-  ],
-  "data_sources": {
-    "protein_databases": [
-      {
-        "name": "UniProt",
-        "version": "2024_01",
-        "url": "https://www.uniprot.org",
-        "date_accessed": "2025-10-15"
-      },
-      {
-        "name": "PhosphoSitePlus",
-        "version": "October 2025",
-        "url": "https://www.phosphosite.org",
-        "date_accessed": "2025-10-20"
-      },
-      {
-        "name": "Human Protein Atlas",
-        "version": "v23.0",
-        "url": "https://www.proteinatlas.org",
-        "date_accessed": "2025-10-18"
-      },
-      {
-        "name": "PeptideAtlas",
-        "version": "2024-01",
-        "url": "http://www.peptideatlas.org",
-        "date_accessed": "2025-10-22"
-      }
-    ]
-  },
-  "file_structure": {
-    "queries": "data/queries/",
-    "ground_truth": "data/ground_truth/",
-    "llm_responses": "data/llm_responses/",
-    "results": "data/results/",
-    "proteins": "data/proteins/",
-    "mass_spectrometry": "data/mass_spectrometry/",
-    "schemas": "data/schemas/"
-  },
-  "checksums": {
-    "algorithm": "SHA256",
-    "file": "provenance/checksums/data_hashes.txt"
-  },
-  "provenance": {
-    "git_repository": "https://github.com/olaflaitinen/llm-proteomics-hallucination",
-    "git_commit": "d5a9370",
-    "zenodo_archive": "10.5281/zenodo.11234567"
-  },
-  "ethics": {
-    "protocol_id": "2025-IRB-1101",
-    "approval_date": "2025-10-28",
-    "institution": "Institutional Review Board",
-    "preregistration": "osf.io/x7mk9"
-  },
-  "contact": {
-    "name": "Olaf Imanov Laitinen",
-    "email": "olyulaim@dtu.dk",
-    "affiliation": "Technical University of Denmark"
-  }
+  "models_evaluated": [
+    "gpt-4-turbo-2024-04-09",
+    "claude-3-sonnet-20240229",
+    "gemini-1.5-pro"
+  ]
 }

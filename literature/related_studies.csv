@@ -1,0 +1,36 @@
+study_id,first_author,year,title,journal,doi,llm_evaluated,domain,hallucination_focus,sample_size,key_finding,relevance_score
+S001,Ji,2023,Survey of Hallucination in Natural Language Generation,ACM Computing Surveys,10.1145/3571730,General NLG,General,Yes,N/A (review),Comprehensive taxonomy of hallucination types,9
+S002,Zhang,2023,Siren's Song in the AI Ocean,arXiv,arXiv:2309.01219,GPT-3/4,General,Yes,N/A (survey),LLM-specific hallucination analysis,9
+S003,Singhal,2023,Large language models encode clinical knowledge,Nature,10.1038/s41586-023-06291-2,PaLM 2,Clinical medicine,Yes,1066,18.7% hallucination rate in medical Q&A,10
+S004,Thirunavukarasu,2023,Large language models in medicine,Nature Medicine,10.1038/s41591-023-02448-8,Various,Clinical medicine,Yes,N/A (review),Identifies hallucination as barrier to adoption,8
+S005,Azamfirei,2023,Large language models and the perils of their hallucinations,Critical Care Medicine,10.1097/CCM.0000000000005830,ChatGPT,Clinical medicine,Yes,Case study,False citation generation,7
+S006,Abell-Hart,2023,Proteins Pathways and Phenotypes,bioRxiv,10.1101/2023.08.30.555625,GPT-3.5/4,Proteomics,Partial,500,Performance varies by protein annotation,10
+S007,Taylor,2022,Galactica: A Large Language Model for Science,arXiv,arXiv:2211.09085,Galactica,Science,Yes,N/A,Model withdrawn due to hallucinations,6
+S008,Lin,2022,TruthfulQA: Measuring How Models Mimic Human Falsehoods,ACL,10.18653/v1/2022.acl-long.229,GPT-3,General knowledge,Yes,817,LLMs mimic human misconceptions,8
+S009,Guo,2017,On Calibration of Modern Neural Networks,ICML,arXiv:1706.04599,Neural networks,Computer vision,No,N/A,Modern networks poorly calibrated,7
+S010,Rajkomar,2019,Machine Learning in Medicine,NEJM,10.1056/NEJMra1814259,Various ML,Clinical medicine,No,N/A (review),Discusses validation challenges,6
+S011,Rifai,2006,Protein biomarker discovery and validation,Nature Biotechnology,10.1038/nbt1235,N/A,Proteomics biomarkers,No,N/A (review),Long path to clinical utility,5
+S012,Cox,2008,MaxQuant enables high peptide identification rates,Nature Biotechnology,10.1038/nbt.1511,N/A,Proteomics methods,No,N/A,Standard proteomics tool,4
+S013,Rost,2016,OpenMS: flexible open-source software platform,Nature Methods,10.1038/nmeth.3959,N/A,Proteomics methods,No,N/A,Another standard proteomics tool,4
+S014,Bender,2021,On the Dangers of Stochastic Parrots,ACM FAccT,10.1145/3442188.3445922,Large LMs,Ethics/social,Partial,N/A,Risks of large language models,7
+S015,Bommasani,2021,On the Opportunities and Risks of Foundation Models,arXiv,arXiv:2108.07258,Foundation models,General,Yes,N/A (report),Comprehensive foundation model analysis,8
+S016,Kadavath,2022,Language Models (Mostly) Know What They Know,arXiv,arXiv:2207.05221,Various,Calibration,Yes,N/A,LLM confidence calibration,8
+S017,Mialon,2023,Augmented Language Models: a Survey,arXiv,arXiv:2302.07842,Various,General,No,N/A (survey),Retrieval-augmented generation,6
+S018,Lewis,2020,Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks,NeurIPS,arXiv:2005.11401,BART,General NLP,No,N/A,RAG methodology,7
+S019,Petroni,2019,Language Models as Knowledge Bases?,EMNLP,10.18653/v1/D19-1250,BERT,Knowledge,Yes,N/A,LMs encode factual knowledge,6
+S020,Maynez,2020,On Faithfulness and Factuality in Abstractive Summarization,ACL,10.18653/v1/2020.acl-main.173,BART,Summarization,Yes,500,70% of summaries contain hallucinations,7
+S021,Manakul,2023,SelfCheckGPT: Zero-Resource Black-Box Hallucination Detection,arXiv,arXiv:2303.08896,GPT-3,General,Yes,N/A,Self-consistency for hallucination detection,8
+S022,Liu,2023,Evaluating Verifiability in Generative Search Engines,arXiv,arXiv:2304.09848,Various,Search,Yes,N/A,Citation accuracy in LLM search,7
+S023,Min,2023,FActScore: Fine-grained Atomic Evaluation of Factual Precision,EMNLP,arXiv:2305.14251,Various,Factuality,Yes,N/A,Atomic fact evaluation,8
+S024,OpenAI,2023,GPT-4 Technical Report,arXiv,arXiv:2303.08774,GPT-4,General,Partial,N/A,GPT-4 capabilities and limitations,9
+S025,Anthropic,2023,Claude 2 Model Card,Technical Report,N/A,Claude 2,General,Partial,N/A,Claude 2 safety features,7
+S026,Google,2023,Gemini: A Family of Highly Capable Multimodal Models,arXiv,arXiv:2312.11805,Gemini,Multimodal,Partial,N/A,Multimodal LLM capabilities,8
+S027,Touvron,2023,Llama 2: Open Foundation and Fine-Tuned Chat Models,arXiv,arXiv:2307.09288,Llama 2,General,Partial,N/A,Open-source LLM,8
+S028,Jiang,2023,Mistral 7B,arXiv,arXiv:2310.06825,Mistral,General,No,N/A,Efficient open-source LLM,6
+S029,Nakano,2021,WebGPT: Browser-assisted question-answering with human feedback,arXiv,arXiv:2112.09332,WebGPT,Question answering,Yes,N/A,Web browsing reduces hallucinations,7
+S030,Ouyang,2022,Training language models to follow instructions with human feedback,NeurIPS,arXiv:2203.02155,InstructGPT,Instruction following,Partial,N/A,RLHF methodology,8
+S031,Wang,2023,Self-Consistency Improves Chain of Thought Reasoning in Language Models,ICLR,arXiv:2203.11171,Various,Reasoning,No,N/A,Self-consistency for better reasoning,7
+S032,Wei,2022,Chain-of-Thought Prompting Elicits Reasoning in Large Language Models,NeurIPS,arXiv:2201.11903,Various,Reasoning,No,N/A,CoT improves complex reasoning,8
+S033,Yao,2023,Tree of Thoughts: Deliberate Problem Solving with Large Language Models,arXiv,arXiv:2305.10601,GPT-4,Reasoning,No,N/A,Structured reasoning approach,6
+S034,Huang,2023,Large Language Models Cannot Self-Correct Reasoning Yet,arXiv,arXiv:2310.01798,Various,Reasoning,Yes,N/A,Self-correction limitations,7
+S035,Varshney,2023,A Stitch in Time Saves Nine: Detecting and Mitigating Hallucinations of LLMs,arXiv,arXiv:2307.03987,Various,Hallucination mitigation,Yes,N/A,Proactive hallucination detection,8

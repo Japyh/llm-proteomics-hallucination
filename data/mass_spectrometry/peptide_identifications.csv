@@ -1,0 +1,4 @@
+peptide_sequence,protein_accession,charge,mz_observed,mz_theoretical,mass_error_ppm,score,q_value,run_id
+LVVYPWTQR,P68871,2,1163.6,1163.58,17.2,85.3,0.001,patient001_runA
+FVNQHLCGSHLVEALYLVCGER,P01308,3,854.4,854.38,23.4,92.1,0.0005,patient001_runA
+MEEPQSDPSVEPPLSQETFSDLWK,P04637,3,945.1,945.07,31.7,78.9,0.002,patient002_runA

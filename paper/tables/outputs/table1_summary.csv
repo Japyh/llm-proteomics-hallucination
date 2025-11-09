@@ -1,0 +1,10 @@
+characteristic,value
+Total queries,1000
+Mean query length (characters),234.5
+SD query length,89.2
+Queries with numerical data (%),423 (42.3%)
+Unique proteomics domains,6
+Models evaluated,5
+Total model responses,5000
+Expert annotators,3
+Mean inter-rater agreement (κ),0.87

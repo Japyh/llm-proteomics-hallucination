@@ -1,0 +1,7 @@
+Bias Category,Test,Statistic,P value,Effect Size,Interpretation
+Domain bias,Chi-square,χ²=34.56,<0.001,Cramér's V=0.19,Small effect
+Complexity trend,Cochran-Armitage,Z=15.23,<0.001,Linear trend,Significant increase
+Clinical vs non-clinical,Mann-Whitney,U=45678,<0.001,Cohen's d=0.42,Medium effect
+Numerical data bias,Chi-square,χ²=12.34,<0.001,Cramér's V=0.11,Small effect
+Query length bias,Spearman correlation,ρ=0.23,<0.001,r²=0.05,Weak correlation
+Temporal consistency,Intraclass correlation,ICC=0.76,<0.001,,Good consistency

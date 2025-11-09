@@ -1,19 +1,16 @@
-.PHONY: help setup test lint format clean data paper all
+.PHONY: help install test lint format clean notebooks paper
 
 help:
-	@echo "LLM Proteomics Hallucination Study - Make commands"
-	@echo ""
-	@echo "  make setup      - Setup environment"
-	@echo "  make test       - Run tests"
-	@echo "  make lint       - Run linters"
-	@echo "  make format     - Format code"
-	@echo "  make data       - Generate data"
-	@echo "  make paper      - Compile manuscript"
-	@echo "  make all        - Run complete pipeline"
+	@echo "Available commands:"
+	@echo "  install     Install dependencies"
+	@echo "  test        Run tests"
+	@echo "  lint        Run linters"
+	@echo "  format      Format code"
+	@echo "  clean       Clean generated files"
+	@echo "  notebooks   Run all notebooks"
+	@echo "  paper       Build paper PDF"
 
-setup:
-	conda env create -f environment.yml
-	conda activate llm-proteomics
+install:
 	pip install -r requirements.txt
 	pip install -e .
 
@@ -25,28 +22,17 @@ lint:
 	mypy src/
 
 format:
-	black src/ tests/
-	isort src/ tests/
+	black src/ tests/ notebooks/
 
 clean:
 	find . -type d -name __pycache__ -exec rm -rf {} +
-	find . -type f -name '*.pyc' -delete
-	rm -rf .pytest_cache .coverage htmlcov
+	find . -type f -name "*.pyc" -delete
+	rm -rf .pytest_cache
+	rm -rf htmlcov
+	rm -rf .mypy_cache
 
-data:
-	python data/generators/generate_query_dataset.py
-	python data/generators/generate_protein_sequences.py
-	python data/generators/generate_ms_spectra.py
+notebooks:
+	jupyter nbconvert --to notebook --execute notebooks/*.ipynb
 
 paper:
-	cd paper && \
-	python figures/generate_figure_1.py && \
-	python figures/generate_figure_2.py && \
-	python figures/generate_figure_3.py && \
-	python figures/generate_figure_4.py && \
-	pdflatex manuscript.tex && \
-	bibtex manuscript && \
-	pdflatex manuscript.tex && \
-	pdflatex manuscript.tex
-
-all: data test paper
+	cd paper && pdflatex manuscript.tex && bibtex manuscript && pdflatex manuscript.tex && pdflatex manuscript.tex

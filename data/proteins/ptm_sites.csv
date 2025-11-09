@@ -1,0 +1,8 @@
+uniprot_accession,gene_name,site_position,residue,modification_type,kinase_substrate,validated
+P04637,TP53,15,S,Phosphorylation,ATM,TRUE
+P04637,TP53,20,S,Phosphorylation,CHEK2,TRUE
+P04637,TP53,46,S,Phosphorylation,HIPK2,TRUE
+P31749,AKT1,308,T,Phosphorylation,PDK1,TRUE
+P31749,AKT1,473,S,Phosphorylation,mTORC2,TRUE
+P00533,EGFR,1068,Y,Phosphorylation,auto,TRUE
+P00533,EGFR,1173,Y,Phosphorylation,auto,TRUE

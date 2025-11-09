@@ -1,4 +1,5 @@
-"""Anthropic Claude API client."""
+"""Anthropic API client wrapper"""
+from typing import Dict, Any
 import anthropic
 
 class AnthropicClient:
@@ -6,15 +7,18 @@ class AnthropicClient:
         self.client = anthropic.Anthropic(api_key=api_key)
         self.model = model
     
-    def generate(self, prompt: str, temperature: float = 0.3, max_tokens: int = 2048) -> dict:
-        response = self.client.messages.create(
+    def generate(self, prompt: str, temperature: float = 0.1,
+                max_tokens: int = 500) -> Dict[str, Any]:
+        """Generate response from Anthropic model"""
+        message = self.client.messages.create(
             model=self.model,
             max_tokens=max_tokens,
             temperature=temperature,
             messages=[{"role": "user", "content": prompt}]
         )
+        
         return {
-            "content": response.content[0].text,
-            "tokens_used": response.usage.input_tokens + response.usage.output_tokens,
-            "model": self.model
+            "text": message.content[0].text,
+            "model": self.model,
+            "usage": message.usage.input_tokens + message.usage.output_tokens
         }

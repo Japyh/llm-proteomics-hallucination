@@ -1,78 +1,23 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Expert Annotation Schema",
-  "description": "Schema for expert annotations of LLM responses in proteomics queries",
+  "title": "Annotation Schema",
   "type": "object",
-  "required": ["annotation_id", "query_id", "response_id", "rater_id", "timestamp", "is_hallucination", "hallucination_type", "severity"],
+  "required": ["query_id", "response_id", "has_hallucination", "annotator_id"],
   "properties": {
-    "annotation_id": {
-      "type": "string",
-      "pattern": "^A[0-9]{4}$",
-      "description": "Unique annotation identifier (e.g., A0001)"
-    },
-    "query_id": {
-      "type": "string",
-      "pattern": "^Q[0-9]{3}$",
-      "description": "Reference to query ID"
-    },
-    "response_id": {
-      "type": "string",
-      "pattern": "^R[0-9]{4}$",
-      "description": "Reference to LLM response ID"
-    },
-    "rater_id": {
-      "type": "string",
-      "enum": ["RATER1", "RATER2"],
-      "description": "Expert rater identifier"
-    },
-    "timestamp": {
-      "type": "string",
-      "format": "date-time",
-      "description": "Annotation timestamp (ISO 8601)"
-    },
-    "is_hallucination": {
-      "type": "boolean",
-      "description": "Whether the response contains a hallucination"
-    },
-    "hallucination_type": {
-      "type": ["string", "null"],
-      "enum": [
-        "factual_error",
-        "fabricated_protein",
-        "fabricated_ptm",
-        "fabricated_interaction",
-        "fabricated_citation",
-        "misattribution",
-        "quantitative_error",
-        "temporal_error",
-        null
-      ],
-      "description": "Type of hallucination if present"
-    },
+    "query_id": {"type": "string"},
+    "response_id": {"type": "string"},
+    "has_hallucination": {"type": "boolean"},
     "severity": {
-      "type": ["string", "null"],
-      "enum": ["minor", "moderate", "severe", "critical", null],
-      "description": "Clinical severity of hallucination"
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4
     },
+    "annotator_id": {"type": "string"},
     "confidence": {
       "type": "number",
       "minimum": 0,
-      "maximum": 5,
-      "description": "Rater confidence (0-5 scale)"
+      "maximum": 1
     },
-    "notes": {
-      "type": "string",
-      "maxLength": 1000,
-      "description": "Additional notes from rater"
-    },
-    "ground_truth_reference": {
-      "type": ["string", "null"],
-      "description": "Reference to ground truth source (e.g., UniProt ID, PubMed ID)"
-    },
-    "correction": {
-      "type": ["string", "null"],
-      "maxLength": 500,
-      "description": "Corrected version of hallucinated content"
-    }
+    "timestamp": {"type": "string", "format": "date-time"}
   }
 }

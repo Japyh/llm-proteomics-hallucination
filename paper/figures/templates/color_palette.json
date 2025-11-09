@@ -1,61 +1,19 @@
 {
-  "name": "Lancet Digital Health Color Palette",
-  "description": "Professional, colorblind-friendly palette for scientific figures",
-  "version": "1.0",
-  "colors": {
-    "primary": {
-      "lancet_blue": "#0073CF",
-      "lancet_red": "#DC0000",
-      "lancet_green": "#00A650",
-      "lancet_orange": "#FF8200",
-      "lancet_purple": "#7F3F98"
-    },
-    "models": {
-      "gpt4": "#1f77b4",
-      "claude": "#ff7f0e",
-      "gemini": "#2ca02c"
-    },
-    "severity": {
-      "minor": "#66c2a5",
-      "moderate": "#fc8d62",
-      "severe": "#e78ac3",
-      "critical": "#e41a1c"
-    },
-    "domains": {
-      "protein_id": "#8dd3c7",
-      "quantitative": "#ffffb3",
-      "ptm": "#bebada",
-      "interactions": "#fb8072",
-      "clinical": "#80b1d3"
-    },
-    "grayscale": {
-      "black": "#000000",
-      "dark_gray": "#404040",
-      "medium_gray": "#808080",
-      "light_gray": "#C0C0C0",
-      "white": "#FFFFFF"
-    },
-    "sequential": {
-      "blues": ["#eff3ff", "#c6dbef", "#9ecae1", "#6baed6", "#3182bd", "#08519c"],
-      "reds": ["#fee5d9", "#fcbba1", "#fc9272", "#fb6a4a", "#de2d26", "#a50f15"],
-      "greens": ["#edf8e9", "#c7e9c0", "#a1d99b", "#74c476", "#31a354", "#006d2c"]
-    },
-    "diverging": {
-      "red_blue": ["#d73027", "#fc8d59", "#fee090", "#e0f3f8", "#91bfdb", "#4575b4"],
-      "purple_green": ["#762a83", "#af8dc3", "#e7d4e8", "#d9f0d3", "#7fbf7b", "#1b7837"]
-    }
+  "primary": {
+    "gpt4": "#4472C4",
+    "claude": "#70AD47",
+    "gemini": "#FFC000"
   },
-  "usage": {
-    "figure_1": ["lancet_blue", "lancet_green", "lancet_orange"],
-    "figure_2": ["gpt4", "claude", "gemini"],
-    "figure_3": ["blues"],
-    "figure_4": ["models"],
-    "figure_5": ["domains"],
-    "figure_6": ["red_blue"]
+  "severity": {
+    "low": "#C6EFCE",
+    "medium": "#FFEB9C",
+    "high": "#FFC7CE"
   },
-  "accessibility": {
-    "colorblind_safe": true,
-    "contrast_ratio": "≥4.5:1",
-    "wcag_compliant": "AA"
-  }
+  "categorical": [
+    "#4472C4",
+    "#70AD47",
+    "#FFC000",
+    "#C65911",
+    "#7030A0"
+  ]
 }

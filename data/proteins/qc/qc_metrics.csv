@@ -1,0 +1,4 @@
+sample_id,total_proteins,high_conf_proteins,mean_coverage,median_coverage,mean_peptides,contamination_pct,qc_status
+sample_001,5234,4892,68.5,72.3,12.4,0.3,PASS
+sample_002,5156,4801,66.2,69.8,11.9,0.5,PASS
+sample_003,4892,4523,61.7,65.2,10.8,1.2,WARNING

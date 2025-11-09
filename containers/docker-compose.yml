@@ -1,49 +1,26 @@
 version: '3.8'
 
 services:
-  llm-proteomics:
+  llm-eval:
     build:
       context: ..
       dockerfile: containers/Dockerfile
-    image: llm-proteomics:latest
-    container_name: llm-proteomics-main
     volumes:
-      - ../data:/workspace/data
-      - ../results:/workspace/results
-      - ../notebooks:/workspace/notebooks
+      - ../data:/app/data
+      - ../results:/app/results
+      - ../configs:/app/configs
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
-      - GOOGLE_API_KEY=${GOOGLE_API_KEY}
-    networks:
-      - llm-network
-    
+    command: python -m src.llm_eval.runner
+
   jupyter:
     build:
       context: ..
       dockerfile: containers/notebooks_container.Dockerfile
-    image: llm-proteomics-jupyter:latest
-    container_name: llm-proteomics-jupyter
     ports:
       - "8888:8888"
     volumes:
-      - ../notebooks:/workspace/notebooks
-      - ../data:/workspace/data
-    command: jupyter lab --ip=0.0.0.0 --port=8888 --no-browser --allow-root
-    networks:
-      - llm-network
-
-  mlflow:
-    image: ghcr.io/mlflow/mlflow:latest
-    container_name: mlflow-server
-    ports:
-      - "5000:5000"
-    volumes:
-      - ../tracking/mlflow:/mlflow
-    command: mlflow server --host 0.0.0.0 --port 5000 --backend-store-uri sqlite:////mlflow/experiments.db --default-artifact-root /mlflow/artifacts
-    networks:
-      - llm-network
-
-networks:
-  llm-network:
-    driver: bridge
+      - ../notebooks:/app/notebooks
+      - ../data:/app/data
+    command: jupyter lab --ip=0.0.0.0 --allow-root --no-browser

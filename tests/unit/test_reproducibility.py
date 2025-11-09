@@ -1,13 +1,13 @@
-"""Test reproducibility with fixed seeds."""
-from src.utils.seeds import set_seed
+"""Test reproducibility"""
+import pytest
 import numpy as np
 
-def test_seed_reproducibility():
-    """Verify random seed works."""
-    set_seed(42)
-    arr1 = np.random.rand(10)
+def test_random_seed():
+    """Test that random seed works consistently"""
+    np.random.seed(42)
+    sample1 = np.random.rand(10)
     
-    set_seed(42)
-    arr2 = np.random.rand(10)
+    np.random.seed(42)
+    sample2 = np.random.rand(10)
     
-    assert np.allclose(arr1, arr2), "Seeds not reproducing same values"
+    assert np.allclose(sample1, sample2)

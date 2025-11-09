@@ -1,0 +1,13 @@
+query_id,query_text,domain,complexity,protein_prevalence,protein_name,word_count,character_count,contains_numerical,contains_uniprot_id,split,created_date,reviewer
+TRAIN_001,"What is the UniProt accession number for human insulin?",protein_identification,low,common,INS,8,51,FALSE,FALSE,train,2024-03-01,expert_1
+TRAIN_002,"What are the known phosphorylation sites on human AKT1?",ptm,medium,common,AKT1,9,57,FALSE,FALSE,train,2024-03-01,expert_2
+TRAIN_003,"Is p53 upregulated or downregulated in most cancers?",clinical_interpretation,low,common,TP53,8,54,FALSE,FALSE,train,2024-03-02,expert_1
+VAL_001,"What is the molecular weight of human albumin?",protein_identification,low,common,ALB,8,47,FALSE,FALSE,validation,2024-03-05,expert_1
+VAL_002,"Which kinases phosphorylate ERK1/2 at their activation loop?",ptm,medium,common,MAPK1/MAPK3,8,63,TRUE,FALSE,validation,2024-03-05,expert_2
+TEST_001,"What is the UniProt accession for human hemoglobin subunit beta?",protein_identification,low,common,HBB,10,67,FALSE,FALSE,test,2024-03-10,expert_1
+TEST_002,"What proteins interact with BRCA1 in DNA repair?",protein_interactions,medium,common,BRCA1,8,52,FALSE,FALSE,test,2024-03-10,expert_2
+HC_001,"Given a TMT-labeled proteomics experiment...",clinical_interpretation,high,rare,hypothetical_oncogene,78,485,TRUE,TRUE,test,2024-03-15,expert_1
+HC_002,"A mass spectrometry experiment identifies peptide AEFVEVTK...",protein_identification,high,rare,protein_Y,64,412,TRUE,FALSE,test,2024-03-15,expert_2
+LC_001,"What is the gene name for UniProt P04637?",protein_identification,low,common,TP53,9,46,TRUE,TRUE,train,2024-03-01,expert_1
+LC_002,"Is EGFR a receptor tyrosine kinase?",protein_identification,low,common,EGFR,6,39,FALSE,FALSE,train,2024-03-01,expert_1
+LC_003,"What is the cellular localization of histone H3?",protein_identification,low,common,H3,8,52,FALSE,FALSE,train,2024-03-01,expert_2
