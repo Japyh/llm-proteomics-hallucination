@@ -1,0 +1,11 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Research Ethics Questions
+    url: https://github.com/olaflaitinen/llm-proteomics-hallucination/discussions
+    about: For questions related to IRB protocol #2025-IRB-1101 and ethics compliance
+  - name: Documentation
+    url: https://github.com/olaflaitinen/llm-proteomics-hallucination/wiki
+    about: Check our documentation and wiki for detailed information
+  - name: Security Issues
+    url: https://github.com/olaflaitinen/llm-proteomics-hallucination/security/advisories/new
+    about: Report security vulnerabilities privately

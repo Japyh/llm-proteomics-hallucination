@@ -1,0 +1,31 @@
+# Code Owners for LLM Proteomics Hallucination Study
+# These owners will be requested for review when someone opens a PR
+
+# Global owners
+* @olaflaitinen
+
+# Notebooks
+/notebooks/ @olaflaitinen
+
+# Source code
+/src/ @olaflaitinen
+
+# Paper and manuscript
+/paper/ @olaflaitinen
+
+# Data and ethics
+/data/ @olaflaitinen
+/ethics/ @olaflaitinen
+
+# Configuration
+/configs/ @olaflaitinen
+
+# Tests
+/tests/ @olaflaitinen
+
+# Documentation
+*.md @olaflaitinen
+/docs/ @olaflaitinen
+
+# CI/CD
+/.github/ @olaflaitinen

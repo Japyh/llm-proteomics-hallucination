@@ -1,0 +1,63 @@
+# Automatic labeling rules for pull requests
+
+# Documentation
+documentation:
+  - '**/*.md'
+  - 'docs/**/*'
+  - 'paper/**/*.tex'
+  - 'paper/**/*.bib'
+
+# Notebooks
+notebooks:
+  - 'notebooks/**/*.ipynb'
+
+# Source code
+source:python:
+  - 'src/**/*.py'
+
+# Tests
+tests:
+  - 'tests/**/*'
+
+# Data
+data:
+  - 'data/**/*'
+
+# Configuration
+config:
+  - 'configs/**/*.yaml'
+  - 'configs/**/*.yml'
+  - '*.toml'
+  - '*.cfg'
+  - 'requirements*.txt'
+
+# Ethics
+ethics:
+  - 'ethics/**/*'
+
+# CI/CD
+ci-cd:
+  - '.github/**/*'
+  - '.github/workflows/*.yml'
+
+# Containers
+docker:
+  - 'containers/**/*'
+  - '**/Dockerfile*'
+  - 'docker-compose*.yml'
+
+# Pipelines
+pipelines:
+  - 'pipelines/**/*'
+
+# Paper/Manuscript
+paper:
+  - 'paper/**/*'
+
+# Dependencies
+dependencies:
+  - 'requirements*.txt'
+  - 'environment.yml'
+  - 'pyproject.toml'
+  - 'setup.cfg'
+  - 'Pipfile*'

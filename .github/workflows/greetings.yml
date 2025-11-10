@@ -1,0 +1,39 @@
+name: Greetings
+
+on:
+  issues:
+    types: [opened]
+  pull_request_target:
+    types: [opened]
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  greeting:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/first-interaction@v1
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        issue-message: |
+          👋 Thanks for opening your first issue! We appreciate your contribution to the LLM Proteomics Hallucination Study.
+          
+          Please make sure you've:
+          - Searched for similar issues
+          - Provided a clear description
+          - Included relevant context
+          
+          Our team will review this soon!
+        pr-message: |
+          🎉 Thanks for opening your first pull request! We're excited to review your contribution.
+          
+          Please ensure:
+          - [ ] Tests pass
+          - [ ] Code follows our style guide
+          - [ ] Documentation is updated if needed
+          - [ ] IRB and ethics compliance is maintained
+          
+          A maintainer will review your PR soon!
